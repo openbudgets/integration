@@ -1,19 +1,28 @@
 version: '2'
 services:
-    linkedPipes:
-        build:./linkedPipes2
+    linkedpipes:
+        build: ./linkedpipes
+        volumes:
+            - ../volumes/linkedpipes/data:/data
+            - ../volumes/linkedpipes/supoervisor:/var/log/supervisor
+        ports:
+            - "28085:8085" # executor.webserver.port
+            - "28080:8080" # Webserver & URI dereferencable URI for pipelines + templates
+            - "28081:8081" # executor-monitor.webserver.port
+            - "22221:2221" # executor-monitor.ftp.port
+            - "23300:3300" # external.port.start port for external services like Fuseki
+            - "29001:9001" # supervisord frontend
+  #  tripleStoreStaging:
 
-    tripleStoreStaging:
+   # tripleStoreProduction:
 
-    tripleStoreProduction:
+    #nginx:
 
-    nginx:
+    #rudolf:
 
-    rudolf:
+    #alignmentUI:
 
-    alignmentUI:
-
-    fileServerDataMining:
+    #fileServerDataMining:
 
 
 
