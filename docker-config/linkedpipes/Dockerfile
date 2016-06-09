@@ -32,6 +32,8 @@ EXPOSE \
     2221 \
     # external.port.start port for external services like Fuseki:
     3300
+    # supervisor frontend
+    9001
 
 COPY ./supervisord.conf /etc/supervisord.conf
 CMD ["/usr/bin/supervisord"]
