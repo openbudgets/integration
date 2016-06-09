@@ -1,6 +1,7 @@
 version: '2'
 services:
     linkedPipes:
+        build:./linkedPipes2
 
     tripleStoreStaging:
 
