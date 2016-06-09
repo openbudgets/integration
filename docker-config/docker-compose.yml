@@ -1,0 +1,22 @@
+version: '2'
+services:
+    linkedPipes:
+
+    tripleStoreStaging:
+
+    tripleStoreProduction:
+
+    nginx:
+
+    rudolf:
+
+    alignmentUI:
+
+    fileServerDataMining:
+
+
+
+
+
+
+
