@@ -15,13 +15,32 @@ services:
         environment:
             - SUPERVISOR_USER=obeu
             - SUPERVISOR_PW=obeu
-  #  tripleStoreStaging:
+    triple_store_staging:
+        build: ./fuseki
+        volumes:
+            - ../volumes/tripleStoreStaging/run:/usr/lib/fuseki/run
+            - ../volumes/tripleStoreStaging/data:/data
+        ports:
+            - "33030:3030"
+    triple_store_production:
+        build: ./fuseki
+        volumes:
+            - ../volumes/tripleStoreProduction/run:/usr/lib/fuseki/run
+            - ../volumes/tripleStoreProduction/data:/data
+        ports:
+            - "43030:3030"
+    rudof
 
-   # tripleStoreProduction:
     nginx:
         build: ./nginx
         volumes:
-            - ../volumes/nginx/log:/var/log/nginx
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+        ports:
+            - "7070:28080"
+        links:
+            - linkedpipes
+            - triple_store_staging
+            - triple_store_production
 
     #rudolf:
 

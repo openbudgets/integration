@@ -5,6 +5,12 @@ mkdir -p volumes/linkedpipes/data/lp/etl/pipelines
 mkdir -p volumes/linkedpipes/supervisor/log
 # nginx:
 mkdir -p volumes/nginx/log
+# tripleStoreStaging:
+mkdir -p volumes/tripleStoreStaging/data
+mkdir -p volumes/tripleStoreStaging/run
+# fuseki:
+mkdir -p volumes/tripleStoreProduction/data
+mkdir -p volumes/tripleStoreProduction/run
 
 
 #chmod -R ug+rwx volumes

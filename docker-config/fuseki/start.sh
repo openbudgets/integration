@@ -1,0 +1,1 @@
+cd $FUSEKI_HOME && sh ./fuseki-server --update --loc=/data /ds

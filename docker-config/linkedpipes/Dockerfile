@@ -21,6 +21,11 @@ RUN chmod ug+rx /etl/deploy/executor.sh && \
     chmod ug+rx /etl/deploy/frontend.sh
 COPY ./configuration.properties /etl/deploy/configuration.properties
 
+# Persist Directory for data in LinkedPipes:
+VOLUME /data
+# Persist Directory for log files of the Executor, Executor-Monitor, Frontend:
+VOLUME /var/log/supervisor
+
 EXPOSE \
     # executor.webserver.port:
     8085 \
