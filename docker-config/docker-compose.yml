@@ -29,18 +29,25 @@ services:
             - ../volumes/tripleStoreProduction/data:/data
         ports:
             - "43030:3030"
-    rudof
-
+    rudolf:
+        build: ./rudolf
+        expose:
+            - 9000
     nginx:
         build: ./nginx
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-        ports:
-            - "7070:28080"
+            - ../volumes/nginx/log:/var/log/nginx
+        volumes_from:
+            - rudolf
         links:
             - linkedpipes
-            - triple_store_staging
-            - triple_store_production
+#            - triple_store_staging
+#            - triple_store_production
+            - rudolf
+        ports:
+            - "80:80"
+
 
     #rudolf:
 

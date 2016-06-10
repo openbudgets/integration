@@ -11,6 +11,9 @@ mkdir -p volumes/tripleStoreStaging/run
 # fuseki:
 mkdir -p volumes/tripleStoreProduction/data
 mkdir -p volumes/tripleStoreProduction/run
+# Rudolf:
+mkdir -p volumes/rudolf
+
 
 
 #chmod -R ug+rwx volumes
