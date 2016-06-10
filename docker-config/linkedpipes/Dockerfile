@@ -31,7 +31,7 @@ EXPOSE \
     # executor-monitor.ftp.port:
     2221 \
     # external.port.start port for external services like Fuseki:
-    3300
+    3300 \
     # supervisor frontend
     9001
 

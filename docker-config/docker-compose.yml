@@ -4,7 +4,7 @@ services:
         build: ./linkedpipes
         volumes:
             - ../volumes/linkedpipes/data:/data
-            - ../volumes/linkedpipes/supoervisor:/var/log/supervisor
+            - ../volumes/linkedpipes/supervisor:/var/log/supervisor
         ports:
             - "28085:8085" # executor.webserver.port
             - "28080:8080" # Webserver & URI dereferencable URI for pipelines + templates
@@ -12,6 +12,9 @@ services:
             - "22221:2221" # executor-monitor.ftp.port
             - "23300:3300" # external.port.start port for external services like Fuseki
             - "29001:9001" # supervisord frontend
+        environment:
+            - SUPERVISOR_USER=obeu
+            - SUPERVISOR_PW=obeu
   #  tripleStoreStaging:
 
    # tripleStoreProduction:
