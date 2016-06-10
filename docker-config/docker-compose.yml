@@ -29,8 +29,10 @@ services:
             - ../volumes/tripleStoreProduction/data:/data
         ports:
             - "43030:3030"
-    rudof
-
+    rudolf:
+        build: ./rudolf
+        ports:
+            - "58890:8890"
     nginx:
         build: ./nginx
         volumes:

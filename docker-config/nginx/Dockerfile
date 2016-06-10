@@ -1,7 +1,10 @@
-FROM nginx
+FROM nginx:alpine
 
-RUN apt-get -y update
-RUN apt-get install -y  wget curl telnet nmap apache2-utils
+RUN apk update && \
+    apk add --update wget curl nmap apache2-utils
+
+#RUN apt-get -y update
+#RUN apt-get install -y  wget curl telnet nmap apache2-utils
 
 EXPOSE 37070
 
