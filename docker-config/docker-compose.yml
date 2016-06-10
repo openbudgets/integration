@@ -18,8 +18,10 @@ services:
   #  tripleStoreStaging:
 
    # tripleStoreProduction:
-
-    #nginx:
+    nginx:
+        build: ./nginx
+        volumes:
+            - ../volumes/nginx/log:/var/log/nginx
 
     #rudolf:
 
