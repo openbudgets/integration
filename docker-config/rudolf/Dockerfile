@@ -23,6 +23,7 @@ COPY ./index.php /var/www/rudolf/.
 
 # Copy config file:
 COPY ./sparql.php /rudolf/config/sparql.php
+COPY ./www.conf /usr/local/etc/php-fpm.d
 
 EXPOSE 9000
 
