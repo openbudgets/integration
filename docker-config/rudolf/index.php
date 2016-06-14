@@ -1,9 +1,9 @@
 <html>
 <head>
-<title>HUHUHPHP Test</title>
+<title>Test Site</title>
 </head>
 <body>
-<p>HUHUH Test</p>
+<p>This is a Test</p>
 <?php phpinfo(); ?>
 </body>
 </html>
