@@ -1,8 +1,8 @@
 Integration of all OBEU components via Docker:
 
-(1) Clone the repo
-(2) Create Volume Folders via executing: sh ./initVolumes.sh
-(3) Start Docker containers via: cd ./docker-config && docker-compose up
+- Clone the repo
+-  Create Volume Folders via executing: sh ./initVolumes.sh
+- Start Docker containers via: cd ./docker-config && docker-compose up
 
 Exposed Components:
 - Fuseki (Staging): http://localhost:80/fuseki/data
