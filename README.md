@@ -1,5 +1,10 @@
 Integration of all OBEU components via Docker:
 
+Requirements:
+- Docker 
+- Docker-compose
+
+Steps for testing locally:
 - Clone the repo
 -  Create Volume Folders via executing: sh ./initVolumes.sh
 - Start Docker containers via: cd ./docker-config && docker-compose up
