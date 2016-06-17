@@ -20,6 +20,6 @@ VOLUME $FUSEKI_HOME/run
 # Open default port of Fuseki:
 EXPOSE 3030
 
-#COPY ./config.ttl /config.ttl
+COPY ./config.ttl /config.ttl
 COPY ./start.sh /start.sh
 CMD ["/bin/sh", "/start.sh"]

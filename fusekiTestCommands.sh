@@ -2,7 +2,8 @@
 # Needs apache-fuseki/bin folder in the PATH:
 
 # Load some RDF data into the default graph of the server:
-s-put http://localhost:33030/fuseki/data default test.ttl
+s-put http://localhost:33030/ontology default test.ttl
+s-put http://localhost:33030/resource default test.ttl
 s-put http://eis-openbudgets.iais.fraunhofer.de/fuseki/data default test.ttl
 
 # Get it back:
@@ -23,5 +24,13 @@ curl -L http://eis-openbudgets.iais.fraunhofer.de/fuseki/data
 
 # Update it with SPARQL using the .../update endpoint.
 s-update --service http://localhost:33030/fuseki/update 'CLEAR DEFAULT'
+
+
+# Server URI scheme
+# This details the service URIs for Fuseki:
+    http://*host*/dataset/query -- the SPARQL query endpoint.
+    http://*host*/dataset/update -- the SPARQL Update language endpoint.
+    http://*host*/dataset/data -- the SPARQL Graph Store Protocol endpoint.
+    http://*host*/dataset/upload -- the file upload endpoint.
 
 

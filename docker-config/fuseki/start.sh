@@ -1,1 +1,1 @@
-cd $FUSEKI_HOME && sh ./fuseki-server --update --loc=/data /fuseki
+cd $FUSEKI_HOME && sh ./fuseki-server --update --config=/config.ttl
