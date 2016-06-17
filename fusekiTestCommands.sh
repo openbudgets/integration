@@ -2,6 +2,7 @@
 # Needs apache-fuseki/bin folder in the PATH:
 
 # Load some RDF data into the default graph of the server:
+s-put http://localhost:33030/fuseki default test.ttl
 s-put http://localhost:33030/ontology/data default test.ttl
 s-put http://localhost:43030/resource/data default test.ttl
 
