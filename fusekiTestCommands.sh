@@ -3,6 +3,7 @@
 
 # Load some RDF data into the default graph of the server:
 s-put http://localhost:33030/fuseki/data default test.ttl
+s-put http://localhost:33030/fuseki/data2 default test.ttl
 
 # Get it back:
 s-get http://localhost:33030/fuseki/data default

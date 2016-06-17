@@ -31,8 +31,6 @@ services:
             - "43030:3030"
     rudolf:
         build: ./rudolf
-        expose:
-            - 9000
     nginx:
         build: ./nginx
         volumes:
