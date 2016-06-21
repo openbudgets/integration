@@ -1,10 +1,7 @@
 FROM nginx:alpine
 
 RUN apk update && \
-    apk add --update wget curl nmap apache2-utils dnsmasq
-
-#RUN apt-get -y update
-#RUN apt-get install -y  wget curl telnet nmap apache2-utils
+    apk add --update wget curl nmap apache2-utils dnsmasq git alpine-sdk
 
 EXPOSE 80
 

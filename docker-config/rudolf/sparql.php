@@ -14,6 +14,6 @@ return [
         'rdf' => 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
         'xro' => 'http://purl.org/xro/ns#'
     ],
-    "endpoint" =>'http://localhost:9000/sparql'
+    "endpoint" =>'http://ws307.math.auth.gr:8890/sparql'
 
 ];

@@ -31,6 +31,8 @@ services:
             - "43030:3030"
     rudolf:
         build: ./rudolf
+       # volumes:
+        #    - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
     nginx:
         build: ./nginx
         volumes:
