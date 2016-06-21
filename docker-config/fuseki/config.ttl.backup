@@ -1,9 +1,12 @@
+# Licensed under the terms of http://www.apache.org/licenses/LICENSE-2.0
+
+## Fuseki Server configuration file.
+
+@prefix :        <#> .
 @prefix fuseki:  <http://jena.apache.org/fuseki#> .
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
-@prefix :        <#> .
 
 [] rdf:type fuseki:Server ;
    # Server-wide context parameters can be given here.
@@ -24,19 +27,27 @@
    ) .
 
 <#service1> rdf:type fuseki:Service ;
-    fuseki:name                       "admin" ;       # http://host:port/ds
+    fuseki:name                       "ontology" ;       # http://host:port/ontology
+    fuseki:serviceQuery               "query" ;    # SPARQL query service
     fuseki:serviceQuery               "sparql" ;   # SPARQL query service
-    fuseki:serviceQuery               "query" ;    # SPARQL query service (alt name)
-    fuseki:serviceUpdate              "update" ;   # SPARQL update service
+    fuseki:serviceUpdate              "update" ;   # SPARQL query service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
-
     # A separate read-only graph store endpoint:
     fuseki:serviceReadGraphStore      "get" ;      # SPARQL Graph store protocol (read only)
-    fuseki:dataset                   <#dataset> ;
+    fuseki:dataset                   <#dataset-mem> ;
     .
 
-<#dataset> rdf:type      tdb:DatasetTDB ;
-    tdb:location "/etc/fuseki/databases/admin" ;
-    tdb:unionDefaultGraph true ;
+<#dataset-mem> rdf:type ja:RDFDataset .
+
+<#service2> rdf:type fuseki:Service ;
+    fuseki:name                       "resource" ;       # http://host:port/resource
+    fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:serviceQuery               "sparql" ;   # SPARQL query service
+    fuseki:serviceUpdate              "update" ;   # SPARQL query service
+    fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
+    fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore      "get" ;      # SPARQL Graph store protocol (read only)
+    fuseki:dataset                   <#dataset-mem> ;
     .
