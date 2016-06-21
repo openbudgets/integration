@@ -31,8 +31,8 @@ services:
             - "43030:3030"
     rudolf:
         build: ./rudolf
-       # volumes:
-        #    - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
+        volumes:
+            - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
     nginx:
         build: ./nginx
         volumes:
@@ -43,11 +43,6 @@ services:
             - triple_store_staging
             - triple_store_production
             - rudolf
-        #depends_on:
-        #    - linkedpipes
-        #    - triple_store_staging
-        #    - triple_store_production
-        #    - rudolf
         ports:
             - "80:80"
 

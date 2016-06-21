@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-cd rudolf &&
+
+# Set permissions:
+RUN chmod og+rwx -R /var/www

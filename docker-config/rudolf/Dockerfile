@@ -20,18 +20,14 @@ RUN cd /var/www/rudolf && composer install --no-scripts
 COPY ./index.php /var/www/rudolf/.
 
 # Copy config file:
-COPY ./sparql.php /rudolf/config/sparql.php
+COPY ./sparql.php /var/www/rudolf/config/sparql.php
 COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY ./php.ini /usr/local/etc/php/php.ini
-
-# Set permissions:
 WORKDIR /var/www/rudolf
 
-#RUN chown www-data:www-data -R /var/www
-RUN chmod og+rwx -R /var/www
-#USER root
+VOLUME /var/www/rudolf/storage/logs
 
 EXPOSE 8890
 
