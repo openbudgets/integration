@@ -31,4 +31,8 @@ VOLUME /var/www/rudolf/storage/logs
 
 EXPOSE 8890
 
+COPY ./start.sh /start.sh
+
+CMD ["/bin/sh", "/start.sh"]
+
 
