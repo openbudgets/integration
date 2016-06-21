@@ -43,11 +43,11 @@ services:
             - triple_store_staging
             - triple_store_production
             - rudolf
-        depends_on:
-            - linkedpipes
-            - triple_store_staging
-            - triple_store_production
-            - rudolf
+        #depends_on:
+        #    - linkedpipes
+        #    - triple_store_staging
+        #    - triple_store_production
+        #    - rudolf
         ports:
             - "80:80"
 
