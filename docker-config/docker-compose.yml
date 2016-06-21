@@ -18,14 +18,14 @@ services:
     triple_store_staging:
         build: ./fuseki
         volumes:
-            - ../volumes/tripleStoreStaging/run:/usr/lib/fuseki/run
+            - ../volumes/tripleStoreStaging/log:/usr/lib/fuseki/run/logs
             - ../volumes/tripleStoreStaging/data:/data
         ports:
             - "33030:3030"
     triple_store_production:
         build: ./fuseki
         volumes:
-            - ../volumes/tripleStoreProduction/run:/usr/lib/fuseki/run
+            - ../volumes/tripleStoreProduction/log:/usr/lib/fuseki/run/logs
             - ../volumes/tripleStoreProduction/data:/data
         ports:
             - "43030:3030"

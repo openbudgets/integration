@@ -15,7 +15,7 @@ ENV PATH $PATH:FUSEKI_HOME/bin
 # Persist data of Fuseki server:
 VOLUME /data
 # Persist log files:
-VOLUME $FUSEKI_HOME/run
+VOLUME $FUSEKI_HOME/run/logs
 
 # Open default port of Fuseki:
 EXPOSE 3030

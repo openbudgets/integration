@@ -7,10 +7,10 @@ mkdir -p volumes/linkedpipes/supervisor/log
 mkdir -p volumes/nginx/log
 # tripleStoreStaging:
 mkdir -p volumes/tripleStoreStaging/data
-mkdir -p volumes/tripleStoreStaging/run
+mkdir -p volumes/tripleStoreStaging/log
 # fuseki:
 mkdir -p volumes/tripleStoreProduction/data
-mkdir -p volumes/tripleStoreProduction/run
+mkdir -p volumes/tripleStoreProduction/log
 # Rudolf:
 mkdir -p volumes/rudolf/log
 
