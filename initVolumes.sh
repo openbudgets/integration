@@ -12,7 +12,7 @@ mkdir -p volumes/tripleStoreStaging/run
 mkdir -p volumes/tripleStoreProduction/data
 mkdir -p volumes/tripleStoreProduction/run
 # Rudolf:
-mkdir -p volumes/rudolf
+mkdir -p volumes/rudolf/log
 
 
 
