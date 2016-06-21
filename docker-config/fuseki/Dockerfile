@@ -22,5 +22,5 @@ EXPOSE 3030
 
 COPY ./config.ttl /config.ttl
 COPY ./start.sh /start.sh
-COPY ./shiro.ini /usr/lib/fuseki/run/shiro.ini
+COPY ./shiro.ini $FUSEKI_HOME/shiro.ini
 CMD ["/bin/sh", "/start.sh"]
