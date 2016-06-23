@@ -16,9 +16,9 @@ ENV PATH $PATH:$M2_HOME/bin
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git
 RUN cd etl && mvn install
-RUN chmod ug+rx /etl/deploy/executor.sh && \
-    chmod ug+rx /etl/deploy/executor-monitor.sh && \
-    chmod ug+rx /etl/deploy/frontend.sh
+RUN chmod uag+rx /etl/deploy/executor.sh && \
+    chmod uag+rx /etl/deploy/executor-monitor.sh && \
+    chmod uag+rx /etl/deploy/frontend.sh
 COPY ./configuration.properties /etl/deploy/configuration.properties
 
 # Persist Directory for data in LinkedPipes:
@@ -41,4 +41,6 @@ EXPOSE \
     9001
 
 COPY ./supervisord.conf /etc/supervisord.conf
-CMD ["/usr/bin/supervisord"]
+COPY ./start.sh /start.sh
+CMD ["/bin/sh", "/start.sh"]
+#CMD ["/usr/bin/supervisord"]
