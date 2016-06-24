@@ -1,0 +1,30 @@
+[supervisord]
+nodaemon=true
+user=root
+logfile=/var/log/supervisord.log
+
+[program:executor]
+startretries=5
+directory=/etl/deploy
+command=/bin/sh ./executor.sh
+stderr_logfile = /var/log/executor-stderr.log
+stdout_logfile = /var/log/executor-stdout.log
+
+[program:executor-monitor]
+startretries=5
+directory=/etl/deploy
+command=/bin/sh /etl/deploy/executor-monitor.sh
+stderr_logfile = /var/log/executor-monitor-stderr.log
+stdout_logfile = /var/log/executor-monitor-stdout.log
+
+[program:frontend]
+startretries=5
+directory=/etl/deploy
+command=/bin/sh /etl/deploy/frontend.sh
+stderr_logfile = /var/log/frontend-stderr.log
+stdout_logfile = /var/log/frontend-stdout.log
+
+[inet_http_server]
+port = 9001
+username = obeu
+password = obeu
