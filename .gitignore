@@ -1,2 +1,4 @@
 .idea
-volumes
+volumes/
+iptables.txt
+iptables_ftp_forwarding.txt
