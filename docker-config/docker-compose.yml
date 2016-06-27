@@ -12,6 +12,8 @@ services:
             - "2221:2221" # executor-monitor.ftp.port
             - "3300:3300" # external.port.start port for external services like Fuseki
             - "9001:9001" # supervisord frontend
+        links:
+            - triple_store_staging
         networks:
               mynet:
                   ipv4_address: 172.25.0.101
