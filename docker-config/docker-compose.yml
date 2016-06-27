@@ -12,6 +12,7 @@ services:
             - "2221:2221" # executor-monitor.ftp.port
             - "3300:3300" # external.port.start port for external services like Fuseki
             - "9001:9001" # supervisord frontend
+            - "2222:2222" # serve ftp-files of Linkedpipes via http
         networks:
               mynet:
                   ipv4_address: 172.25.0.101
