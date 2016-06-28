@@ -1,6 +1,20 @@
-# SPARQL-Query: Get all datasets from all named graphs + default graph:
+# SPARQL-Queries
+
+# 1 Get all datasets from all named graphs + default graph:
 SELECT *
 {
     { ?s ?p ?o } UNION { GRAPH ?g { ?s ?p ?o } }
 }
 LIMIT 25
+
+# 2 Get all datasets from a named graph:
+SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/fdp-datasets>
+WHERE {
+  ?subject ?predicate ?object
+}
+
+# 3 Drop a named graph: not working....
+CLEAR GRAPH <http://data.openbudgets.eu/fdp-datasets>
+
+
