@@ -20,7 +20,9 @@ VOLUME $FUSEKI_HOME/run/logs
 # Open default port of Fuseki:
 EXPOSE 3030
 
+COPY ./supervisord.conf /etc/supervisord.conf
+COPY ./log4j.properties $FUSEKI_HOME/log4j.properties
 COPY ./config.ttl /config.ttl
 COPY ./start.sh /start.sh
 COPY ./shiro.ini $FUSEKI_HOME/run/shiro.ini
-CMD ["/bin/sh", "/start.sh"]
+CMD ["/usr/bin/supervisord"]

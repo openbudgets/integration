@@ -1,0 +1,39 @@
+How to set up a Fuseki server and load your data into it using TDB
+
+(0) Download and install jena-fuseki, see
+http://jena.apache.org/documentation/serving_data/
+
+(1) Create a directory where your persistent TDB database will go
+
+  mkdir MYTDB
+
+(2) Start the fuseki server with (a) update enabled so we can add data
+to it; (b) the TDB data directory location; and (c) the dataset name
+ds.
+
+  fuseki-server --update --loc=/MTYDB /ds
+
+(3) add data with the s-put script from a file containing RDF in one
+of the standard formats.
+
+  s-put http://localhost:3030/ds/data default Data/books.ttl
+
+The s-put args are (a) the URI that gives the server location and port
+(3030 is the default for fuseki) the database name we used when we
+created the server (ds for our example) and the string 'data', which
+is required when we are adding data; (b) the named graph we want the
+data to be placed into, where 'default' is the default one; (c) a file
+path to the file containing the RDF data.
+
+(3a) If you have a lot of data, it's much faster to use tdbloader to
+create the tdbdatabase and load the data into it.  Putting the data in
+.nt format should be somewhat faster, e.g., 50K triples/sec). You can
+use rdf2rdf to convert your RDF data to ntriples
+
+  tdbloader --loc:MYDB postten.nt
+
+(4) You can query the server via s-get, the control panel or whatever.
+For example, sthe following URL retrieves five triples in xml/rdf.
+
+  http://localhost:3030/ds/query?query=SELECT%20*%20%7B%3Fs%20%3Fp%20%3Fo%7D%20limit%205
+

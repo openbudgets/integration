@@ -20,20 +20,22 @@ services:
     triple_store_staging:
         build: ./fuseki
         volumes:
-            - ../volumes/tripleStoreStaging/log:/usr/lib/fuseki/run/logs
+            - ../volumes/tripleStoreStaging/log:/var/log
             - ../volumes/tripleStoreStaging/data:/data
         ports:
             - "33030:3030"
+            - "39001:9001" # supervisord frontend
         networks:
               mynet:
                   ipv4_address: 172.25.0.102
     triple_store_production:
         build: ./fuseki
         volumes:
-            - ../volumes/tripleStoreProduction/log:/usr/lib/fuseki/run/logs
+            - ../volumes/tripleStoreProduction/log:/var/log
             - ../volumes/tripleStoreProduction/data:/data
         ports:
             - "43030:3030"
+            - "49001:9001" # supervisord frontend
         networks:
               mynet:
                   ipv4_address: 172.25.0.103

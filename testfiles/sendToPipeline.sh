@@ -22,4 +22,4 @@ curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PARAM_FILE" "
 # PARAM_FILE=/home/maik/obeu_infrastructure2/testfiles/datapackage.jsonld
 # PARAM_PIPELINE=created-1467031005380
 # PARAM_LP_DOMAIN=http://localhost:8080
-# curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@/home/maik/obeu_infrastructure2/testfiles/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=
+# curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1467031005380"
