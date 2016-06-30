@@ -65,6 +65,22 @@ services:
         ports:
             - "80:80"
             - "2222:2222" # serve ftp-files of Linkedpipes via http
+ #   os-viewer:
+  #      build: ./os-viewer
+   #     expose:
+    #      - "8000"
+     #   ports:
+      #    - "9003:8000"
+        #links:
+        #    - nginx
+       # environment:
+        #    - DEBUG=true
+         #   - WORKDIR=app
+          #  - PORT=8000
+           # - OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
+            #- OS_VIEWER_API_HOST=http://nginx:8000
+           # - OS_VIEWER_AUTH_HOST=http://next.openspending.org
+           # - OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
 networks:
   mynet:
     driver: bridge
