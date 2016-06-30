@@ -10,6 +10,7 @@ services:
             - "8080:8080" # Webserver & URI dereferencable URI for pipelines + templates
             - "8081:8081" # executor-monitor.webserver.port
             - "2221:2221" # executor-monitor.ftp.port
+            - "2222-2225:2222-2225" # Linked Pipes FTP data port
             - "3300:3300" # external.port.start port for external services like Fuseki
             - "9001:9001" # supervisord frontend
         links:
@@ -64,7 +65,8 @@ services:
             - rudolf
         ports:
             - "80:80"
-            - "2222:2222" # serve ftp-files of Linkedpipes via http
+            #- "2221:2221" # Linked Pipes FTP command port
+            #- "2222-2225:2222-2225" # Linked Pipes FTP data port
  #   os-viewer:
   #      build: ./os-viewer
    #     expose:

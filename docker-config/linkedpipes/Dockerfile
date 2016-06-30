@@ -15,7 +15,8 @@ ENV PATH $PATH:$M2_HOME/bin
 
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git
-RUN cd etl && mvn install
+RUN cd etl && git checkout develop && mvn install
+#RUN cd etl && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/executor-monitor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
