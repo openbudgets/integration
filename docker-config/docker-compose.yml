@@ -43,6 +43,8 @@ services:
         build: ./rudolf
         volumes:
             - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
+        links:
+            - triple_store_production
         networks:
               mynet:
                   ipv4_address: 172.25.0.104
