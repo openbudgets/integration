@@ -34,8 +34,10 @@ EXPOSE \
     8080 \
     # executor-monitor.webserver.port:
     8081 \
-    # executor-monitor.ftp.port:
+    # executor-monitor.ftp.port (command):
     2221 \
+    # ftp data ports:
+    2223-2226 \
     # external.port.start port for external services like Fuseki:
     3300 \
     # supervisor frontend
