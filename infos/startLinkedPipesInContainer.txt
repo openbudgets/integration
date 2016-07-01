@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# Tutorial: With Docker it is possible to start multiple instances of LP
+# on the same Host once the image of LP has been created
+
+# Exposed Ports in LinkedPipes:
+#- "8085:8085" # executor.webserver.port
+#- "8080:8080" # Webserver & URI dereferencable URI for pipelines + templates
+#- "8081:8081" # executor-monitor.webserver.port
+#- "2221:2221" # executor-monitor.ftp.port
+#- "2223-2226:2223-2226" # Linked Pipes FTP data port
+#- "3300:3300" # external.port.start port for external services like Fuseki
+#- "9001:9001" # supervisord frontend
+
+# Mount point in Container where Host directories can be mounted: /data
+
+
+################ Create Docker image of LP ##########
+
+# Creates an image with name "lp_img":
+cd ./docker-config/linkedpipes
+docker build -t lp_img .
+
+################ Create & Start container ############
+# Once the image of LP has been created, you can start containers
+# as many as you like with different names:
+
+docker run -d -p 8181:8080 -p 3331-3336:2221-2226 -p 8085:8085 -p 8081:8081 --name lp_cn1 lp_img
+# Parameters above:
+# name for the container:  --name <customname>
+# Mapping of container ports -> host ports:    -p <hostport>:<containerport>
+# Frontend of LP: localhost:8181
+
+# List running containers:
+docker ps
+
+# Stop container:
+docker stop lp_cn1
+
+# Start container:
+docker start lp_cn1
+
+# Delete container:
+docker rm -f lp_cn1

@@ -22,6 +22,18 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
     fuseki:name                     "fuseki" ;    # http://host:port/books
     fuseki:serviceQuery             "sparql" ;    # SPARQL query service
     fuseki:dataset           <#dataset1> ;
+
+    # SPARQL Graph store protocol (read and write)
+    # GET, PUT, POST DELETE to http://host:port/ds/data?graph= or ?default=
+    fuseki:serviceReadWriteGraphStore "data" ;
+
+    # Upload service -- http://host:port/ds/upload?graph=default or ?graph=URI or ?default
+    # followed by a multipart body, each part being RDF syntax.
+    # Syntax determined by the file name extension.
+    fuseki:serviceUpload            "upload" ;   # Non-SPARQL upload service
+
+    # A separate read-only graph store endpoint:
+    fuseki:serviceReadGraphStore "get" ;   # Graph store protocol (read only) -- /ds/get
     .
 
 ######## dataset #########
