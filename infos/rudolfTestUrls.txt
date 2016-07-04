@@ -1,0 +1,45 @@
+# Docu: http://docs.openspending.org/en/latest/developers/api/
+
+Sample datasets:
+
+
+# Overview of all datasets:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
+
+http://localhost/api/3/cubes: /var/www/rudolf/public/rudolf/public/index.php/api/3/cubes
+
+# FDP for this dataset:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/info/<dataset>/package
+
+# Babbage Model for this dataset:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/<dataset>/model:
+
+# Individual (non-aggregated) entries from this dataset:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/<dataset>/facts:
+Parameters:
+    cut - filters on the data (field_name:value, field_name:value|field_name:value etc.)
+    fields - fields to return
+    order - data ordering (e.g. field_name:desc)
+    pagesize - number of entries in one batch of returned data
+    page - page selection
+
+# Distinct values for a specific dimension:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/<dataset>/members/<dimension>
+Parameters: cut, order, page and pagesize as above
+
+# Aggregation of data in the dataset:
+http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/<dataset>/aggregate
+Parameters:
+    cut, order, page and pagesize as above
+    drilldown - group by these dimensions (e.g. field_name_1|field_name_2)
+    aggregates - which measures to aggregate (and what function to perform (e.g. amount.sum, count)
+
+# A backwards compatible version of the aggregate API:
+http://eis-openbudgets.iais.fraunhofer.de/api/2/aggregate
+Parameters:
+    dataset - dataset to query
+    measure - measure to aggregate
+    cut - filters on the data
+    drilldown - fields to group by the results
+    page and page_size - as above
+    order - same as sort, above
