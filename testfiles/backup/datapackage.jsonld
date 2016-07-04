@@ -1,14 +1,13 @@
 {
   "@context": {
-      "@vocab": "http://test.openbudgets.eu/ontology/fdp#"
-  },
-  "name": "my-openspending-datapackage",
-  "title": "My OpenSpending Data Package",
+      "@vocab": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld"},
+  "name": "my-openspending-datapackage-1",
+  "title": "My OpenSpending Data Package 1",
   "resources": [
     {
       "name": "budget",
       "title": "Budget",
-      "path": "http://protegeserver.cz/files/fdp-normalized/budget.csv",
+      "path": "http://wenxion.net/pub/budget.csv",
       "schema": {
         "fields": [
           {
@@ -35,7 +34,7 @@
         {
           "fields": "payee",
           "reference": {
-            "datapackage": "my-openspending-datapackage",
+            "datapackage": "my-openspending-datapackage-1",
             "resource": "entities",
             "fields": "id"
           }
@@ -45,7 +44,7 @@
     {
       "name": "entities",
       "title": "Entities",
-      "path": "http://protegeserver.cz/files/fdp-normalized/entities.csv",
+      "path": "http://wenxion.net/pub/entities.csv",
       "schema": {
         "fields": [
           {
@@ -67,34 +66,34 @@
   ],
   "model": {
     "measures": {
-      "amount": {
+      "amount": {        
         "source": "amount",
         "currency": "USD",
         "factor": 1
       }
     },
     "dimensions": {
-      "date": {
+      "date": {        
         "dimensionType": "datetime",
         "attributes": {
-          "year": {
+          "year": {            
             "source": "year"
           }
         },
         "primaryKey": "year"
       },
-      "payee": {
+      "payee": {        
         "dimensionType": "entity",
         "attributes": {
-          "id": {
+          "id": {            
             "resource": "entities",
             "source": "id"
           },
-          "title": {
+          "title": {            
             "resource": "entities",
             "source": "title"
           },
-          "description": {
+          "description": {            
             "resource": "entities",
             "source": "description"
           }

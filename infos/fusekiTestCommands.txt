@@ -40,3 +40,5 @@ s-update --service http://localhost:33030/fuseki/update 'CLEAR DEFAULT'
 s-put http://localhost:33030/fuseki/data default <ttl-file>
 
 
+### DROP GRAPH:
+s-update --service http://localhost:33030/fuseki/update 'DROP GRAPH <http://data.openbudgets.eu/fdp-datasets>'

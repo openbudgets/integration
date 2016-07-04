@@ -17,4 +17,14 @@ WHERE {
 # 3 Drop a named graph: not working....
 CLEAR GRAPH <http://data.openbudgets.eu/fdp-datasets>
 
+# 4 Select dataset with string
+SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/fdp-datasets>
+WHERE {
+  ?subject ?predicate ?object .
+  filter (CONTAINS(str(?subject), 'openspending')).
+}
+
+
+
 
