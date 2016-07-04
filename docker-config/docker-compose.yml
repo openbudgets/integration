@@ -15,9 +15,6 @@ services:
             - "9001:9001" # supervisord frontend
         links:
             - triple_store_staging
-        networks:
-              mynet:
-                  ipv4_address: 172.25.0.101
     triple_store_staging:
         build: ./fuseki
         volumes:
@@ -26,9 +23,6 @@ services:
         ports:
             - "33030:3030"
             - "39001:9001" # supervisord frontend
-        networks:
-              mynet:
-                  ipv4_address: 172.25.0.102
     triple_store_production:
         build: ./fuseki
         volumes:
@@ -37,27 +31,18 @@ services:
         ports:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
-        networks:
-              mynet:
-                  ipv4_address: 172.25.0.103
     rudolf:
         build: ./rudolf
         volumes:
             - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
         links:
             - triple_store_production
-        networks:
-              mynet:
-                  ipv4_address: 172.25.0.104
     nginx:
         build: ./nginx
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
-        networks:
-              mynet:
-                  ipv4_address: 172.25.0.105
         links:
             - linkedpipes
             - triple_store_staging
@@ -82,12 +67,6 @@ services:
             #- OS_VIEWER_API_HOST=http://nginx:8000
            # - OS_VIEWER_AUTH_HOST=http://next.openspending.org
            # - OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
-networks:
-  mynet:
-    driver: bridge
-    ipam:
-      config:
-      - subnet: 172.25.0.0/24
 
 
     #rudolf:
