@@ -1,6 +1,7 @@
 # Docu: http://docs.openspending.org/en/latest/developers/api/
 
 Sample datasets:
+budget-thessaloniki-expenditure-2011
 
 
 # Overview of all datasets:
@@ -10,6 +11,8 @@ http://localhost/api/3/cubes: /var/www/rudolf/public/rudolf/public/index.php/api
 
 # FDP for this dataset:
 http://eis-openbudgets.iais.fraunhofer.de/api/3/info/<dataset>/package
+
+http://eis-openbudgets.iais.fraunhofer.de/api/3/info/budget-thessaloniki-expenditure-2011/package
 
 # Babbage Model for this dataset:
 http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/<dataset>/model:
