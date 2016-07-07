@@ -4,6 +4,9 @@ RUN apk add --update python git nodejs
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
 RUN git clone http://github.com/openspending/os-viewer.git app
+
+COPY ./index.js /app/app/config/index.js
+
 RUN npm install npm@latest -g
 RUN npm --version
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver
@@ -15,7 +18,6 @@ RUN rm -rf /var/cache/apk/*
 ENV OS_VIEWER_BASE_PATH=viewer/
 
 ADD settings.json /app/settings.json
-COPY ./index.js /app/app/config/index.js
 
 EXPOSE 8000
 
