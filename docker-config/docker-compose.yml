@@ -53,7 +53,7 @@ services:
             - "80:80"
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
     os-viewer:
-        image: openspending/os-viewer
+        build: ./os-viewer
         expose:
           - "8000"
         ports:
