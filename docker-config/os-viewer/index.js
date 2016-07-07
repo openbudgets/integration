@@ -3,7 +3,7 @@
 var path = require('path');
 var nconf = require('nconf');
 
-const DEFAULT_HOST = process.env.OS_VIEWER_DEFAULT_HOST;
+const DEFAULT_HOST = "http://eis-openbudgets.iais.fraunhofer.de";
 const DEFAULT_BASE_PATH = '';
 
 nconf.file({

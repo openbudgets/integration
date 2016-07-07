@@ -58,8 +58,7 @@ services:
           - "8000"
         ports:
           - "9003:8000"
-        environment:
-            - OS_VIEWER_DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
+        #environment:
             #- WORKDIR=app
             #- PORT=8000
             # For dev:
