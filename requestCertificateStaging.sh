@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+echo "If run for the first time, please disable https 443 in nginx.conf."
+echo "If the script has succefully run, enable https 443 in nginx.conf again."
+
 mkdir -p ./volumes/nginx/letsencrypt/www
 mkdir -p ./volumes/nginx/letsencrypt/lib
 mkdir -p ./volumes/nginx/letsencrypt/etc
