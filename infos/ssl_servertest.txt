@@ -1,0 +1,2 @@
+Check SSL rating for Server b SSL Labs: A+ rating
+https://www.ssllabs.com/ssltest/index.html

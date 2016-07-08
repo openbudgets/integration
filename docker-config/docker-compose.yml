@@ -42,6 +42,9 @@ services:
         volumes:
             - ./nginx/nginx.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
+            - ../volumes/nginx/letsencrypt/www:/tmp/letsencrypt/www # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
         links:
             - linkedpipes
@@ -50,7 +53,8 @@ services:
             - rudolf
             - os-viewer
         ports:
-            - "80:80"
+            - "80:80" # http
+            - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
     os-viewer:
         build: ./os-viewer
