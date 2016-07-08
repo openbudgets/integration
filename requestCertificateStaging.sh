@@ -22,4 +22,4 @@ docker run -it --rm --name letsencrypt \
     --standalone-supported-challenges http-01 \
     --verbose
 
-docker kill --signal=HUP dockerconfig_nginx_1
+#docker kill --signal=HUP dockerconfig_nginx_1

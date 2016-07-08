@@ -19,4 +19,4 @@ docker run -it --rm --name letsencrypt \
     -m mlukasch@gmail.com \
     --server https://acme-staging.api.letsencrypt.org/directory \
 
-docker kill --signal=HUP dockerconfig_nginx_1
+#docker kill --signal=HUP dockerconfig_nginx_1
