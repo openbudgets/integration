@@ -12,7 +12,7 @@ docker run -it --rm --name letsencrypt \
     certonly \
     --authenticator webroot \
     --webroot \
-    --webroot-path /var/www/eis-openbudgets.iais.fraunhofer.de \
+    --webroot-path /var/www \
     --agree-tos \
     --renew-by-default \
     -d eis-openbudgets.iais.fraunhofer.de \
