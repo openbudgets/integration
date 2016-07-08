@@ -16,7 +16,6 @@ docker run -it --rm --name letsencrypt \
     --agree-tos \
     --renew-by-default \
     -d eis-openbudgets.iais.fraunhofer.de \
-    -m mlukasch@gmail.com \
-    --server https://acme-staging.api.letsencrypt.org/directory \
+    -m mlukasch@gmail.com
 
 #docker kill --signal=HUP dockerconfig_nginx_1
