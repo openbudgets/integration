@@ -8,17 +8,20 @@ docker run -it --rm --name letsencrypt \
     -v "$PWD/volumes/nginx/letsencrypt/etc:/etc/letsencrypt" \
     -v "$PWD/volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
     -v "$PWD/volumes/nginx/letsencrypt/www:/var/www" \
-    quay.io/letsencrypt/letsencrypt:latest auth \
+    quay.io/letsencrypt/letsencrypt:latest \
+    certonly \
     --authenticator webroot \
-    --webroot-path /var/www \
+    --webroot \
+    --webroot-path /var/www/eis-openbudgets.iais.fraunhofer.de \
+    --agree-tos \
+    --renew-by-default \
+    -d eis-openbudgets.iais.fraunhofer.de \
+    -m mlukasch@gmail.com \
 # Production:
 #    --server https://acme-staging.api.letsencrypt.org/directory \
-#    --renew-by-default \
-#    -d eis-openbudgets.iais.fraunhofer.de
+#
 # Staging:
     --server https://acme-staging.api.letsencrypt.org/directory \
-    --renew-by-default \
     --debug \
     --standalone-supported-challenges http-01 \
-    --verbose \
-    -d eis-openbudgets.iais.fraunhofer.de
+    --verbose
