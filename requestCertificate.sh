@@ -11,13 +11,14 @@ docker run -it --rm --name letsencrypt \
     quay.io/letsencrypt/letsencrypt:latest auth \
     --authenticator webroot \
     --webroot-path /var/www \
-    --renew-by-default \
-    --server https://acme-v01.api.letsencrypt.org/directory \
-    -d eis-openbudgets.iais.fraunhofer.de
-
+# Production:
 #    --server https://acme-staging.api.letsencrypt.org/directory \
-#    --debug \
 #    --renew-by-default \
-#    --standalone-supported-challenges http-01 \
-#    --verbose \
-#    -d my.example.co
+#    -d eis-openbudgets.iais.fraunhofer.de
+# Staging:
+    --server https://acme-staging.api.letsencrypt.org/directory \
+    --renew-by-default \
+    --debug \
+    --standalone-supported-challenges http-01 \
+    --verbose \
+    -d eis-openbudgets.iais.fraunhofer.de
