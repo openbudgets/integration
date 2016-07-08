@@ -1,0 +1,3 @@
+# Check SPARQL endpoint:
+http://eis-openbudgets.iais.fraunhofer.de/fuseki/sparql?query=ASK{}&output=text
+
