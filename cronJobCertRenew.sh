@@ -2,7 +2,7 @@
 #write out current crontab
 crontab -l > mycron
 #echo new cron into cron file
-CMD="sh $PWD/letsEncryptCertProduction.sh"
+CMD="sh $PWD/letsEncryptCertRenew.sh"
 echo "@monthly $CMD" >> mycron
 #install new cron file
 crontab mycron
