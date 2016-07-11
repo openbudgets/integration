@@ -22,7 +22,6 @@ docker run -it --rm --name letsencrypt \
     --renew-by-default \
     --rsa-key-size 4096 \
     -d eis-openbudgets.iais.fraunhofer.de \
-    -d www.eis-openbudgets.iais.fraunhofer.de \
     -m maiklukasch@gmail.com
 
 #docker kill --signal=HUP dockerconfig_nginx_1

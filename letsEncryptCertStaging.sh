@@ -21,7 +21,6 @@ docker run -it --rm --name letsencrypt \
     --agree-tos \
     --renew-by-default \
     -d eis-openbudgets.iais.fraunhofer.de \
-    -d www.eis-openbudgets.iais.fraunhofer.de \
     -m maiklukasch@gmail.com \
     --server https://acme-staging.api.letsencrypt.org/directory \
     --debug \
