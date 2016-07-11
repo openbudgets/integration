@@ -1,0 +1,3 @@
+1) Repository: Fuseki
+2) Graph store protocol endpoint: http://triple_store_staging:3030/fuseki/data
+3) Target Graph IRI: http://data.openbudgets.eu/fdp-datasets
