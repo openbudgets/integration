@@ -17,7 +17,7 @@ services:
             - triple_store_staging
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.101
+                ipv4_address: 172.25.1.101
     triple_store_staging:
         build: ./fuseki
         volumes:
@@ -28,7 +28,7 @@ services:
             - "39001:9001" # supervisord frontend
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.102
+                ipv4_address: 172.25.1.102
     triple_store_production:
         build: ./fuseki
         volumes:
@@ -39,7 +39,7 @@ services:
             - "49001:9001" # supervisord frontend
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.103
+                ipv4_address: 172.25.1.103
     rudolf:
         build: ./rudolf
         volumes:
@@ -48,7 +48,7 @@ services:
             - triple_store_production
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.104
+                ipv4_address: 172.25.1.104
     nginx:
         build: ./nginx
         volumes:
@@ -70,7 +70,7 @@ services:
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.105
+                ipv4_address: 172.25.1.105
     os-viewer:
         build: ./os-viewer
         expose:
@@ -89,13 +89,13 @@ services:
             - OS_VIEWER_AUTH_HOST=http://next.openspending.org
         networks:
             obeu_net:
-                ipv4_address: 172.25.0.106
+                ipv4_address: 172.25.1.106
 networks:
   obeu_net:
     driver: bridge
     ipam:
       config:
-      - subnet: 172.25.0.0/28
+      - subnet: 172.25.1.0/28
 
 # Subnet-Size net-Mask-Size (CIDR)
 # 256 24
