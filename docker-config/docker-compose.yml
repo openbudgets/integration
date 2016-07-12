@@ -15,8 +15,6 @@ services:
             - "9001:9001" # supervisord frontend
         links:
             - triple_store_staging
-        networks:
-            - obeunet
     triple_store_staging:
         build: ./fuseki
         volumes:
@@ -25,8 +23,6 @@ services:
         ports:
             - "33030:3030"
             - "39001:9001" # supervisord frontend
-        networks:
-            - obeunet
     triple_store_production:
         build: ./fuseki
         volumes:
@@ -35,16 +31,12 @@ services:
         ports:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
-        networks:
-            - obeunet
     rudolf:
         build: ./rudolf
         volumes:
             - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
         links:
             - triple_store_production
-        networks:
-            - obeunet
     nginx:
         build: ./nginx
         volumes:
@@ -64,8 +56,6 @@ services:
             - "80:80" # http
             - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
-        networks:
-            - obeunet
     os-viewer:
         build: ./os-viewer
         expose:
@@ -82,14 +72,6 @@ services:
             #- OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
             #- OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_AUTH_HOST=http://next.openspending.org
-        networks:
-            - obeunet
-networks:
-    obeunet:
-        driver: bridge
-        ipam:
-            config:
-              - subnet: 172.17.0.0/28
 
 # Subnet-Size net-Mask-Size (CIDR)
 # 256 24
