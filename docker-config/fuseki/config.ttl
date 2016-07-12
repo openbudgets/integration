@@ -21,7 +21,7 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
 <#service1> rdf:type fuseki:Service ;
     fuseki:name                     "fuseki" ;    # http://host:port/books
     fuseki:serviceQuery             "sparql" ;    # SPARQL query service
-    fuseki:dataset           <#dataset1> ;
+    fuseki:dataset           <#dataset> ;
 
     # SPARQL Graph store protocol (read and write)
     # GET, PUT, POST DELETE to http://host:port/ds/data?graph= or ?default=
@@ -39,8 +39,9 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
     .
 
 ######## dataset #########
-<#dataset1> rdf:type         tdb:DatasetTDB ;
-    tdb:location "data" ;
+<#dataset> rdf:type         tdb:DatasetTDB ;
+    tdb:location "/data" ;
     tdb:unionDefaultGraph true ;
     .
+
 

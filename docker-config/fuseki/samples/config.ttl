@@ -37,6 +37,7 @@
     .
 
 <#dataset> rdf:type      tdb:DatasetTDB ;
-    tdb:location "/etc/fuseki/databases/admin" ;
+    tdb:location "/data" ;
     tdb:unionDefaultGraph true ;
     .
+
