@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Renews the certificate if expiration is close. The certificate needs to be installed previously."
+
 docker build -t letsencrypt_img ./docker-config/letsencrypt
 docker run -it --rm --name letsencrypt \
     -p 1086:80 \
