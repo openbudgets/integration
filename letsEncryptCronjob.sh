@@ -3,7 +3,7 @@
 crontab -l > mycron
 #echo new cron into cron file
 CMD="sh $PWD/letsEncryptCertRenew.sh"
-echo "@weekly $CMD" >> mycron
+echo "@monthly $CMD" >> mycron
 #install new cron file
 crontab mycron
 rm mycron
