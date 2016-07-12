@@ -40,7 +40,7 @@ tdb:GraphTDB    rdfs:subClassOf  ja:Model      .
 
 ######## dataset #########
 <#dataset1> rdf:type         tdb:DatasetTDB ;
-    tdb:location "/data" ;
+    tdb:location "data" ;
     tdb:unionDefaultGraph true ;
     .
 
