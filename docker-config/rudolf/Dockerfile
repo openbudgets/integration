@@ -3,7 +3,7 @@ FROM php:7.0.7-fpm-alpine
 # Install PHP 7:
 RUN apk add --update git curl libmcrypt-dev
 
-RUN docker-php-ext-install mbstring tokenizer pdo_mysql
+RUN docker-php-ext-install pdo_mysql mbstring tokenizer
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
