@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.3
 
-RUN apk add --update python git nodejs
+RUN apk add --update nodejs python git
 RUN apk add --update --virtual=build-dependencies build-base ca-certificates
 RUN update-ca-certificates
 RUN git clone http://github.com/openspending/os-viewer.git app
