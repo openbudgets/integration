@@ -5,6 +5,7 @@ mkdir -p volumes/linkedpipes/log
 
 # nginx:
 mkdir -p volumes/nginx/log
+mkdir -p volumes/nginx/dumps
 # tripleStoreStaging:
 mkdir -p volumes/tripleStoreStaging/data
 mkdir -p volumes/tripleStoreStaging/log
@@ -14,4 +15,4 @@ mkdir -p volumes/tripleStoreProduction/log
 # Rudolf:
 mkdir -p volumes/rudolf/log
 
-#chmod -R oga+rwx ./volumes
+chmod -R oga+rwx ./volumes
