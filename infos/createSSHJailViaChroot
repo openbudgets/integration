@@ -1,4 +1,6 @@
 # Tutorial: https://linuxconfig.org/how-to-automatically-chroot-jail-selected-ssh-user-logins
+# http://www.tldp.org/LDP/solrhe/Securing-Optimizing-Linux-RH-Edition-v1.3/chap29sec296.html
+# http://krisko210.blogspot.de/2014/04/ssh-chroot-jail.html
 # Creates a Chroot-Jail for a ssh-user for improving security:
 
 # (1) Select a directory for chroot:
@@ -10,6 +12,7 @@ mkdir -p $CHROOT_DIR/lib64/
 mkdir -p $CHROOT_DIR/lib/
 mkdir -p $CHROOT_DIR/usr/lib
 mkdir -p $CHROOT_DIR/usr/lib64
+mkdir -p $CHROOT_DIR/etc
 ldd /bin/bash
 #	linux-vdso.so.1 (0x00007fff579de000)
 #	libreadline.so.6 => /lib64/libreadline.so.6 (0x00007f63da3e2000)
@@ -48,6 +51,8 @@ if [ -f  /lib/ld-linux.so.2 ]; then
    cp --parents /lib/ld-linux.so.2 /$CHROOT_DIR
 fi
 
+chmod 0111 -R /bin
+
 # (4) Add /dev-files:
 mkdir -p $CHROOT_DIR/dev
 cp -a /dev/null $CHROOT_DIR/dev/
@@ -64,5 +69,14 @@ chmod 666 $CHROOT_DIR/named/dev/{null,random}
 # (6) Change home directory for user:
 # usermod -m -d $CHROOT_DIR/<home_dir> <username>
 
-# (7) chroot:
+# (7) Add users & groups:
+echo "root:x:0:0:root:/:/dev/null" > $CHROOT_DIR/etc/passwd
+echo "<username>:x:502:502::/<username>/:/dev/null" >> $CHROOT_DIR/etc/passwd
+echo "root:x:0:root" > $CHROOT_DIR/etc/group
+echo "<username>:x:502:" >> $CHROOT_DIR/etc/group
+cd $CHROOT_DIR/etc/
+chattr +i passwd
+chattr +i group
+
+# (8) chroot:
 # chroot $CHROOT_DIR
