@@ -61,8 +61,10 @@ Appendix
         (a) Select Repository: Fuseki
         (b) Graph store protocol endpoint: http://triple_store_staging:3030/fuseki/data
         (c) Target Graph IRI: http://data.openbudgets.eu/fdp-datasets
+        (d) No authentication
 
     How To configure Files-to-Scp dump for a local OBEU-stack-installation:
         (a) Host-address: sshserver
-        (b) Target Directory: /dumps
+        (b) User-name & Password: root
+        (c) Target Directory: /dumps
 
