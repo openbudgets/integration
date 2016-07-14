@@ -16,8 +16,8 @@ services:
         links:
             - triple_store_staging
         dns:
-            - ${DNS_HOST_1}
-            - ${DNS_HOST_2}
+            - DNS_HOST_1
+            - DNS_HOST_2
     triple_store_staging:
         build: ./fuseki
         volumes:
