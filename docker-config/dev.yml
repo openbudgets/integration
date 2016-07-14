@@ -28,6 +28,7 @@ services:
         ports:
             - "33030:3030"
             - "39001:9001" # supervisord frontend
+        command: "sh /startWithFileModeDirect.sh"
     triple_store_production:
         build: ./fuseki
         volumes:
@@ -36,6 +37,7 @@ services:
         ports:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
+        command: "sh /startWithFileModeDirect.sh"
     rudolf:
         build: ./rudolf
         volumes:
