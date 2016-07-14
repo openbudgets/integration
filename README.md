@@ -32,6 +32,7 @@ Exposed components in a local OBEU installation:
     cd ./docker-config && docker-compose up
 
 Exposed Components on the FhG server:
+
 (a) Only accessible via SSH:
 - LinkedPipes: http://localhost:8080
 - Fuseki Staging: http://localhost:33030
