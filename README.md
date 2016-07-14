@@ -8,6 +8,7 @@ OBEU-Components:
 - OS-Viewer backed up by Rudolf
 
 Requirements for the installation environment:
+- Git
 - Docker 
 - Docker-compose
 
