@@ -9,7 +9,7 @@ OBEU-Components:
 
 Requirements for the installation environment:
 - Git
-- Docker 
+- Docker (running on Linux recommended)
 - Docker-compose
 
 (1) Local Installation:
