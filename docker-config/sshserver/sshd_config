@@ -1,0 +1,20 @@
+Port 22
+ListenAddress 0.0.0.0
+HostKey /etc/ssh/ssh_host_rsa_key
+ServerKeyBits 1024
+LoginGraceTime 600
+KeyRegenerationInterval 3600
+PermitRootLogin yes
+IgnoreRhosts yes
+IgnoreUserKnownHosts yes
+StrictModes yes
+X11Forwarding no
+PrintMotd yes
+SyslogFacility AUTH
+LogLevel INFO
+RhostsAuthentication no
+RhostsRSAAuthentication no
+RSAAuthentication yes
+PasswordAuthentication yes
+PermitEmptyPasswords no
+AllowUsers admin root
