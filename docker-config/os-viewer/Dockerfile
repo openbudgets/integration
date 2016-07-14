@@ -1,6 +1,6 @@
-FROM gliderlabs/alpine:3.4
+FROM alpine:3.4
 
-RUN apk add --update nodejs python git
+RUN apk add --update nodejs python git curl tar
 RUN apk add --update --virtual=build-dependencies build-base ca-certificates
 RUN update-ca-certificates
 RUN git clone http://github.com/openspending/os-viewer.git app
@@ -8,7 +8,7 @@ RUN git clone http://github.com/openspending/os-viewer.git app
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
-RUN npm install npm@latest -g
+RUN curl https://www.npmjs.com/install.sh | sh
 RUN npm --version
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver
 RUN cd app && npm install
