@@ -25,6 +25,7 @@ Requirements for the installation environment:
         - Fuseki Production: http://localhost:43030
         - OS-Viewer: http://localhost/viewer
         - Rudolf: http://localhost/api/3/cubes
+        - Dump of the FDP-2-RDF-Pipeline: http://localhost/dumps
     
     Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-ID "created-1468495715437":
         curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
@@ -48,6 +49,7 @@ Requirements for the installation environment:
     (b) Public accessible via http:
     - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
     - OS-Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer
+    - Dump of the FDP-2-RDF-Pipeline: http://eis-openbudgets.iais.fraunhofer.de/dumps
 
 Appendix
 
