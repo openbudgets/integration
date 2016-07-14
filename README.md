@@ -30,6 +30,7 @@ Requirements for the installation environment:
         curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
 
 (2) Server Installation:
+    
     - Clone the repo
     - Create Volume Folders via executing: sh ./initVolumes.sh
     - Define environment variables for: DNS_HOST_1, DNS_HOST_2
