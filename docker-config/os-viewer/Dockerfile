@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:3.4
 
 RUN apk add --update nodejs python git
 RUN apk add --update --virtual=build-dependencies build-base ca-certificates

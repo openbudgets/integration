@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:3.4
 
 COPY ./sshd_config /etc/ssh/sshd_config
 

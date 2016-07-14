@@ -1,4 +1,4 @@
-FROM gliderlabs/alpine:3.3
+FROM gliderlabs/alpine:3.4
 
 RUN apk update && \
     apk add --update wget openjdk8 git nodejs tar supervisor openssh
