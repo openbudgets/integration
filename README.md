@@ -25,6 +25,9 @@ Exposed components in a local OBEU installation:
 - OS-Viewer: http://localhost/viewer
 - Rudolf: http://localhost/api/3/cubes
 
+Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-ID "created-1468495715437":
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
+
 (2) Server Installation:
 - Clone the repo
 - Create Volume Folders via executing: sh ./initVolumes.sh
@@ -43,3 +46,9 @@ Exposed Components on the FhG server:
 (b) Public accessible via http:
 - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
 - OS-Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer
+
+Appendix
+
+How To import the FDP-2-RDF-Pipeline:
+https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
+

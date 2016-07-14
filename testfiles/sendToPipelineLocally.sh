@@ -10,4 +10,4 @@ echo "PARAM_LP_DOMAIN=$INPUT_LP_DOMAIN"
 echo "curl -i -X POST -H \"Content-Type: multipart/form-data\" -F \"input=@$PARAM_FILE\" \"$PARAM_LP_DOMAIN/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/$PARAM_PIPELINE\""
 
 # Sending POST to LinkedPipes:
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PARAM_FILE" "$PARAM_LP_DOMAIN/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/$PARAM_PIPELINE"
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
