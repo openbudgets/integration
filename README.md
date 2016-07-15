@@ -28,9 +28,9 @@ Requirements for the installation environment:
         - Dump of the FDP-2-RDF-Pipeline: http://localhost/dumps
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
     
-    Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-ID "created-1468495715437":
-        curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
-    Remark: To find out the pipeline id, click on "Copy Pipeline IRI" on the pipeline overview in LinkedPipes Frontend (8080)
+    Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-IRI "http://localhost:8080/resources/pipelines/created-1468495715437":
+        curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1468495715437"
+    Remark: To find out the pipeline-IRI, click on "Copy Pipeline IRI" on the pipeline overview in LinkedPipes Frontend (8080)
 
 (2) Server Installation:
     
