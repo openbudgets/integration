@@ -23,21 +23,21 @@ services:
     triple_store_staging:
         build: ./fuseki
         volumes:
+            - ./fuseki/start_dev.sh:/start.sh
             - ../volumes/tripleStoreStaging/log:/var/log
             - ../volumes/tripleStoreStaging/data:/data
         ports:
             - "33030:3030"
             - "39001:9001" # supervisord frontend
-        command: "sh /startWithFileModeDirect.sh"
     triple_store_production:
         build: ./fuseki
         volumes:
+            - ./fuseki/start_dev.sh:/start.sh
             - ../volumes/tripleStoreProduction/log:/var/log
             - ../volumes/tripleStoreProduction/data:/data
         ports:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
-        command: "sh /startWithFileModeDirect.sh"
     rudolf:
         build: ./rudolf
         volumes:
@@ -47,7 +47,7 @@ services:
     nginx:
         build: ./nginx
         volumes:
-            - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx/nginx_dev.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
             - ../volumes/nginx/dumps:/var/www/dumps # serve rdf-file-dumps via http
             - ../volumes/nginx/letsencrypt/www:/tmp/letsencrypt/www # Lets encrypt files

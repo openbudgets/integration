@@ -24,7 +24,6 @@ COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./log4j.properties $FUSEKI_HOME/log4j.properties
 COPY ./config.ttl /config.ttl
 COPY ./start.sh /start.sh
-COPY ./startWithFileModeDirect.sh /startWithFileModeDirect.sh
 COPY ./shiro.ini $FUSEKI_HOME/run/shiro.ini
 
 CMD ["/usr/bin/supervisord"]
