@@ -8,4 +8,4 @@ mkdir -p /data/lp/etl/services
 chmod -R uga+rwx /data
 chmod -R uga+rwx /var/log
 chmod -R uga+rwx /etl
-/usr/bin/supervisord -n
+/usr/bin/supervisord

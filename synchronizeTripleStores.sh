@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
-# Everything that is in A will be added to B:
-# A => B
-STAGING_DATA=/srv2/obeu/integration/volumes/tripleStoreStaging/data/
-PRODUCTION_DATA=/srv2/obeu/integration/volumes/tripleStoreProduction/data/
-sudo rsync -az $STAGING_DATA $PRODUCTION_DATA
-sudo rsync --dry-run -az $STAGING_DATA $PRODUCTION_DATA
+
+STAGING_DIR=/srv2/obeu/integration/volumes/tripleStoreStaging/data
+PRODUCTION_DIR=/srv2/obeu/integration/volumes/tripleStoreProduction/data
+
+# Stop Fuseki Production:
+docker exec dockerconfig_triple_store_production_1 supervisorctl stop executor
+
+# 1:1 copy of Fuseki-data-directories
+rm -rf $PRODUCTION_DIR
+mkdir -p $PRODUCTION_DIR
+cp -r $STAGING_DIR/* $PRODUCTION_DIR/*
+cd $PRODUCTION_DIR && rm *.lock
+
+# Start Fuseki Production:
+docker exec dockerconfig_triple_store_production_1 supervisorctl start executor

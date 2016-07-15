@@ -12,7 +12,6 @@ X11Forwarding no
 PrintMotd yes
 SyslogFacility AUTH
 LogLevel INFO
-RhostsAuthentication no
 RhostsRSAAuthentication no
 RSAAuthentication yes
 PasswordAuthentication yes
