@@ -28,6 +28,6 @@ COPY ./start_dev.sh /start_dev.sh
 COPY ./shiro.ini $FUSEKI_HOME/run/shiro.ini
 
 # Sync Folders as cronjob:
-COPY ./compareFolders.sh
+COPY ./compareFolders.sh /compareFolders.sh
 
 CMD ["/usr/bin/supervisord"]
