@@ -30,6 +30,7 @@ Requirements for the installation environment:
     
     Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-ID "created-1468495715437":
         curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/created-1468495715437"
+    Remark: To find out the pipeline id, click on "Copy Pipeline IRI" on the pipeline overview in LinkedPipes Frontend (8080)
 
 (2) Server Installation:
     
