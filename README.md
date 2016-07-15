@@ -54,17 +54,17 @@ Requirements for the installation environment:
 
 Appendix
 
-    How To import the FDP-2-RDF-Pipeline:
+    How To import the FDP-2-RDF-Pipeline on LinkedPipes-Frontend (8080):
         https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
         Upload Pipeline from URL: https://raw.githubusercontent.com/openbudgets/pipeline-fragments/master/FDPtoRDF/FDPtoRDF.jsonld
     
-    How to configure the TripleStore in the FDP-2-RDF-Pipeline:
+    How to configure the TripleStore-Component in the FDP-2-RDF-Pipeline on LinkedPipes-Frontend (8080):
         (a) Select Repository: Fuseki
         (b) Graph store protocol endpoint: http://triple_store_staging:3030/fuseki/data
         (c) Target Graph IRI: http://data.openbudgets.eu/fdp-datasets
         (d) No authentication
 
-    How To configure Files-to-Scp dump for a local OBEU-stack-installation:
+    How To configure Files-to-Scp-Component for a local OBEU-stack-installation on LinkedPipes-Frontend (8080):
         (a) Host-address: sshserver
         (b) User-name & Password: root
         (c) Target Directory: /dumps
