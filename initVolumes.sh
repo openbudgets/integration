@@ -9,7 +9,7 @@ mkdir -p volumes/nginx/dumps
 # tripleStoreStaging:
 mkdir -p volumes/tripleStoreStaging/data
 mkdir -p volumes/tripleStoreStaging/log
-# fuseki:
+# fusekistaging:
 mkdir -p volumes/tripleStoreProduction/data
 mkdir -p volumes/tripleStoreProduction/log
 # Rudolf:

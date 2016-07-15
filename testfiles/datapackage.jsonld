@@ -2,7 +2,7 @@
   "@context": {
       "@vocab": "http://test.openbudgets.eu/ontology/fdp#"
   },
-  "name": "my-openspending-datapackage",
+  "name": "my-openspending-datapackage6",
   "title": "My OpenSpending Data Package",
   "resources": [
     {
