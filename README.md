@@ -36,7 +36,7 @@ Requirements for the installation environment:
     
     - Clone the repo
     - Create Volume Folders via executing: sh ./initVolumes.sh
-    - Define environment variables for: DNS_HOST_1, DNS_HOST_2
+    - Create a script 'setenv.sh' in the project's root-directory where you define the following environment variables: DNS_HOST_1, DNS_HOST_2
     - Update from Git-repo & (re-)starting Docker containers via Shell-Script in Project folder:
         sh ./refreshAndRestartProd.sh
 
