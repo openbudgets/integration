@@ -21,6 +21,7 @@ services:
     triple_store_staging:
         build: ./fuseki
         volumes:
+            - ./fuseki/staging/start.sh:/start.sh
             - ../volumes/tripleStoreStaging/log:/var/log
             - ../volumes/tripleStoreStaging/data:/data
         ports:
@@ -29,7 +30,7 @@ services:
     triple_store_production:
         build: ./fuseki
         volumes:
-            - ./fuseki/syncTriplestores:/etc/periodic/15min/syncTriplestores # Add Cronjob for syncing
+            - ./fuseki/production/start.sh:/start.sh
             - ../volumes/tripleStoreProduction/log:/var/log
             - ../volumes/tripleStoreProduction/data:/data
         ports:

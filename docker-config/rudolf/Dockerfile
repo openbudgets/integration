@@ -17,6 +17,10 @@ RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git
 # Run Composer:
 RUN cd /var/www/rudolf && composer install --no-scripts
 
+# Add Timezone:
+RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    echo "Europe/Berlin" > /etc/timezone
+
 COPY ./index.php /var/www/rudolf/.
 
 # Copy config file:

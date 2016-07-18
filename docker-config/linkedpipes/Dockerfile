@@ -22,10 +22,9 @@ RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
 COPY ./configuration.properties /etl/deploy/configuration.properties
 
-# Persist Directory for data in LinkedPipes:
-# VOLUME /data
-# Persist Directory for log files of the Executor, Executor-Monitor, Frontend:
-# VOLUME /var/log/supervisor
+# Add Timezone:
+RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
+    echo "Europe/Berlin" > /etc/timezone
 
 EXPOSE \
     # executor.webserver.port:

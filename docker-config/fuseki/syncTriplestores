@@ -5,7 +5,7 @@ rm -rf /data/*
 cp -r /newdata/* /data/.
 
 # logging:
-echo "Start Syncing TripleStores..." >> /var/log/syncTriplestores.log
+date +"%Y-%m-%d_%H-%M-%S Start Syncing TripleStores..." >> /var/log/syncTriplestores.log
 
 # Restart Fuseki:
 supervisorctl stop executor
@@ -14,4 +14,4 @@ find . -name *.lock | xargs -i rm {}
 supervisorctl start executor
 
 # logging:
-echo "Finished Syncing TripleStores..." >> /var/log/syncTriplestores.log
+date +"%Y-%m-%d_%H-%M-%S Finished Syncing TripleStores..." >> /var/log/syncTriplestores.log
