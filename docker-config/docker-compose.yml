@@ -33,6 +33,7 @@ services:
             - ./fuseki/production/start.sh:/start.sh
             - ../volumes/tripleStoreProduction/log:/var/log
             - ../volumes/tripleStoreProduction/data:/data
+            - ../volumes/tripleStoreStaging/data:/newdata
         ports:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
