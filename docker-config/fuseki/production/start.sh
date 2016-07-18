@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Start cron
-cp /syncTriplestores /etc/periodic/15min/syncTriplestores
+# Add cronjob:
+cp /cronjobs/syncTriplestores /etc/periodic/15min/syncTriplestores
 
 # Start Fuseki
 find . -name *.lock | xargs -i rm {}

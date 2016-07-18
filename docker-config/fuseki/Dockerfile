@@ -34,8 +34,8 @@ COPY ./shiro.ini $FUSEKI_HOME/run/shiro.ini
 COPY ./staging/start.sh /start.sh
 # testing script
 COPY ./compareFolders.sh /compareFolders.sh
-COPY ./syncTriplestores /syncTriplestores
-RUN chmod a+x /syncTriplestores
+COPY ./cronjobs /cronjobs
+RUN chmod -R a+x /cronjobs
 # testing script
 COPY ./testCronJob.sh /testCronJob.sh
 
