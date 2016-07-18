@@ -30,10 +30,13 @@ COPY ./config.ttl /config.ttl
 COPY ./shiro.ini $FUSEKI_HOME/run/shiro.ini
 
 # Sync Folders as cronjob:
-COPY ./staging/start.sh /start.sh # default start script
-COPY ./compareFolders.sh /compareFolders.sh # testing script
+# default start script
+COPY ./staging/start.sh /start.sh
+# testing script
+COPY ./compareFolders.sh /compareFolders.sh
 COPY ./syncTriplestores /syncTriplestores
 RUN chmod a+x /syncTriplestores
-COPY ./testCronJob.sh /testCronJob.sh # testing script
+# testing script
+COPY ./testCronJob.sh /testCronJob.sh
 
 CMD ["/usr/bin/supervisord"]
