@@ -2,7 +2,6 @@
 
 # Start cron
 cp /syncTriplestores /etc/periodic/15min/syncTriplestores
-crond
 
 # Start Fuseki
 find . -name *.lock | xargs -i rm {}
