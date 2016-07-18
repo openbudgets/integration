@@ -1,11 +1,17 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Sync Folders Staging -> Production:
 rm -rf /data/*
 cp -r /newdata/* /data/.
+
+# logging:
+echo "Start Syncing TripleStores..." >> /var/log/syncTriplestores.log
 
 # Restart Fuseki:
 supervisorctl stop executor
 kill -9 $(ps -ef | grep fuseki | grep -v grep | awk '{print $1}')
 find . -name *.lock | xargs -i rm {}
 supervisorctl start executor
+
+# logging:
+echo "Finished Syncing TripleStores..." >> /var/log/syncTriplestores.log

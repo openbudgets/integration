@@ -33,7 +33,7 @@ services:
         build: ./fuseki
         volumes:
             - ./fuseki/start_dev.sh:/start.sh
-            - ./fuseki/syncFolders.sh:/etc/periodic/15min/syncFolders.sh # Add Cronjob for syncing
+            - ./fuseki/syncTriplestores:/etc/periodic/15min/syncTriplestores # Add Cronjob for syncing
             - ../volumes/tripleStoreProduction/log:/var/log
             - ../volumes/tripleStoreProduction/data:/data
             - ../volumes/tripleStoreStaging/data:/newdata
