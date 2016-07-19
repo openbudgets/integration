@@ -2,7 +2,7 @@ FROM gliderlabs/alpine:3.4
 
 COPY ./sshd_config /etc/ssh/sshd_config
 
-RUN apk add --update openssh supervisor
+RUN apk add --update openssh
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
