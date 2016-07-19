@@ -70,6 +70,7 @@ services:
         ports:
           - "9003:8000"
         environment:
+            - DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
             #- WORKDIR=app
             #- PORT=8000
             # For dev:

@@ -55,6 +55,7 @@ services:
             - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
             - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
+            - ../volumes/nginx/osviewer:/var/www/osviewer/user/lib
         links:
             - linkedpipes
             - triple_store_staging
@@ -72,6 +73,7 @@ services:
         ports:
           - "9003:8000"
         environment:
+            - DEFAULT_HOST=http://localhost
             #- WORKDIR=app
             #- PORT=8000
             # For dev:
