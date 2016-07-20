@@ -19,7 +19,7 @@ echo "curl -i -X POST -H \"Content-Type: multipart/form-data\" -F \"input=@$PARA
 curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PARAM_FILE" "$PARAM_LP_DOMAIN/resources/executions?pipeline=$PARAM_LP_DOMAIN/resources/pipelines/$PARAM_PIPELINE"
 
 # echo output:
-# PARAM_FILE=/home/maik/obeu_infrastructure2/testfiles/datapackage.jsonld.bkp1.bkp
+# PARAM_FILE=/home/maik/obeu_infrastructure2/testfiles/datapackage.jsonld.bkp
 # PARAM_PIPELINE=created-1467031005380
 # PARAM_LP_DOMAIN=http://localhost:8080
-# curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld.bkp1.bkp" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1467031005380"
+# curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld.bkp" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1467031005380"
