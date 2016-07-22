@@ -16,9 +16,6 @@ services:
         links:
             - triple_store_staging
             - sshserver
-        #dns:
-        #    - "${DNS_HOST_1}"
-        #    - "${DNS_HOST_2}"
     sshserver:
         build: ./sshserver
         volumes:
