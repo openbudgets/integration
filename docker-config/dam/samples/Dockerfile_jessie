@@ -1,0 +1,49 @@
+FROM debian:jessie
+
+# Install Python:
+RUN apt-get -y update
+RUN apt-get install -y build-essential
+RUN apt-get install -y libpng12-dev postgresql-server-dev-all
+RUN apt-get install -y npm git wget libfreetype6-dev libxft-dev vim tar build-essential ca-certificates
+
+ENV PYTHON_VERSION 3.5.2
+RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
+RUN tar -xvzf Python-$PYTHON_VERSION.tgz && \
+    rm Python-$PYTHON_VERSION.tgz
+
+# Compile Python:
+RUN cd Python-$PYTHON_VERSION && \
+    ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
+    make && make install
+RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev postgresql-server-dev-all
+RUN pip3 install --upgrade pip
+
+# Install R:
+RUN apt-get install -y r-base r-base-dev r-recommended
+
+RUN pip3 install autoenv && echo "source `which activate.sh`" >> ~/.bashrc && \
+    pip3 install --upgrade setuptools && \
+    pip3 install --upgrade Distribute && \
+    pip3 install autoenv && \
+    echo "source `which activate.sh`" >> ~/.bashrc && \
+    pip3 install virtualenv && \
+    virtualenv env
+
+# Clone git-repo:
+RUN apt-get install -y git
+RUN git clone https://github.com/openbudgets/DAM && \
+    cd DAM && \
+    git checkout tiansi && \
+    pip3 install -r requirements.txt
+
+
+
+#wget https://bootstrap.pypa.io/ez_setup.py
+#python ez_setup.py
+#RUN pip3 install -r requirements.txt
+#RUN npm install
+
+
+#CMD ["python", "manage.py", "runserver"]
+
+

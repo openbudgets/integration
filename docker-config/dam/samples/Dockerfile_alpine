@@ -1,0 +1,62 @@
+FROM alpine:3.4
+
+RUN apk add 'R' --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing
+
+ENV PYTHON_VERSION 3.5.2
+ENV PYTHON_VERSION_SHORT 3.5
+RUN apk --update add wget tar alpine-sdk \
+   ca-certificates \
+   bash \
+   git \
+   openssl-dev \
+   readline-dev \
+   bzip2-dev \
+   sqlite-dev \
+   ncurses-dev \
+   linux-headers \
+   build-base \
+   python-dev \
+   freetype-dev
+RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
+RUN tar -xvzf Python-$PYTHON_VERSION.tgz && \
+    rm Python-$PYTHON_VERSION.tgz
+
+# Compile Python:
+RUN cd Python-$PYTHON_VERSION && \
+    ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib" && \
+    make && make install
+RUN cd /usr/local/bin && \
+    ln -s python$PYTHON_VERSION_SHORT python && \
+    ln -s pip$PYTHON_VERSION_SHORT pip
+
+RUN pip install autoenv && echo "source `which activate.sh`" >> ~/.bashrc && \
+    pip install --upgrade pip && \
+    pip install --upgrade setuptools && \
+    pip install --upgrade setuptools && \
+    easy_install -U setuptools && \
+    pip install virtualenv && \
+    virtualenv env
+
+# Clone git-repo:
+RUN git clone https://github.com/openbudgets/DAM
+
+ENV APP_SETTINGS "config.DevelopmentConfig"
+ENV DATABASE_URL "postgresql://localhost/obeu_dam"
+RUN cd DAM && \
+    git checkout tiansi && \
+    pip install -r requirements.txt
+
+#wget https://bootstrap.pypa.io/ez_setup.py
+# python ez_setup.py
+# RUN npm install
+
+CMD ["python3", "manage.py", "runserver"]
+
+# apk add --update python2
+
+#FROM debian:jessie
+
+#RUN echo "deb http://ftp2.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list && \
+#    apt-get update -y && \
+#    sudo apt-get install r-base python3-dev build-essential python-psycopg2 libpng-devel postgresql-devel
+
