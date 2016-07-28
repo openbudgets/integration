@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-RUN apk add --update openssh rsyslogd
+RUN apk add --update openssh rsyslog supervisor
 
 COPY ./sshd_config /etc/ssh/sshd_config
 COPY ./rsyslog.conf /etc/rsyslog.conf
@@ -17,5 +17,6 @@ RUN echo "root:root" | chpasswd
 
 EXPOSE 22
 
-#COPY ./start.sh /start
-CMD ["/usr/sbin/sshd","-D"]
+COPY ./supervisord.conf /etc/supervisord.conf
+COPY ./start.sh /start.sh
+CMD ["bin/sh","/start.sh"]

@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-/usr/sbin/sshd -D &&
+chmod -R uga+rwx /var/log
+/usr/bin/supervisord
