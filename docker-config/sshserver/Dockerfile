@@ -17,6 +17,6 @@ RUN echo "root:root" | chpasswd
 
 EXPOSE 22
 
-COPY ./supervisord.conf /etc/supervisord.conf
+#COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./start.sh /start.sh
 CMD ["bin/sh","/start.sh"]
