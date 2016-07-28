@@ -20,6 +20,7 @@ services:
         build: ./sshserver
         volumes:
             - ../volumes/nginx/dumps:/dumps
+            - ../volumes/sshserver/log:/var/log
     triple_store_staging:
         build: ./fuseki
         volumes:

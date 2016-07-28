@@ -1,9 +1,0 @@
-{
-    "@context": {
-      "@vocab": "http://schema.org/",
-      "url": {
-        "@type": "@id"
-      }
-    },
-    "url": "http://s3.amazonaws.com/datastore.openspending.org/a0f62a17e1fc9e6bea3e94a2f41fbba2/esif-finance-details-poland/datapackage.json"
-}

@@ -1,8 +1,9 @@
 FROM alpine:3.4
 
 COPY ./sshd_config /etc/ssh/sshd_config
+COPY ./rsyslog.conf /etc/rsyslog.conf
 
-RUN apk add --update openssh
+RUN apk add --update openssh rsyslog
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \

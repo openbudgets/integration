@@ -11,7 +11,7 @@ StrictModes yes
 X11Forwarding no
 PrintMotd yes
 SyslogFacility AUTH
-LogLevel INFO
+LogLevel VERBOSE
 RhostsRSAAuthentication no
 RSAAuthentication yes
 PasswordAuthentication yes
