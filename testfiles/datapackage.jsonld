@@ -1,9 +1,106 @@
 {
-    "@context": {
-      "@vocab": "http://schema.org/",
-      "url": {
-        "@type": "@id"
+  "@context": {
+      "@vocab": "http://test.openbudgets.eu/ontology/fdp#"
+  },
+  "name": "my-openspending-datapackage",
+  "title": "My OpenSpending Data Package",
+  "resources": [
+    {
+      "name": "budget",
+      "title": "Budget",
+      "path": "http://protegeserver.cz/files/fdp-normalized/budget.csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "format": "currency"
+          },
+          {
+            "name": "year",
+            "type": "date"
+          },
+          {
+            "name": "payee",
+            "type": "string"
+          }
+        ],
+        "primaryKey": "id"
+      },
+      "foreignKeys": [
+        {
+          "fields": "payee",
+          "reference": {
+            "datapackage": "my-openspending-datapackage",
+            "resource": "entities",
+            "fields": "id"
+          }
+        }
+      ]
+    },
+    {
+      "name": "entities",
+      "title": "Entities",
+      "path": "http://protegeserver.cz/files/fdp-normalized/entities.csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "primaryKey": "id"
+      }
+    }
+  ],
+  "model": {
+    "measures": {
+      "amount": {
+        "source": "amount",
+        "currency": "USD",
+        "factor": 1
       }
     },
-    "url": "http://s3.amazonaws.com/datastore.openspending.org/a0f62a17e1fc9e6bea3e94a2f41fbba2/esif-finance-details-poland/datapackage.json"
+    "dimensions": {
+      "date": {
+        "dimensionType": "datetime",
+        "attributes": {
+          "year": {
+            "source": "year"
+          }
+        },
+        "primaryKey": "year"
+      },
+      "payee": {
+        "dimensionType": "entity",
+        "attributes": {
+          "id": {
+            "resource": "entities",
+            "source": "id"
+          },
+          "title": {
+            "resource": "entities",
+            "source": "title"
+          },
+          "description": {
+            "resource": "entities",
+            "source": "description"
+          }
+        },
+        "primaryKey": "id"
+      }
+    }
+  }
 }

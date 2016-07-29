@@ -3,7 +3,7 @@ FROM alpine:3.4
 RUN apk add --update openssh rsyslog supervisor
 
 COPY ./sshd_config /etc/ssh/sshd_config
-#COPY ./rsyslog.conf /etc/rsyslog.conf
+COPY ./supervisord.conf /etc/supervisord.conf
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
@@ -17,6 +17,5 @@ RUN echo "root:root" | chpasswd
 
 EXPOSE 22
 
-#COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./start.sh /start.sh
-CMD ["bin/sh","/start.sh"]
+CMD ["/bin/sh", "/start.sh"]

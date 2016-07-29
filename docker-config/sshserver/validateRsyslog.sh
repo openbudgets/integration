@@ -1,0 +1,1 @@
+rsyslogd -N6 | head -10
