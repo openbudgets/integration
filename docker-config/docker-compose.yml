@@ -46,6 +46,12 @@ services:
             - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
         links:
             - triple_store_production
+    dam:
+        build: ./dam
+        volumes:
+            - ../volumes/dam/app:/DAM
+        ports:
+            - "5000:5000"
     nginx:
         build: ./nginx
         volumes:

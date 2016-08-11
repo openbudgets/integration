@@ -4,7 +4,7 @@ FROM debian:jessie
 ENV PYTHON_VERSION 3.5.2
 #ENV PYTHON_VERSION 3.6.0
 RUN apt-get -y update
-RUN apt-get install -y build-essential ca-certificates vim tar wget libssl-dev openssl
+RUN apt-get install -y git openssl build-essential vim ca-certificates tar wget libssl-dev libreadline-dev python-dev liblzma-dev cython gcc curl
 RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
 RUN tar -xvzf Python-$PYTHON_VERSION.tgz && \
     rm Python-$PYTHON_VERSION.tgz
@@ -16,27 +16,15 @@ RUN pip3 install --upgrade pip
 RUN apt-get install -y r-base r-base-dev r-recommended
 
 # Install app dependencies:
-RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev postgresql-server-dev-all libfreetype6-dev libxft-dev
+RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev postgresql-server-dev-all libxft-dev libfreetype6-dev virtualenv bash
 
-# Create virtual environemnt:
-RUN pip3 install virtualenv autoenv && \
-    echo "source `which activate.sh`" >> ~/.bashrc && \
-    virtualenv env
-
-# Clone git-repo:
-RUN apt-get install -y git
-RUN git clone https://github.com/openbudgets/DAM && \
-    cd DAM && \
-    git checkout tiansi
-WORKDIR DAM
+# Frontend Port:
+EXPOSE 5000
 
 # Installation:
 ENV APP_SETTINGS "config.DevelopmentConfig"
 ENV DATABASE_URL "postgresql://localhost/obeu_dam"
-RUN pip3 install -r requirements.txt
 
-#RUN apt-get install -y npm && npm install
-
-EXPOSE 5000
-
-CMD ["python3", "manage.py", "runserver"]
+COPY ./installAndStartDAM.sh /installAndStartDAM.sh
+COPY ./start.sh /start.sh
+CMD ["/bin/sh", "installAndStartDAM.sh"]

@@ -48,6 +48,8 @@ services:
             - triple_store_production
     dam:
         build: ./dam
+        volumes:
+            - ../volumes/dam/app:/DAM
         ports:
             - "5000:5000"
     nginx:

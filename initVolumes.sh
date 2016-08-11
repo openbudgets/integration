@@ -16,5 +16,7 @@ mkdir -p volumes/tripleStoreProduction/log
 mkdir -p volumes/rudolf/log
 # SSHServer:
 mkdir -p volumes/sshserver/log
+# DAM
+mkdir -p volumes/dam/app
 
 chmod -R oga+rwx ./volumes
