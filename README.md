@@ -6,6 +6,7 @@ OBEU-Components:
 - nginx as Reverse Proxy
 - Rudolf querying the Staging triplestore
 - OS-Viewer backed up by Rudolf
+- DAM (Data Mining https://github.com/openbudgets/DAM)
 
 Requirements for the installation environment:
 - Git
@@ -26,6 +27,7 @@ Requirements for the installation environment:
         - OS-Viewer: http://localhost/viewer
         - Rudolf: http://localhost/api/3/cubes
         - Dump of the FDP-2-RDF-Pipeline: http://localhost/dumps
+        - DAM: http://localhost:5000
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
     
     Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-IRI "http://localhost:8080/resources/pipelines/created-1468495715437":
@@ -47,6 +49,7 @@ Requirements for the installation environment:
     - Fuseki Staging: http://localhost:33030
     - Fuseki Production: http://localhost:43030
     - OS-Viewer: http://localhost/viewer
+    - DAM: http://localhost:5000
 
     (b) Public accessible via http:
     - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
