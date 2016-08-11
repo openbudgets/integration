@@ -6,6 +6,7 @@ OBEU-Components:
 - nginx as Reverse Proxy
 - Rudolf querying the Staging triplestore
 - OS-Viewer backed up by Rudolf
+- DAM (Data Mining https://github.com/openbudgets/DAM)
 
 Requirements for the installation environment:
 - Git
@@ -48,6 +49,7 @@ Requirements for the installation environment:
     - Fuseki Staging: http://localhost:33030
     - Fuseki Production: http://localhost:43030
     - OS-Viewer: http://localhost/viewer
+    - DAM: http://localhost:5000
 
     (b) Public accessible via http:
     - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
