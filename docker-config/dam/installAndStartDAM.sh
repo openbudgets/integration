@@ -4,6 +4,7 @@
 
 downloadDAM()
 {
+    echo "Downloading DAM-Git-Repository"
     rm -rf /DAM
     git clone https://github.com/openbudgets/DAM && \
         cd /DAM && \
@@ -12,17 +13,20 @@ downloadDAM()
 
 updateDAM()
 {
+    echo "Updating DAM-Git-Repository"
     cd /DAM && \
         git pull origin tiansi
 }
 
 startDAM()
 {
-     /bin/sh /start.sh
+    echo "Starting DAM without Installation"
+    /bin/sh /start.sh
 }
 
 installDAM()
 {
+    echo "Installing & Starting DAM"
     cd /DAM && \
         pip3 install --upgrade pip && \
         pip3 install virtualenv && \
@@ -36,6 +40,6 @@ installDAM()
 
 ## Execute:
 
-[ -f /DAM/app.py ] && echo "Update DAM-Repository" && updateDAM || ( echo "Download DAM-Repository" && downloadDAM )
+[ -f /DAM/app.py ] && updateDAM || downloadDAM
 
-[ -f /DAM/env/bin/activate ] && echo "Start DAM without Installation" && startDAM || ( echo "Install & Start DAM" && installDAM )
+[ -f /DAM/env/bin/activate ] && startDAM || installDAM
