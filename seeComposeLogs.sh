@@ -1,0 +1,1 @@
+cd docker-config && docker-compose logs -f

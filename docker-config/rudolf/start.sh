@@ -2,17 +2,33 @@
 set -e
 
 # Clone git repo:
-rm -rf /var/www/rudolf
-cd /var/www && git clone https://github.com/openbudgets/rudolf.git
+downloadRudolf() {
+    echo "Downloading Rudolf-Repository"
+    rm -rf /var/www/rudolf
+    cd /var/www && git clone https://github.com/openbudgets/rudolf.git
+    cp /config/sparql.php /var/www/rudolf/config/sparql.php
+    chown -R www-data:www-data /var/www
+    chmod oag+rwx -R /var/www
+}
 
-# Install Rudolf: Run Composer
-cd /var/www/rudolf && composer install --no-scripts
+updateRudolf() {
+    echo "Updating Rudolf from remote Git-repo"
+    cd /var/www/rudolf && git pull origin master
+}
 
-# Copy config files:
-cp /config/sparql.php /var/www/rudolf/config/sparql.php
+installRudolf() {
+    echo "Installing Rudolf"
+    cd /var/www/rudolf && composer install --no-scripts
+}
 
-# Set permissions:
-chown -R www-data:www-data /var/www
-chmod oag+rwx -R /var/www
-php artisan cache:clear
-php-fpm || tail -f
+startRudolf() {
+    echo "Starting Rudolf"
+    php artisan cache:clear
+    php-fpm
+}
+
+## Execute:
+
+[ -f /var/www/rudolf/server.php ] && updateRudolf || downloadRudolf
+
+installRudolf && startRudolf
