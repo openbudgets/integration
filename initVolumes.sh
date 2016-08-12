@@ -13,7 +13,7 @@ mkdir -p volumes/tripleStoreStaging/log
 mkdir -p volumes/tripleStoreProduction/data
 mkdir -p volumes/tripleStoreProduction/log
 # Rudolf:
-mkdir -p volumes/rudolf/log
+mkdir -p volumes/rudolf/www
 # SSHServer:
 mkdir -p volumes/sshserver/log
 # DAM

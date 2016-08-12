@@ -43,7 +43,7 @@ services:
     rudolf:
         build: ./rudolf
         volumes:
-            - ../volumes/rudolf/log:/var/www/rudolf/storage/logs
+            - ../volumes/rudolf/www:/var/www
         links:
             - triple_store_production
     dam:
