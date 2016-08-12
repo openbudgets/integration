@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 git pull origin
 OBEU_WORKDIR=$PWD
-cd ./docker-config && \
+cd $OBEU_WORKDIR/docker-config && \
     docker-compose stop && \
     docker-compose rm -f && \
     docker-compose build
