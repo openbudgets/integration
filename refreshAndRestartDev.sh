@@ -6,6 +6,8 @@ cd $OBEU_WORKDIR/volumes && \
 cd $OBEU_WORKDIR/docker-config && \
     docker-compose -f dev.yml stop && \
     docker-compose -f dev.yml rm -f && \
-    docker-compose -f dev.yml build && \
-    sh $OBEU_WORKDIR/removeFusekiLocks.sh && \
-    docker-compose -f dev.yml up
+    docker-compose -f dev.yml build
+cd $OBEU_WORKDIR/volumes && \
+    find . -name *.lock | xargs -i rm {}
+cd $OBEU_WORKDIR/docker-config && \
+    docker-compose up -d
