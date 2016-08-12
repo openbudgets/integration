@@ -6,6 +6,6 @@ cd $OBEU_WORKDIR/docker-config && \
     docker-compose rm -f && \
     docker-compose build
 cd $OBEU_WORKDIR/volumes && \
-    find . -name *.lock | sudo xargs -i rm {}
+    find . -name *.lock | xargs -i rm {}
 cd $OBEU_WORKDIR/docker-config && \
     docker-compose up -d
