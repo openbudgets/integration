@@ -27,4 +27,5 @@ ENV DATABASE_URL "postgresql://localhost/obeu_dam"
 
 COPY ./installAndStartDAM.sh /installAndStartDAM.sh
 COPY ./start.sh /start.sh
+RUN chmod a+rwx /installAndStartDAM.sh && chmod a+rwx /start.sh
 CMD ["/bin/sh", "installAndStartDAM.sh"]

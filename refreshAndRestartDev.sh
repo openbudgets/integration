@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 git pull origin
-find . -name *.lock | xargs -I "{}" rm {} 
-cd ./docker-config
+cd ./volumes && find . -name *.lock | xargs -I "{}" rm {}
+cd ../docker-config
 docker-compose -f dev.yml stop && docker-compose -f dev.yml rm -f && docker-compose -f dev.yml build
 sh ../removeFusekiLocks.sh
 docker-compose -f dev.yml up
