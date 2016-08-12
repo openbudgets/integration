@@ -5,6 +5,6 @@ cd ./docker-config && \
     docker-compose stop && \
     docker-compose rm -f && \
     docker-compose build
-cd $OBEU_WORKDIR && \
-    /bin/sh removeFusekiLocks.sh
+cd $OBEU_WORKDIR/volumes && \
+    find . -name *.lock | sudo xargs -i rm {}
 docker-compose up -d
