@@ -7,7 +7,7 @@ services:
             - ../volumes/linkedpipes/log:/var/log
         ports:
             - "8085:8085" # executor.webserver.port
-            - "8080:8080" # Webserver & URI dereferencable URI for pipelines + templates
+            - "8181:8181" # Webserver & URI dereferencable URI for pipelines + templates
             - "8081:8081" # executor-monitor.webserver.port
             - "2221:2221" # executor-monitor.ftp.port
             - "2223-2230:2223-2230" # Linked Pipes FTP data port
