@@ -10,4 +10,4 @@ cd $OBEU_WORKDIR/docker-config && \
 cd $OBEU_WORKDIR/volumes && \
     find . -name *.lock | xargs -i rm {}
 cd $OBEU_WORKDIR/docker-config && \
-    docker-compose up -d
+    docker-compose -f dev.yml up
