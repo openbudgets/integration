@@ -3,6 +3,21 @@
 mkdir -p volumes/linkedpipes/data
 mkdir -p volumes/linkedpipes/log
 
+mkdir -p volumes/linkedpipes_1/data
+mkdir -p volumes/linkedpipes_1/log
+
+mkdir -p volumes/linkedpipes_2/data
+mkdir -p volumes/linkedpipes_2/log
+
+mkdir -p volumes/linkedpipes_3/data
+mkdir -p volumes/linkedpipes_3/log
+
+mkdir -p volumes/linkedpipes_4/data
+mkdir -p volumes/linkedpipes_4/log
+
+mkdir -p volumes/linkedpipes_5/data
+mkdir -p volumes/linkedpipes_5/log
+
 # nginx:
 mkdir -p volumes/nginx/log
 mkdir -p volumes/nginx/dumps

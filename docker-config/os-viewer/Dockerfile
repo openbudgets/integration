@@ -13,7 +13,7 @@ RUN curl https://www.npmjs.com/install.sh | sh
 RUN npm --version
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver
 RUN cd app && npm install
-RUN cd app && node node_modules/gulp/bin/gulp.js
+#RUN cd app && node node_modules/gulp/bin/gulp.js
 RUN apk del build-dependencies
 RUN rm -rf /var/cache/apk/*
 
