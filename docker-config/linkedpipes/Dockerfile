@@ -22,6 +22,13 @@ RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
 COPY ./configuration.properties /etl/deploy/configuration.properties
 
+# Install FDP-to-RDF-component:
+ENV URL_FDP2RDF_COMPONENT https://github.com/opendatacz/lp-etl-components/raw/master/t-fdpToRdf/deploy/t-fdpToRdf.zip
+RUN cd /etl/deploy/components && \
+    wget $URL_FDP2RDF_COMPONENT && \
+    unzip ./t-fdpToRdf.zip && \
+    rm -rf ./t-fdpToRdf.zip
+
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     echo "Europe/Berlin" > /etc/timezone
