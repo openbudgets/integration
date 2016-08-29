@@ -17,3 +17,5 @@ RSAAuthentication yes
 PasswordAuthentication yes
 PermitEmptyPasswords no
 AllowUsers admin root
+UseDNS no
+GSSAPIAuthentication no
