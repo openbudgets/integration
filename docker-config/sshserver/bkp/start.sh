@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-chmod -R uga+rwx /var/log
-/usr/bin/supervisord
+ufw enable && ufw allow 22
+tail -f /var/log/messages

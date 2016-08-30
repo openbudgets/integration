@@ -1,16 +1,15 @@
-FROM debian:jessie
+FROM ubuntu:14.04
 
-RUN apt-get update -y && apt-get install -y openssh-server rsyslog && \
-    systemctl enable ssh.socket
+RUN apt-get update && apt-get install -y openssh-server
+RUN mkdir /var/run/sshd
+RUN echo 'root:root' | chpasswd
+RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
-COPY ./sshd_config /etc/ssh/sshd_config
+# SSH login fix. Otherwise user is kicked off after login
+RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
-# Set root user password to 'root':
-RUN echo "root:root" | chpasswd
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
-
-RUN service rsyslog start && service ssh start
-COPY ./start.sh /start.sh
-
-CMD ["/bin/sh", "/start.sh"]
+CMD ["/usr/sbin/sshd", "-vvvv -D"]
