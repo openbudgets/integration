@@ -5,7 +5,7 @@ RUN apk update && \
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
-    echo "Europe/Berlin" > /etc/timezone
+    echo "Europe/Berlin" > /etc/timezones
 
 EXPOSE 80
 

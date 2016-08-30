@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-chmod -R uga+rwx /var/log
-/usr/bin/supervisord
+tail -f /var/log/messages
