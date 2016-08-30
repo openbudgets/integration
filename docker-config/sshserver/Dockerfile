@@ -12,4 +12,5 @@ ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-vvvv -D"]
+COPY ./start.sh /start.sh
+CMD ["/bin/sh", "/start.sh"]
