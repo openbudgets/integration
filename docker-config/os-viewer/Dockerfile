@@ -8,6 +8,10 @@ RUN cd $(npm root -g)/npm \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 RUN npm install npm@latest -g
 RUN npm --version
+
+RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
+    git config --global url."https://".insteadOf git://
+
 RUN git clone http://github.com/openspending/os-viewer.git app
 # RUN git clone https://github.com/openbudgets/os-viewer.git app
 
