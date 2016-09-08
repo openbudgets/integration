@@ -144,19 +144,22 @@ services:
             - triple_store_production
             - rudolf
             - os-viewer
+            - os-explorer
         ports:
             - "80:80" # http
             - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
     os-viewer:
-        build: ./os-viewer
+        image: openspending/os-viewer
         expose:
           - "8000"
         ports:
           - "9003:8000"
         environment:
-            - DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
+            - OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
+            - OS_VIEWER_AUTH_HOST=http://next.openspending.org
+            - OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
             #- WORKDIR=app
             #- PORT=8000
             # For dev:
@@ -165,9 +168,13 @@ services:
             # For prod:
             #- OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
             #- OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
-            - OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
-            - OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
-            - OS_VIEWER_AUTH_HOST=http://next.openspending.org
+    os-explorer:
+        image: openspending/os-explorer
+        expose:
+          - "8000"
+        environment:
+          - WORKDIR=/apps
+
 
 # Subnet-Size net-Mask-Size (CIDR)
 # 256 24

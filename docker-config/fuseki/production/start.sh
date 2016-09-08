@@ -5,4 +5,4 @@ cp /cronjobs/syncTriplestores /etc/periodic/hourly/syncTriplestores
 
 # Start Fuseki
 find . -name *.lock | xargs -i rm {}
-cd $FUSEKI_HOME && sh ./fuseki-server --config=/config.ttl --set tdb:fileMode=direct
+cd $FUSEKI_HOME && sh ./fuseki-server --update --config=/config.ttl --set tdb:fileMode=direct

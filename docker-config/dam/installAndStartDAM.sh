@@ -8,7 +8,7 @@ downloadDAM()
     rm -rf /DAM
     git clone https://github.com/openbudgets/DAM && \
         cd /DAM && \
-        git checkout tiansi
+        git checkout staging
 }
 
 updateDAM()
