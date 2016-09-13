@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.4
 
 RUN apk update && \
-    apk add --update wget openjdk8 git nodejs supervisor openssh tar
+    apk add --update wget git nodejs supervisor openssh tar openjdk8
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
 
 # Install Maven:
@@ -16,7 +16,6 @@ ENV PATH $PATH:$M2_HOME/bin
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git
 RUN cd etl && git checkout develop && mvn install
-#RUN cd etl && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/executor-monitor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
@@ -24,7 +23,7 @@ COPY ./configuration.properties /etl/deploy/configuration.properties
 
 # Install FDP-to-RDF-component:
 ENV URL_FDP2RDF_COMPONENT https://github.com/opendatacz/lp-etl-components/raw/master/t-fdpToRdf/deploy/t-fdpToRdf.zip
-RUN cd /etl/deploy/components && \
+RUN cd /etl/deploy/jars && \
     wget $URL_FDP2RDF_COMPONENT && \
     unzip ./t-fdpToRdf.zip && \
     rm -rf ./t-fdpToRdf.zip

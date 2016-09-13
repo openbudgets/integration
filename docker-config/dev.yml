@@ -20,7 +20,7 @@ services:
         volumes:
             - ../volumes/linkedpipes_1/data:/data
             - ../volumes/linkedpipes_1/log:/var/log
-            - ./linkedpipes/configuration_1.properties:/etl/deploy/configuration.properties
+            - ./linkedpipes/configuration_update_1.properties:/etl/deploy/configuration.properties
         ports:
             - "8275:8275" # executor.webserver.port
             - "8282:8282" # Webserver & URI dereferencable URI for pipelines + templates
@@ -36,7 +36,7 @@ services:
         volumes:
             - ../volumes/linkedpipes_2/data:/data
             - ../volumes/linkedpipes_2/log:/var/log
-            - ./linkedpipes/configuration_2.properties:/etl/deploy/configuration.properties
+            - ./linkedpipes/configuration_update_2.properties:/etl/deploy/configuration.properties
         ports:
             - "8375:8375" # executor.webserver.port
             - "8383:8383" # Webserver & URI dereferencable URI for pipelines + templates
@@ -52,7 +52,7 @@ services:
         volumes:
             - ../volumes/linkedpipes_3/data:/data
             - ../volumes/linkedpipes_3/log:/var/log
-            - ./linkedpipes/configuration_3.properties:/etl/deploy/configuration.properties
+            - ./linkedpipes/configuration_update_3.properties:/etl/deploy/configuration.properties
         ports:
             - "8475:8475" # executor.webserver.port
             - "8484:8484" # Webserver & URI dereferencable URI for pipelines + templates
@@ -68,7 +68,7 @@ services:
         volumes:
             - ../volumes/linkedpipes_4/data:/data
             - ../volumes/linkedpipes_4/log:/var/log
-            - ./linkedpipes/configuration_4.properties:/etl/deploy/configuration.properties
+            - ./linkedpipes/configuration_update_4.properties:/etl/deploy/configuration.properties
         ports:
             - "8575:8575" # executor.webserver.port
             - "8585:8585" # Webserver & URI dereferencable URI for pipelines + templates
@@ -81,7 +81,7 @@ services:
         volumes:
             - ../volumes/linkedpipes_5/data:/data
             - ../volumes/linkedpipes_5/log:/var/log
-            - ./linkedpipes/configuration_5.properties:/etl/deploy/configuration.properties
+            - ./linkedpipes/configuration_update_5.properties:/etl/deploy/configuration.properties
         ports:
             - "8675:8675" # executor.webserver.port
             - "8686:8686" # Webserver & URI dereferencable URI for pipelines + templates
