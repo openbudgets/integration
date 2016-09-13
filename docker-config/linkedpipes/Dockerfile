@@ -19,7 +19,7 @@ RUN cd etl && git checkout develop && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/executor-monitor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
-COPY ./configuration.properties /etl/deploy/configuration.properties
+COPY ./configuration_update.properties /etl/deploy/configuration.properties
 
 # Install FDP-to-RDF-component:
 ENV URL_FDP2RDF_COMPONENT https://github.com/opendatacz/lp-etl-components/raw/master/t-fdpToRdf/deploy/t-fdpToRdf.zip
