@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Parameters:
 PARAM_FILE=$PWD/datapackage.jsonld
-PARAM_PIPELINE=created-1468495715437
-PARAM_LP_DOMAIN=http://localhost:8080
+PARAM_PIPELINE=created-1473847447070
+PARAM_LP_DOMAIN=http://localhost:8181
 
 echo "PARAM_FILE=$INPUT_FILE"
 echo "PARAM_PIPELINE=$INPUT_PIPELINE"
@@ -11,5 +11,5 @@ echo "curl -i -X POST -H \"Content-Type: multipart/form-data\" -F \"input=@$PARA
 
 # Sending POST to LinkedPipes:
 #curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1468495715437"
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1469779123514"
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8181/resources/executions?pipeline=http://localhost:8181/resources/pipelines/created-1473847447070"
                                                                                                                                                             #http://localhost:8080/resources/pipelines/created-1469779123514
