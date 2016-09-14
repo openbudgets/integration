@@ -11,5 +11,6 @@ echo "curl -i -X POST -H \"Content-Type: multipart/form-data\" -F \"input=@$PARA
 
 # Sending POST to LinkedPipes:
 #curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1468495715437"
-curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8181/resources/executions?pipeline=http://localhost:8181/resources/pipelines/created-1473847447070"
+
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8181/resources/executions?pipeline=http://linkedpipes_fdp:8181/resources/pipelines/created-1473847447070"
                                                                                                                                                             #http://localhost:8080/resources/pipelines/created-1469779123514
