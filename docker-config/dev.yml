@@ -6,13 +6,11 @@ services:
             - ../volumes/linkedpipes/data:/data
             - ../volumes/linkedpipes/log:/var/log
         ports:
-            - "8085:8085" # executor.webserver.port
             - "8181:8181" # Webserver & URI dereferencable URI for pipelines + templates
             - "8170:8170" # executor-monitor.webserver.port
             - "2221:2221" # executor-monitor.ftp.port
             - "2223-2230:2223-2230" # Linked Pipes FTP data psort
-            - "8101:9001" # supervisord frontend
-            - "7183:7183" # storage
+            - "8101:9101" # supervisord frontend
         links:
             - triple_store_staging
             - sshserver
@@ -23,13 +21,11 @@ services:
             - ../volumes/linkedpipes_1/log:/var/log
             - ./linkedpipes/configuration_update_1.properties:/etl/deploy/configuration.properties
         ports:
-            - "8275:8275" # executor.webserver.port
             - "8282:8282" # Webserver & URI dereferencable URI for pipelines + templates
             - "8270:8270" # executor-monitor.webserver.port
             - "8221:8221" # executor-monitor.ftp.port
             - "8223-8230:8223-8230" # Linked Pipes FTP data port
-            - "8201:9001" # supervisord frontend
-            - "7583:7583" # storage
+            - "8201:9201" # supervisord frontend
         links:
             - triple_store_staging
             - sshserver
@@ -40,13 +36,11 @@ services:
             - ../volumes/linkedpipes_2/log:/var/log
             - ./linkedpipes/configuration_update_2.properties:/etl/deploy/configuration.properties
         ports:
-            - "8375:8375" # executor.webserver.port
             - "8383:8383" # Webserver & URI dereferencable URI for pipelines + templates
             - "8370:8370" # executor-monitor.webserver.port
             - "8321:8321" # executor-monitor.ftp.port
             - "8323-8330:8323-8330" # Linked Pipes FTP data port
-            - "8301:9001" # supervisord frontend
-            - "7383:7383" # storage
+            - "8301:9301" # supervisord frontend
         links:
             - triple_store_staging
             - sshserver
@@ -57,13 +51,11 @@ services:
             - ../volumes/linkedpipes_3/log:/var/log
             - ./linkedpipes/configuration_update_3.properties:/etl/deploy/configuration.properties
         ports:
-            - "8475:8475" # executor.webserver.port
             - "8484:8484" # Webserver & URI dereferencable URI for pipelines + templates
             - "8470:8470" # executor-monitor.webserver.port
             - "8421:8421" # executor-monitor.ftp.port
             - "8423-8430:8423-8430" # Linked Pipes FTP data port
-            - "8401:9001" # supervisord frontend
-            - "7483:7483" # storage
+            - "8401:9401" # supervisord frontend
         links:
             - triple_store_staging
             - sshserver
@@ -74,13 +66,11 @@ services:
             - ../volumes/linkedpipes_4/log:/var/log
             - ./linkedpipes/configuration_update_4.properties:/etl/deploy/configuration.properties
         ports:
-            - "8575:8575" # executor.webserver.port
             - "8585:8585" # Webserver & URI dereferencable URI for pipelines + templates
             - "8570:8570" # executor-monitor.webserver.port
             - "8521:8521" # executor-monitor.ftp.port
             - "8523-8530:8523-8530" # Linked Pipes FTP data port
-            - "8501:9001" # supervisord frontend
-            - "7783:7783" # storage
+            - "8501:9501" # supervisord frontend
     linkedpipes_5:
         build: ./linkedpipes
         volumes:
@@ -88,13 +78,11 @@ services:
             - ../volumes/linkedpipes_5/log:/var/log
             - ./linkedpipes/configuration_update_5.properties:/etl/deploy/configuration.properties
         ports:
-            - "8675:8675" # executor.webserver.port
             - "8686:8686" # Webserver & URI dereferencable URI for pipelines + templates
             - "8670:8670" # executor-monitor.webserver.port
             - "8621:8621" # executor-monitor.ftp.port
             - "8623-8630:8623-8630" # Linked Pipes FTP data port
-            - "8601:9001" # supervisord frontend
-            - "7683:7683" # storage
+            - "8601:9601" # supervisord frontend
         links:
             - triple_store_staging
             - sshserver
