@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 mkdir -p /var/log
-mkdir -p /data/lp/etl/pipelines
+mkdir -p /data/lp/etl/storage/pipelines
 mkdir -p /data/lp/etl/working
 mkdir -p /data/lp/etl/working/data
 mkdir -p /data/lp/etl/log
