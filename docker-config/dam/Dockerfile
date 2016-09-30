@@ -3,8 +3,14 @@ FROM debian:jessie
 # Install Python:
 ENV PYTHON_VERSION 3.5.2
 #ENV PYTHON_VERSION 3.6.0
+RUN echo "deb http://ftp.us.debian.org/debian stable main" > /etc/apt/sources.list && \
+    echo "deb http://ftp.us.debian.org/debian/ jessie-updates main" >> /etc/apt/sources.list && \
+    echo "deb http://security.debian.org/ jessie/updates main" >> /etc/apt/sources.list && \
+    echo "deb http://cran.uni-muenster.de/bin/linux/debian jessie-cran3/" >> /etc/apt/sources.list
+
 RUN apt-get -y update
 RUN apt-get install -y git openssl build-essential vim ca-certificates tar wget libssl-dev libreadline-dev python-dev liblzma-dev cython gcc curl
+
 RUN wget https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz
 RUN tar -xvzf Python-$PYTHON_VERSION.tgz && \
     rm Python-$PYTHON_VERSION.tgz
@@ -13,7 +19,10 @@ RUN cd Python-$PYTHON_VERSION && \
 RUN pip3 install --upgrade pip
 
 # Install R:
-RUN apt-get install -y r-base r-base-dev r-recommended
+#RUN apt-get install -y --force-yes libcurl4-gnutls-dev r-base r-base-dev
+#COPY install.R /install.R
+#RUN chmod o+w /usr/local/lib/R/site-library
+#RUN Rscript /install.R
 
 # Install app dependencies:
 RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev postgresql-server-dev-all libxft-dev libfreetype6-dev virtualenv bash

@@ -18,6 +18,10 @@ mkdir -p volumes/linkedpipes_4/log
 mkdir -p volumes/linkedpipes_5/data
 mkdir -p volumes/linkedpipes_5/log
 
+# virtuoso:
+mkdir -p volumes/virtuosoStaging/data
+mkdir -p volumes/virtuosoProduction/data
+
 # nginx:
 mkdir -p volumes/nginx/log
 mkdir -p volumes/nginx/dumps

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 git pull origin
 OBEU_WORKDIR=$PWD
+source $OBEU_WORKDIR/setEnv.sh
 cd $OBEU_WORKDIR/volumes && \
     find . -name *.lock | xargs -I "{}" rm {}
 cd $OBEU_WORKDIR/docker-config && \

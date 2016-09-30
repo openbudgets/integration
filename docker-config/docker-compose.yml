@@ -92,6 +92,28 @@ services:
         volumes:
             - ../volumes/nginx/dumps:/dumps
             - ../volumes/sshserver/log:/var/log
+    virtuoso_staging:
+        image: openbudgets/virtuoso:7.2.4
+        volumes:
+            - ../volumes/virtuosoStaging/data:/data
+        environment:
+            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
+            - SPARQL_UPDATE=true
+            #- DEFAULT_GRAPH=
+        ports:
+            - "8890:8890"
+            - "1111:1111"
+    virtuoso_production:
+        image: openbudgets/virtuoso:7.2.4
+        volumes:
+            - ../volumes/virtuosoProduction/data:/data
+        environment:
+            - DBA_PASSWORD=$VIRTUOSO_PROD_PW
+            - SPARQL_UPDATE=true
+            #- DEFAULT_GRAPH=te
+        ports:
+            - "8891:8891"
+            - "1112:1112"
     triple_store_staging:
         build: ./fuseki
         volumes:
