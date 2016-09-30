@@ -36,11 +36,11 @@ services:
             - ../volumes/virtuosoProduction/data:/data
         environment:
             - DBA_PASSWORD=$VIRTUOSO_PROD_PW
-            - SPARQL_UPDATE=true
+            - SPARQL_UPDATE=false
             #- DEFAULT_GRAPH=te
         ports:
-            - "8891:8891"
-            - "1112:1112"
+            - "8891:8890"
+            - "1112:1111"
     triple_store_staging:
         build: ./fuseki
         volumes:
@@ -86,6 +86,8 @@ services:
             - linkedpipes_fdp
             - triple_store_staging
             - triple_store_production
+            - virtuoso_staging
+            - virtuoso_production
             - rudolf
             - os-viewer
             - os-explorer

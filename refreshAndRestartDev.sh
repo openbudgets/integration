@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 git pull origin
 OBEU_WORKDIR=$PWD
-source $OBEU_WORKDIR/setEnv.sh
+. $OBEU_WORKDIR/setEnv
 cd $OBEU_WORKDIR/volumes && \
     find . -name *.lock | xargs -I "{}" rm {}
+cd $OBEU_WORKDIR/volumes && \
+    find . -name *.trx | xargs -I "{}" rm {}
 cd $OBEU_WORKDIR/docker-config && \
     docker-compose -f dev.yml stop && \
     docker-compose -f dev.yml rm -f && \
