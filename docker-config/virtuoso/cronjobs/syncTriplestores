@@ -12,7 +12,7 @@ rm -rf /data/*
 cp -r /newdata/* /data/.
 
 # Start Virtuoso:
-#find . -name *.lock | xargs -i rm {}
+find . -name *.lck | xargs -i rm {}
 supervisorctl start virtuoso
 
 # logging:
