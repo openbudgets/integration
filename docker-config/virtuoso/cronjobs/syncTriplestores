@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# logging:
+echo $(date +"%Y-%m-%d_%H-%M-%S Start Syncing TripleStores...")
+
+# Stop Virtuoso:
+supervisorctl stop virtuoso
+kill -9 $(ps -ef | grep virtuoso | grep -v grep | awk '{print $2}')
+
+# Sync Folders Staging -> Production:
+rm -rf /data/*
+cp -r /newdata/* /data/.
+
+# Start Virtuoso:
+#find . -name *.lock | xargs -i rm {}
+supervisorctl start virtuoso
+
+# logging:
+echo $(date +"%Y-%m-%d_%H-%M-%S Finished Syncing TripleStores...")

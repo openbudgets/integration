@@ -93,7 +93,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ../volumes/sshserver/log:/var/log
     virtuoso_staging:
-        image: openbudgets/virtuoso:7.2.4
+        build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStaging/data:/data
         environment:
@@ -104,9 +104,11 @@ services:
             - "8890:8890"
             - "1111:1111"
     virtuoso_production:
-        image: openbudgets/virtuoso:7.2.4
+        build: ./virtuoso
         volumes:
             - ../volumes/virtuosoProduction/data:/data
+            - ../volumes/virtuosoStaging/data:/newdata
+            - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
         environment:
             - DBA_PASSWORD=$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
