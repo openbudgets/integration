@@ -13,6 +13,7 @@ services:
             - "8101:9101" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     sshserver:
         build: ./sshserver

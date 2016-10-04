@@ -14,6 +14,7 @@ services:
             - "8101:9101" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     linkedpipes_1:
         build: ./linkedpipes
@@ -29,6 +30,7 @@ services:
             - "8201:9201" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     linkedpipes_2:
         build: ./linkedpipes
@@ -44,6 +46,7 @@ services:
             - "8301:9301" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     linkedpipes_3:
         build: ./linkedpipes
@@ -59,6 +62,7 @@ services:
             - "8401:9401" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     linkedpipes_4:
         build: ./linkedpipes
@@ -72,6 +76,10 @@ services:
             - "8521:8521" # executor-monitor.ftp.port
             - "8523-8530:8523-8530" # Linked Pipes FTP data port
             - "8501:9501" # supervisord frontend
+        links:
+            - triple_store_staging
+            - virtuoso_staging
+            - sshserver
     linkedpipes_5:
         build: ./linkedpipes
         volumes:
@@ -86,6 +94,7 @@ services:
             - "8601:9601" # supervisord frontend
         links:
             - triple_store_staging
+            - virtuoso_staging
             - sshserver
     sshserver:
         build: ./sshserver
