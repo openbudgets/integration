@@ -10,7 +10,16 @@ RUN wget http://ftp.halifax.rwth-aachen.de/apache/jena/binaries/apache-jena-fuse
     tar -zxvf apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     rm apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     mv apache-jena-fuseki-$FUSEKI_VERSION $FUSEKI_HOME
-ENV PATH $PATH:FUSEKI_HOME/bin
+
+# Download Jena:
+ENV JENA_VERSION 3.1.0
+ENV JENA_HOME /usr/lib/jena
+RUN wget http://mirrors.ae-online.de/apache/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
+    tar -zxvf apache-jena-$JENA_VERSION.tar.gz && \
+    rm apache-jena-$JENA_VERSION.tar.gz && \
+    mv apache-jena-$JENA_VERSION $JENA_HOME
+
+ENV PATH $PATH:$FUSEKI_HOME/bin:$JENA_HOME/bin
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
