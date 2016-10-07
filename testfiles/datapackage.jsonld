@@ -1,105 +1,43 @@
 {
-  "@context": {
-      "@vocab": "http://test.openbudgets.eu/ontology/fdp#"
-  },
+  "@context": "http://schemas.frictionlessdata.io/fiscal-data-package.jsonld",
   "name": "my-openspending-datapackage",
   "title": "My OpenSpending Data Package",
   "resources": [
     {
       "name": "budget",
       "title": "Budget",
-      "path": "http://protegeserver.cz/files/fdp-normalized/budget.csv",
+      "path": "https://raw.githubusercontent.com/openspending/fiscal-data-package/master/examples/minimal/budget.csv",
       "schema": {
         "fields": [
           {
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "name": "amount",
+            "name": "budget",
             "type": "number",
             "format": "currency"
           },
           {
-            "name": "year",
+            "name": "budget_date",
             "type": "date"
-          },
-          {
-            "name": "payee",
-            "type": "string"
           }
-        ],
-        "primaryKey": "id"
-      },
-      "foreignKeys": [
-        {
-          "fields": "payee",
-          "reference": {
-            "datapackage": "my-openspending-datapackage",
-            "resource": "entities",
-            "fields": "id"
-          }
-        }
-      ]
-    },
-    {
-      "name": "entities",
-      "title": "Entities",
-      "path": "http://protegeserver.cz/files/fdp-normalized/entities.csv",
-      "schema": {
-        "fields": [
-          {
-            "name": "id",
-            "type": "string"
-          },
-          {
-            "name": "title",
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "type": "string"
-          }
-        ],
-        "primaryKey": "id"
+        ]
       }
     }
   ],
   "model": {
     "measures": {
       "amount": {
-        "source": "amount",
+        "source": "budget",
         "currency": "USD",
         "factor": 1
       }
     },
     "dimensions": {
       "date": {
-        "dimensionType": "datetime",
         "attributes": {
           "year": {
-            "source": "year"
+            "source": "budget_date"
           }
         },
         "primaryKey": "year"
-      },
-      "payee": {
-        "dimensionType": "entity",
-        "attributes": {
-          "id": {
-            "resource": "entities",
-            "source": "id"
-          },
-          "title": {
-            "resource": "entities",
-            "source": "title"
-          },
-          "description": {
-            "resource": "entities",
-            "source": "description"
-          }
-        },
-        "primaryKey": "id"
       }
     }
   }
