@@ -1,0 +1,14 @@
+1) Fuseki:
+curl "http://eis-openbudgets.iais.fraunhofer.de/fuseki/sparql?query=XXXXXXXX" -H "Accept: text/csv" -X GET
+Testing:
+curl "http://eis-openbudgets.iais.fraunhofer.de/fuseki/sparql?query=SELECT%20*%0A%7B%0A%20%20%20%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20UNION%20%7B%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D%0A%7D" -H "Accept: text/csv" -X GET
+
+2) Virtuoso:
+curl "http://eis-openbudgets.iais.fraunhofer.de/fuseki/sparql?query=XXXXXXXX" -H "Accept: text/csv" -X GET
+Testing:
+curl "http://eis-openbudgets.iais.fraunhofer.de/virtuoso/sparql?query=SELECT%20*%0A%7B%0A%20%20%20%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20UNION%20%7B%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D%0A%7D" -H "Accept: text/csv" -X GET
+
+
+SELECT%20*%0A%7B%0A%20%20%20%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20UNION%20%7B%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D%0A%7D
+Just replace the XXXXXX with the query
+urlencoded
