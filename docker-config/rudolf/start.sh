@@ -6,7 +6,7 @@ downloadRudolf() {
     echo "Downloading Rudolf-Repository"
     rm -rf /var/www/rudolf
     cd /var/www && git clone https://github.com/openbudgets/rudolf.git
-    #cp /config/sparql.php /var/www/rudolf/config/sparql.php
+    cp /config/sparql.php /var/www/rudolf/config/sparql.php
     chown -R www-data:www-data /var/www
     chmod oag+rwx -R /var/www
 }
