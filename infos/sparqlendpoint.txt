@@ -12,3 +12,8 @@ curl "http://localhost:8890/virtuoso/sparql?query=SELECT%20*%0A%7B%0A%20%20%20%2
 SELECT%20*%0A%7B%0A%20%20%20%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20UNION%20%7B%20GRAPH%20%3Fg%20%7B%20%3Fs%20%3Fp%20%3Fo%20%7D%20%7D%0A%7D
 Just replace the XXXXXX with the query
 urlencoded
+
+
+SELECT ?subject ?predicate ?object FROM <http://data.openbudgets.eu/resource/dataset/aragon-expenditure-2007>
+WHERE { ?subject ?predicate ?object }
+limit 25
