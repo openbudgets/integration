@@ -14,6 +14,12 @@ WHERE {
   ?subject ?predicate ?object
 }
 
+SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/resource/dataset/aragon-2007-expenditure>
+WHERE {
+  ?subject ?predicate ?object
+}
+
 # 3 Drop a named graph: not working....
 CLEAR GRAPH <http://data.openbudgets.eu/fdp-datasets>
 
