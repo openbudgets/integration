@@ -22,8 +22,11 @@ installRudolf() {
 }
 
 startRudolf() {
-    echo "Starting Rudolf"
+    echo "Starting Rudolf & Loading search-cache in Rudolf && Loading global cache in Rudolf"
+    cd /var/www/rudolf
     php artisan cache:clear
+    php artisan search:load
+    php artisan model:load global
     php-fpm
 }
 
