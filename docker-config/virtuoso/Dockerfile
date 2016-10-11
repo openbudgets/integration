@@ -1,5 +1,8 @@
 FROM openbudgets/virtuoso:7.2.4
 
+# Configure Virtuoso:
+COPY ./virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+
 # Install Supervisor:
 RUN apt-get update && \
     apt-get install -y supervisor
