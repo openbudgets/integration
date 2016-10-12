@@ -32,5 +32,17 @@ WHERE {
 }
 
 
+SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/resource/dataset/budget-bonn-expenditure-2016>
+WHERE {
+  ?subject ?predicate ?object
+}
+
+
+SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/resource/dataset/budget-bonn-kostenstellen-2016/codelist>
+WHERE {
+  ?subject ?predicate ?object
+}
 
 
