@@ -6,9 +6,6 @@ RUN apt-get update && \
 COPY ./cronjobs /cronjobs
 RUN chmod a+x -R /cronjobs
 
-# Create graph files for Bonn-datasets:
-COPY ./createGraphFilesForBonn.sh /createGraphFilesForBonn.sh
-
 COPY staging/supervisord.conf /etc/supervisord.conf
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
 COPY ./run.sh /run.sh
