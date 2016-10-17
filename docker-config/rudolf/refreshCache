@@ -1,0 +1,5 @@
+echo "Refreshing Cache in Rudolf..."
+cd /var/www/rudolf && \
+       php artisan cache:clear && \
+       php artisan search:load
+echo "Cache in Rudolf refreshed."

@@ -24,6 +24,10 @@ COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY ./config/php.ini /usr/local/etc/php/php.ini
 
+# Install cronjob for cache refreshing:
+COPY ./refreshCache /etc/periodic/hourly/.
+RUN chmod a+rwx /etc/periodic/hourly/refreshCache
+
 EXPOSE 8890
 COPY ./config /config
 COPY ./start.sh /start.sh
