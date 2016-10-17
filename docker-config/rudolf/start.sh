@@ -22,16 +22,18 @@ installRudolf() {
 }
 
 startRudolf() {
-    echo "Starting Rudolf & Loading search-cache in Rudolf && Loading global cache in Rudolf"
+    echo "Starting Rudolf"
     cd /var/www/rudolf
-    php artisan cache:clear
-    php artisan search:load
-    php artisan model:load global
     php-fpm
+}
+
+refreshCache() {
+    echo "Refreshing Cache in Rudolf..."
+    nohup /refreshCache &
 }
 
 ## Execute:
 
 [ -f /var/www/rudolf/server.php ] && updateRudolf || downloadRudolf
 
-installRudolf && startRudolf
+installRudolf && refreshCache && startRudolf

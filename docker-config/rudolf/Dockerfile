@@ -26,6 +26,8 @@ COPY ./config/php.ini /usr/local/etc/php/php.ini
 
 # Install cronjob for cache refreshing:
 COPY ./refreshCache /etc/periodic/hourly/.
+COPY ./refreshCache /refreshCache
+RUN chmod a+rwx /refreshCache
 RUN chmod a+rwx /etc/periodic/hourly/refreshCache
 
 EXPOSE 8890

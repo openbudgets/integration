@@ -15,12 +15,6 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone https://github.com/okgreece/indigo.git /app
-COPY ./package.json /app/package.json
-COPY ./main.browser.ts /app/src/main.browser.ts
-RUN cd /app && npm install && \
-    typings install && \
-    typings install dt~core-js --save --global
-
 
 COPY ./start.sh /start.sh
 CMD ["/bin/sh", "/start.sh"]
