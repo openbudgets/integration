@@ -7,11 +7,11 @@
   "header": {
     "links": [
       {
-        "title": "Upload Dataaaa",
+        "title": "Upload Data via OpenSpending",
         "href": "/packager/"
       },
       {
-        "title": "Explore Datasetssss",
+        "title": "Explore Datasets",
         "href": "/explorer/"
       }
     ]

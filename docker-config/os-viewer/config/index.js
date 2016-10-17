@@ -3,8 +3,8 @@
 var path = require('path');
 var nconf = require('nconf');
 
-const DEFAULT_HOST = 'http://next.openspending.org';
-const DEFAULT_BASE_PATH = '';
+const DEFAULT_HOST = 'http://eis-openbudgets.iais.fraunhofer.de';
+const DEFAULT_BASE_PATH = '/viewer';
 
 nconf.file({
   file: path.join(__dirname, '/../../settings.json')

@@ -8,7 +8,7 @@
     "links": [
       {
         "title": "Upload Data",
-        "href": "/packager/"
+        "href": "http://staging.openspending.org/packager/provide-data"
       },
       {
         "title": "Explore Datasets",
