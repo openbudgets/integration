@@ -8,13 +8,7 @@ RUN cd $(npm root -g)/npm \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 RUN npm install npm@latest -g
 RUN npm --version
-
-RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
-    git config --global url."https://".insteadOf git://
-
-RUN git clone http://github.com/openspending/os-viewer.git app
-# RUN git clone https://github.com/openbudgets/os-viewer.git app
-
+RUN git clone https://github.com/openbudgets/os-viewer.git app
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
 RUN cd app && npm install
 RUN cd app && node node_modules/gulp/bin/gulp.js
@@ -23,9 +17,11 @@ RUN rm -rf /var/cache/apk/*
 
 ENV OS_VIEWER_BASE_PATH=viewer/
 
-COPY settings.json /app/settings.json
-COPY startup.sh /startup.sh
+ADD settings.json /app/settings.json
+ADD startup.sh /startup.sh
 
 EXPOSE 8000
 
 CMD API_URL="${OS_EXTERNAL_ADDRESS}" /startup.sh
+
+
