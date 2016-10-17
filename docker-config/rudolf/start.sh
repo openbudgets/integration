@@ -32,7 +32,7 @@ startRudolf() {
 refreshCache() {
     echo "Refreshing Cache in Rudolf..."
     cd /
-    nohup ./refreshCache &
+    ./refreshCache
 }
 
 ## Execute:
