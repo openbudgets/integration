@@ -8,7 +8,8 @@ RUN cd $(npm root -g)/npm \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 RUN npm install npm@latest -g
 RUN npm --version
-RUN git clone https://github.com/openbudgets/os-viewer.git app
+RUN git clone https://github.com/openspending/os-viewer.git app
+RUN cd /app && git checkout feature/theming
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
 RUN cd app && npm install
 RUN cd app && node node_modules/gulp/bin/gulp.js
