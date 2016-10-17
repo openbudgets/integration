@@ -5,14 +5,12 @@ updateApp() {
     cd /app
     git pull origin master
     npm install
-    typings install
 }
 
 installApp() {
     echo "Installing Indigo application"
     git clone https://github.com/okgreece/indigo.git /app
     cd /app
-    typings install
     npm install
 }
 

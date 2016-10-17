@@ -102,6 +102,7 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
+            - indigo
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -133,6 +134,15 @@ services:
           - "8000"
         environment:
           - WORKDIR=/apps
+    indigo:
+        build: ./indigo
+        ports:
+          - "8888:8080"
+        volumes:
+          - ../volumes/indigo/app:/app
+
+
+
 
 # Subnet-Size net-Mask-Size (CIDR)
 # 256 24

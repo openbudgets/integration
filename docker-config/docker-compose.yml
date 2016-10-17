@@ -197,6 +197,7 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
+            - indigo
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -230,12 +231,13 @@ services:
           - "8000"
         environment:
           - WORKDIR=/apps
-    #indigo:
-     #   build: ./indigo
-      #  ports:
-       #   - "88080:8080"
-       # volumes:
-        #  - ../volumes/indigo/app:/app
+    indigo:
+        build: ./indigo
+        ports:
+          - "88080:8080"
+        volumes:
+          - ../volumes/indigo/app:/app
+
 
 
 
