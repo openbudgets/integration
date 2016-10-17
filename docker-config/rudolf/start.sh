@@ -19,6 +19,8 @@ updateRudolf() {
 installRudolf() {
     echo "Installing Rudolf"
     cd /var/www/rudolf && composer install --no-scripts
+    chmod -R a+rwx .
+
 }
 
 startRudolf() {
