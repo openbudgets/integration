@@ -213,7 +213,7 @@ services:
         environment:
             - DEFAULT_HOST==http://eis-openbudgets.iais.fraunhofer.de
             - DEFAULT_BASE_PATH=/viewer
-            - OS_EXTERNAL_ADDRESS==http://eis-openbudgets.iais.fraunhofer.de
+            - OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_API_HOST==http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_AUTH_HOST=http://next.openspending.org
             - OS_VIEWER_SEARCH_HOST==http://eis-openbudgets.iais.fraunhofer.de
