@@ -1,14 +1,14 @@
 {
   "colors": {
-    "brand": "#3a99d9",
-    "sidebar": "#2a2d34",
-    "content": "#f5f5f5"
+    "brand": "#82bf5e",
+    "sidebar": "#585552",
+    "content": "#fff"
   },
   "header": {
     "links": [
       {
-        "title": "Upload Data",
-        "href": "/packager/"
+        "title": "Upload Data on OpenSpending",
+        "href": "http://next.openspending.org/packager/provide-data"
       },
       {
         "title": "Explore Datasets",
@@ -16,44 +16,44 @@
       }
     ],
     "logo": {
-      "icon": "assets/os.svg",
-      "image": "assets/viewer.svg"
+      "icon": "http://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
+      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_white.svg"
     }
   },
   "footer": {
     "projectLogo": {
-      "image": "http://a.okfn.org/img/openspending/logo.svg"
+      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_long.svg"
     },
     "orgLogo": {
       "href": "http://okfn.org",
-      "image": "http://a.okfn.org/img/oki/landscape-white-165x43.png"
+      "image": "http://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
     },
     "links": [
       {
-        "title": "Privacy policy",
+        "title": "Privacy policy TODO",
         "href": "https://okfn.org/privacy-policy/"
       },
       {
-        "title": "IP policy",
+        "title": "IP policy TODO",
         "href": "https://okfn.org/ip-policy/"
       },
       {
-        "title": "Cookie policy",
+        "title": "Cookie policy TODO",
         "href": "https://okfn.org/cookie-policy/"
       },
       {
-        "title": "Terms of use",
+        "title": "Terms of use TODO",
         "href": "https://okfn.org/terms-of-use/"
       }
     ],
     "socialMedia": [
       {
-        "href": "https://facebook.com/OKFNetwork",
+        "href": "https://www.facebook.com/openbudgets",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png",
         "alt": "Facebook"
       },
       {
-        "href": "https://twitter.com/okfn",
+        "href": "https://twitter.com/openbudgets",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png",
         "alt": "Twitter"
       },
