@@ -3,8 +3,8 @@
 var path = require('path');
 var nconf = require('nconf');
 
-const DEFAULT_HOST = 'http://localhost';
-const DEFAULT_BASE_PATH = '/viewer';
+const DEFAULT_HOST = 'http://openbudgets.eu';
+const DEFAULT_BASE_PATH = '';
 
 nconf.file({
   file: path.join(__dirname, '/../../settings.json')
