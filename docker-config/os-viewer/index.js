@@ -18,7 +18,7 @@ var dataMineHost = process.env.OS_VIEWER_DATAMINE_HOST || DEFAULT_HOST;
 var cosmopolitanHost = process.env.OS_VIEWER_API_COSMO_HOST ||
   'http://cosmopolitan.openspending.org/v1/';
 
-// this is the object that you want to override in your own local config
+// this is the object that you want to override in your own local dev_config
 nconf.defaults({
   env: process.env.NODE_ENV || 'development',
   debug: process.env.DEBUG || false,

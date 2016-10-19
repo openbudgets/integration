@@ -94,6 +94,7 @@ services:
             - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
             - ./nginx/images:/var/www/images
+            - ./nginx/svg:/var/www/svg
         links:
             - linkedpipes_fdp
             - triple_store_staging
@@ -115,7 +116,7 @@ services:
         ports:
           - "9003:8000"
         volumes:
-            - ./os-viewer/config:/app/app/config
+            - ./os-viewer/dev_config:/app/app/config
         environment:
             - DEFAULT_HOST=http://localhost
             - DEFAULT_BASE_PATH=/viewer

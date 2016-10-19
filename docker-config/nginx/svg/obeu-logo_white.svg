@@ -1,0 +1,16 @@
+<svg width="206.877" height="29.07" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+
+ <g>
+  <title>background</title>
+  <rect x="-1" y="-1" width="208.877" height="31.07" id="canvas_background" fill="#585552"/>
+  <g id="canvasGrid" display="none">
+   <rect id="svg_1" width="100%" height="100%" x="0" y="0" stroke-width="0" fill="url(#gridpattern)"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <text transform="matrix(1.73745, 0, 0, 1, -20.6477, 0)" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_2" y="4.035004" x="14.438477" stroke-width="0" stroke="#000" fill="#000000"/>
+  <text font-weight="bold" xml:space="preserve" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="24" id="svg_3" y="23" x="3.438477" stroke-opacity="null" stroke-width="0" stroke="#000" fill="#ffffff">OpenBudgets.eu</text>
+ </g>
+</svg>

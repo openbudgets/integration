@@ -1,14 +1,14 @@
 {
   "colors": {
-    "brand": "#82bf5e",
-    "sidebar": "#585552",
+    "brand": "#3a99d9",
+    "sidebar": "#2a2d34",
     "content": "#f5f5f5"
   },
   "header": {
     "links": [
       {
         "title": "Upload Data",
-        "href": "http://staging.openspending.org/packager/provide-data"
+        "href": "/packager/"
       },
       {
         "title": "Explore Datasets",
@@ -25,8 +25,8 @@
       "image": "http://a.okfn.org/img/openspending/logo.svg"
     },
     "orgLogo": {
-      "href": "http://openbudgets.eu/",
-      "image": "http://openbudgets.eu/img/openbudgets-logo-white.png"
+      "href": "http://okfn.org",
+      "image": "http://a.okfn.org/img/oki/landscape-white-165x43.png"
     },
     "links": [
       {
@@ -48,12 +48,12 @@
     ],
     "socialMedia": [
       {
-        "href": "https://www.facebook.com/openbudgets",
+        "href": "https://facebook.com/OKFNetwork",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png",
         "alt": "Facebook"
       },
       {
-        "href": "https://twitter.com/openbudgets",
+        "href": "https://twitter.com/okfn",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png",
         "alt": "Twitter"
       },
