@@ -25,6 +25,7 @@ mkdir -p volumes/virtuosoProduction/data
 # nginx:
 mkdir -p volumes/nginx/log
 mkdir -p volumes/nginx/dumps
+
 # tripleStoreStaging:
 mkdir -p volumes/tripleStoreStaging/data
 mkdir -p volumes/tripleStoreStaging/log

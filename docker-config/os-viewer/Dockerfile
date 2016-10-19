@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4
 
-RUN apk add --update python git nodejs
+RUN apk add --update nodejs git python
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
 RUN cd $(npm root -g)/npm \
@@ -12,8 +12,9 @@ RUN npm --version
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
-RUN git clone https://github.com/openspending/os-viewer.git app
-RUN cd /app && git checkout feature/theming
+RUN git clone http://github.com/openspending/os-viewer.git app
+RUN cd app && rm -rf node_modules
+RUN cd app && npm install
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
 RUN cd app && npm install
 RUN cd app && node node_modules/gulp/bin/gulp.js
@@ -28,5 +29,3 @@ ADD startup.sh /startup.sh
 EXPOSE 8000
 
 CMD API_URL="${OS_EXTERNAL_ADDRESS}" /startup.sh
-
-

@@ -82,7 +82,7 @@ services:
         volumes:
             - ../volumes/dam/app:/DAM
         ports:
-            - "5000:5000"
+            - "5100:5000"
     nginx:
         build: ./nginx
         volumes:
@@ -93,6 +93,7 @@ services:
             - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
             - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
+            - ./nginx/images:/var/www/images
         links:
             - linkedpipes_fdp
             - triple_store_staging
@@ -102,7 +103,7 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
-            - indigo
+            #- indigo
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -131,12 +132,12 @@ services:
           - "8000"
         environment:
           - WORKDIR=/apps
-    indigo:
-        build: ./indigo
-        ports:
-          - "8888:8080"
-        volumes:
-          - ../volumes/indigo/app:/app
+   # indigo:
+   #     build: ./indigo
+     #   ports:
+    #      - "8888:8080"
+     #   volumes:
+     #     - ../volumes/indigo/app:/app
 
 
 

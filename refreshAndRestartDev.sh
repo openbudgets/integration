@@ -12,5 +12,7 @@ cd $OBEU_WORKDIR/docker-config && \
     docker-compose -f dev.yml build
 cd $OBEU_WORKDIR/volumes && \
     find . -name *.lock | xargs -i rm {}
+cd $OBEU_WORKDIR/volumes && \
+    find . -name *.trx | xargs -i rm {}
 cd $OBEU_WORKDIR/docker-config && \
     docker-compose -f dev.yml up

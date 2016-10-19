@@ -188,6 +188,7 @@ services:
             - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
             - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
+            - ./nginx/images:/var/www/images
         links:
             - linkedpipes_fdp
             - triple_store_staging

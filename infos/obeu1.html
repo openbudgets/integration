@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <base href="/viewer/">
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description" content="A frontend data/views app powered directly from a Fiscal Data Package."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>OS Viewer | OpenSpending | Open Knowledge International</title>
+    <link href="//fonts.googleapis.com/css?family=Hind:400,300,500,600,700" rel="stylesheet" type="text/css">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="styles/vendor.css?14767912468441290">
+    <link rel="stylesheet" href="styles/app.css?14767912468441290">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .x-page-container .x-sidebar, .navbar-inverse,
+        .list-group.list-group-inverse .list-group-item { background: #2a2d34 !important; }
+        .x-page-container .x-content { background: #f5f5f5 !important; }
+        .navbar-brand.navbar-brand-primary { box-shadow: inset 50px 0 0 #3a99d9 !important; }
+    </style>
+</head>
+<body ng-controller="MainController"
+      ng-init='isEmbedded=false; disablePackageSelector=false; theme={"colors":{"brand":"#3a99d9","sidebar":"#2a2d34","content":"#f5f5f5"},"header":{"links":[{"title":"Upload Data","href":"http://staging.openspending.org/packager/provide-data"},{"title":"Explore Datasets","href":"/explorer/"}],"logo":{"icon":"assets/os.svg","image":"assets/viewer.svg"}},"footer":{"projectLogo":{"image":"http://a.okfn.org/img/openspending/logo.svg"},"orgLogo":{"href":"http://openbudgets.eu/","image":"http://openbudgets.eu/img/openbudgets-logo-white.png"},"links":[{"title":"Privacy policy","href":"https://okfn.org/privacy-policy/"},{"title":"IP policy","href":"https://okfn.org/ip-policy/"},{"title":"Cookie policy","href":"https://okfn.org/cookie-policy/"},{"title":"Terms of use","href":"https://okfn.org/terms-of-use/"}],"socialMedia":[{"href":"https://www.facebook.com/openbudgets","icon":"https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png","alt":"Facebook"},{"href":"https://twitter.com/openbudgets","icon":"https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png","alt":"Twitter"},{"href":"https://www.youtube.com/channel/UCLw5-jisra6JBClrrK0g49g","icon":"https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png","alt":"YouTube"}]}}'>
+<div id="root"></div>
+
+
+
+<nav class="navbar navbar-inverse x-page-header" ng-controller="HeaderController">
+    <div class="navbar-header navbar-header-full-width">
+        <ul class="nav navbar-nav pull-right" ng-cloak>
+            <li ng-repeat="link in theme.header.links | filter : { title : '!!' }">
+                <a href="{{ link.href }}">{{ link.title }}</a>
+            </li>
+
+            <li ng-if="!login.isLoggedIn" class="user" ng-cloak>
+                <a href="javascript:void(0)" ng-click="login.login()">
+                    <i class="os-icon os-icon-user"></i>
+                    Login / Register
+                </a>
+            </li>
+            <li ng-if="login.isLoggedIn" ng-cloak>
+                <a href="javascript:void(0);" ng-click="isLoginMenuShown = !isLoginMenuShown">
+                    <i class="os-icon os-icon-user"></i>
+                    {{ login.name }}
+                    <i class="os-icon os-icon-arrow-drop-down"></i>
+                </a>
+                <div ng-show="isLoginMenuShown" class="x-user-info">
+                    <div class="x-avatar">
+                        <img class="pull-left" ng-if="!!login.avatar" ng-src="{{ login.avatar }}">
+                    </div>
+                    <div class="x-info">
+                        <div><strong>{{ login.name }}</strong></div>
+                        <div><a href="/admin/">Profile</a></div>
+                        <div><a href="javascript:void(0);" ng-click="login.logout()">Logout</a></div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <a class="navbar-brand navbar-brand-primary navbar-brand-black"
+           href="/viewer/"
+           target="_self" title="{{ theme.header.logo.title }}" ng-cloak>
+            <img src="{{ theme.header.logo.icon }}" class="os-logo-part">
+            <img src="{{ theme.header.logo.image }}" class="os-logo-part"></a>
+    </div>
+</nav>
+
+
+
+
+<div class="x-page-container">
+    <div>
+        <aside class="x-sidebar">
+
+            <div ng-if="!(isLoading.application || isLoading.package)" ng-cloak>
+                <sidebar datapackage="state.package" params="state.params"></sidebar>
+            </div>
+
+        </aside>
+        <div class="x-content">
+            <div class="container-fluid">
+
+                <div>
+                    <div ng-if="!isLoading.application" ng-cloak>
+                        <package-selector ng-if="state.package.meta" items="availablePackages"
+                                          datapackage="state.package.meta" read-only="{{ disablePackageSelector ? 'yes' : '' }}"></package-selector>
+
+                        <div ng-if="!isLoading.package">
+                            <div class="clearfix">
+                                <filter-list filters="state.params.selectedFilters"></filter-list>
+                                <history-navigation history="state.history"></history-navigation>
+                            </div>
+
+                            <div>
+                                <visualizations datapackage="state.package" params="state.params"></visualizations>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="waiter text-center" ng-if="isLoading.application || isLoading.package">
+                        <i class="fa fa-spinner fa-pulse fa-4x"></i>
+                        <span>Loading...</span>
+                    </div>
+
+                    <div ng-if="!isLoading.application" ng-cloak>
+                        <package-info ng-if="state.package.meta" datapackage="state.package.meta"></package-info>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<nav class="navbar navbar-inverse navbar-footer" ng-cloak>
+    <div class="clearfix">
+        <a href="/"><img src="{{ theme.footer.projectLogo.image }}"></a>
+    </div>
+
+    <hr>
+
+    <div class="clearfix">
+        <a class="pull-left x-footer-okfn-logo" ng-href="{{ theme.footer.orgLogo.href }}">
+            <img src="{{ theme.footer.orgLogo.image }}">
+        </a>
+
+        <ul class="nav navbar-nav pull-right x-footer-icons">
+            <li ng-repeat="link in theme.footer.socialMedia">
+                <a ng-href="{{ link.href }}">
+                    <img style="height: 1.5em; vertical-align: middle;"
+                         src="{{ link.icon }}" alt="{{ link.alt }}">
+                </a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <li ng-repeat="link in theme.footer.links | filter : { title : '!!' }">
+                <a ng-href="{{ link.href }}">{{ link.title }}</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+<script src="app.js?14767912468441290"></script>
+<script src="http://next.openspending.org/user/lib"></script>
+
+</body>
+</html>
