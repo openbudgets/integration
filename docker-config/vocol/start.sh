@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 /usr/sbin/apache2ctl -D BACKGROUND
-/bin/sh /home/vagrant/resetVoCol.sh | tail -f
+cd /home/vagrant
+. .nvm/nvm.sh
+/bin/sh ./resetVoCol.sh | tail -f
