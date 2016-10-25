@@ -12,9 +12,10 @@ RUN npm --version
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
-RUN git clone http://github.com/openspending/os-viewer.git app
+#RUN git clone http://github.com/openspending/os-viewer.git app
+COPY ./app /app
+
 RUN cd app && rm -rf node_modules
-RUN cd app && npm install
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
 RUN cd app && npm install
 RUN cd app && node node_modules/gulp/bin/gulp.js

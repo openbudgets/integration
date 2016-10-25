@@ -11,6 +11,10 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone https://github.com/okgreece/indigo.git /app
+WORkDIR /app
+RUN npm install
 
-COPY ./start.sh /start.sh
+#COPY ./start.sh /start.sh
+#CMD ["/bin/sh", "/start.sh"]
+RUN echo "npm start" > /start.sh
 CMD ["/bin/sh", "/start.sh"]
