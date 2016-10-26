@@ -232,9 +232,14 @@ services:
     indigo:
         build: ./indigo
         ports:
-          - "8888:8080"
-        volumes:
-          - ../volumes/indigo/app:/app
+          - "4200:4200"
+
+#    vocol:
+#        build: ./vocol
+#        ports:
+#          - "4200:4200"
+
+
 
 
 

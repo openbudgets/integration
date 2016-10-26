@@ -104,8 +104,8 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
-            - vocol
-            #- indigo
+#            - vocol
+            - indigo
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -134,18 +134,17 @@ services:
           - "8000"
         environment:
           - WORKDIR=/apps
- #   vocol:
- #       build: ./vocol
- #       ports:
- #         - "8999:80"
+    indigo:
+        build: ./indigo
+        ports:
+          - "4200:4200"
+
+#    vocol:
+#        build: ./vocol
+#        ports:
+#          - "4200:4200"
 
 
-   # indigo:
-   #     build: ./indigo
-     #   ports:
-    #      - "8888:8080"
-     #   volumes:
-     #     - ../volumes/indigo/app:/app
 
 
 
