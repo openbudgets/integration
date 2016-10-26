@@ -104,7 +104,7 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
-#            - vocol
+            - os-admin
             - indigo
         ports:
             - "80:80" # http
@@ -134,6 +134,11 @@ services:
           - "8000"
         environment:
           - WORKDIR=/apps
+    os-admin:
+        image: openspending/os-admin
+        expose:
+          - "8000"
+        restart: always
     indigo:
         build: ./indigo
         ports:
