@@ -31,19 +31,19 @@
     },
     "links": [
       {
-        "title": "Privacy policy TODO",
+        "title": "Privacy policy",
         "href": "https://okfn.org/privacy-policy/"
       },
       {
-        "title": "IP policy TODO",
+        "title": "IP policy",
         "href": "https://okfn.org/ip-policy/"
       },
       {
-        "title": "Cookie policy TODO",
+        "title": "Cookie policy",
         "href": "https://okfn.org/cookie-policy/"
       },
       {
-        "title": "Terms of use TODO",
+        "title": "Terms of use",
         "href": "https://okfn.org/terms-of-use/"
       }
     ],
