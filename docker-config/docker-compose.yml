@@ -199,6 +199,7 @@ services:
             - rudolf
             - os-viewer
             - os-explorer
+            - os-admin
             - indigo
         ports:
             - "80:80" # http
@@ -223,8 +224,9 @@ services:
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
     os-explorer:
-        image: openspending/os-explorer
-        #restart: always
+        build: ./os-explorer
+        volumes:
+          - ./os-explorer/dev_themes:/app/app/scripts/services/themes
         expose:
           - "8000"
         environment:

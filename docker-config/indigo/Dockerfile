@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN apt-get -y update
-RUN apt-get install -y nodejs nodejs-legacy npm curl wget git
+RUN apt-get install -y wget nodejs nodejs-legacy npm curl git
 
 RUN npm cache clean -f && \
     npm install npm@latest -g && \
@@ -13,7 +13,12 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 
 RUN git clone https://github.com/okgreece/indigo.git /app
 WORkDIR /app
-RUN npm install && npm build
+RUN npm install
+
+# COPY config files:
+COPY ./index.html /app/src/index.html
+COPY ./tsconfig.json /app/tsconfig.json
+COPY ./environment.ts /app/src/environments/environment.ts
 
 RUN echo "npm start" > /start.sh
 CMD ["/bin/sh", "/start.sh"]

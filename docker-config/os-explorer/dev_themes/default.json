@@ -11,22 +11,23 @@
         "href": "http://next.openspending.org/packager/provide-data"
       },
       {
-        "title": "Explore Datasets",
-        "href": "/explorer/"
+        "title": "About",
+        "href": "http://openbudgets.eu/about/"
       }
     ],
     "logo": {
-      "icon": "http://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_white.svg"
-    }
+      "icon": "http://localhost/images/38/openbudgets_logo_small.png",
+      "text": "OB.eu Explorer"
+    },
+    "tagLine": "Searchable, shareable access to OpenBudgets.eu datasets."
   },
   "footer": {
     "projectLogo": {
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_long.svg"
+      "image": ""
     },
     "orgLogo": {
       "href": "http://openbudgets.eu",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
+      "image": "http://localhost/images/32/openbudgets_logo-white.png"
     },
     "links": [
       {

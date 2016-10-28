@@ -38,7 +38,5 @@ mkdir -p volumes/rudolf/www
 mkdir -p volumes/sshserver/log
 # DAM
 mkdir -p volumes/dam/app
-# Indigo
-mkdir -p volumes/indigo/app
 
 chmod -R oga+rwx ./volumes
