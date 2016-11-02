@@ -13,7 +13,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openspending/os-viewer.git app
-COPY ./template.html /app/app/front/scripts/directives/package-info/template.html
+#COPY ./template.html /app/app/front/scripts/directives/package-info/template.html
 
 RUN cd app && rm -rf node_modules
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
