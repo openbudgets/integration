@@ -66,6 +66,7 @@
   },
   "dataMine": {
     "query": "SELECT * FROM {factTable} LIMIT 10",
-    "path": "/indigo/cube/analytics/{factTable}&jwt={token}"
+    //"path": "/indigo/#/cube/analytics/global/indigo/#/cube/analytics/{factTable}&jwt={token}"
+    "path": "/indigo/#/cube/analytics/global/indigo/#/cube/analytics/{factTable}?jwt={token}"
   }
 }
