@@ -3,8 +3,8 @@
 var path = require('path');
 var nconf = require('nconf');
 
-const DEFAULT_HOST = 'http://openbudgets.eu/';
-const DEFAULT_BASE_PATH = '/viewer';
+const DEFAULT_HOST = 'http://next.openspending.org';
+const DEFAULT_BASE_PATH = '';
 
 nconf.file({
   file: path.join(__dirname, '/../../settings.json')
@@ -14,7 +14,6 @@ var apiHost = process.env.OS_VIEWER_API_HOST || DEFAULT_HOST;
 var authHost = process.env.OS_VIEWER_AUTH_HOST || DEFAULT_HOST;
 var searchHost = process.env.OS_VIEWER_SEARCH_HOST || DEFAULT_HOST;
 var dataMineHost = process.env.OS_VIEWER_DATAMINE_HOST || DEFAULT_HOST;
-console.log("dataMineHost: " + dataMineHost);
 
 var cosmopolitanHost = process.env.OS_VIEWER_API_COSMO_HOST ||
   'http://cosmopolitan.openspending.org/v1/';
