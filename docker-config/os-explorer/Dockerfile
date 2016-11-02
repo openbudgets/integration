@@ -2,7 +2,7 @@ FROM sickp/alpine-nginx
 
 RUN rm /etc/nginx/nginx.conf /etc/nginx/mime.types
 
-RUN apk add --update nodejs git
+RUN apk add --update git nodejs
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
