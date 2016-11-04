@@ -65,7 +65,7 @@
     ]
   },
   "dataMine": {
-    "query": "{factTable}",
-    "path": "/indigo/#/cube/analytics/globals"
+    "query": "",
+    "path": "/indigo/#/cube/analytics/{factTable}"
   }
 }
