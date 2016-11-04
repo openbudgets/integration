@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 RUN apt-get -y update
-RUN apt-get install -y nodejs nodejs-legacy wget npm curl git
+RUN apt-get install -y nodejs nodejs-legacy npm wget curl git
 
 RUN npm cache clean -f && \
     npm install npm@latest -g && \

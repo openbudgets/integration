@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4
 
-RUN apk add --update git python curl nodejs
+RUN apk add --update curl python nodejs git
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
 
@@ -17,7 +17,7 @@ RUN git clone http://github.com/openspending/os-viewer.git app
 
 RUN cd app && rm -rf node_modules
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
-RUN cd app && npm install
+RUN cd app && npm install -verbose
 RUN cd app && node node_modules/gulp/bin/gulp.js
 RUN apk del build-dependencies
 RUN rm -rf /var/cache/apk/*
