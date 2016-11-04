@@ -11,7 +11,6 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 # Install Composer:
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     echo "Europe/Berlin" > /etc/timezone
