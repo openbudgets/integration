@@ -14,8 +14,9 @@ RUN wget http://apache.mirror.digionline.de/maven/maven-3/$MAVEN_VERSION/binarie
 ENV PATH $PATH:$M2_HOME/bin
 
 # Install LinkedPipes
-RUN git clone https://github.com/linkedpipes/etl.git
-RUN cd etl && git checkout master && mvn install
+RUN git clone https://github.com/linkedpipes/etl.git /etl
+RUN cd /etl && git checkout master
+RUN cd /etl && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/executor-monitor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
