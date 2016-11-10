@@ -170,6 +170,7 @@ services:
         links:
             - triple_store_production
             - virtuoso_production
+            - virtuoso_staging
     dam:
         build: ./dam
         #restart: always
