@@ -171,6 +171,10 @@ services:
             - triple_store_production
             - virtuoso_production
             - virtuoso_staging
+    rdfbrowser:
+        build: ./rdfbrowser
+        ports:
+            - "8990:8990"
     dam:
         build: ./dam
         #restart: always
@@ -202,6 +206,7 @@ services:
             - os-explorer
             - os-admin
             - indigo
+            - rdfbrowser
         ports:
             - "80:80" # http
             - "443:443" # https

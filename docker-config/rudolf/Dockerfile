@@ -15,8 +15,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
     echo "Europe/Berlin" > /etc/timezone
 
-#COPY ./index.php /var/www/rudolf/.
-
 # Copy config file:
 COPY ./config/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
@@ -29,10 +27,9 @@ COPY ./refreshCache /refreshCache
 RUN chmod a+rwx /refreshCache
 RUN chmod a+rwx /etc/periodic/hourly/refreshCache
 
-EXPOSE 8890
-COPY ./config /config
+EXPOSE 8990
 COPY ./start.sh /start.sh
-RUN chmod -R a+rwx /config && chmod a+rwx /start.sh
+RUN chmod a+rwx /start.sh
 WORKDIR /
 
 CMD ["/bin/sh", "/start.sh"]
