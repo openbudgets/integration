@@ -174,7 +174,7 @@ services:
     rdfbrowser:
         build: ./rdfbrowser
         ports:
-            - "8990:8990"
+            - "8990:80"
     dam:
         build: ./dam
         #restart: always

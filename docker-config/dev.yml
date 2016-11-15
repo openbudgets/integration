@@ -81,7 +81,7 @@ services:
     rdfbrowser:
         build: ./rdfbrowser
         ports:
-            - "8990:80"
+            - "8000:8000"
     dam:
         build: ./dam
         volumes:
