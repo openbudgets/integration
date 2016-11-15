@@ -1,7 +1,7 @@
 FROM php:7.0.7-fpm-alpine
 
 # Install PHP 7:
-RUN apk add --update bash libmcrypt-dev curl git
+RUN apk add --update libmcrypt-dev curl git bash
 
 RUN docker-php-ext-install pdo_mysql tokenizer mbstring
 
@@ -28,7 +28,7 @@ RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR
 COPY ./.env $APP_DIR/.env
 RUN composer install
 RUN php artisan key:generate
-RUN chmod -R a+rwx .
+RUN chmod -R a+rwx $APP_DIR
 
 EXPOSE 8000
 COPY ./start.sh /start.sh
