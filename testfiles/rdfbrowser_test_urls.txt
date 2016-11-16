@@ -1,0 +1,16 @@
+http://data.openbudgets.eu/resource/dataset/aragon-2006-expenditure
+
+http://localhost/resource/dataset/aragon-2006-expenditure
+
+http://localhost/data/dataset/aragon-2006-expenditure
+
+http://localhost/page/dataset/aragon-2006-expenditure
+
+
+http://rdfbrowser:80/resource/dataset/aragon-2006-expenditure
+
+?? http://rdfbrowser:80/page/dataset/aragon-2006-expenditure
+
+redirect:
+
+http://rdfbrowser:80/data/dataset/aragon-2006-expenditure
