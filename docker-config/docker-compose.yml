@@ -173,8 +173,14 @@ services:
             - virtuoso_staging
     rdfbrowser:
         build: ./rdfbrowser
+        volumes:
+            - ./rdfbrowser/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/logs:/var/www/RDFBrowser/storage/logs
         ports:
-            - "8990:80"
+            - "8111:80"
+        links:
+            - virtuoso_staging
+            - virtuoso_production
     dam:
         build: ./dam
         #restart: always

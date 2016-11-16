@@ -38,5 +38,7 @@ mkdir -p volumes/rudolf/www
 mkdir -p volumes/sshserver/log
 # DAM
 mkdir -p volumes/dam/app
+#RDFBrowser:
+mkdir -p volumes/rdfbrowser/logs
 
 chmod -R oga+rwx ./volumes
