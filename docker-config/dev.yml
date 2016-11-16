@@ -77,6 +77,17 @@ services:
         links:
             - triple_store_production
             - virtuoso_production
+            - virtuoso_staging
+    rdfbrowser:
+        build: ./rdfbrowser
+        volumes:
+            - ./rdfbrowser/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/logs:/var/www/RDFBrowser/storage/logs
+        ports:
+            - "8111:80"
+        links:
+            - virtuoso_staging
+            - virtuoso_production
     dam:
         build: ./dam
         volumes:
@@ -106,6 +117,7 @@ services:
             - os-explorer
             - os-admin
             - indigo
+            - rdfbrowser
         ports:
             - "80:80" # http
             - "443:443" # https

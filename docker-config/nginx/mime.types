@@ -59,8 +59,9 @@ types {
     application/xspf+xml                  xspf;
     application/zip                       zip;
     application/rdf+xml                   rdf;
-    text/rdf+n3;charset=utf-8             n3;
-
+    text/n3                               n3;
+    application/n-triples                 nt;
+    application/ld+json                   jsonld;
 
     application/octet-stream              bin exe dll;
     application/octet-stream              deb;
