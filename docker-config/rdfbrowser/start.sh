@@ -8,6 +8,9 @@ set -e
 # Configure PHP date.timezone
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 
+# Change file permissions of sqlite:
+chmod a+rwx $APP_DIR/storage/database.sqlite
+
 # Configure Apache Document Root
 mkdir -p $APACHE_DOC_ROOT
 chown www-data:www-data $APACHE_DOC_ROOT

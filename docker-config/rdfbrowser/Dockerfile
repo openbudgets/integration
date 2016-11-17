@@ -29,8 +29,8 @@ RUN composer install
 RUN php artisan key:generate
 RUN chmod -R a+rwx $APP_DIR
 
-COPY ./database.sqlite /database.sqlite
-RUN chmod a+rwx /database.sqlite
+#COPY ./database.sqlite /database.sqlite
+#RUN chmod a+rwx /database.sqlite
 
 EXPOSE 80
 COPY ./start.sh /start.sh
