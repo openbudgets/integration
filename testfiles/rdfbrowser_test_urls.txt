@@ -1,4 +1,5 @@
 http://data.openbudgets.eu/resource/dataset/aragon-2006-expenditure
+http://test.openbudgets.eu/resource/dataset/aragon-2006-expenditure
 
 http://localhost/resource/dataset/aragon-2006-expenditure
 

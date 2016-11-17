@@ -1,6 +1,6 @@
 FROM php:7.0.13-apache
 
-RUN apt-get update -y && apt-get install -y git curl
+RUN apt-get update -y && apt-get install -y curl git
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://

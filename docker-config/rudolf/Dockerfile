@@ -1,7 +1,7 @@
 FROM php:7.0.7-fpm-alpine
 
 # Install PHP 7:
-RUN apk add --update bash libmcrypt-dev git curl
+RUN apk add --update bash libmcrypt-dev curl git
 
 RUN docker-php-ext-install pdo_mysql mbstring tokenizer
 
