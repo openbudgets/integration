@@ -176,7 +176,6 @@ services:
         volumes:
             - ./rdfbrowser/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
             - ./rdfbrowser/prod/apache2.conf:/etc/apache2/apache2.conf
-            - ../volumes/rdfbrowser/logs:/var/www/RDFBrowser/storage/logs
         ports:
             - "8111:80"
         links:
