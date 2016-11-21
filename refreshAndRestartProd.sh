@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-git pull origin
+git pull origin master
 OBEU_WORKDIR=$PWD
 . $OBEU_WORKDIR/setEnv
 cd $OBEU_WORKDIR/docker-config && \
