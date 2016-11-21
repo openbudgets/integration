@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.4
 
 RUN apk update && \
-    apk add --update git wget supervisor tar openjdk8 openssh nodejs
+    apk add --update git supervisor wget tar openjdk8 openssh nodejs
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
 
 # Install Maven:
