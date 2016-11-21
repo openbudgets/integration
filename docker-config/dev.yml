@@ -81,7 +81,7 @@ services:
     rdfbrowser:
         build: ./rdfbrowser
         volumes:
-            - ./rdfbrowser/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/storage/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
             - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
         ports:
             - "8111:80"

@@ -40,5 +40,7 @@ mkdir -p volumes/sshserver/log
 mkdir -p volumes/dam/app
 #RDFBrowser:
 mkdir -p volumes/rdfbrowser/logs
+mkdir -p volumes/rdfbrowser/storage
+[ ! -f volumes/rdfbrowser/storage/database.sqlite ] && cp ./docker-config/rdfbrowser/database.sqlite ./volumes/rdfbrowser/storage/database.sqlite
 
 chmod -R oga+rwx ./volumes
