@@ -13,7 +13,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 
 RUN git clone https://github.com/okgreece/indigo.git /app
 WORKDIR /app
-RUN git checkout 3665b2b4d9ac915587496d7b59f3255eec57da3b
+RUN git pull origin master && git checkout 3665b2b4d9ac915587496d7b59f3255eec57da3b
 RUN npm install
 
 # COPY config files:
