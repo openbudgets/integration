@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  apiUrl:"http://ws307.math.auth.gr/rudolf/public",
+  apiUrl:"http://eis-openbudgets.iais.fraunhofer.de",
   DAMUrl: "http://okfnrg.math.auth.gr/ocpu/",
   versionSuffix: "v3",
   baseHref: "/"
