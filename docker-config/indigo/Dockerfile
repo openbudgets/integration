@@ -16,6 +16,7 @@ WORKDIR /app
 # COPY config files:
 COPY ./index.html /app/src/index.html
 # COPY ./tsconfig.json /app/tsconfig.json
+COPY ./package.json /app/package.json
 COPY ./environment.ts /app/src/environments/environment.ts
 
 RUN npm install
