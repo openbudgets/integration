@@ -14,7 +14,7 @@ RUN wget http://mirror.dkd.de/apache/jena/binaries/apache-jena-fuseki-$FUSEKI_VE
 # Download Jena:
 ENV JENA_VERSION 3.1.0
 ENV JENA_HOME /usr/lib/jena
-RUN wget http://mirrors.ae-online.de/apache/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
+RUN wget http://mirror.dkd.de/apache/jena/binaries/apache-jena-$JENA_VERSION.tar.gz && \
     tar -zxvf apache-jena-$JENA_VERSION.tar.gz && \
     rm apache-jena-$JENA_VERSION.tar.gz && \
     mv apache-jena-$JENA_VERSION $JENA_HOME
