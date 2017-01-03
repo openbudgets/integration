@@ -6,7 +6,7 @@ RUN apk update && \
 # Download Fuseki:
 ENV FUSEKI_VERSION 2.4.0
 ENV FUSEKI_HOME /usr/lib/fuseki
-RUN wget http://ftp.halifax.rwth-aachen.de/apache/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
+RUN wget http://mirror.dkd.de/apache/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     tar -zxvf apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     rm apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     mv apache-jena-fuseki-$FUSEKI_VERSION $FUSEKI_HOME
