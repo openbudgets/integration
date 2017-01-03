@@ -4,7 +4,7 @@ RUN apk update && \
     apk add --update openjdk8 wget tar supervisor
 
 # Download Fuseki:
-ENV FUSEKI_VERSION 2.4.0
+ENV FUSEKI_VERSION 2.4.1
 ENV FUSEKI_HOME /usr/lib/fuseki
 RUN wget http://mirror.dkd.de/apache/jena/binaries/apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
     tar -zxvf apache-jena-fuseki-$FUSEKI_VERSION.tar.gz && \
