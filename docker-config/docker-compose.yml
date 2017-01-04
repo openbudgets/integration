@@ -1,5 +1,28 @@
 version: '2'
 services:
+    alignmentmysql:
+        build: ./alignmentmysql
+        volumes:
+            - ../volumes/alignment/mysql:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+        ports:
+            - "3306:3306"
+    alignmentredis:
+        build: ./alignmentredis
+        volumes:
+            - ../volumes/alignment/redis:/data
+        ports:
+            - "6379:6379"
+    alignmentui:
+        build: ./alignmentui
+        volumes:
+            - ../volumes/virtuosoStaging/data:/data
+        environment:
+            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+        links:
+            - alignmentmysql
+            - alignmentredis
     linkedpipes_fdp:
         build: ./linkedpipes
         restart: always
@@ -213,6 +236,7 @@ services:
             - os-admin
             - indigo
             - rdfbrowser
+            - alignmentui
         ports:
             - "80:80" # http
             - "443:443" # https
