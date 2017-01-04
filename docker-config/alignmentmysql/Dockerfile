@@ -1,0 +1,6 @@
+FROM mysql/mysql-server:5.7
+
+ENV MYSQL_ROOT_PASSWORD=test
+ENV MYSQL_DATABASE=alignment
+
+EXPOSE 3306

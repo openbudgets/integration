@@ -43,4 +43,9 @@ mkdir -p volumes/rdfbrowser/logs
 mkdir -p volumes/rdfbrowser/storage
 [ ! -f volumes/rdfbrowser/storage/database.sqlite ] && cp ./docker-config/rdfbrowser/database.sqlite ./volumes/rdfbrowser/storage/database.sqlite
 
+# Alignment MySQL DB:
+mkdir -p volumes/alignment/mysql
+# Alignment Redis DB:
+mkdir -p volumes/alignment/redis
+
 chmod -R oga+rwx ./volumes
