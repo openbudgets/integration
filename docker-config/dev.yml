@@ -20,6 +20,8 @@ services:
             - ../volumes/virtuosoStaging/data:/data
         environment:
             - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+            - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
+            - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
         links:
             - alignmentmysql
             - alignmentredis
