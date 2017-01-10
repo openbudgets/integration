@@ -5,6 +5,7 @@ services:
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
         environment:
+            - MYSQL_DATABASE=alignment
             - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
         ports:
             - "3306:3306"
