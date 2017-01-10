@@ -2,7 +2,7 @@ FROM php:7.0.13-apache
 
 RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
-RUN apt-get update -y && apt-get install -y curl git openjdk-8-jdk gettext bash
+RUN apt-get update -y && apt-get install -y git openjdk-8-jdk gettext bash curl
 
 RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
