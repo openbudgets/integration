@@ -7,9 +7,8 @@ RUN apt-get update -y && apt-get install -y git openjdk-8-jdk gettext bash curl 
 RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 RUN apt-get update -y && \
-    apt-get install -y php7.0-mysql php-gd && \
+    apt-get install -y php7.0-mysql && \
     docker-php-ext-install pdo_mysql
-# php7.0-gd php5-gd
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadgit Of git://
@@ -19,6 +18,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install mbstring
 RUN docker-php-ext-install mbstring
+
+# Install additional packages:
+RUN apt-get install -y php-gd
+# php7.0-gd php5-gd
 
 ENV PHP_TIMEZONE Europe/Berlin
 
