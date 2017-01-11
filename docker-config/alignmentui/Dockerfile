@@ -23,6 +23,7 @@ RUN docker-php-ext-install mbstring
 RUN apt-get purge php7.0-gd
 RUN apt-get install -y libgd3 php7.0-gd
 RUN phpenmod gd
+RUN apt-get upgrade -y
 # php7.0-gd  php-gd php5-gd
 
 ENV PHP_TIMEZONE Europe/Berlin
