@@ -20,8 +20,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-install mbstring
 
 # Install additional packages:
-RUN apt-get install -y php-gd
-# php7.0-gd php5-gd
+RUN apt-get install -y php5-gd
+# php7.0-gd  php-gd
 
 ENV PHP_TIMEZONE Europe/Berlin
 
