@@ -21,7 +21,7 @@ RUN docker-php-ext-install mbstring
 
 # Install additional packages:
 RUN apt-get purge php7.0-gd
-RUN apt-get install -y libgd3 php7.0-gd
+RUN apt-get install -y libgd3 php7.0-gd libapache2-mod-php7.0
 RUN phpenmod gd
 RUN apt-get upgrade -y
 # php7.0-gd  php-gd php5-gd
@@ -30,6 +30,7 @@ ENV PHP_TIMEZONE Europe/Berlin
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
+RUN a2enmod php7.0
 
 #COPY ./php.ini /usr/local/etc/php/
 
