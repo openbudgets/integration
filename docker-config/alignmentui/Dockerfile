@@ -7,7 +7,7 @@ RUN apt-get update -y && apt-get install -y git openjdk-8-jdk gettext bash curl 
 RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 RUN apt-get update -y && \
-    apt-get install -y php7.0-mysql php7.0-gd && \
+    apt-get install -y php7.0-mysql php7.0-gd php5-gd php-gd && \
     docker-php-ext-install pdo_mysql
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
