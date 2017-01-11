@@ -1,0 +1,4 @@
+USE alignment;
+GRANT ALL ON *.* to root@'%';
+--IDENTIFIED BY '${ALIGNMENT_MYSQL_PW}';
+FLUSH PRIVILEGES;
