@@ -116,7 +116,7 @@ services:
     dampostgres:
         build: ./dampostgres
         volumes:
-            - ../volume/dampostgres:/var/lib/postgresql/data
+            - ../volumes/dampostgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
     damapp:
