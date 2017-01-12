@@ -5,7 +5,6 @@ services:
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
         environment:
-            - MYSQL_DATABASE=alignment
             - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
         ports:
             - "3306:3306"
@@ -207,13 +206,20 @@ services:
         links:
             - virtuoso_staging
             - virtuoso_production
-    dam:
-        build: ./dam
-        #restart: always
+    dampostgres:
+        build: ./dampostgres
         volumes:
-            - ../volumes/dam/app:/DAM
+            - ../volume/dampostgres:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
+    damapp:
+        build: ./damapp
         ports:
             - "5000:5000"
+        links:
+            - dampostgres
+        environment:
+            - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
     nginx:
         build: ./nginx
         restart: always

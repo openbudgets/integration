@@ -1,7 +1,8 @@
 FROM mysql/mysql-server:5.7
 
-COPY ./my.cnf /etc/my.cnf
+ENV MYSQL_DATABASE "alignment"
 
+COPY ./my.cnf /etc/my.cnf
 
 # Initializing DB for granting access to clients from another Host (aka Docker container):
 COPY ./init.sh /docker-entrypoint-initdb.d/init.sh
