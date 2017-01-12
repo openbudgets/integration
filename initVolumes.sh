@@ -37,7 +37,7 @@ mkdir -p volumes/rudolf/www
 # SSHServer:
 mkdir -p volumes/sshserver/log
 # DAM
-mkdir -p volumes/dampostgres
+mkdir -p volumes/dam/dampostgres
 
 #RDFBrowser:
 mkdir -p volumes/rdfbrowser/logs
