@@ -113,12 +113,20 @@ services:
         links:
             - virtuoso_staging
             - virtuoso_production
-    dam:
-        build: ./dam
+    dampostgres:
+        build: ./dampostgres
         volumes:
-            - ../volumes/dam/app:/DAM
+            - ../volume/dampostgres:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
+    damapp:
+        build: ./damapp
         ports:
-            - "5100:5000"
+            - "5000:5000"
+        links:
+            - dampostgres
+        environment:
+            - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
     nginx:
         build: ./nginx
         volumes:
