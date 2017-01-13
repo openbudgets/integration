@@ -191,6 +191,8 @@ services:
         build: ./indigo
         ports:
           - "4200:4200"
+        links:
+          - damapp
 
 #    vocol:
 #        build: ./vocol

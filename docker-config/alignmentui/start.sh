@@ -7,6 +7,8 @@ echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 envsubst < "$APP_DIR/.env" > "$APP_DIR/.env_injected"
 mv "$APP_DIR/.env_injected" "$APP_DIR/.env"
 
+chmod a+rwx -R $APP_DIR
+
 sleep 5
 sh $APP_DIR/initDB.sh
 

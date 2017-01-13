@@ -1,7 +1,7 @@
 FROM node:7.1
 
 RUN apt-get -y update
-RUN apt-get install -y git npm wget curl
+RUN apt-get install -y npm git wget curl
 
 RUN npm install -g angular-cli
 
