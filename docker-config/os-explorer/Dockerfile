@@ -20,6 +20,7 @@ RUN npm install -g n
 # npm config set loglevel info
 
 RUN git clone http://github.com/openspending/os-explorer.git app
+RUN cd /app && git checkout 4d1f2c51a67a08f50a988eb8f9061db9123f0648
 RUN cd /app && npm install
 
 COPY startup.sh /startup.sh
