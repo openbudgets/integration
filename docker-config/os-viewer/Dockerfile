@@ -14,6 +14,8 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openspending/os-viewer.git app
+#RUN cd app && git checkout 4c1dc63865533745015576550a8595626472b37d
+RUN cd app && git checkout 22b6a98fc6a56bf5ff0dac17404efa65a6ba4eb9
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
 
 RUN cd app && rm -rf node_modules
