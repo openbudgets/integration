@@ -12,3 +12,6 @@ EXPOSE 80
 COPY ./mime.types /etc/nginx/mime.types
 COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY ./createPassword.sh /createPassword.sh
+COPY ./start.sh /start.sh
+
+CMD ["/bin/sh", "/start.sh"]

@@ -39,6 +39,9 @@ mkdir -p volumes/sshserver/log
 # DAM
 mkdir -p volumes/dam/dampostgres
 
+# Silk-Workbench:
+mkdir -p volumes/silkworkbench/silk
+
 #RDFBrowser:
 mkdir -p volumes/rdfbrowser/logs
 mkdir -p volumes/rdfbrowser/storage
