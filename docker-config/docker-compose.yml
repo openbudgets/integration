@@ -1,5 +1,11 @@
 version: '2'
 services:
+    silkworkbench:
+        build: ./silkworkbench
+        volumes:
+            - ../volumes/silkworkbench/silk:/root/.silk
+        ports:
+            - "9000:9000"
     alignmentmysql:
         build: ./alignmentmysql
         volumes:
