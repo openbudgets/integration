@@ -7,8 +7,6 @@ echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 envsubst < "$APP_DIR/.env" > "$APP_DIR/.env_injected"
 mv "$APP_DIR/.env_injected" "$APP_DIR/.env"
 
-chmod a+rwx -R $APP_DIR
-
 sleep 5
 sh $APP_DIR/initDB.sh
 
@@ -21,5 +19,7 @@ echo "	AllowOverride All" >> /etc/apache2/conf-available/document-root-directory
 echo "	Require all granted" >> /etc/apache2/conf-available/document-root-directory.conf
 echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
+
+chmod a+rwx -R $APP_DIR
 
 exec "apache2-foreground"
