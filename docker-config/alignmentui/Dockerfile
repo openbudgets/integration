@@ -33,6 +33,12 @@ ENV PHP_TIMEZONE Europe/Berlin
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 RUN a2enmod php7.0
+sudo a2enmod proxy
+sudo a2enmod proxy_http
+sudo a2ensite stable5.localhost
+sudo a2ensite proxy.localhost
+sudo service apache2 restart
+
 
 #COPY ./php.ini /usr/local/etc/php/
 
