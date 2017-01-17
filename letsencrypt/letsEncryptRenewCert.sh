@@ -9,4 +9,4 @@ docker run -it --rm --name letsencrypt \
     -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
     -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
     letsencrypt_img \
-    renew --quiet
+    renew
