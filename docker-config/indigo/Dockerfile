@@ -8,10 +8,9 @@ RUN npm install -g angular-cli
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
-RUN git clone https://github.com/okgreece/indigo.git /app
+RUN git clone https://github.com/okgreece/indigo.git /app && \
+    cd /app && git checkout bde1fa6000e399aa177219a7df7876dbdcd01891
 WORKDIR /app
-
-#RUN git pull origin master && git checkout 3665b2b4d9ac915587496d7b59f3255eec57da3b
 
 # COPY config files:
 COPY ./index.html /app/src/index.html

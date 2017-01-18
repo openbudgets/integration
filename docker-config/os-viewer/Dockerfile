@@ -13,9 +13,9 @@ RUN npm install npm@latest -g && \
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
-RUN git clone http://github.com/openspending/os-viewer.git app
-#RUN cd app && git checkout 982caaf461a7aca65adb2082bf62bf33b2108ddd
-RUN cd app && git checkout fb7ddecca71726ecbfa27067a160c19ac48cbc04
+RUN git clone http://github.com/openspending/os-viewer.git app && \
+    cd app && git checkout fb7ddecca71726ecbfa27067a160c19ac48cbc04
+
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
 
 RUN cd app && rm -rf node_modules

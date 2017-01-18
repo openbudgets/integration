@@ -9,7 +9,8 @@ RUN cd $(npm root -g)/npm \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 RUN npm install npm@latest -g
 RUN npm --version
-RUN git clone http://github.com/openspending/os-admin.git app
+RUN git clone http://github.com/openspending/os-admin.git app && \
+    git checkout 2cd429ff2665b6e919291b467d8a84babc775c9d
 RUN cd app && npm install
 RUN cd app && npm run build
 RUN cd app && (find . -type f | grep -v /public/ | grep -v index.html | grep -v config.json | grep -v favicon.ico | tee | xargs rm)

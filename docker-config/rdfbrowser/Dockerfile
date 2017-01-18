@@ -23,7 +23,9 @@ COPY ./php.ini /usr/local/etc/php/
 ENV APACHE_DOC_ROOT /var/www/RDFBrowser/public/
 ENV APP_DIR /var/www/RDFBrowser
 WORKDIR $APP_DIR
-RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR
+RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR && \
+    git checkout 871aba70d30026c4cfb3922813ce6724b165d955
+
 COPY ./.env $APP_DIR/.env
 RUN composer install
 RUN php artisan key:generate

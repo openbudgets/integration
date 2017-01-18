@@ -4,13 +4,11 @@ export COMPOSE_HTTP_TIMEOUT=200
 export GOMAXPROCS=4
 OBEU_WORKDIR=$PWD
 . $OBEU_WORKDIR/setEnv
+
+# -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
-    docker-compose stop && \
-    docker-compose rm -f && \
-    docker-compose build
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.lock | xargs -i rm {}
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.trx | xargs -i rm {}
-cd $OBEU_WORKDIR/docker-config && \
-    docker-compose up -d
+    docker-compose up -d --build
+
+
+
+

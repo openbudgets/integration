@@ -1,20 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env /bin/sh
 git pull origin master
 export COMPOSE_HTTP_TIMEOUT=200
 export GOMAXPROCS=4
 OBEU_WORKDIR=$PWD
-. $OBEU_WORKDIR/setEnv
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.lock | xargs -I "{}" rm {}
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.trx | xargs -I "{}" rm {}
+cd $OBEU_WORKDIR && . ./setEnv
+
+# -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
-    docker-compose -f dev.yml stop && \
-    docker-compose -f dev.yml rm -f && \
-    docker-compose -f dev.yml build
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.lock | xargs -i rm {}
-cd $OBEU_WORKDIR/volumes && \
-    find . -name *.trx | xargs -i rm {}
-cd $OBEU_WORKDIR/docker-config && \
-    docker-compose -f dev.yml up
+   docker-compose -f dev.yml up --build

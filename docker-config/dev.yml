@@ -11,7 +11,7 @@ services:
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
         environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+            - MYSQL_ROOT_PASSWORD=$$ALIGNMENT_MYSQL_PW
         ports:
             - "3306:3306"
     alignmentredis:
@@ -25,9 +25,9 @@ services:
         volumes:
             - ../volumes/virtuosoStaging/data:/data
         environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
-            - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
-            - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
+            - MYSQL_ROOT_PASSWORD=$$ALIGNMENT_MYSQL_PW
+            - GITHUB_CLIENT_ID=$$GITHUB_CLIENT_ID
+            - GITHUB_CLIENT_SECRET=$$GITHUB_CLIENT_SECRET
         links:
             - alignmentmysql
             - alignmentredis
@@ -59,7 +59,7 @@ services:
             - ./virtuoso/staging/importDump.sh:/importDump.sh
             - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
+            - DBA_PASSWORD=$$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
             #- DEFAULT_GRAPH=
         ports:
@@ -74,7 +74,7 @@ services:
             - ./virtuoso/production/supervisord.conf:/etc/supervisord.conf
             - ./virtuoso/production/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_PROD_PW
+            - DBA_PASSWORD=$$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
             #- DEFAULT_GRAPH=te
         ports:
@@ -124,7 +124,7 @@ services:
         volumes:
             - ../volumes/dampostgres:/var/lib/postgresql/data
         environment:
-            - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
+            - POSTGRES_PASSWORD=$$DAM_POSTGRES_PW
     damapp:
         build: ./damapp
         ports:
@@ -132,7 +132,7 @@ services:
         links:
             - dampostgres
         environment:
-            - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
+            - DAM_POSTGRES_PW=$$DAM_POSTGRES_PW
     nginx:
         build: ./nginx
         volumes:
@@ -158,14 +158,13 @@ services:
             - indigo
             - rdfbrowser
             - alignmentui
-            - silkworkbench
         ports:
             - "80:80" # http
             - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
         environment:
-            - NGINX_BASIC_AUTH_PW=$NGINX_BASIC_AUTH_PW
-            - NGINX_BASIC_AUTH_USER=$NGINX_BASIC_AUTH_USER
+            - NGINX_BASIC_AUTH_PW=$$NGINX_BASIC_AUTH_PW
+            - NGINX_BASIC_AUTH_USER=$$NGINX_BASIC_AUTH_USER
     os-viewer:   #image: openspending/os-viewer
         build: ./os-viewer
         expose:

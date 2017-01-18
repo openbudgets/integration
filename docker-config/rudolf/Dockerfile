@@ -21,6 +21,19 @@ COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY ./config/php.ini /usr/local/etc/php/php.ini
 
+# Install Rudolf:
+RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git && \
+    cd ./rudolf && \
+    git checkout 99a6c14a7861d72fea9e8ae8768e1b5a2b03e633
+
+COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
+RUN chown -R www-data:www-data /var/www && \
+    chmod oag+rwx -R /var/www
+
+RUN cd /var/www/rudolf && composer install --no-scripts && \
+    chmod -R a+rwx .
+
+
 # Install cronjob for cache refreshing:
 COPY ./refreshCache /etc/periodic/hourly/.
 COPY ./refreshCache /refreshCache

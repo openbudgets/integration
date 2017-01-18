@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 RUN apk update && \
-    apk add --update wget curl nmap apache2-utils dnsmasq git alpine-sdk
+    apk add --update curl wget apache2-utils nmap git alpine-sdk dnsmasq
 
 # Add Timezone:
 RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
