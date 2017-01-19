@@ -53,7 +53,7 @@ RUN composer install
 RUN php artisan key:generate
 RUN chmod -R a+rwx $APP_DIR
 
-COPY ./.htaccess ./var/www/alignment/public/.htaccess
+#COPY ./.htaccess ./var/www/alignment/public/.htaccess
 
 EXPOSE 80
 COPY ./wait-for-it.sh /wait-for-it.sh
