@@ -1,4 +1,4 @@
-FROM nginx:alpine
+FROM nginx:1.10.2-alpine
 
 RUN apk update && \
     apk add --update curl wget apache2-utils nmap git alpine-sdk dnsmasq
