@@ -265,13 +265,13 @@ services:
         volumes:
             - ./os-viewer/prod_config:/app/app/config
         environment:
-            - DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
+            - DEFAULT_HOST=https://eis-openbudgets.iais.fraunhofer.de
             - DEFAULT_BASE_PATH=/viewer
-            - OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
-            - OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
+            - OS_EXTERNAL_ADDRESS=https://eis-openbudgets.iais.fraunhofer.de
+            - OS_VIEWER_API_HOST=https://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_AUTH_HOST=http://next.openspending.org
-            - OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
-            - OS_VIEWER_DATAMINE_HOST=http://eis-openbudgets.iais.fraunhofer.de
+            - OS_VIEWER_SEARCH_HOST=https://eis-openbudgets.iais.fraunhofer.de
+            - OS_VIEWER_DATAMINE_HOST=https://eis-openbudgets.iais.fraunhofer.de
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
     os-explorer:
