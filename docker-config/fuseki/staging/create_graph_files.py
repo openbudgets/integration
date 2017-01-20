@@ -3,7 +3,6 @@
 import os
 import re
 
-current_dir = os.getcwd()
 graph_name_regex = re.compile(r"http://data\.openbudgets\.eu/.*")
 sparql_query = """
 PREFIX qb:   <http://purl.org/linked-data/cube#>
@@ -37,16 +36,14 @@ def is_ttl_file(file):
     return len(names) > 1 and names[1]==".ttl"
 
 def get_graph_name(ttl_file):
-    with open(ttl_file) as ttl_file_handler:
-        result = os.popen("arq --results CSV --data \"%s\" \"%s\"" % (ttl_file, sparql_query)).read()
-        graph_name = graph_name_regex.findall(result)
-        return graph_name[0] if graph_name else ""
+    result = os.popen("arq --results CSV --data \"%s\" \"%s\"" % (ttl_file, sparql_query)).read()
+    graph_name = graph_name_regex.findall(result)
+    return graph_name[0] if graph_name else ""
 
 def create_graph_file(graph_file_path, graph_name):
     print("graph_file_path : %s, graph_name : %s" % (graph_file_path, graph_name))
     graph_file_path =  graph_file_path + ".graph"
     with open(graph_file_path, "w") as file:
         file.write(graph_name)
-    #extension = os.path.splitext(filename)[1]
 
 main()
