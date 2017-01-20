@@ -7,6 +7,7 @@ OBEU_WORKDIR=$PWD
 
 # -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
+    docker-compose pull && \
     docker-compose up -d --build
 
 
