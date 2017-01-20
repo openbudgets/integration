@@ -84,7 +84,7 @@ services:
         build: ./fuseki
         volumes:
             - ./fuseki/staging/start.sh:/start.sh
-            - ./fuseki/staging/createGraphFiles.sh:/createGraphFiles.sh
+            - ./fuseki/staging:/staging
             - ../volumes/tripleStoreStaging/log:/var/log
             - ../volumes/tripleStoreStaging/data:/data
             - ../volumes/nginx/dumps:/dumps
