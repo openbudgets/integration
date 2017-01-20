@@ -1,7 +1,7 @@
 FROM alpine:3.4
 
 RUN apk update && \
-    apk add --update openjdk8 wget tar supervisor
+    apk add --update openjdk8 wget tar supervisor python3
 
 # Download Fuseki:
 ENV FUSEKI_VERSION 2.4.1
