@@ -1,0 +1,7 @@
+# Contains environment variables needed before starting Docker containers
+export VIRTUOSO_STAG_PW=XXX
+export VIRTUOSO_PROD_PW=XXX
+export ALIGNMENT_MYSQL_PW=XXX
+export GITHUB_CLIENT_ID=XXX
+export GITHUB_CLIENT_SECRET=XXX
+export DAM_POSTGRES_PW=XXX
