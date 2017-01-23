@@ -8,7 +8,7 @@ mkdir -p ../volumes/nginx/letsencrypt/lib
 mkdir -p ../volumes/nginx/letsencrypt/etc
 
 docker build -t letsencrypt_img .
-docker run -it --rm --name letsencrypt \
+docker run --rm --name letsencrypt \
     -p 1086:80 \
     -v "$PWD/../volumes/nginx/letsencrypt/etc:/etc/letsencrypt" \
     -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
