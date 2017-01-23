@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DUMPS_DIR_BONN="/dumps/Bonn"
+DUMPS_DIR_BONN="/home/mluk/obeu_infrastructure2/dataset_import/state_2017_01/aragon/dsd"
 
 # Change into the dumps directory provided as the first argument of the script
 cd $DUMPS_DIR_BONN
