@@ -10,6 +10,7 @@ graphs_file = "input_all_graph_names.txt"
 pattern = "http[\S]+\s"
 template = """CLEAR GRAPH <%s>;"""
 regex = re.compile(pattern)
+current_dir = os.path.dirname(os.path.realpath(__file__))
 
 with(open(os.path.join(os.getcwd(), graphs_file))) as file:
     lines = file.readlines()
