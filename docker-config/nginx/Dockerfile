@@ -9,8 +9,10 @@ RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
 
 EXPOSE 80
 
-COPY ./mime.types /etc/nginx/mime.types
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/mime.types /etc/nginx/mime.types
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/includes /etc/nginx/includes
+
 COPY ./createPassword.sh /createPassword.sh
 COPY ./start.sh /start.sh
 

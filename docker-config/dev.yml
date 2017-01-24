@@ -122,7 +122,7 @@ services:
     dampostgres:
         build: ./dampostgres
         volumes:
-            - ../volumes/dampostgres:/var/lib/postgresql/data
+            - ../volumes/dam/dampostgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
     damapp:
@@ -136,15 +136,15 @@ services:
     nginx:
         build: ./nginx
         volumes:
-            - ./nginx/nginx_dev.conf:/etc/nginx/nginx.conf
+            - ./nginx/conf/nginx_dev.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
             - ../volumes/nginx/dumps:/var/www/dumps # serve rdf-file-dumps via http
             - ../volumes/nginx/letsencrypt/www:/tmp/letsencrypt/www # Lets encrypt files
             - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
             - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
-            - ./nginx/images:/var/www/images
-            - ./nginx/svg:/var/www/svg
+            - ./nginx/static_files/images:/var/www/images
+            - ./nginx/static_files/svg:/var/www/svg
         links:
             - linkedpipes_fdp
             - triple_store_staging
@@ -162,9 +162,9 @@ services:
             - "80:80" # http
             - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
-        environment:
-            - NGINX_BASIC_AUTH_PW=$NGINX_BASIC_AUTH_PW
-            - NGINX_BASIC_AUTH_USER=$NGINX_BASIC_AUTH_USER
+#        environment:
+#            - NGINX_BASIC_AUTH_PW=$NGINX_BASIC_AUTH_PW
+#            - NGINX_BASIC_AUTH_USER=$NGINX_BASIC_AUTH_USER
     os-viewer:   #image: openspending/os-viewer
         build: ./os-viewer
         expose:
