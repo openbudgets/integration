@@ -33,7 +33,6 @@ RUN chown -R www-data:www-data /var/www && \
 RUN cd /var/www/rudolf && composer install --no-scripts && \
     chmod -R a+rwx .
 
-
 # Install cronjob for cache refreshing:
 COPY ./refreshCache /etc/periodic/hourly/.
 COPY ./refreshCache /refreshCache
