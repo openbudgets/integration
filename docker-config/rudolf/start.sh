@@ -9,7 +9,7 @@ startRudolf() {
 refreshCache() {
     echo "Refreshing Cache in Rudolf..."
     cd /
-    ./refreshCache
+    nohup /bin/sh /refreshCache >>/dev/null 2>>/dev/null &
 }
 
 ## Execute:

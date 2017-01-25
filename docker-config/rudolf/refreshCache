@@ -1,7 +1,8 @@
 echo "Refreshing Cache in Rudolf..."
 cd /var/www/rudolf && \
        php artisan cache:clear && \
-       php artisan search:load
+       php artisan search:load && \
+       php artisan model:load global
 cd /var/www/rudolf && \
     chmod -R a+rwx .
 echo "Cache in Rudolf refreshed."
