@@ -306,6 +306,7 @@ services:
           - WORKDIR=/apps
     os-admin:
         image: openbudgets/os-admin${IMAGE_TAG}
+        build: ./os-admin
         expose:
           - "8000"
         restart: always

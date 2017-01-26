@@ -1,14 +1,14 @@
 version: '2'
 services:
     silkworkbench:
-        image: openbudgets/silkworkbench
+        image: openbudgets/silkworkbench:0.0.3
         build: ./silkworkbench
         volumes:
             - ../volumes/silkworkbench/silk:/root/.silk
         ports:
             - "9000:9000"
     alignmentmysql:
-        image: openbudgets/alignmentmysql
+        image: openbudgets/alignmentmysql:0.0.3
         build: ./alignmentmysql
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
@@ -17,14 +17,14 @@ services:
         ports:
             - "3306:3306"
     alignmentredis:
-        image: openbudgets/alignmentredis
+        image: openbudgets/alignmentredis:0.0.3
         build: ./alignmentredis
         volumes:
             - ../volumes/alignment/redis:/data
         ports:
             - "6379:6379"
     alignmentui:
-        image: openbudgets/alignmentui
+        image: openbudgets/alignmentui:0.0.3
         build: ./alignmentui
         volumes:
             - ../volumes/virtuosoStaging/data:/data
@@ -36,7 +36,7 @@ services:
             - alignmentmysql
             - alignmentredis
     linkedpipes_fdp:
-        image: openbudgets/linkedpipes
+        image: openbudgets/linkedpipes:0.0.3
         build: ./linkedpipes
         volumes:
             - ../volumes/linkedpipes/data:/data
@@ -52,13 +52,13 @@ services:
             - virtuoso_staging
             - sshserver
     sshserver:
-        image: openbudgets/sshserver
+        image: openbudgets/sshserver:0.0.3
         build: ./sshserver
         volumes:
             - ../volumes/nginx/dumps:/dumps
             - ../volumes/sshserver/log:/var/log
     virtuoso_staging:
-        image: openbudgets/virtuoso_staging
+        image: openbudgets/virtuoso_staging:0.0.3
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStaging/data:/data
@@ -73,7 +73,7 @@ services:
             - "8890:8890"
             - "1111:1111"
     virtuoso_production:
-        image: openbudgets/virtuoso_production
+        image: openbudgets/virtuoso_production:0.0.3
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoProduction/data:/data
@@ -89,7 +89,7 @@ services:
             - "8891:8890"
             - "1112:1111"
     triple_store_staging:
-        image: openbudgets/triple_store_staging
+        image: openbudgets/triple_store_staging:0.0.3
         build: ./fuseki
         volumes:
             - ./fuseki/staging/start.sh:/start.sh
@@ -101,7 +101,7 @@ services:
             - "33030:3030"
             - "39001:9001" # supervisord frontend
     triple_store_production:
-        image: openbudgets/triple_store_production
+        image: openbudgets/triple_store_production:0.0.3
         build: ./fuseki
         volumes:
             - ./fuseki/production/start.sh:/start.sh
@@ -112,7 +112,7 @@ services:
             - "43030:3030"
             - "49001:9001" # supervisord frontend
     rudolf:
-        image: openbudgets/rudolf
+        image: openbudgets/rudolf:0.0.3
         build: ./rudolf
         volumes:
             - ../volumes/rudolf/www:/var/www
@@ -121,7 +121,7 @@ services:
             - virtuoso_production
             - virtuoso_staging
     rdfbrowser:
-        image: openbudgets/rdfbrowser
+        image: openbudgets/rdfbrowser:0.0.3
         build: ./rdfbrowser
         volumes:
             - ../volumes/rdfbrowser/storage/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
@@ -132,14 +132,14 @@ services:
             - virtuoso_staging
             - virtuoso_production
     dampostgres:
-        image: openbudgets/dampostgres
+        image: openbudgets/dampostgres:0.0.3
         build: ./dampostgres
         volumes:
             - ../volumes/dam/dampostgres:/var/lib/postgresql/data
         environment:
             - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
     damapp:
-        image: openbudgets/damapp
+        image: openbudgets/damapp:0.0.3
         build: ./damapp
         ports:
             - "5000:5000"
@@ -148,7 +148,7 @@ services:
         environment:
             - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
     nginx:
-        image: openbudgets/nginx
+        image: openbudgets/nginx:0.0.3
         build: ./nginx
         volumes:
             - ./nginx/conf/nginx_dev.conf:/etc/nginx/nginx.conf
@@ -181,7 +181,7 @@ services:
 #            - NGINX_BASIC_AUTH_PW=$NGINX_BASIC_AUTH_PW
 #            - NGINX_BASIC_AUTH_USER=$NGINX_BASIC_AUTH_USER
     os-viewer:   #image: openspending/os-viewer
-        image: openbudgets/os-viewer
+        image: openbudgets/os-viewer:0.0.3
         build: ./os-viewer
         expose:
           - "8000"
@@ -200,7 +200,7 @@ services:
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
     os-explorer:
-        image: openbudgets/os-explorer
+        image: openbudgets/os-explorer:0.0.3
         build: ./os-explorer
         volumes:
           - ./os-explorer/dev_themes:/app/app/scripts/services/themes
@@ -209,12 +209,12 @@ services:
         environment:
           - WORKDIR=/apps
     os-admin:
-        image: openbudgets/os-admin
+        image: openbudgets/os-admin:0.0.3
         expose:
           - "8000"
         restart: always
     indigo:
-        image: openbudgets/indigo
+        image: openbudgets/indigo:0.0.3
         build: ./indigo
         ports:
           - "4200:4200"
