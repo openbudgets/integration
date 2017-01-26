@@ -11,13 +11,13 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 script:
-  - docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   - docker-compose -f docker-compose.yml -f versions.yml build --pull
   - docker-compose -f docker-compose.yml -f versions.yml push
   on:
     tags: true
 script:
-  - docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+  - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
   - docker-compose -f docker-compose.yml build --pull
   - docker-compose -f docker-compose.yml push
   on:
