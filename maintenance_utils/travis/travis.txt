@@ -1,5 +1,7 @@
 https://docs.travis-ci.com/user/encryption-keys/
 
+https://travis-ci.org/getting_started
+
 travis encrypt DOCKER_USER=username
 travis encrypt DOCKER_PASS=password
 
