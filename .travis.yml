@@ -1,0 +1,26 @@
+env:
+  DOCKER_COMPOSE_VERSION: 1.10.0
+  global:
+      # DOCKER_USER
+      secure: "WiD9hQivDhQ8RnF6Q/KnnL5P8kENh7lPAmjqtL7dtTxi3vZ1sXCRH5Wh2m/3C0Gph5WQjYpX17YKvzapfBwGvxbH0lvaSTkZj33Omiog3pa6UUO71bjVoEde0X598wJ4JBmVCXVN0R0nOAo7xfjU5MG2jZFyyGqVP+o4l6pFqfujbSwaAZARrlWYJXuGHhWtcYYWt2cQKo8018c9I74kLLOY9jElPDiFrgLRGLG7AKd/8T3ogFVQs4dfwxp3ldej2MK31SgEASqDYECAv9HSpkcZxUIuTO6Smai2m3qioddUalyHJsZsXmxsNc7WPg8AOhA35fiEy1/SQRf+runyahuQ3J1UNUoZmPPuo861xJ+Gzl6qSh+bs+G8ujFZ59soXyhs153HbAwATEKbK6AzIy2GEUVTgGg10I0iYpKVbbjJQtv/alAwqe8Q0T5ced3aNPgqz2EvkmvksSAbCV7RHNUeBE0/WIvddu9jGscede0+s1GqrMD/UcK+nRODH+I6gM+gUVjdvZ6yUZ/VygwV0HshRjJfrzpvXDNo5Mdm9UlWgiSpw/MUB60FYO9JT/DBTwe5WOXscYFqUES+rr32iD+MTyhPkkLzHkYH+/WVaCRJDXg6wjkR0jv5zbWih8We8Kdk5GXroWR2kVBKQCOElYh4rjm0DoZywqHJgbmyLm8="
+      # DOCKER_PASS
+      secure: "SsXG9DPoGm8/+lo4Gg2oKnlVIRiJrOflUQpgmg+vsYoo0XxJPSJ24vxVFYgxuBU+yZ/pGvWLZSGTIHXD5vdFmmuqb2PRQ0kivJJ2iMUdfNW5exV/PyWT/Vj2x4Vhrquz6Put56aq4DJRZzIs92+n7h3w53+eld5B+katzgeHEJGDp1BK3mfqGQXRVW2T7AT8yOPOHu4eT9Zu4LtaCs6CBvfH+CwiyKA3BTkWb87fZFr5l8vQO+JmTNDJ7c24DUkYa1cGU2J/vqZkB68B4fLaUzONrpkyW67Z3e1J3hxmBaq9eKxu5y31C3gWlWQN3rxf614HKvjBcjtsuuMc2wi6Qrv3qACIf9b7pwZVaGS0HjUKQpfxaIoyh/zdhKI+Rb+h4x6bNIkrvfdhfsbEcQzKsiaBr1ar8f9nLlI509/gUKkvmLN5EDxyljKxEIwbz82BYsH008fZIGWT893dTqmPEbJH4ah4NdgD7N53PnbD8gKOboMemEmbTiGKNcg0QO9wp4y5bS6N7f47ecQuaK17q2CksJ4R0zbpG4i9X5SuF+c5E8pGiS8BXXojMV9UrvyDvG5dKKPd4jqDtvfl3AzJYWFH0bGTjI4M576XYvhDbp0V7Q71WQLuHNmZBoVvAwKU1GlDFSEKfFSLSkZBfSOG4WNybjh+cvtF7sgzzVkFBf0="
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+script:
+  - docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+  - docker-compose -f docker-compose.yml -f versions.yml build --pull
+  - docker-compose -f docker-compose.yml -f versions.yml push
+  on:
+    tags: true
+script:
+  - docker login --username=$DOCKER_USER --password=$DOCKER_PASS
+  - docker-compose -f docker-compose.yml build --pull
+  - docker-compose -f docker-compose.yml push
+  on:
+    branch: master
+
+
