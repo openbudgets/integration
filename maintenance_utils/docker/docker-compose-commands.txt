@@ -1,0 +1,29 @@
+# Docker-Commands need to get executed in directory: ./docker-config
+
+
+################## 1 Container commands ######################
+# Stop 1 Container:
+docker-compose stop <service_name>
+
+# Delete 1 Container:
+docker-compose rm <service_name>
+
+# Build 1 Image:
+docker-compose build <service_name>
+
+################## Commands for all containers ################
+
+# Rebuild Image & Container only if the Docker Image has been changed:
+docker-compose up -d --build
+
+# Stop all Containers:
+docker-compose stop
+
+# Delete all Containers:
+docker-compose rm
+
+# Build all Images:
+docker-compose build
+
+
+

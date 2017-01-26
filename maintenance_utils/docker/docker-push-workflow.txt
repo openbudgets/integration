@@ -1,0 +1,9 @@
+# Optional: Tag the current commit
+# If the current commit is not tagged, Docker Images will automatically get pushed with tag 'latest'
+git tag -a "0.0.0" -m'initial version'
+
+# Login into DockerHub
+docker login --username=openbudgets
+
+# Execute Push-Script:
+sh ./uploadDockerImages.sh

@@ -1,0 +1,11 @@
+# Create a annotated Git Tag:
+git tag -a 0.0.0 -m'test'
+
+# View all git Tags:
+git tag -l
+
+# View the latest git tag:
+git describe --tags
+
+# Checkout latest tag:
+git checkout $(git describe --tags)
