@@ -8,7 +8,7 @@ import_dump(){
     IMPORT_FOLDER=$1
     DBA_PASSWORD=$2
     echo "DELETE FROM DB.DBA.load_list;" > tmp.isql
-    echo "ld_dir_all('/dumps/$IMPORT_FOLDER', '*.trig',NULL);" >> tmp.isql
+    echo "ld_dir_all('/dumps/$IMPORT_FOLDER', '*.trig','not_used');" >> tmp.isql
     echo "select * from DB.DBA.load_list;" >> tmp.isql
     echo "rdf_loader_run();" >> tmp.isql
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba $DBA_PASSWORD tmp.isql
