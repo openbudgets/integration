@@ -1,9 +1,13 @@
-# Optional: Tag the current commit
-# If the current commit is not tagged, Docker Images will automatically get pushed with tag 'latest'
-git tag -a "0.0.0" -m'initial version'
+Optional:
+    Tag the current commit: git tag -a "0.0.0" -m'initial version'
 
-# Login into DockerHub
-docker login --username=openbudgets
+- Generate Docker-compose-yml-file:
+    sh ./generate_prod_compose_file.yml
+  or:
+    sh ./generate_dev_compose_file.yml
 
-# Execute Push-Script:
-sh ./uploadDockerImages.sh
+- Login into DockerHub
+  docker login --username=openbudgets
+
+- Build Docker-Images:
+    sh ./upload_docker_images

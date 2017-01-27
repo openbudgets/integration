@@ -7,8 +7,8 @@ OBEU_WORKDIR=$PWD
 
 # -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
-    docker-compose -f docker-compose-generated.yml pull && \
-    docker-compose -f docker-compose-generated.yml up -d --build
+    docker-compose -f prod-generated.yml pull && \
+    docker-compose -f prod-generated.yml up -d --build
 
 
 
