@@ -35,10 +35,6 @@ script:
   - echo "Do nothing"
 deploy:
   provider: script
-  script:
-    cd ./docker-config && \
-    docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && \
-    docker-compose -f docker-compose.yml build --pull && \
-    docker-compose -f docker-compose.yml push
+  script: /bin/sh travis_deploy.sh
   on:
       branch: master
