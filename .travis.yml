@@ -5,17 +5,24 @@ env:
       # DOCKER_PASS
       - secure: "eRluKAA8JYoN7gWMK0CWLzb9e81+6pWUttThNfuEYZo8zUBMbC38/Mk5AGmky6bUJNAsLkaxS6v6YxOD71yaB9mPo4zAGBykfkB7CxLLm10ITUgHLBLTPFqy+t0Dc+vQEe/vBVw/4I1H/TAPGOzOScVG5xvB5v0ZXjLQ+MnesK6fSmNY161SvZ7oy17yxAGOHzyVoQiLXV7NG+cMCvy7uWEj5jQ8psXGTLOWHp1LRagNuovOk1NpaJylGrvSHnaZ8Ec8GYS+4K53w1BStloNpZlf59c8ojaaB86iJVYjQ3HPCYTo3J31nIbO/HKSGQWm3tsS1NfkIwc2G11EqhYrITv/6oGhna6uE4JXXjmwFvM08SXGPyswNQ1hKw7KNkuRhbqXSwBxfBm6AUmtN2BJx+tyszwcyE5ar1KNGnZFSTu+gPmo6A4M+HoohWvcv4rqyyfI9QO2y12TB98AdFg5Brv/oOxvZqTxhR2EHzIfEuh2K15aIo+pCGC1PSndB+lSav8MFcoa7MeLF+/kcN36+ger1+8gXxcduuSJ8FnXkrUn1mlbC0c/45jqXbDXZQZkvryDSKvh/PTJu6NNBME61on5ufZr5iBpOuY4jh2Z0LRaU2RDpY43MlXzpmkL+ksGimzjYvXoIkkH8z1CZWBpEww62K8fl5pqN2ZqLoDbKms="
       - DOCKER_COMPOSE_VERSION=1.10.0
+dist: trusty
 sudo: required
-services:
-  - docker
 language: python
 python:
     - "3.5"
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+install:
+  # Update docker-engine using Ubuntu 'trusty' apt repo
+  - curl -sSL "https://get.docker.com/gpg" |
+     sudo -E apt-key add -
+  - echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" |
+     sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update
+  - sudo apt-get -o Dpkg::Options::="--force-confdef" \
+     -o Dpkg::Options::="--force-confold" --assume-yes install docker-engine
+  - docker version
+  # Update docker-compose via pip
+  - sudo pip install docker-compose
+  - docker-compose version
 #script:
 #  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASS"
 #  - docker-compose -f docker-compose.yml -f versions.yml build --pull
