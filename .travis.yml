@@ -22,6 +22,10 @@ before_install:
 #  - docker-compose -f docker-compose.yml -f versions.yml push
 #  on:
 #    tags: true
+install:
+  - echo "Do nothing"
+script:
+  - echo "Do nothing"
 deploy:
   provider: script
   script:
