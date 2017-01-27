@@ -8,4 +8,4 @@ cd $OBEU_WORKDIR && . ./setEnv
 # -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
    docker-compose -f dev-generated.yml pull && \
-   docker-compose -f dev-generated.yml up --build
+   docker-compose -f dev-generated.yml up --build --remove-orphans
