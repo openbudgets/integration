@@ -1,14 +1,12 @@
 Optional:
-    Tag the current commit: git tag -a "0.0.0" -m'initial version'
+    Tag the current commit: git tag -a "0.0.4" -m'tag testing'
 
-- Generate Docker-compose-yml-file:
+- Generate a Docker-compose-yml-file but with tagged images:
     Specify a Git-Tag:
-    sh ./prod_generate_compose_file.yml 0.0.0
-    Otherwise the Docker-Images will be tagged as 'latest':
-    sh ./prod_generate_compose_file.yml
+    python3 ./generate_tagged_compose_files.py 0.0.4
 
 - Login into DockerHub
   docker login --username=openbudgets
 
-- Build Docker-Images:
-    sh ./upload_docker_images
+- Update & Build & Upload Docker-Images :
+    sh ./upload_prod_tagged.sh
