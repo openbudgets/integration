@@ -3,7 +3,7 @@ import re
 
 # Parameter:
 # For example for Bonn:
-graph_search_pattern = "onn"
+graph_search_pattern = "ragon"
 
 
 graphs_file = "input_all_graph_names.txt"

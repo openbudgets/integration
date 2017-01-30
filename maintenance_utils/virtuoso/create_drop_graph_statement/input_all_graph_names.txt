@@ -426,3 +426,4 @@ http://data.openbudgets.eu/ontology/esf-czech-projects/code-list/project-statuse
 http://data.openbudgets.eu/ontology/esf-czech-projects/code-list/project-statuses/metadata 	Rename Delete
 http://data.openbudgets.eu/resource/dataset/esf-czech-projects/totals/metadata 	Rename Delete
 http://data.openbudgets.eu/resource/dataset/esf-czech-projects 	Rename Delete
+http://data.openbudgets.eu/resource/dataset/esf-czech-projects/metadata 	Rename Delete

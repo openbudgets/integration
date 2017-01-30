@@ -6,3 +6,5 @@ infos/linkedPipesPipelineConfig.txt
 setEnv.sh
 setEnv
 obeu_scp.txt
+docker-config/dev_tagged.yml
+docker-config/prod_tagged.yml
