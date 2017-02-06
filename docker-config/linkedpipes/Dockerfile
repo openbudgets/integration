@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.4
 
 RUN apk update && \
-    apk add --update tar git supervisor nodejs wget openssh openjdk8
+    apk add --update tar git supervisor nodejs wget openjdk8 openssh
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
 
 # Install Maven:
@@ -15,8 +15,7 @@ ENV PATH $PATH:$M2_HOME/bin
 
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git /etl
-RUN cd /etl && git checkout master && \
-    git checkout afa7d0e3f9b75ab1cf57f5e1864cf64fb03e7e3b
+RUN cd /etl && git checkout 596d4a5f25b41dc26883565802033aa1394c953a
 
 RUN cd /etl && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \

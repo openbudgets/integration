@@ -157,7 +157,6 @@ services:
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/staging/importDump.sh:/importDump.sh
             - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
@@ -183,6 +182,24 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
+    virtuoso_staging_clean:
+        image: openbudgets/virtuoso_staging_clean
+        build: ./virtuoso
+        restart: always
+        volumes:
+            - ../volumes/virtuosoStagingClean/data:/data
+            - ../volumes/virtuosoStagingClean/upload:/upload
+            - ../volumes/nginx/dumps:/dumps
+            - ./virtuoso/staging/importTrigFiles.sh:/etc/cron.hourly/importTrigFiles.sh
+            - ./virtuoso/staging/importTTLFiles.sh:/etc/cron.hourly/importTTLFiles.sh
+            - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+        environment:
+            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
+            - SPARQL_UPDATE=true
+            #- DEFAULT_GRAPH=te
+        ports:
+            - "8893:8890"
+            - "1113:1111"
     triple_store_staging:
         image: openbudgets/triple_store_staging
         build: ./fuseki
@@ -306,7 +323,6 @@ services:
           - WORKDIR=/apps
     os-admin:
         image: openbudgets/os-admin
-        build: ./os-admin
         expose:
           - "8000"
         restart: always
