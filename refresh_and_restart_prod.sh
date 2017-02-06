@@ -9,4 +9,4 @@ cd $OBEU_WORKDIR && . ./setEnv
 # -- build: Only rebuilding Images that have changed
     # -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \
-docker-compose -f prod.yml up --build --remove-orphans
+docker-compose -f prod.yml up --build -d --remove-orphans
