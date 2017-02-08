@@ -10,7 +10,7 @@ RUN chmod a+x -R /cronjobs
 
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
-    wget http://mirror.netcologne.de/apache.org/jena/binaries/apache-jena-3.1.1.tar.gz && \
+    wget http://apache.mirror.digionline.de/jena/binaries/apache-jena-3.1.1.tar.gz && \
     gunzip /apache-jena-3.1.1.tar.gz && \
     tar -xvf /apache-jena-3.1.1.tar
 
