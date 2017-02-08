@@ -6,39 +6,39 @@ set -e
 
 clear_delete_file(){
     cd /upload
-    : > ./delete_graphs.txt
+    : > ./delete_graphs_ttl.txt
 }
 
 populate_delete_file(){
     cd /upload
-    find . -name "*.ttl.graph" | xargs -I"{}" cat "{}" >> ./delete_graphs.txt
+    find . -name "*.ttl.graph" | while read filename; do (cat "$filename";echo) >> ./delete_graphs_ttl.txt; done
 }
 
 clear_isql_file(){
     cd /upload
-    : > tmp.isql
+    : > tmp_ttl.isql
 }
 
 populate_isql_file_with_deletes(){
     cd /upload
-    echo "log_enable(3,1);" >> tmp.isql
+    echo "log_enable(3,1);" >> tmp_ttl.isql
     while read -r LINE; do
-        echo "SPARQL CLEAR GRAPH $LINE;" >> tmp.isql
-    done < ./delete_graphs.txt
+        echo "SPARQL CLEAR GRAPH <$LINE>;" >> tmp_ttl.isql
+    done < ./delete_graphs_ttl.txt
 }
 
 populate_isql_file_with_imports(){
     cd /upload
     . /setEnv
     echo "Importing started from /upload"
-    echo "DELETE FROM DB.DBA.load_list;" > tmp.isql
-    echo "ld_dir_all('/upload', '*.ttl', NULL);" >> tmp.isql
-    echo "select * from DB.DBA.load_list;" >> tmp.isql
-    echo "rdf_loader_run();" >> tmp.isql
+    echo "DELETE FROM DB.DBA.load_list;" >> tmp_ttl.isql
+    echo "ld_dir_all('/upload', '*.ttl', NULL);" >> tmp_ttl.isql
+    echo "select * from DB.DBA.load_list;" >> tmp_ttl.isql
+    echo "rdf_loader_run();" >> tmp_ttl.isql
 }
 
 execute_isql(){
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp.isql
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_ttl.isql
 }
 
 clear_upload_dir(){

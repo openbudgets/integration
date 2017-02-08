@@ -18,6 +18,12 @@ WHERE {
 }
 
 SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/resource/codelist/estructura_financiacion_g_aragon_2006>
+WHERE {
+  ?subject ?predicate ?object
+}
+
+SELECT ?subject  ?predicate ?object
 FROM <http://data.openbudgets.eu/resource/dataset/aragon-2007-expenditure>
 WHERE {
   ?subject ?predicate ?object

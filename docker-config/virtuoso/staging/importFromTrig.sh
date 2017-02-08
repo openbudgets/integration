@@ -6,39 +6,39 @@ set -e
 
 clear_delete_file(){
     cd /upload
-    : > ./delete_graphs.txt
+    : > ./delete_graphs_trig.txt
 }
 
 populate_delete_file(){
     cd /upload
-    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs.txt
+    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs_trig.txt
 }
 
 clear_isql_file(){
     cd /upload
-    : > tmp.isql
+    : > tmp_trig.isql
 }
 
 populate_isql_file_with_deletes(){
     cd /upload
-    echo "log_enable(3,1);" >> tmp.isql
+    echo "log_enable(3,1);" >> tmp_trig.isql
     while read -r LINE; do
-        echo "SPARQL CLEAR GRAPH $LINE;" >> tmp.isql
-    done < ./delete_graphs.txt
+        echo "SPARQL CLEAR GRAPH $LINE;" >> tmp_trig.isql
+    done < ./delete_graphs_trig.txt
 }
 
 populate_isql_file_with_imports(){
     cd /upload
     . /setEnv
     echo "Importing started from /upload"
-    echo "DELETE FROM DB.DBA.load_list;" >> tmp.isql
-    echo "ld_dir_all('/upload', '*.trig','not_used');" >> tmp.isql
-    echo "select * from DB.DBA.load_list;" >> tmp.isql
-    echo "rdf_loader_run();" >> tmp.isql
+    echo "DELETE FROM DB.DBA.load_list;" >> tmp_trig.isql
+    echo "ld_dir_all('/upload', '*.trig','not_used');" >> tmp_trig.isql
+    echo "select * from DB.DBA.load_list;" >> tmp_trig.isql
+    echo "rdf_loader_run();" >> tmp_trig.isql
 }
 
 execute_isql(){
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp.isql
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_trig.isql
 }
 
 clear_upload_dir(){
