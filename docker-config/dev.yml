@@ -95,8 +95,8 @@ services:
             - ../volumes/virtuosoStagingClean/data:/data
             - ../volumes/virtuosoStagingClean/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/staging/importTrigFiles.sh:/etc/cron.hourly/importTrigFiles.sh
-            - ./virtuoso/staging/importTTLFiles.sh:/etc/cron.hourly/importTTLFiles.sh
+            - ./virtuoso/staging/importFromTrig.sh:/etc/cron.hourly/importFromTrig.sh
+            - ./virtuoso/staging/importFromTTL.sh:/etc/cron.hourly/importFromTTL.sh
             - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
