@@ -11,8 +11,8 @@ RUN chmod a+x -R /cronjobs
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
     wget ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
-    gunzip /apache-jena-3.1.1.tar.gz && \
-    tar -xvf /apache-jena-3.1.1.tar
+    gunzip /apache-jena-3.2.0.tar.gz && \
+    tar -xvf /apache-jena-3.2.0.tar
 
 ENV PATH="/apache-jena-3.1.1/bin:${PATH}"
 
