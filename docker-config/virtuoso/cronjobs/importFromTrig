@@ -8,12 +8,15 @@ PATH=/apache-jena/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 
 clear_delete_file(){
     cd /upload
+    : > ./delete_graphs_trig.tmp
     : > ./delete_graphs_trig.txt
 }
 
 populate_delete_file(){
     cd /upload
-    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs_trig.txt
+    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs_trig.tmp
+    # Remove empty lines:
+    grep '[^[:blank:]]' < ./delete_graphs_trig.tmp > ./delete_graphs_trig.txt
 }
 
 clear_isql_file(){

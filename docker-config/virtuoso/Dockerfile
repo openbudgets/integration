@@ -12,7 +12,7 @@ RUN chmod a+x -R /cronjobs
 RUN cd / && \
     wget -O apache-jena.tar.gz ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
     gunzip /apache-jena.tar.gz && \
-    tar -xvf /apache-jena.tar
+    mkdir -p /apache-jena && tar -xvf /apache-jena.tar -C /apache-jena --strip-components=1
 
 ENV PATH="/apache-jena/bin:${PATH}"
 
