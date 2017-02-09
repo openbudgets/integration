@@ -16,6 +16,7 @@ RUN cd / && \
 
 ENV PATH="/apache-jena-3.1.1/bin:${PATH}"
 
+COPY ./50-default.conf /etc/rsyslog.d/50-default.conf
 COPY staging/supervisord.conf /etc/supervisord.conf
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
 COPY ./run.sh /run.sh

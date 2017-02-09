@@ -15,14 +15,12 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
         ports:
-            - "3306:3306"
+            - "3306:3307"
     alignmentredis:
         image: openbudgets/alignmentredis
         build: ./alignmentredis
         volumes:
             - ../volumes/alignment/redis:/data
-        ports:
-            - "6379:6379"
     alignmentui:
         image: openbudgets/alignmentui
         build: ./alignmentui
@@ -190,8 +188,8 @@ services:
             - ../volumes/virtuosoStagingClean/data:/data
             - ../volumes/virtuosoStagingClean/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/staging/importFromTrig.sh:/etc/cron.hourly/importFromTrig.sh
-            - ./virtuoso/staging/importFromTTL.sh:/etc/cron.hourly/importFromTTL.sh
+            - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
+            - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
             - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
