@@ -10,11 +10,11 @@ RUN chmod a+x -R /cronjobs
 
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
-    wget ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
-    gunzip /apache-jena-3.2.0.tar.gz && \
-    tar -xvf /apache-jena-3.2.0.tar
+    wget -O apache-jena.tar.gz ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
+    gunzip /apache-jena.tar.gz && \
+    tar -xvf /apache-jena.tar
 
-ENV PATH="/apache-jena-3.1.1/bin:${PATH}"
+ENV PATH="/apache-jena/bin:${PATH}"
 
 COPY ./50-default.conf /etc/rsyslog.d/50-default.conf
 COPY staging/supervisord.conf /etc/supervisord.conf

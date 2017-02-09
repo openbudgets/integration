@@ -4,6 +4,8 @@
 # 2nd argument: DBA_PASSWORD
 set -e
 
+PATH=/apache-jena/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 clear_delete_file(){
     cd /upload
     : > ./delete_graphs_ttl.txt
