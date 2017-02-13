@@ -8,13 +8,6 @@ RUN apt-get update && \
 RUN apt-get remove -y rsyslog && apt-get install -y syslog-ng
 RUN apt-get upgrade -y
 
-COPY ./cronjobs /cronjobs
-RUN chmod a+x -R /cronjobs
-COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
-COPY ./syslog-ng /etc/default/syslog-ng
-COPY ./crontab.debug /etc/crontab
-
-
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
     wget -O apache-jena.tar.gz ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
@@ -22,6 +15,13 @@ RUN cd / && \
     mkdir -p /apache-jena && tar -xvf /apache-jena.tar -C /apache-jena --strip-components=1
 
 ENV PATH="/apache-jena/bin:${PATH}"
+
+
+COPY ./cronjobs /cronjobs
+RUN chmod a+x -R /cronjobs
+COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
+COPY ./syslog-ng /etc/default/syslog-ng
+COPY ./crontab.debug /etc/crontab
 
 COPY staging/supervisord.conf /etc/supervisord.conf
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
