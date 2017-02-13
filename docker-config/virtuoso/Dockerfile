@@ -5,7 +5,7 @@ RUN apt-get update && \
     add-apt-repository ppa:openjdk-r/ppa && \
     apt-get update && \
     apt-get install -y openjdk-8-jre anacron
-RUN apt-get remove -y rsyslog && apt-get install -y install syslog-ng
+RUN apt-get remove -y rsyslog && apt-get install -y syslog-ng
 RUN apt-get upgrade -y
 
 COPY ./cronjobs /cronjobs
