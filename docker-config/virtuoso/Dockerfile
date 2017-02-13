@@ -21,7 +21,7 @@ COPY ./cronjobs /cronjobs
 RUN chmod a+x -R /cronjobs
 COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 COPY ./syslog-ng /etc/default/syslog-ng
-COPY ./crontab.debug /etc/crontab
+#COPY ./crontab.debug /etc/crontab
 
 COPY staging/supervisord.conf /etc/supervisord.conf
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
