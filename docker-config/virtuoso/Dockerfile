@@ -11,6 +11,7 @@ RUN apt-get upgrade -y
 COPY ./cronjobs /cronjobs
 RUN chmod a+x -R /cronjobs
 COPY ./syslog-ng.conf /etc/rsyslog.conf
+COPY ./syslog-ng /etc/default/syslog-ng
 
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
