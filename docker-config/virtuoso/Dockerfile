@@ -4,7 +4,10 @@ RUN apt-get update && \
     apt-get install -y supervisor wget gzip software-properties-common && \
     add-apt-repository ppa:openjdk-r/ppa && \
     apt-get update && \
-    apt-get install -y openjdk-8-jre
+    apt-get install -y openjdk-8-jre anacron
+RUN apt-get install -y --reinstall rsyslog
+RUN apt-get upgrade -y
+
 COPY ./cronjobs /cronjobs
 RUN chmod a+x -R /cronjobs
 
