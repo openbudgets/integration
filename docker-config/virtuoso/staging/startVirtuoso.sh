@@ -7,4 +7,6 @@ syslog-ng
 anacron
 cron
 
+echo "export DBA_PASSWORD=$DBA_PASSWORD" > /setEnv
+
 /bin/bash /virtuoso.sh

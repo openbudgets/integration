@@ -24,7 +24,5 @@ COPY ./syslog-ng /etc/default/syslog-ng
 #COPY ./crontab.debug /etc/crontab
 COPY ./virtuoso.ini /data/virtuoso.ini
 
-COPY ./supervisord.conf /etc/supervisord.conf
-COPY ./staging/startVirtuoso.sh /etc/startVirtuoso.sh
-COPY ./run.sh /run.sh
-CMD ["/bin/sh", "/run.sh"]
+COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
+CMD ["/bin/sh", "/startVirtuoso.sh"]
