@@ -6,5 +6,7 @@ crontab mycron
 rm mycron
 # (crontab -l 2>/dev/null; echo "0 * * * * /cronjobs/syncTriplestores") | crontab -
 
+cp /virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+
 # Start Virtuoso server:
 /bin/sh /virtuoso.sh
