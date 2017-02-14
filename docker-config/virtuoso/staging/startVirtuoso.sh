@@ -5,3 +5,6 @@ chmod a+x -R /etc/cron.*/
 
 
 /bin/bash /virtuoso.sh
+
+# Delay restart in cas of errors:
+sleep 5s

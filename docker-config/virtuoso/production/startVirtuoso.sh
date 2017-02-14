@@ -10,3 +10,6 @@ rm mycron
 
 # Start Virtuoso server:
 /bin/bash /virtuoso.sh
+
+# Delay restart in cas of errors:
+sleep 5s
