@@ -151,7 +151,6 @@ services:
     virtuoso_staging:
         image: openbudgets/virtuoso_staging
         build: ./virtuoso
-        restart: always
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/virtuosoStaging/upload:/upload
@@ -169,7 +168,6 @@ services:
     virtuoso_production:
         image: openbudgets/virtuoso_production
         build: ./virtuoso
-        restart: always
         volumes:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
@@ -185,7 +183,6 @@ services:
     virtuoso_staging_old:
         image: openbudgets/virtuoso_staging_old
         build: ./virtuoso
-        restart: always
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
