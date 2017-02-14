@@ -158,7 +158,6 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
-            - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
@@ -175,7 +174,6 @@ services:
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
             - ./virtuoso/production/supervisord.conf:/etc/supervisord.conf
-            - ./virtuoso/production/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
@@ -191,7 +189,6 @@ services:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
