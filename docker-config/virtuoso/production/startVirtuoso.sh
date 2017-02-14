@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# Delay restart in case of errors:
+sleep 2s
+
 chmod a+x -R /etc/cron.*/
 # Install cronjob:
 #(crontab -l 2>/dev/null; echo "* * * * * /cronjobs/syncTriplestores") | crontab -
@@ -10,6 +14,3 @@ rm mycron
 
 # Start Virtuoso server:
 /bin/bash /virtuoso.sh
-
-# Delay restart in cas of errors:
-sleep 5s
