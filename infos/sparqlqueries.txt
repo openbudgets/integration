@@ -1,5 +1,10 @@
 # SPARQL-Queries
 
+# list of all named graph
+SELECT DISTINCT ?g {
+    GRAPH ?g { ?s ?p ?o . }
+}
+
 # Check amount of triples in the Datastore:
 select count(*) where {?s ?p ?o}
 

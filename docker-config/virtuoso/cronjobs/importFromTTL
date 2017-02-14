@@ -39,7 +39,10 @@ populate_isql_file_with_imports(){
     echo "DELETE FROM DB.DBA.load_list;" >> tmp_ttl.isql
     echo "ld_dir_all('/upload', '*.ttl', NULL);" >> tmp_ttl.isql
     echo "select * from DB.DBA.load_list;" >> tmp_ttl.isql
-    echo "rdf_loader_run();" >> tmp_ttl.isql
+    echo "rdf_loader_run();" >> tmp_trig.isql
+    echo "rdf_loader_run();" >> tmp_trig.isql
+    echo "rdf_loader_run();" >> tmp_trig.isql
+    echo "rdf_loader_run();" >> tmp_trig.isql
 }
 
 execute_isql(){
