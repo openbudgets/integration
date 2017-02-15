@@ -34,7 +34,6 @@ populate_isql_file_with_deletes(){
 
 populate_isql_file_with_imports(){
     cd /upload
-    . /setEnv
     echo "Importing started from /upload"
     echo "DELETE FROM DB.DBA.load_list;" >> tmp_trig.isql
     echo "ld_dir_all('/upload', '*.trig','not_used');" >> tmp_trig.isql
@@ -46,6 +45,8 @@ populate_isql_file_with_imports(){
 }
 
 execute_isql(){
+    cd /uploads
+    . /setEnv
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_trig.isql
 }
 
