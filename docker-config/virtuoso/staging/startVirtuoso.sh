@@ -12,6 +12,7 @@ echo "export DBA_PASSWORD=$DBA_PASSWORD" > /setEnv
 cd / && find . -name "*virtuoso.trx*" | xargs -i rm "{}"
 cd / && find . -name "*virtuoso.lck*" | xargs -i rm "{}"
 
-/usr/bin/supervisord
+#/usr/bin/supervisord
+/bin/sh /virtuoso.sh
 
 
