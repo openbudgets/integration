@@ -26,4 +26,4 @@ COPY ./virtuoso.ini /virtuoso.ini
 COPY ./supervisord.conf /etc/supervisor/supervisord.conf
 
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
-CMD ["/usr/bin/supervisord"]
+CMD ["/bin/sh", "startVirtuoso.sh"]
