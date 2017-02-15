@@ -9,6 +9,9 @@ rm mycron
 # (crontab -l 2>/dev/null; echo "0 * * * * /cronjobs/syncTriplestores") | crontab -
 
 
+cd / && find . -name "*virtuoso.trx*" | xargs -i rm "{}"
+cd / && find . -name "*virtuoso.lck*" | xargs -i rm "{}"
+
 # Start Virtuoso server:
-#/bin/bash /virtuoso.sh
-virtuoso-t +wait +foreground
+/bin/bash /virtuoso.sh
+

@@ -9,5 +9,8 @@ cron
 
 echo "export DBA_PASSWORD=$DBA_PASSWORD" > /setEnv
 
-#/bin/bash /virtuoso.sh
-virtuoso-t +wait +foreground
+cd / && find . -name "*virtuoso.trx*" | xargs -i rm "{}"
+cd / && find . -name "*virtuoso.lck*" | xargs -i rm "{}"
+
+/bin/bash /virtuoso.sh
+
