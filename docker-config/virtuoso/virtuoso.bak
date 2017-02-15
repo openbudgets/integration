@@ -63,7 +63,7 @@ MaxStaticCursorRows		= 5000
 CheckpointAuditTrail		= 0
 AllowOSCalls			= 0
 SchedulerInterval		= 10
-DirsAllowed			= ., /usr/local/virtuoso-opensource/share/virtuoso/vad, /dumps, /upload
+DirsAllowed			= ., /usr/local/virtuoso-opensource/share/virtuoso/vad
 ThreadCleanupInterval		= 0
 ThreadThreshold			= 10
 ResourcesCleanupInterval	= 0
@@ -77,11 +77,11 @@ MaxMemPoolSize                  = 200000000
 PrefixResultNames               = 0
 MacSpotlight                    = 0
 IndexTreeMaps                   = 64
-MaxQueryMem 		 	= 8G		; memory allocated to query processor
+MaxQueryMem 		 	= 2G		; memory allocated to query processor
 VectorSize 		 	= 1000		; initial parallel query vector (array of query operations) size
 MaxVectorSize 		 	= 1000000	; query vector size threshold.
 AdjustVectorSize 	 	= 0
-ThreadsPerQuery 	 	= 6
+ThreadsPerQuery 	 	= 4
 AsyncQueueMaxThreads 	 	= 10
 ;;
 ;; When running with large data sets, one should configure the Virtuoso
@@ -95,8 +95,8 @@ AsyncQueueMaxThreads 	 	= 10
 ;NumberOfBuffers          = 340000
 ; MaxDirtyBuffers          = 250000
 ;; Uncomment next two lines if there is 8 GB system memory free
-NumberOfBuffers          = 680000
-MaxDirtyBuffers          = 500000
+;NumberOfBuffers          = 680000
+;MaxDirtyBuffers          = 500000
 ;; Uncomment next two lines if there is 16 GB system memory free
 ;NumberOfBuffers          = 1360000
 ;MaxDirtyBuffers          = 1000000
@@ -113,8 +113,8 @@ MaxDirtyBuffers          = 500000
 ;; Note the default settings will take very little memory
 ;; but will not result in very good performance
 ;;
-;NumberOfBuffers          = 10000
-;MaxDirtyBuffers          = 6000
+NumberOfBuffers          = 10000
+MaxDirtyBuffers          = 6000
 
 
 [HTTPServer]
@@ -237,7 +237,7 @@ DefaultHost			= localhost:8890
 ;DefaultGraph      		= http://localhost:8890/dataspace
 ;ImmutableGraphs    		= http://localhost:8890/dataspace
 ResultSetMaxRows           	= 10000
-MaxQueryCostEstimationTime 	= 600	; in seconds
+MaxQueryCostEstimationTime 	= 400	; in seconds
 MaxQueryExecutionTime      	= 60	; in seconds
 DefaultQuery               	= select distinct ?Concept where {[] a ?Concept} LIMIT 100
 DeferInferenceRulesInit    	= 0  ; controls inference rules loading
