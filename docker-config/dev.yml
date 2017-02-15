@@ -176,6 +176,7 @@ services:
             - triple_store_production
             - virtuoso_staging
             - virtuoso_production
+            - virtuoso_staging_old
             - rudolf
             - os-viewer
             - os-explorer
