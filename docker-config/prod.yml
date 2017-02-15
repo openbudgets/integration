@@ -155,7 +155,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
-            - ./virtuoso/virtuoso.ini:/virtuoso.ini
+            - ./virtuoso/staging/virtuoso.ini:/virtuoso.ini
         env_file:
             - ../.env
         environment:
@@ -170,6 +170,7 @@ services:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
+            - ./virtuoso/production/virtuoso.ini:/virtuoso.ini
         env_file:
             - ../.env
         environment:
