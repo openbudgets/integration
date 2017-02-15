@@ -56,6 +56,16 @@ Requirements for the installation environment:
     - OS-Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer
     - Dump of the FDP-2-RDF-Pipeline: http://eis-openbudgets.iais.fraunhofer.de/dumps
 
+(3) Adding a new app:
+    - Create a new folder inside docker-config
+    - Add a Dockerfile where you clone the repo and install stuff
+      - Specify the CMD running command
+    - Add segment/pattern to nginx with the app's info, this is inside 'docker-config/nginx'
+    - Add the app the dev.yml or whichever docker-compose file you want
+      - Link it to any service you like
+      - Link it to the volumes you need
+      - Expose the app's port
+
 Appendix
 
     How To import the FDP-2-RDF-Pipeline on LinkedPipes-Frontend (8080):

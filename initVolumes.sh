@@ -55,4 +55,8 @@ mkdir -p volumes/alignment/mysql
 # Alignment Redis DB:
 mkdir -p volumes/alignment/redis
 
+# Microsite
+# TODO: fix this path
+mkdir -p volumes/os_viewer/c
+
 chmod -R oga+rwx ./volumes

@@ -184,6 +184,7 @@ services:
             - indigo
             - rdfbrowser
             - alignmentui
+            - microsite
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -197,6 +198,7 @@ services:
           - "9003:8000"
         volumes:
             - ./os-viewer/dev_config:/app/app/config
+            - ./volumes/os-viewer/os_viewer_themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://localhost
             - DEFAULT_BASE_PATH=/viewer
@@ -228,6 +230,22 @@ services:
           - "4200:4200"
         links:
           - damapp
+    microsite:
+        build: ./microsite
+        restart: always
+        volumes:
+          - ./volumes/os_viewer/os_viewer_themes:/usr/src/app
+        expose:
+          - "8000"
+        depends_on:
+          - os-viewer
+        links:
+          - os-viewer
+        environment:
+          # non secret static environment variables
+          - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
+          - OS_VIEWER_HOST=os-viewer
+          - OS_API=http://next.openspending.org/api/3
 
 #    vocol:
 #        build: ./vocol
