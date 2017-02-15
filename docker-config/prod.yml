@@ -155,6 +155,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
+            - ./virtuoso/virtuoso.ini:/virtuoso.ini
         env_file:
             - ../.env
         environment:
