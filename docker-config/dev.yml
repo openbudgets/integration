@@ -60,8 +60,11 @@ services:
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStaging/data:/data
+            - ../volumes/virtuosoStaging/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+            - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
+            - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
+            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
@@ -76,8 +79,7 @@ services:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
-            - ./virtuoso/production/supervisord.conf:/etc/supervisord.conf
-            - ./virtuoso/production/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
@@ -85,17 +87,15 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
-    virtuoso_staging_clean:
-        image: openbudgets/virtuoso_staging_clean
+    virtuoso_staging_old:
+        image: openbudgets/virtuoso_staging_old
         build: ./virtuoso
         restart: always
         volumes:
-            - ../volumes/virtuosoStagingClean/data:/data
-            - ../volumes/virtuosoStagingClean/upload:/upload
+            - ../volumes/virtuosoStagingOld/data:/data
+            - ../volumes/virtuosoStagingOld/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
-            - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
-            - ./virtuoso/staging/virtuoso.ini:/usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
+            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true

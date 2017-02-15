@@ -181,8 +181,7 @@ services:
             - "8891:8890"
             - "1112:1111"
     virtuoso_staging_old:
-        image: openbudgets/virtuoso_staging_old
-        build: ./virtuoso
+        image: openbudgets/virtuoso_staging:0.0.6
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
