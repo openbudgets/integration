@@ -147,7 +147,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ../volumes/sshserver/log:/var/log
     virtuoso_staging:
-        image: openbudgets/virtuoso_staging
+        image: openbudgets/virtuoso
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStaging/data:/data
@@ -163,7 +163,7 @@ services:
             - "8890:8890"
             - "1111:1111"
     virtuoso_production:
-        image: openbudgets/virtuoso_production
+        image: openbudgets/virtuoso
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoProduction/data:/data
@@ -177,7 +177,7 @@ services:
             - "8891:8890"
             - "1112:1111"
     virtuoso_staging_old:
-        image: openbudgets/virtuoso_staging_old
+        image: openbudgets/virtuoso
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
@@ -281,7 +281,7 @@ services:
             - alignmentui
         ports:
             - "80:80" # http
-            - "443:443" #
+            - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
     os-viewer:   #image: openspending/os-viewer
         image: openbudgets/os-viewer

@@ -54,7 +54,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ../volumes/sshserver/log:/var/log
     virtuoso_staging:
-        image: openbudgets/virtuoso_staging
+        image: openbudgets/virtuoso
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStaging/data:/data
@@ -62,43 +62,38 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
-            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
         env_file:
             - ../env.example
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
-            #- DEFAULT_GRAPH=
         ports:
             - "8890:8890"
             - "1111:1111"
     virtuoso_production:
-        image: openbudgets/virtuoso_production
+        image: openbudgets/virtuoso
         build: ./virtuoso
         volumes:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
-            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
         env_file:
             - ../env.example
         environment:
             - SPARQL_UPDATE=false
-            #- DEFAULT_GRAPH=te
         ports:
             - "8891:8890"
             - "1112:1111"
     virtuoso_staging_old:
-        image: openbudgets/virtuoso_staging:0.0.6
+        image: openbudgets/virtuoso
+        build: ./virtuoso
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
             - ../volumes/nginx/dumps:/dumps
-            - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../env.example
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
-            #- DEFAULT_GRAPH=te
         ports:
             - "8893:8890"
             - "1113:1111"
@@ -164,6 +159,7 @@ services:
     nginx:
         image: openbudgets/nginx
         build: ./nginx
+        restart: always
         volumes:
             - ./nginx/conf/nginx_dev.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
@@ -191,9 +187,6 @@ services:
             - "80:80" # http
             - "443:443" # https
             - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
-#        environment:
-#            - NGINX_BASIC_AUTH_PW=$NGINX_BASIC_AUTH_PW
-#            - NGINX_BASIC_AUTH_USER=$NGINX_BASIC_AUTH_USER
     os-viewer:   #image: openspending/os-viewer
         image: openbudgets/os-viewer
         build: ./os-viewer
