@@ -10,4 +10,5 @@ rm mycron
 
 
 # Start Virtuoso server:
-/bin/bash /virtuoso.sh
+#/bin/bash /virtuoso.sh
+virtuoso-t +wait +foreground

@@ -9,4 +9,5 @@ cron
 
 echo "export DBA_PASSWORD=$DBA_PASSWORD" > /setEnv
 
-/bin/bash /virtuoso.sh
+#/bin/bash /virtuoso.sh
+virtuoso-t +wait +foreground
