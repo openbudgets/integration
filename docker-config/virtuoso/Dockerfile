@@ -23,6 +23,7 @@ COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 COPY ./syslog-ng /etc/default/syslog-ng
 #COPY ./crontab.debug /etc/crontab
 COPY ./virtuoso.ini /virtuoso.ini
+COPY /supervisord.conf /etc/supervisord.conf
 
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
-CMD ["/bin/sh", "/startVirtuoso.sh"]
+CMD ["/usr/bin/supervisord"]
