@@ -1,4 +1,4 @@
-FROM tenforce/virtuoso:1.1.0-virtuoso7.2.4
+FROM tenforce/virtuoso:1.1.0-virtuoso7.2.2
 
 RUN apt-get update && \
     apt-get install -y supervisor wget gzip software-properties-common && \
