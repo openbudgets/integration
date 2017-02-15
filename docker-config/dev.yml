@@ -12,8 +12,8 @@ services:
         build: ./alignmentmysql
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+        env_file:
+            - ../env.example
         ports:
             - "3306:3307"
     alignmentredis:
@@ -26,10 +26,8 @@ services:
         build: ./alignmentui
         volumes:
             - ../volumes/virtuosoStaging/data:/data
-        environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
-            - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
-            - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
+        env_file:
+            - ../env.example
         links:
             - alignmentmysql
             - alignmentredis
@@ -65,6 +63,8 @@ services:
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
             - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../env.example
         environment:
             - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
@@ -80,17 +80,16 @@ services:
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
             - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../env.example
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
             #- DEFAULT_GRAPH=te
         ports:
             - "8891:8890"
             - "1112:1111"
     virtuoso_staging_old:
-        image: openbudgets/virtuoso_staging_old
-        build: ./virtuoso
-        restart: always
+        image: openbudgets/virtuoso_staging:0.0.6
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
@@ -151,8 +150,8 @@ services:
         build: ./dampostgres
         volumes:
             - ../volumes/dam/dampostgres:/var/lib/postgresql/data
-        environment:
-            - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
+        env_file:
+            - ../env.example
     damapp:
         image: openbudgets/damapp
         build: ./damapp
@@ -160,8 +159,8 @@ services:
             - "5000:5000"
         links:
             - dampostgres
-        environment:
-            - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
+        env_file:
+            - ../env.example
     nginx:
         image: openbudgets/nginx
         build: ./nginx

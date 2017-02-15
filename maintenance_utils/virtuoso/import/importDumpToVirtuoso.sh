@@ -10,6 +10,6 @@ echo "Created graph-files for each ttl-file"
 
 # Upload to Virtuoso:
 echo "Upload to Virtuoso..."
-. ../../../setEnv
+. ../../../env
 docker exec dockerconfig_virtuoso_staging_1 /bin/sh /importDump.sh $VIRTUOSO_STAG_PW
 echo "Uploaded to Virtuoso."

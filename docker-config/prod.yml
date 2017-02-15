@@ -12,8 +12,8 @@ services:
         build: ./alignmentmysql
         volumes:
             - ../volumes/alignment/mysql:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
+        env_file:
+            - ../.env
         ports:
             - "3306:3307"
     alignmentredis:
@@ -26,10 +26,8 @@ services:
         build: ./alignmentui
         volumes:
             - ../volumes/virtuosoStaging/data:/data
-        environment:
-            - MYSQL_ROOT_PASSWORD=$ALIGNMENT_MYSQL_PW
-            - GITHUB_CLIENT_ID=$GITHUB_CLIENT_ID
-            - GITHUB_CLIENT_SECRET=$GITHUB_CLIENT_SECRET
+        env_file:
+            - ../.env
         links:
             - alignmentmysql
             - alignmentredis
@@ -158,10 +156,10 @@ services:
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
             - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../.env
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
-            #- DEFAULT_GRAPH=
         ports:
             - "8890:8890"
             - "1111:1111"
@@ -173,10 +171,10 @@ services:
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
             - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../.env
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_PROD_PW
             - SPARQL_UPDATE=false
-            #- DEFAULT_GRAPH=te
         ports:
             - "8891:8890"
             - "1112:1111"
@@ -187,10 +185,10 @@ services:
             - ../volumes/virtuosoStagingOld/upload:/upload
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/virtuoso.ini:/data/virtuoso.ini
+        env_file:
+            - ../.env
         environment:
-            - DBA_PASSWORD=$VIRTUOSO_STAG_PW
             - SPARQL_UPDATE=true
-            #- DEFAULT_GRAPH=te
         ports:
             - "8893:8890"
             - "1113:1111"
@@ -245,8 +243,8 @@ services:
         build: ./dampostgres
         volumes:
             - ../volumes/dam/dampostgres:/var/lib/postgresql/data
-        environment:
-            - POSTGRES_PASSWORD=$DAM_POSTGRES_PW
+        env_file:
+            - ../.env
     damapp:
         image: openbudgets/damapp
         build: ./damapp
@@ -254,8 +252,8 @@ services:
             - "5000:5000"
         links:
             - dampostgres
-        environment:
-            - DAM_POSTGRES_PW=$DAM_POSTGRES_PW
+        env_file:
+            - ../.env
     nginx:
         image: openbudgets/nginx
         build: ./nginx
