@@ -1,4 +1,4 @@
-FROM openbudgets/virtuoso:7.2.4
+FROM tenforce/virtuoso:1.1.0-virtuoso7.2.4
 
 RUN apt-get update && \
     apt-get install -y supervisor wget gzip software-properties-common && \
@@ -23,7 +23,7 @@ COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 COPY ./syslog-ng /etc/default/syslog-ng
 #COPY ./crontab.debug /etc/crontab
 COPY ./virtuoso.ini /virtuoso.ini
-COPY ./supervisord.conf /etc/supervisord.conf
+COPY ./supervisord.conf /etc/supervisor/supervisord.conf
 
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
 CMD ["/usr/bin/supervisord"]
