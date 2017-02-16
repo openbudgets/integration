@@ -44,7 +44,16 @@ populate_isql_file_with_imports(){
     echo "rdf_loader_run();" >> tmp_ttl.isql
 }
 
-execute_isql(){
+run_multiple_loaders(){
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+}
+
+populate_load_list(){
     cd /upload
     . /setEnv
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_ttl.isql
@@ -65,5 +74,6 @@ populate_isql_file_with_deletes
 # Import Datasets:
 populate_isql_file_with_imports
 
-execute_isql
+populate_load_list
+run_multiple_loaders
 clear_upload_dir
