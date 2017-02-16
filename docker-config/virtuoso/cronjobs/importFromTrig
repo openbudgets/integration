@@ -23,7 +23,7 @@ _find_graphs_to_delete(){
 
 _create_sparql_deletes_isql(){
     echo "_create_sparql_deletes_isql"
-    cd /uploads
+    cd /upload
     echo "log_enable(3,1);" >> tmp_trig.isql
     while read -r LINE; do
         echo "SPARQL CLEAR GRAPH $LINE;" >> tmp_trig.isql
