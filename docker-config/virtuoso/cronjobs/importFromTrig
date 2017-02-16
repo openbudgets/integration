@@ -50,6 +50,7 @@ _create_isql_file(){
 
 begin_bulk_upload(){
     echo "begin_bulk_upload"
+    _create_isql_file
     . /setEnv
     # clean previous bulk upload schedule:
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DELETE FROM DB.DBA.load_list;"
@@ -61,7 +62,6 @@ run_bulk_upload(){
     echo "run_bulk_upload"
     . /setEnv
     cd /upload
-    _create_isql_file
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_trig.isql
 
 
