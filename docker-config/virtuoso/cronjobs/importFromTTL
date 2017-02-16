@@ -1,30 +1,28 @@
 #!/usr/bin/env bash
-# see: http://virtuoso.openlinksw.com/dataspace/doc/dav/wiki/Main/VirtBulkRDFLoader
-# 1st argument: IMPORT_FOLDER within the container for example /dumps points to http://eis-openbudgets.iais.fraunhofer.de/dumps
-# 2nd argument: DBA_PASSWORD
 set -e
 
 PATH=/apache-jena/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-clear_delete_file(){
+#### Helper functions #####
+
+_clear_tmp_files(){
+    echo "_clear_tmp_files"
     cd /upload
     : > ./delete_graphs_ttl.tmp
     : > ./delete_graphs_ttl.txt
+    : > tmp_ttl.isql
 }
 
-populate_delete_file(){
+_find_graphs_to_delete(){
+    echo "_find_graphs_to_delete"
     cd /upload
     find . -name "*.ttl.graph" | while read filename; do (cat "$filename";echo) >> ./delete_graphs_ttl.tmp; done
     # Remove empty lines:
     grep '[^[:blank:]]' < ./delete_graphs_ttl.tmp > ./delete_graphs_ttl.txt
 }
 
-clear_isql_file(){
-    cd /upload
-    : > tmp_ttl.isql
-}
-
-populate_isql_file_with_deletes(){
+_create_sparql_deletes_isql(){
+    echo "_create_sparql_deletes_isql"
     cd /upload
     echo "log_enable(3,1);" >> tmp_ttl.isql
     while read -r LINE; do
@@ -32,46 +30,70 @@ populate_isql_file_with_deletes(){
     done < ./delete_graphs_ttl.txt
 }
 
-populate_isql_file_with_imports(){
+_create_import_isql(){
+    echo "_create_import_isql"
     cd /upload
     echo "Importing started from /upload"
-    echo "DELETE FROM DB.DBA.load_list;" >> tmp_ttl.isql
     echo "ld_dir_all('/upload', '*.ttl', NULL);" >> tmp_ttl.isql
     echo "select * from DB.DBA.load_list;" >> tmp_ttl.isql
-    echo "rdf_loader_run();" >> tmp_ttl.isql
 }
 
-run_multiple_loaders(){
+_create_isql_file(){
+    echo "_create_isql_file"
+    _clear_tmp_files
+    _find_graphs_to_delete
+    _create_sparql_deletes_isql
+    _create_import_isql
+}
+
+#### main functions #####
+
+begin_bulk_upload(){
+    echo "begin_bulk_upload"
+    _create_isql_file
     . /setEnv
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    # clean previous bulk upload schedule:
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DELETE FROM DB.DBA.load_list;"
+    # disable indexing
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.VT_BATCH_UPDATE ('DB.DBA.RDF_OBJ', 'ON', NULL);"
 }
 
-populate_load_list(){
+run_bulk_upload(){
+    echo "run_bulk_upload"
+    . /setEnv
     cd /upload
-    . /setEnv
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_ttl.isql
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();"
+}
+
+create_checkpoint(){
+    echo "create_checkpoint"
+    . /setEnv
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="checkpoint;"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="commit WORK;"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="checkpoint;"
+}
+
+end_bulk_upload(){
+    echo "end_bulk_upload"
+    . /setEnv
+    # enable indexing
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.RDF_OBJ_FT_RULE_ADD (null, null, 'All');"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.VT_INC_INDEX_DB_DBA_RDF_OBJ ();"
 }
 
 clear_upload_dir(){
+    echo "clear_upload_dir"
     cd /upload && find . -name "*.ttl" | xargs -I"{}" rm "{}"
     cd /upload && find . -name "*.ttl.graph" | xargs -I"{}" rm "{}"
 }
 
-clear_delete_file
-clear_isql_file
-
-# Delete Graphs:
-populate_delete_file
-populate_isql_file_with_deletes
-
 # Import Datasets:
-populate_isql_file_with_imports
+begin_bulk_upload
+run_bulk_upload
+create_checkpoint
+end_bulk_upload
 
-populate_load_list
-run_multiple_loaders
+# Delete ttl-files:
 clear_upload_dir

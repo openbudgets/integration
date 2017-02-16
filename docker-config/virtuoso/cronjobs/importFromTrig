@@ -96,5 +96,3 @@ end_bulk_upload
 
 # Delete trig-files:
 clear_upload_dir
-
-
