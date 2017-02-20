@@ -2,6 +2,8 @@
 
 # Start Virtuoso server:
 chmod a+x -R /etc/cron.*/
+chmod a+rwx -R /virtuoso.ini
+
 #cp /virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
 syslog-ng
 anacron

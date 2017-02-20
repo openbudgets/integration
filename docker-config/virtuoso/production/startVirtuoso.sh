@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 chmod a+x -R /etc/cron.*/
+chmod a+rwx -R /virtuoso.ini
+
 # Install cronjob:
 #(crontab -l 2>/dev/null; echo "* * * * * /cronjobs/syncTriplestores") | crontab -
 echo "0 * * * * /cronjobs/syncTriplestores" > mycron
