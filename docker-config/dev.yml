@@ -143,7 +143,7 @@ services:
         volumes:
             - ../volumes/rudolf/www:/var/www
         links:
-            - triple_store_production
+#            - triple_store_production
             - virtuoso_production
             - virtuoso_staging
     rdfbrowser:
@@ -189,8 +189,8 @@ services:
             - ./nginx/static_files/svg:/var/www/svg
         links:
             - linkedpipes_fdp
-            - triple_store_staging
-            - triple_store_production
+#            - triple_store_staging
+#            - triple_store_production
             - virtuoso_staging
             - virtuoso_production
             - virtuoso_staging_old

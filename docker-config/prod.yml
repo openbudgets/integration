@@ -61,7 +61,7 @@ services:
             - "2223-2230:2223-2230" # Linked Pipes FTP data psort
             - "8101:9101" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_1:
@@ -79,7 +79,7 @@ services:
             - "8223-8230:8223-8230" # Linked Pipes FTP data port
             - "8201:9201" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_2:
@@ -97,7 +97,7 @@ services:
             - "8323-8330:8323-8330" # Linked Pipes FTP data port
             - "8301:9301" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_3:
@@ -115,7 +115,7 @@ services:
             - "8423-8430:8423-8430" # Linked Pipes FTP data port
             - "8401:9401" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_4:
@@ -133,7 +133,7 @@ services:
             - "8523-8530:8523-8530" # Linked Pipes FTP data port
             - "8501:9501" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_5:
@@ -151,7 +151,7 @@ services:
             - "8623-8630:8623-8630" # Linked Pipes FTP data port
             - "8601:9601" # supervisord frontend
         links:
-            - triple_store_staging
+#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     sshserver:
@@ -239,7 +239,7 @@ services:
         volumes:
             - ../volumes/rudolf/www:/var/www
         links:
-            - triple_store_production
+#            - triple_store_production
             - virtuoso_production
             - virtuoso_staging
     rdfbrowser:
@@ -285,8 +285,8 @@ services:
             - ./nginx/static_files/svg:/var/www/svg
         links:
             - linkedpipes_fdp
-            - triple_store_staging
-            - triple_store_production
+#            - triple_store_staging
+#            - triple_store_production
             - virtuoso_staging
             - virtuoso_production
             - virtuoso_staging_old
@@ -297,6 +297,7 @@ services:
             - indigo
             - rdfbrowser
             - alignmentui
+            - microsite
         ports:
             - "80:80" # http
             - "443:443" # https
