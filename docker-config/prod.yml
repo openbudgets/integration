@@ -207,31 +207,31 @@ services:
         ports:
             - "8893:8890"
             - "1113:1111"
-    triple_store_staging:
-        image: openbudgets/triple_store_staging
-        build: ./fuseki
-        restart: always
-        volumes:
-            - ./fuseki/staging/start.sh:/start.sh
-            - ./fuseki/staging:/staging
-            - ../volumes/tripleStoreStaging/log:/var/log
-            - ../volumes/tripleStoreStaging/data:/data
-            - ../volumes/nginx/dumps:/dumps
-        ports:
-            - "33030:3030"
-            - "39001:9001" # supervisord frontend
-    triple_store_production:
-        image: openbudgets/triple_store_production
-        build: ./fuseki
-        restart: always
-        volumes:
-            - ./fuseki/production/start.sh:/start.sh
-            - ../volumes/tripleStoreProduction/log:/var/log
-            - ../volumes/tripleStoreProduction/data:/data
-            - ../volumes/tripleStoreStaging/data:/newdata
-        ports:
-            - "43030:3030"
-            - "49001:9001" # supervisord frontend
+#    triple_store_staging:
+#        image: openbudgets/triple_store_staging
+#        build: ./fuseki
+#        restart: always
+#        volumes:
+#            - ./fuseki/staging/start.sh:/start.sh
+#            - ./fuseki/staging:/staging
+#            - ../volumes/tripleStoreStaging/log:/var/log
+#            - ../volumes/tripleStoreStaging/data:/data
+#            - ../volumes/nginx/dumps:/dumps
+#        ports:
+#            - "33030:3030"
+#            - "39001:9001" # supervisord frontend
+#    triple_store_production:
+#        image: openbudgets/triple_store_production
+#        build: ./fuseki
+#        restart: always
+#        volumes:
+#            - ./fuseki/production/start.sh:/start.sh
+#            - ../volumes/tripleStoreProduction/log:/var/log
+#            - ../volumes/tripleStoreProduction/data:/data
+#            - ../volumes/tripleStoreStaging/data:/newdata
+#        ports:
+#            - "43030:3030"
+#            - "49001:9001" # supervisord frontend
     rudolf:
         image: openbudgets/rudolf
         build: ./rudolf
