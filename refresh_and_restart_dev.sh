@@ -4,7 +4,7 @@ git pull origin master
 export COMPOSE_HTTP_TIMEOUT=200
 export GOMAXPROCS=4
 OBEU_WORKDIR=$PWD
-s
+
 # -- build: Only rebuilding Images that have changed
     # -- build: Only rebuilding Images that have changed
 cd $OBEU_WORKDIR/docker-config && \

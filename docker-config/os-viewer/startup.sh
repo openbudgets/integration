@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+rsync -r /config /app/app/config
+
 ls $WORKDIR/.git > /dev/null && cd $WORKDIR || cd /app
 echo working from `pwd`
 echo "GIT_REPO: $GIT_REPO"

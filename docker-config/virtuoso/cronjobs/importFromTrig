@@ -10,7 +10,7 @@ _clear_tmp_files(){
     cd /upload
     : > ./delete_graphs_trig.tmp
     : > ./delete_graphs_trig.txt
-    : > tmp_trig.isql
+    : > ./tmp_trig.isql
 }
 
 _find_graphs_to_delete(){

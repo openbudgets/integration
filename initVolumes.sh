@@ -29,6 +29,9 @@ mkdir -p volumes/virtuosoStagingOld/upload
 mkdir -p volumes/nginx/log
 mkdir -p volumes/nginx/dumps
 
+# OS-viewer:
+mkdir -p volumes/osviewer/themes
+
 # tripleStoreStaging:
 mkdir -p volumes/tripleStoreStaging/data
 mkdir -p volumes/tripleStoreStaging/log

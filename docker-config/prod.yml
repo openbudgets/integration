@@ -1,5 +1,20 @@
 version: '2'
 services:
+    microsite:
+        image: openbudgets/microsite
+        build: ./microsite
+        volumes:
+            - ../volumes/osviewer/themes:/usr/src/app
+        ports:
+            - "8003:8000"
+        links:
+            - os-viewer
+        environment:
+            - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
+            - OS_VIEWER_HOST=os-viewer
+            - OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
+        env_file:
+            - ../.env
     silkworkbench:
         image: openbudgets/silkworkbench
         build: ./silkworkbench
@@ -294,7 +309,8 @@ services:
         ports:
           - "9003:8000"
         volumes:
-            - ./os-viewer/prod_config:/app/app/config
+            - ./os-viewer/prod_config:/config
+            - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - DEFAULT_BASE_PATH=/viewer

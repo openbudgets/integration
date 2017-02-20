@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4
 
-RUN apk add --update curl nodejs git python
+RUN apk add --update curl nodejs git python rsync
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
 

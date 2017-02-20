@@ -3,8 +3,18 @@ services:
     microsite:
         image: openbudgets/microsite
         build: ./microsite
+        volumes:
+            - ../volumes/osviewer/themes:/usr/src/app
         ports:
-            - "9000:9000"
+            - "8003:8000"
+        links:
+            - os-viewer
+        environment:
+            - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
+            - OS_VIEWER_HOST=os-viewer
+            - OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
+        env_file:
+            - ../env.example
     silkworkbench:
         image: openbudgets/silkworkbench
         build: ./silkworkbench
@@ -67,6 +77,7 @@ services:
             - ../volumes/nginx/dumps:/dumps
             - ./virtuoso/cronjobs/importFromTrig:/etc/cron.hourly/importFromTrig
             - ./virtuoso/cronjobs/importFromTTL:/etc/cron.hourly/importFromTTL
+            - ./virtuoso/virtuoso.ini.dev:/virtuoso.ini
         env_file:
             - ../env.example
         environment:
@@ -81,6 +92,7 @@ services:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
             - ./virtuoso/production/startVirtuoso.sh:/startVirtuoso.sh
+            - ./virtuoso/virtuoso.ini.dev:/virtuoso.ini
         env_file:
             - ../env.example
         environment:
@@ -189,6 +201,7 @@ services:
             - indigo
             - rdfbrowser
             - alignmentui
+            - microsite
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -201,7 +214,8 @@ services:
         ports:
           - "9003:8000"
         volumes:
-            - ./os-viewer/dev_config:/app/app/config
+            - ./os-viewer/dev_config:/config
+            - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://localhost
             - DEFAULT_BASE_PATH=/viewer
