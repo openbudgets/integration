@@ -64,7 +64,9 @@ run_bulk_upload(){
     cd /upload
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_trig.isql
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
 }
 
 create_checkpoint(){
