@@ -63,10 +63,9 @@ delete_graphs_for_update(){
     . /setEnv
     cd /upload
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" delete_graphs.isql
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    while read stmt; do
+        /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="$stmt"
+    done <delete_graphs.isql
 }
 
 run_bulk_upload(){
