@@ -5,6 +5,7 @@ services:
         build: ./microsite
         volumes:
             - ../volumes/osviewer/themes:/usr/src/app
+            - ../volumes/microsite/data/db.sqlite3:/db.sqlite3
         ports:
             - "8003:8000"
         links:

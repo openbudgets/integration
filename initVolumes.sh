@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# Microsite:
+mkdir -p volumes/microsite/data
+[ ! -f volumes/microsite/data/db.sqlite3 ] && cp ./docker-config/microsite/db.sqlite3 ./volumes/microsite/data/db.sqlite3
+
 # Linkedpipes:
 mkdir -p volumes/linkedpipes/data
 mkdir -p volumes/linkedpipes/log

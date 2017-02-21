@@ -5,6 +5,7 @@ services:
         build: ./microsite
         volumes:
             - ../volumes/osviewer/themes:/usr/src/app
+            - ../volumes/osviewer/themes:/usr/src/app
         ports:
             - "8003:8000"
         links:
