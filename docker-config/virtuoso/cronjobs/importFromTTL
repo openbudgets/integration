@@ -10,6 +10,7 @@ _clear_tmp_files(){
     cd /upload
     : > ./delete_graphs_ttl.tmp
     : > ./delete_graphs_ttl.txt
+    : > ./delete_graphs.isql
     : > ./tmp_ttl.isql
 }
 
@@ -23,10 +24,11 @@ _find_graphs_to_delete(){
 
 _create_sparql_deletes_isql(){
     echo "_create_sparql_deletes_isql"
+    _find_graphs_to_delete
     cd /upload
-    echo "log_enable(3,1);" >> tmp_ttl.isql
+    echo "log_enable(3,1);" >> delete_graphs.isql
     while read -r LINE; do
-        echo "SPARQL CLEAR GRAPH <$LINE>;" >> tmp_ttl.isql
+        echo "SPARQL CLEAR GRAPH <$LINE>;" >> delete_graphs.isql
     done < ./delete_graphs_ttl.txt
 }
 
@@ -38,19 +40,17 @@ _create_import_isql(){
     echo "select * from DB.DBA.load_list;" >> tmp_ttl.isql
 }
 
-_create_isql_file(){
+#### main functions #####
+
+create_isql_files(){
     echo "_create_isql_file"
     _clear_tmp_files
-    _find_graphs_to_delete
     _create_sparql_deletes_isql
     _create_import_isql
 }
 
-#### main functions #####
-
-begin_bulk_upload(){
+clear_statements(){
     echo "begin_bulk_upload"
-    _create_isql_file
     . /setEnv
     # clean previous bulk upload schedule:
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DELETE FROM DB.DBA.load_list;"
@@ -58,12 +58,23 @@ begin_bulk_upload(){
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.VT_BATCH_UPDATE ('DB.DBA.RDF_OBJ', 'ON', NULL);"
 }
 
+delete_graphs_for_update(){
+    echo "delete_graphs_for_update"
+    . /setEnv
+    cd /upload
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" delete_graphs.isql
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
+}
+
 run_bulk_upload(){
     echo "run_bulk_upload"
     . /setEnv
     cd /upload
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_ttl.isql
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_ttl.isql
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();" &
@@ -92,7 +103,10 @@ clear_upload_dir(){
 }
 
 # Import Datasets:
-begin_bulk_upload
+create_isql_files
+clear_statements
+delete_graphs_for_update
+clear_statements
 run_bulk_upload
 create_checkpoint
 end_bulk_upload
