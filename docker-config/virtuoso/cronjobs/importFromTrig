@@ -12,9 +12,9 @@ _find_graphs_to_delete(){
     : > ./delete_graphs.tmp
     : > ./delete_graphs.txt
     # Extract graphnames to update:
-    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs.tmp
-    # Remove empty lines:
-    grep '[^[:blank:]]' < ./delete_graphs.tmp > ./delete_graphs.txt
+    find . -name "*.trig" | while read line; do
+        riot "$line" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs.tmp
+    done
 }
 
 _create_delete_isql(){

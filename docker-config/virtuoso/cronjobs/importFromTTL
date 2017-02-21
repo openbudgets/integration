@@ -13,8 +13,6 @@ _find_graphs_to_delete(){
     : > ./delete_graphs.txt
     # Extract graphnames to update:
     find . -name "*.ttl.graph" | while read filename; do (cat "$filename";echo) >> ./delete_graphs.tmp; done
-    # Remove empty lines:
-    grep '[^[:blank:]]' < ./delete_graphs.tmp > ./delete_graphs.txt
 }
 
 _create_delete_isql(){

@@ -4,6 +4,9 @@
 chmod a+x -R /etc/cron.*/
 chmod a+rwx -R /virtuoso.ini
 
+# Install Cronjobs:
+/bin/sh /cronjobs/installCronjobs.sh
+
 #cp /virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
 syslog-ng
 anacron
