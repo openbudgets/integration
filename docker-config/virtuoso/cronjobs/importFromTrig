@@ -10,7 +10,6 @@ _clear_tmp_files(){
     cd /upload
     : > ./delete_graphs_trig.tmp
     : > ./delete_graphs_trig.txt
-    : > ./delete_graphs.isql
     : > ./tmp_trig.isql
 }
 
@@ -20,16 +19,6 @@ _find_graphs_to_delete(){
     find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs_trig.tmp
     # Remove empty lines:
     grep '[^[:blank:]]' < ./delete_graphs_trig.tmp > ./delete_graphs_trig.txt
-}
-
-_create_sparql_deletes_isql(){
-    echo "_create_sparql_deletes_isql"
-    _find_graphs_to_delete
-    cd /upload
-    echo "log_enable(3,1);" >> delete_graphs.isql
-    while read -r LINE; do
-        echo "SPARQL CLEAR GRAPH $LINE;" >> delete_graphs.isql
-    done < ./delete_graphs_trig.txt
 }
 
 _create_import_isql(){
@@ -49,7 +38,7 @@ create_isql_files(){
     _create_import_isql
 }
 
-clear_statements(){
+begin_bulk_upload(){
     echo "begin_bulk_upload"
     . /setEnv
     # clean previous bulk upload schedule:
@@ -60,12 +49,15 @@ clear_statements(){
 
 delete_graphs_for_update(){
     echo "delete_graphs_for_update"
+    _find_graphs_to_delete
     . /setEnv
     cd /upload
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
-    while read stmt; do
-        /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="$stmt"
-    done <delete_graphs.isql
+    while read -r LINE; do
+        : > ./delete_graph.isql
+        echo "log_enable(3,1);" >> delete_graph.isql
+        echo "SPARQL CLEAR GRAPH $LINE;" >> delete_graph.isql
+        /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" delete_graph.isql
+    done < ./delete_graphs_trig.txt
 }
 
 run_bulk_upload(){
@@ -100,11 +92,9 @@ clear_upload_dir(){
 
 # Import Datasets:
 create_isql_files
-clear_statements
 delete_graphs_for_update
-clear_statements
+begin_bulk_upload
 run_bulk_upload
-#create_checkpoint
 end_bulk_upload
 
 # Delete trig-files:
