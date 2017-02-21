@@ -16,5 +16,5 @@ cd / && find . -name "*virtuoso.lck*" | xargs -i rm "{}"
 
 # Start Virtuoso server:
 #/usr/bin/supervisord
-/bin/sh /virtuoso.sh
+sh /virtuoso.sh
 

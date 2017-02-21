@@ -109,6 +109,7 @@ create_checkpoint
 clear_upload_dir
 
 # Shutdown Virtuoso:
+wait 10
 shut_down_virtuoso
 
 
