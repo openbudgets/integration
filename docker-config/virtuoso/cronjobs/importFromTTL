@@ -34,7 +34,6 @@ _create_import_isql(){
 create_isql_files(){
     echo "_create_isql_file"
     _clear_tmp_files
-    _create_sparql_deletes_isql
     _create_import_isql
 }
 
