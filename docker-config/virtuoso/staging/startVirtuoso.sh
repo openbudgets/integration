@@ -5,7 +5,7 @@ chmod a+x -R /etc/cron.*/
 chmod a+rwx -R /virtuoso.ini
 
 # Install Cronjobs:
-/bin/sh /cronjobs/installCronjobs.sh
+sh /cronjobs/installCronjobs.sh
 
 #cp /virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
 syslog-ng
@@ -18,6 +18,6 @@ cd / && find . -name "*virtuoso.trx*" | xargs -i rm "{}"
 cd / && find . -name "*virtuoso.lck*" | xargs -i rm "{}"
 
 #/usr/bin/supervisord
-/bin/sh /virtuoso.sh
+sh /virtuoso.sh
 
 
