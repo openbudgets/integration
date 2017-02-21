@@ -5,40 +5,53 @@ PATH=/apache-jena/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/b
 
 #### Helper functions #####
 
-_clear_tmp_files(){
-    echo "_clear_tmp_files"
-    cd /upload
-    : > ./delete_graphs_trig.tmp
-    : > ./delete_graphs_trig.txt
-    : > ./tmp_trig.isql
-}
-
 _find_graphs_to_delete(){
     echo "_find_graphs_to_delete"
     cd /upload
-    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs_trig.tmp
+    # Clear temp files:
+    : > ./delete_graphs.tmp
+    : > ./delete_graphs.txt
+    # Extract graphnames to update:
+    find . -name "*.trig" | xargs -I"{}" riot "{}" | awk '{print $(NF-1)}' | uniq >> ./delete_graphs.tmp
     # Remove empty lines:
-    grep '[^[:blank:]]' < ./delete_graphs_trig.tmp > ./delete_graphs_trig.txt
+    grep '[^[:blank:]]' < ./delete_graphs.tmp > ./delete_graphs.txt
+}
+
+_create_delete_isql(){
+    echo "_create_delete_isql"
+    cd /upload
+    # Clear temp file:
+    : > ./delete_graphs.isql
+    echo "log_enable(3,1);" >> delete_graphs.isql
+    while read -r LINE; do
+        echo "SPARQL CLEAR GRAPH $LINE;" >> delete_graphs.isql
+    done < ./delete_graphs.txt
 }
 
 _create_import_isql(){
     echo "_create_import_isql"
     cd /upload
-    echo "Importing started from /upload"
-    echo "ld_dir_all('/upload', '*.trig','not_used');" >> tmp_trig.isql
-    echo "select * from DB.DBA.load_list;" >> tmp_trig.isql
+    # Clear temp file:
+    : > ./import_datasets.isql
+    echo "ld_dir_all('/upload', '*.trig','not_used');" >> import_datasets.isql
+    echo "select * from DB.DBA.load_list;" >> import_datasets.isql
 }
 
 #### main functions #####
 
-create_isql_files(){
-    echo "_create_isql_file"
-    _clear_tmp_files
-    _create_import_isql
+delete_graphs(){
+    echo "delete_graphs"
+    _find_graphs_to_delete
+    _create_delete_isql
+
+    cd /upload
+    . /setEnv
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" delete_graphs.isql
 }
 
 begin_bulk_upload(){
     echo "begin_bulk_upload"
+    cd /upload
     . /setEnv
     # clean previous bulk upload schedule:
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DELETE FROM DB.DBA.load_list;"
@@ -46,34 +59,14 @@ begin_bulk_upload(){
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.VT_BATCH_UPDATE ('DB.DBA.RDF_OBJ', 'ON', NULL);"
 }
 
-delete_graphs_for_update(){
-    echo "delete_graphs_for_update"
-    _find_graphs_to_delete
-    . /setEnv
-    cd /upload
-    while read -r LINE; do
-        : > ./delete_graph.isql
-        echo "log_enable(3,1);" >> delete_graph.isql
-        echo "SPARQL CLEAR GRAPH $LINE;" >> delete_graph.isql
-        /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" delete_graph.isql
-    done < ./delete_graphs_trig.txt
-}
-
 run_bulk_upload(){
     echo "run_bulk_upload"
-    . /setEnv
+    _create_import_isql
     cd /upload
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" tmp_trig.isql
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();"
-}
-
-create_checkpoint(){
-    echo "create_checkpoint"
     . /setEnv
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="checkpoint;"
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="commit WORK;"
-    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="checkpoint;"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="set isolation='uncommitted';"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" import_datasets.isql
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="rdf_loader_run();"
 }
 
 end_bulk_upload(){
@@ -84,17 +77,41 @@ end_bulk_upload(){
     /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="DB.DBA.VT_INC_INDEX_DB_DBA_RDF_OBJ ();"
 }
 
+create_checkpoint(){
+    echo "create_checkpoint"
+    . /setEnv
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="commit WORK;"
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="checkpoint;"
+}
+
 clear_upload_dir(){
     echo "clear_upload_dir"
     cd /upload && find . -name "*.trig" | xargs -I"{}" rm "{}"
 }
 
+shut_down_virtuoso(){
+    echo "shut_down_virtuoso"
+    . /setEnv
+    /usr/local/virtuoso-opensource/bin/isql-v 1111 dba "$DBA_PASSWORD" exec="shutdown();"
+}
+
+# Remove graphs for updates:
+delete_graphs
+
 # Import Datasets:
-create_isql_files
-delete_graphs_for_update
 begin_bulk_upload
 run_bulk_upload
 end_bulk_upload
 
-# Delete trig-files:
+# Checkpoint for restart:
+create_checkpoint
+
+# Delete ttl-files:
 clear_upload_dir
+
+# Shutdown Virtuoso:
+shut_down_virtuoso
+
+
+
+

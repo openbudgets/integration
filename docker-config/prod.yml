@@ -49,7 +49,6 @@ services:
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
-        restart: always
         volumes:
             - ../volumes/linkedpipes/data:/data
             - ../volumes/linkedpipes/log:/var/log
@@ -164,6 +163,7 @@ services:
     virtuoso_staging:
         image: openbudgets/virtuoso
         build: ./virtuoso
+        restart: always
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/virtuosoStaging/upload:/upload
@@ -181,6 +181,7 @@ services:
     virtuoso_production:
         image: openbudgets/virtuoso
         build: ./virtuoso
+        restart: always
         volumes:
             - ../volumes/virtuosoProduction/data:/data
             - ../volumes/virtuosoStaging/data:/newdata
@@ -196,6 +197,7 @@ services:
     virtuoso_staging_old:
         image: openbudgets/virtuoso
         build: ./virtuoso
+        restart: always
         volumes:
             - ../volumes/virtuosoStagingOld/data:/data
             - ../volumes/virtuosoStagingOld/upload:/upload
