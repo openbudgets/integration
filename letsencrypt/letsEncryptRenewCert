@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+echo "Renews the certificate if expiration is close. The certificate needs to be installed previously."
+
+docker build -t letsencrypt_img .
+
+# For subdomain: eis-openbudgets
+docker run --rm --name letsencrypt \
+    -p 1086:80 \
+    -v "$PWD/../volumes/nginx/letsencrypt/eis-openbudgets/etc:/etc/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/eis-openbudgets/lib:/var/lib/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/eis-openbudgets/www:/var/www" \
+    letsencrypt_img \
+    renew
+
+# For subdomain: microsite-obeu
+docker run --rm --name letsencrypt \
+    -p 1086:80 \
+    -v "$PWD/../volumes/nginx/letsencrypt/microsite-obeu/etc:/etc/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/microsite-obeu/lib:/var/lib/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/microsite-obeu/www:/var/www" \
+    letsencrypt_img \
+    renew
