@@ -1,8 +1,15 @@
-echo "Refreshing Cache in Rudolf..." | tee -a /var/www/refreshCache.log
+adddate() {
+    while IFS= read -r line; do
+        echo "$(date) $line"
+    done
+}
+
+
+echo "Refreshing Cache in Rudolf..." | adddate | tee -a /var/www/refreshCache.log
 cd /var/www/rudolf && \
-       php artisan cache:clear | tee -a /var/www/refreshCache.log && \
-       php artisan search:load | tee -a /var/www/refreshCache.log && \
-       php artisan model:load global | tee -a /var/www/refreshCache.log
+       php artisan cache:clear | adddate | tee -a /var/www/refreshCache.log && \
+       php artisan search:load | adddate | tee -a /var/www/refreshCache.log && \
+       php artisan model:load global | adddate | tee -a /var/www/refreshCache.log
 cd /var/www/rudolf && \
     chmod -R a+rwx .
-echo "Cache in Rudolf refreshed." | tee -a /var/www/refreshCache.log
+echo "Cache in Rudolf refreshed." | adddate | tee -a /var/www/refreshCache.log

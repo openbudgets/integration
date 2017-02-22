@@ -33,6 +33,10 @@ RUN chown -R www-data:www-data /var/www && \
 RUN cd /var/www/rudolf && composer install --no-scripts && \
     chmod -R a+rwx .
 
+# Add edge repository:
+# RUN echo "http://dl-6.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+# RUN apk add --update moreutils
+
 # Install cronjob for cache refreshing:
 COPY ./refreshCache /etc/periodic/hourly/.
 COPY ./refreshCache /refreshCache
