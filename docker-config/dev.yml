@@ -184,9 +184,6 @@ services:
             - ./nginx/conf/nginx_dev.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
             - ../volumes/nginx/dumps:/var/www/dumps # serve rdf-file-dumps via http
-            - ../volumes/nginx/letsencrypt/www:/tmp/letsencrypt/www # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
             - ./nginx/static_files/images:/var/www/images
             - ./nginx/static_files/svg:/var/www/svg
