@@ -27,6 +27,8 @@ docker run --rm --name letsencrypt \
     --webroot \
     --webroot-path /var/www \
     --agree-tos \
+    --text \
+    --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
     -d eis-openbudgets.iais.fraunhofer.de \
@@ -44,6 +46,8 @@ docker run --rm --name letsencrypt \
     --webroot \
     --webroot-path /var/www \
     --agree-tos \
+    --text \
+    --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
     -d microsite-obeu.iais.fraunhofer.de \
