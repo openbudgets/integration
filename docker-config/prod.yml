@@ -278,12 +278,9 @@ services:
             - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
             - ../volumes/nginx/log:/var/log/nginx
             - ../volumes/nginx/dumps:/var/www/dumps # serve rdf-file-dumps via http
-            - ../volumes/nginx/letsencrypt/eis-openbudgets/www:/tmp/letsencrypt/eis-openbudgets/www # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/eis-openbudgets/etc:/etc/letsencrypt/eis-openbudgets # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/eis-openbudgets/lib:/var/lib/letsencrypt/eis-openbudgets # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/microsite-obeu/www:/tmp/letsencrypt/microsite-obeu/www # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/microsite-obeu/etc:/etc/letsencrypt/microsite-obeu # Lets encrypt files
-            - ../volumes/nginx/letsencrypt/microsite-obeu/lib:/var/lib/letsencrypt/microsite-obeu # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/eis-openbudgets/www:/tmp/letsencrypt/www # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/eis-openbudgets/etc:/etc/letsencrypt # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/eis-openbudgets/lib:/var/lib/letsencrypt # Lets encrypt files
             - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
             - ./nginx/static_files/images:/var/www/images
             - ./nginx/static_files/svg:/var/www/svg
