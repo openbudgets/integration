@@ -1,8 +1,8 @@
-echo "Refreshing Cache in Rudolf..."
+echo "Refreshing Cache in Rudolf..." | tee -a /var/www/refreshCache.log
 cd /var/www/rudolf && \
-       php artisan cache:clear && \
-       php artisan search:load && \
-       php artisan model:load global
+       php artisan cache:clear | tee -a /var/www/refreshCache.log && \
+       php artisan search:load | tee -a /var/www/refreshCache.log && \
+       php artisan model:load global | tee -a /var/www/refreshCache.log
 cd /var/www/rudolf && \
     chmod -R a+rwx .
-echo "Cache in Rudolf refreshed."
+echo "Cache in Rudolf refreshed." | tee -a /var/www/refreshCache.log

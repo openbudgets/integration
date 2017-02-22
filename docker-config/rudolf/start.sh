@@ -13,4 +13,5 @@ refreshCache() {
 }
 
 ## Execute:
+cron
 refreshCache && startRudolf
