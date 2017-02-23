@@ -17,7 +17,7 @@ docker run --rm --name letsencrypt \
     -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
     -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
     letsencrypt_img \
-    certonly \
+    certbot certonly \
     --authenticator webroot \
     --webroot \
     --webroot-path /var/www \
@@ -27,6 +27,23 @@ docker run --rm --name letsencrypt \
     --renew-by-default \
     --rsa-key-size 4096 \
     -d eis-openbudgets.iais.fraunhofer.de \
+    -m maiklukasch@gmail.com
+
+docker run --rm --name letsencrypt \
+    -p 1086:80 \
+    -v "$PWD/../volumes/nginx/letsencrypt/etc:/etc/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
+    letsencrypt_img \
+    certbot certonly \
+    --authenticator webroot \
+    --webroot \
+    --webroot-path /var/www \
+    --agree-tos \
+    --text \
+    --non-interactive \
+    --renew-by-default \
+    --rsa-key-size 4096 \
     -d microsite-obeu.iais.fraunhofer.de \
     -m maiklukasch@gmail.com
 
