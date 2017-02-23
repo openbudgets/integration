@@ -17,7 +17,7 @@ docker run --rm --name letsencrypt \
     -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
     -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
     letsencrypt_img \
-    certbot certonly \
+    renew \
     --authenticator webroot \
     --webroot \
     --webroot-path /var/www \
