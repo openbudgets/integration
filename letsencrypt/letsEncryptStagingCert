@@ -18,18 +18,37 @@ docker run --rm --name letsencrypt \
     -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
     -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
     letsencrypt_img \
-    renew \
+    certonly \
     --authenticator webroot \
     --webroot \
     --webroot-path /var/www \
     --agree-tos \
     --renew-by-default \
     -d eis-openbudgets.iais.fraunhofer.de \
+    -m maiklukasch@gmail.com \
+    --server https://acme-staging.api.letsencrypt.org/directory \
+    --debug \
+    --standalone-supported-challenges http-01 \
+    --verbose
+
+docker run --rm --name letsencrypt \
+    -p 1086:80 \
+    -v "$PWD/../volumes/nginx/letsencrypt/etc:/etc/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt" \
+    -v "$PWD/../volumes/nginx/letsencrypt/www:/var/www" \
+    letsencrypt_img \
+    certonly \
+    --authenticator webroot \
+    --webroot \
+    --webroot-path /var/www \
+    --agree-tos \
+    --renew-by-default \
     -d microsite-obeu.iais.fraunhofer.de \
     -m maiklukasch@gmail.com \
     --server https://acme-staging.api.letsencrypt.org/directory \
     --debug \
     --standalone-supported-challenges http-01 \
     --verbose
+
 
 #docker kill --signal=HUP dockerconfig_nginx_1
