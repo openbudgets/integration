@@ -2,7 +2,9 @@ FROM php:7.0.13-apache
 
 RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
-RUN apt-get update -y && apt-get install -y git openjdk-8-jdk gettext bash curl mysql-client
+RUN apt-get -y update && apt-get install -y git gettext bash curl mysql-client
+RUN apt install -y -t jessie-backports openjdk-8-jre-headless openjdk-8-jdk-headless openjdk-8-jdk ca-certificates-java
+
 
 RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
