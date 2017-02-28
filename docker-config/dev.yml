@@ -12,7 +12,7 @@ services:
             - os-viewer
         environment:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
-            - OS_VIEWER_HOST=os-viewer
+            #- OS_VIEWER_HOST=os-viewer
             - OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
         env_file:
             - ../env.example
@@ -50,7 +50,6 @@ services:
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
-        restart: always
         volumes:
             - ../volumes/linkedpipes/data:/data
             - ../volumes/linkedpipes/log:/var/log
@@ -61,7 +60,7 @@ services:
             - "2223-2230:2223-2230" # Linked Pipes FTP data psort
             - "8101:9101" # supervisord frontend
         links:
-            - triple_store_staging
+            #- triple_store_staging
             - virtuoso_staging
             - sshserver
     sshserver:

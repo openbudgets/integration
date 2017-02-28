@@ -41,7 +41,7 @@ RUN a2enmod proxy_http
 # Install app:
 # Configure Apache Document Root
 #ENV APACHE_DOC_ROOT /var/www/alignment/public/
-ENV APACHE_DOC_ROOT /var/www/
+ENV APACHE_DOC_ROOT /var/www/alignment/public/
 ENV APP_DIR /var/www/alignment
 WORKDIR $APP_DIR
 RUN chmod -R a+rwx $APP_DIR
