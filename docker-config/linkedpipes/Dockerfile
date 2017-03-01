@@ -1,7 +1,7 @@
 FROM gliderlabs/alpine:3.4
 
 RUN apk update && \
-    apk add --update tar git supervisor nodejs openjdk8 wget openssh
+    apk add --update tar git supervisor nodejs openjdk8 wget openssh expect
 ENV JAVA_HOME /usr/lib/jvm/default-jvm
 
 # Install Maven:
@@ -12,6 +12,9 @@ RUN wget http://apache.mirror.digionline.de/maven/maven-3/$MAVEN_VERSION/binarie
     rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     mv apache-maven-$MAVEN_VERSION $M2_HOME
 ENV PATH $PATH:$M2_HOME/bin
+
+COPY ./uv.opendata.cz.cert /.
+RUN { echo "changeit"; echo "yes"; } | keytool -import -alias uv.opendata.cz -file /uv.opendata.cz.cert -keystore $JAVA_HOME/jre/lib/security/cacerts
 
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git /etl

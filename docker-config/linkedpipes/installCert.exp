@@ -1,0 +1,6 @@
+#!/usr/bin/env expect
+spawn "keytool -import -alias uv.opendata.cz -file /uv.opendata.cz.cert -keystore $JAVA_HOME/jre/lib/security/cacerts"
+expect "*assword*"
+send "changeit\r"
+expect "*add*"
+send "yes\r"
