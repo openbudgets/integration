@@ -13,8 +13,8 @@ RUN wget http://apache.mirror.digionline.de/maven/maven-3/$MAVEN_VERSION/binarie
     mv apache-maven-$MAVEN_VERSION $M2_HOME
 ENV PATH $PATH:$M2_HOME/bin
 
-COPY ./uv.opendata.cz.cert /.
-RUN { echo "changeit"; echo "yes"; } | keytool -import -alias uv.opendata.cz -file /uv.opendata.cz.cert -keystore $JAVA_HOME/jre/lib/security/cacerts
+#COPY ./uv.opendata.cz.cert /.
+#RUN { echo "changeit"; echo "yes"; } | keytool -import -alias uv.opendata.cz -file /uv.opendata.cz.cert -keystore $JAVA_HOME/jre/lib/security/cacerts
 
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git /etl

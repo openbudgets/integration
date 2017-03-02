@@ -73,3 +73,4 @@ Appendix
         (b) User-name & Password: root
         (c) Target Directory: /dumps
 
+There is a Google Doc with more specifics how to establish a new subdomain via CNAME and how to modify nginx.conf.
