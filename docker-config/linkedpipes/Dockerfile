@@ -18,7 +18,7 @@ ENV PATH $PATH:$M2_HOME/bin
 
 # Install LinkedPipes
 RUN git clone https://github.com/linkedpipes/etl.git /etl
-RUN cd /etl && git checkout 596d4a5f25b41dc26883565802033aa1394c953a
+RUN cd /etl && git checkout 0c0a6388ab5b50105632d5a5cf1f044644e7e609
 
 RUN cd /etl && mvn install
 RUN chmod uag+rx /etl/deploy/executor.sh && \
