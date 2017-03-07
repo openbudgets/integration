@@ -7,13 +7,13 @@ The OBEU-stack consists of several applications (OBEU-Components) provided by th
 - RDFBrowser https://github.com/okgreece/RDFBrowser
 - DAM https://github.com/openbudgets/DAM
 - Indigo https://github.com/okgreece/indigo
-- nginx as Reverse Proxy
+- nginx as Reverse Proxy https://hub.docker.com/_/nginx/
 - Microsite https://github.com/openbudgets/microsite
 - OpenSpending-Admin https://github.com/openspending/os-admin
 - OpenSpending-Viewer https://github.com/openspending/os-viewer
 - OpenSpending-Explorer https://github.com/openspending/os-explorer
 - Silk Linked Data Integration Framework https://github.com/silk-framework/silk
-- Virtuoso https://github.com/tenforce/docker-virtuoso https://github.com/openlink/virtuoso-opensource
+- Virtuoso https://hub.docker.com/r/tenforce/virtuoso/ https://github.com/openlink/virtuoso-opensource
 
 (1) Local Installation:
     
