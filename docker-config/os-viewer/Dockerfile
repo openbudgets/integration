@@ -15,13 +15,12 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 
 RUN git clone http://github.com/openspending/os-viewer.git app && \
 #    cd app && git checkout fb7ddecca71726ecbfa27067a160c19ac48cbc04
-    cd app && git checkout 120928c23e264d57b2aae06f7f7d1eb47fe4502c
+    cd app && git checkout e67c1eba1df905ff40c8f5a29675816fe599be2e
 
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
 
-RUN cd app && rm -rf node_modules
 RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
-RUN cd app && npm install -verbose
+RUN cd app && npm install
 RUN cd app && node node_modules/gulp/bin/gulp.js
 RUN apk del build-dependencies
 RUN rm -rf /var/cache/apk/*
