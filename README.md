@@ -17,10 +17,9 @@ The OBEU-stack consists of several applications (OBEU-Components) provided by th
 
 (1) Local Installation:
     
-    - Clone the repo
-    - Create Volume Folders via executing: sh ./initVolumes.sh
-    - Update from Git-repo & (re-)starting Docker containers via Shell-Script in Project folder:
-        sh ./refreshAndRestartDev.sh
+    - git clone https://github.com/openbudgets/integration.git
+    - Create & Initialize Volume Folders: sh ./initVolumes.sh
+    - Start applications (incl. update from remote repo): sh ./refresh_and_restart_dev.sh
     
     Exposed components in a local OBEU installation:
         - LinkedPipes: http://localhost:8080
