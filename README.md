@@ -1,24 +1,25 @@
 The OBEU-stack
 
-OBEU-Components:
-- LinkedPipes
-- Fuseki Triplestore (Staging & Production)
-- nginx as Reverse Proxy
-- Rudolf querying the Staging triplestore
-- OS-Viewer backed up by Rudolf
-- DAM (Data Mining https://github.com/openbudgets/DAM)
-
-Requirements for the installation environment:
-- Git
-- Docker (running on Linux recommended)
-- Docker-compose
+The OBEU-stack consists of several applications (OBEU-Components) provided by the partners in the OBEU-project as well as from other Open-Source-projects:
+- LinkedPipes https://github.com/linkedpipes/etl with the FDP-to-RDF-pipeline https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
+- Alignment https://github.com/okgreece/Alignment
+- Rudolf https://github.com/openbudgets/rudolf
+- RDFBrowser https://github.com/okgreece/RDFBrowser
+- DAM https://github.com/openbudgets/DAM
+- Indigo https://github.com/okgreece/indigo
+- nginx as Reverse Proxy https://hub.docker.com/_/nginx/
+- Microsite https://github.com/openbudgets/microsite
+- OpenSpending-Admin https://github.com/openspending/os-admin
+- OpenSpending-Viewer https://github.com/openspending/os-viewer
+- OpenSpending-Explorer https://github.com/openspending/os-explorer
+- Silk Linked Data Integration Framework https://github.com/silk-framework/silk
+- Virtuoso https://hub.docker.com/r/tenforce/virtuoso/ https://github.com/openlink/virtuoso-opensource
 
 (1) Local Installation:
     
-    - Clone the repo
-    - Create Volume Folders via executing: sh ./initVolumes.sh
-    - Update from Git-repo & (re-)starting Docker containers via Shell-Script in Project folder:
-        sh ./refreshAndRestartDev.sh
+    - git clone https://github.com/openbudgets/integration.git
+    - Create & Initialize Volume Folders: sh ./initVolumes.sh
+    - Start applications (incl. update from remote repo): sh ./refresh_and_restart_dev.sh
     
     Exposed components in a local OBEU installation:
         - LinkedPipes: http://localhost:8080
