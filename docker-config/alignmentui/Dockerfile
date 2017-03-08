@@ -33,7 +33,7 @@ RUN a2enmod rewrite
 RUN a2enmod php7.0
 RUN a2enmod proxy
 RUN a2enmod proxy_http
-RUN a2enmod actionss
+RUN a2enmod actions
 
 ENV PHP_TIMEZONE Europe/Berlin
 
