@@ -1,7 +1,9 @@
 FROM node:7.1
 
 RUN apt-get -y update
-RUN apt-get install -y npm git wget curl
+RUN apt-get install -y npm git wget curl \
+    mysql-client zlib1g-dev \
+    docker-php-ext-install zip
 
 RUN npm install -g angular-cli
 
