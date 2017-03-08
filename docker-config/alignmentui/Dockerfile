@@ -37,9 +37,6 @@ RUN a2enmod actions
 
 ENV PHP_TIMEZONE Europe/Berlin
 
-COPY ./apache.conf /etc/apache2/httpd.conf
-COPY ./php.ini /usr/local/etc/php/php.ini
-
 # Install app:
 # Configure Apache Document Root
 #ENV APACHE_DOC_ROOT /var/www/alignment/public/
