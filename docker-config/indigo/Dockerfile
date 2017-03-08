@@ -2,8 +2,9 @@ FROM node:7.1
 
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl \
-    mysql-client zlib1g-dev \
-    docker-php-ext-install zip
+    zlib1g-dev libicu-dev g++
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install intl
 
 RUN npm install -g angular-cli
 
