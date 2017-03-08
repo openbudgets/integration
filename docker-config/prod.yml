@@ -42,7 +42,7 @@ services:
         build: ./alignmentui
         volumes:
             - ../volumes/virtuosoStaging/data:/data
-            - ../volumes/alignment/composer:/composer
+            - ../volumes/alignment/composer:/root/.composer/cache
         env_file:
             - ../.env
         links:
