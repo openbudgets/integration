@@ -2,7 +2,7 @@ FROM node:7.1
 
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl \
-    zlib1g-dev libicu-dev g++
+    zlib1g-dev libicu-dev g++ libmcrypt-dev
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
 
