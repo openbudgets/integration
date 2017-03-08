@@ -3,6 +3,8 @@
         Options -MultiViews
     </IfModule>
 
+    SetEnvIf x-forwarded-proto https HTTPS=on
+
     RewriteEngine On
     Options +FollowSymLinks
     SSLOptions StdEnvVars
