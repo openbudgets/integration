@@ -2,7 +2,7 @@ FROM eboraas/laravel:stretch
 
 RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
 
-RUN apt-get -y update && apt-get install -y git gettext bash curl mysql-client
+RUN apt-get -y update && apt-get install -y git gettext bash curl
 RUN apt install -y -t jessie-backports openjdk-8-jre-headless openjdk-8-jdk-headless openjdk-8-jdk ca-certificates-java
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
