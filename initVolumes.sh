@@ -59,6 +59,7 @@ mkdir -p volumes/rdfbrowser/storage
 
 # Alignment MySQL DB:
 mkdir -p volumes/alignment/mysql
+mkdir -p volumes/alignment/composer
 # Alignment Redis DB:
 mkdir -p volumes/alignment/redis
 
