@@ -20,13 +20,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install mbstring
 RUN docker-php-ext-install mbstring
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
-RUN a2enmod php7.0
-RUN a2enmod proxy
-RUN a2enmod proxy_http
-RUN a2enmod actions
-
 # Install additional packages:
 RUN apt-get purge php7.0-gd
 RUN apt-get install -y libgd3 php7.0-gd libapache2-mod-php7.0 \
@@ -34,7 +27,13 @@ RUN apt-get install -y libgd3 php7.0-gd libapache2-mod-php7.0 \
     php7.0-imagick php7.0-common php7.0-zip
 RUN phpenmod gd
 RUN apt-get upgrade -y
-# php7.0-gd  php-gd php5-gd
+
+# Enable Apache mod_rewrite
+RUN a2enmod rewrite
+RUN a2enmod php7.0
+RUN a2enmod proxy
+RUN a2enmod proxy_http
+RUN a2enmod actionss
 
 ENV PHP_TIMEZONE Europe/Berlin
 
