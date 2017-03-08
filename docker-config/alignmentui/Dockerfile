@@ -49,10 +49,6 @@ RUN git clone https://github.com/okgreece/Alignment.git $APP_DIR && \
     cd $APP_DIR && git checkout f998b73d702b30e0d9cd3917793482eaec550ac2
 COPY ./.env $APP_DIR/.env
 
-RUN composer install
-RUN php artisan key:generate
-RUN chmod -R a+rwx $APP_DIR
-
 COPY ./.htaccess ./var/www/alignment/public/.htaccess
 
 COPY ./wait-for-it.sh /wait-for-it.sh

@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+# Install App:
+cd $APP_DIR
+composer install
+php artisan key:generate
+chmod -R a+rwx $APP_DIR
+
 
 # Configure PHP date.timezone
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
