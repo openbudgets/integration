@@ -4,6 +4,12 @@ RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt
 
 RUN apt-get -y update && apt-get install -y git gettext bash curl mysql-client zip unzip
 
+RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
+RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
+RUN apt-get update -y && \
+    apt-get install -y php7.0-mysql && \
+    docker-php-ext-install pdo_mysql
+
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
