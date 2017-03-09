@@ -1,6 +1,8 @@
 FROM php:7.0.13-apache
 
-RUN apt-get update -y && apt-get install -y curl git
+RUN echo "deb http://ftp.de.debian.org/debian jessie-backports main" >> /etc/apt/sources.list
+
+RUN apt-get -y update && apt-get install -y git gettext bash curl mysql-client zip unzip
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
@@ -11,18 +13,29 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install mbstring
 RUN docker-php-ext-install mbstring
 
-ENV PHP_TIMEZONE Europe/Berlin
+# Install additional packages:
+RUN apt-get purge php7.0-gd
+RUN apt-get install -y libgd3 php7.0-gd libapache2-mod-php7.0 \
+    php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
+    php7.0-imagick php7.0-common php7.0-zip
+RUN phpenmod gd
+RUN apt-get upgrade -y
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
+RUN a2enmod php7.0
+RUN a2enmod proxy
+RUN a2enmod proxy_http
+RUN a2enmod actions
 
-COPY ./php.ini /usr/local/etc/php/
+ENV PHP_TIMEZONE Europe/Berlin
 
 # Install app:
 # Configure Apache Document Root
 ENV APACHE_DOC_ROOT /var/www/RDFBrowser/public/
 ENV APP_DIR /var/www/RDFBrowser
 WORKDIR $APP_DIR
+
 RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR && \
     git checkout 871aba70d30026c4cfb3922813ce6724b165d955
 

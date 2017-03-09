@@ -12,7 +12,7 @@ RUN apt-get update -y && \
     docker-php-ext-install pdo_mysql
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
-    git config --global url."https://".insteadgit Of git://
+    git config --global url."https://".insteadOf git://
 
 # Install Composer:
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -39,7 +39,6 @@ ENV PHP_TIMEZONE Europe/Berlin
 
 # Install app:
 # Configure Apache Document Root
-#ENV APACHE_DOC_ROOT /var/www/alignment/public/
 ENV APACHE_DOC_ROOT /var/www/alignment/public/
 ENV APP_DIR /var/www/alignment
 WORKDIR $APP_DIR
