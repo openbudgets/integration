@@ -21,7 +21,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-install mbstring
 
 # Install additional packages:
-RUN apt-get purge php7.0-gd
 RUN apt-get install -y libgd3 php5-gd libapache2-mod-php7.0 \
     php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
     php7.0-imagick php7.0-common php7.0-zip
