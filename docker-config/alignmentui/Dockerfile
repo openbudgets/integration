@@ -46,7 +46,7 @@ WORKDIR $APP_DIR
 EXPOSE 80
 
 RUN git clone https://github.com/okgreece/Alignment.git $APP_DIR && \
-    cd $APP_DIR && git checkout f998b73d702b30e0d9cd3917793482eaec550ac2
+    cd $APP_DIR && git checkout 4fe5ba7bf89f48c55b03170619ecd0118b1cc370
 COPY ./.env $APP_DIR/.env
 # For https:
 COPY ./AppServiceProvider.php $APP_DIR/app/Providers/AppServiceProvider.php
