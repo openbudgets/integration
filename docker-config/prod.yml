@@ -4,7 +4,7 @@ services:
         image: openbudgets/microsite
         build: ./microsite
         volumes:
-            - ../volumes/osviewer/themes:/usr/src/app
+            - ../volumes/osviewer/themes:/microsite/os_viewer_themes
             - ../volumes/microsite/data/db.sqlite3:/microsite/db.sqlite3
         ports:
             - "8003:8000"
