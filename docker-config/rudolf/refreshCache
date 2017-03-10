@@ -6,10 +6,23 @@ adddate() {
 
 mkdir -p /var/www/log
 cd /var/www/rudolf
-chmod -R a+rwx .
+chmod a+rwx -R /var/www/rudolf
+chown -R www-data:www-data /var/www/rudolf
 
 echo "Refreshing Cache in Rudolf..." | adddate | tee -a /var/www/log/refreshCache.log
 php artisan cache:clear | adddate | tee -a /var/www/log/refreshCache.log
+
+chmod a+rwx -R /var/www/rudolf
+chown -R www-data:www-data /var/www/rudolf
+
 php artisan search:load | adddate | tee -a /var/www/log/refreshCache.log
+
+chmod a+rwx -R /var/www/rudolf
+chown -R www-data:www-data /var/www/rudolf
+
 php artisan model:load global | adddate | tee -a /var/www/log/refreshCache.log
+
+chmod a+rwx -R /var/www/rudolf
+chown -R www-data:www-data /var/www/rudolf
+
 echo "Cache in Rudolf refreshed." | adddate | tee -a /var/www/log/refreshCache.log
