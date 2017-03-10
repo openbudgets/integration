@@ -13,7 +13,7 @@ ADD settings.json /app/settings.json
 
 RUN cd /app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
 RUN cd /app && npm install && npm run build
-ADD docker/settings.json /app/settings.json
+ADD /settings.json /app/settings.json
 
 EXPOSE 8000
 ENV OS_VIEWER_BASE_PATH=viewer/
