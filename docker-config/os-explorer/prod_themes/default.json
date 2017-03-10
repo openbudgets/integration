@@ -16,18 +16,18 @@
       }
     ],
     "logo": {
-      "icon": "https://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
+      "icon": "http://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
       "text": "OB.eu Explorer"
     },
     "tagLine": "Searchable, shareable access to OpenBudgets.eu datasets."
   },
   "footer": {
     "projectLogo": {
-      "image": "https://eis-openbudgets.iais.fraunhofer.de/svg/obeuexplorer-logo_long.svg"
+      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuexplorer-logo_long.svg"
     },
     "orgLogo": {
       "href": "http://openbudgets.eu",
-      "image": "https://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
+      "image": "http://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
     },
     "links": [
       {
