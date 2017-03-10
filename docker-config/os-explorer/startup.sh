@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-cp -ar /themes/* /app/app/config/themes/.
+cp -ar /themes/* /app/app/scripts/services/themes/.
 
 ls $WORKDIR/.git > /dev/null && cd $WORKDIR || cd /app
 echo working from `pwd`
