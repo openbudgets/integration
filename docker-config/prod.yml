@@ -328,7 +328,7 @@ services:
         image: openbudgets/os-explorer
         build: ./os-explorer
         volumes:
-          - ./os-explorer/prod_themes:/app/app/scripts/services/themes
+          - ./os-explorer/prod_themes:/themes
         expose:
           - "8000"
         environment:
