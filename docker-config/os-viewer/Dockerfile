@@ -18,4 +18,6 @@ ADD /settings.json /app/settings.json
 EXPOSE 8000
 ENV OS_VIEWER_BASE_PATH=viewer/
 
-CMD API_URL="${OS_EXTERNAL_ADDRESS}" cd /app && npm start
+COPY ./start.sh /start.sh
+CMD ["/bin/sh", "/start.sh"]
+s
