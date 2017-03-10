@@ -20,4 +20,3 @@ ENV OS_VIEWER_BASE_PATH=viewer/
 
 COPY ./start.sh /start.sh
 CMD ["/bin/sh", "/start.sh"]
-s
