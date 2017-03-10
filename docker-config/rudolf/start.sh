@@ -4,6 +4,7 @@ startRudolf() {
     echo "Starting Rudolf"
     cd /var/www/rudolf
     chmod a+rwx -R /var/www/rudolf
+    chown -R www-data:www-data /var/www/rudolf
     php-fpm
 }
 
