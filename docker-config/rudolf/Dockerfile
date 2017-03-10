@@ -27,6 +27,7 @@ RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git && \
     git checkout 6597e193872290796700eaa7a7b0933d654e5da5
 
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
+
 RUN chown -R www-data:www-data /var/www && \
     chmod oag+rwx -R /var/www
 
