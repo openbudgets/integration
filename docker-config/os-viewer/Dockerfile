@@ -1,35 +1,21 @@
-FROM gliderlabs/alpine:3.4
+FROM node:7-alpine
 
-RUN apk add --update curl nodejs git python rsync
-RUN apk add --update --virtual=build-dependencies ca-certificates build-base
-RUN update-ca-certificates
-
-RUN cd $(npm root -g)/npm \
- && npm install fs-extra \
- && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
-RUN npm install npm@latest -g && \
-    npm --version
+ENV OS_VIEWER_BASE_PATH=viewer/
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openspending/os-viewer.git app && \
-#    cd app && git checkout fb7ddecca71726ecbfa27067a160c19ac48cbc04
-    cd app && git checkout e67c1eba1df905ff40c8f5a29675816fe599be2e
+    cd /app && git checkout e67c1eba1df905ff40c8f5a29675816fe599be2e
 
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
-
-RUN cd app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
-RUN cd app && npm install
-RUN cd app && node node_modules/gulp/bin/gulp.js
-RUN apk del build-dependencies
-RUN rm -rf /var/cache/apk/*
-
-ENV OS_VIEWER_BASE_PATH=viewer/
-
 ADD settings.json /app/settings.json
-ADD startup.sh /startup.sh
+
+RUN cd /app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
+RUN cd /app && npm install && npm run build
+ADD docker/settings.json /app/settings.json
 
 EXPOSE 8000
+ENV OS_VIEWER_BASE_PATH=viewer/
 
-CMD API_URL="${OS_EXTERNAL_ADDRESS}" /startup.sh
+CMD API_URL="${OS_EXTERNAL_ADDRESS}" cd /app && npm start
