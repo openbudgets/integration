@@ -3,6 +3,7 @@ set -e
 startRudolf() {
     echo "Starting Rudolf"
     cd /var/www/rudolf
+    chmod a+rwx -R /var/www/rudolf
     php-fpm
 }
 
