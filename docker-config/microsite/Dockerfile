@@ -1,10 +1,10 @@
 FROM python:3
 
 RUN apt-get update -y && \
-    apt-get install -y supervisor
+    apt-get install -y supervisor git
 
 RUN git clone https://github.com/openbudgets/microsite
-RUN cd /microsite && git checkout 64ed2931dc63a616ed81bff5f1f221ee4af66192
+RUN cd /microsite && git pull origin master && git checkout 64ed2931dc63a616ed81bff5f1f221ee4af66192
 
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./start.sh /start.sh
