@@ -15,6 +15,7 @@ RUN cd app && npm install && npm run build
 RUN rm -rf /var/cache/apk/*
 
 COPY startup.sh /startup.sh
+RUN chmod a+x /startup.sh
 
 EXPOSE 8000
 
