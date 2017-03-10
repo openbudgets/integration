@@ -10,7 +10,7 @@ startRudolf() {
     echo "Starting Rudolf"
     cd /var/www/rudolf
     set_file_permissions
-    php-fpm --user www-data
+    php-fpm
 }
 
 refreshCache() {
