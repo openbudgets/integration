@@ -1,6 +1,6 @@
 FROM node:7-alpine
 
-ENV OS_VIEWER_BASE_PATH=viewer/
+RUN apk add --update git
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
