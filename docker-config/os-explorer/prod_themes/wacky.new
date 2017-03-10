@@ -1,32 +1,33 @@
 {
   "colors": {
-    "brand": "#82bf5e",
-    "sidebar": "#585552",
-    "content": "#fff"
+    "brand": "#d9997a",
+    "sidebar": "#8a2d34",
+    "content": "#95f5f5"
   },
   "header": {
     "links": [
       {
-        "title": "Upload Data via OpenSpending",
-        "href": "http://next.openspending.org/packager/provide-data"
+        "title": "Upload Dataaa",
+        "href": "/packager/"
       },
       {
-        "title": "Explore Datasets",
-        "href": "/explorer/"
+        "title": "About",
+        "href": "/"
       }
     ],
     "logo": {
-      "icon": "http://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_white.svg"
-    }
+      "icon": "public/assets/os.svg",
+      "text": "Explorerrere"
+    },
+    "tagLine": "Wacky, shareable access to OpenSpending datasets."
   },
   "footer": {
     "projectLogo": {
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_long.svg"
+      "image": "http://a.okfn.org/img/openspending/logo.svg"
     },
     "orgLogo": {
-      "href": "http://openbudgets.eu",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
+      "href": "http://okfn.org",
+      "image": "http://a.okfn.org/img/oki/landscape-white-165x43.png"
     },
     "links": [
       {
@@ -48,24 +49,21 @@
     ],
     "socialMedia": [
       {
-        "href": "https://www.facebook.com/openbudgets",
+        "href": "https://facebook.com/OKFNetwork",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png",
         "alt": "Facebook"
       },
       {
-        "href": "https://twitter.com/openbudgets",
+        "href": "https://twitter.com/okfn",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png",
         "alt": "Twitter"
       },
       {
-        "href": "https://www.youtube.com/channel/UCLw5-jisra6JBClrrK0g49g",
+        "href": "https://www.youtube.com/user/openknowledgefdn",
         "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png",
         "alt": "YouTube"
       }
     ]
-  },
-  "dataMine": {
-    "query": "",
-    "path": "/indigo/#/cube/analytics/{factTable}"
   }
 }
+
