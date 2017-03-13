@@ -20,6 +20,5 @@ COPY ./environment.ts /app/src/environments/environment.ts
 
 RUN npm install
 
-RUN echo "ng serve --host 0.0.0.0" > /start.sh
-#RUN echo "npm start" > /start.sh
+COPY ./start.sh /start.sh
 CMD ["/bin/sh", "/start.sh"]
