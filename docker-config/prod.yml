@@ -342,7 +342,7 @@ services:
         image: openbudgets/indigo
         build: ./indigo
         ports:
-          - "84242:80"
+          - "8442:80"
         links:
           - damapp
 
