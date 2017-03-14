@@ -1,7 +1,5 @@
 FROM node:7-alpine
 
-RUN rm /etc/nginx/nginx.conf /etc/nginx/mime.types
-
 RUN apk add --update nodejs git
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
