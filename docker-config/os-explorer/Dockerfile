@@ -7,7 +7,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openspending/os-explorer.git app && \
-    cd /app && git checkout ca93011c77091d6805d9b6a8046b822d3281b92d
+    cd /app && git checkout 4d1f2c51a67a08f50a988eb8f9061db9123f0648
 COPY ./config.js /app/config.js
 
 RUN cd app && npm install && npm run build
