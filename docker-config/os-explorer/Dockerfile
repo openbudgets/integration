@@ -29,7 +29,11 @@ RUN cd /app && npm install && npm run build
 RUN rm -rf /var/cache/apk/*
 
 COPY startup.sh /startup.sh
-RUN chmod a+x /startup.sh
+RUN chmod a+rwx /startup.sh
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY mime.types /etc/nginx/mime.types
+COPY default /etc/nginx/sites-enabled/default
 
 EXPOSE 8000
 
