@@ -9,7 +9,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone https://github.com/okgreece/indigo.git /app && \
-    cd /app && git checkout bde1fa6000e399aa177219a7df7876dbdcd01891
+    cd /app && git checkout 64e378e46d1393f731c32ca6152cebaed509a81c
 WORKDIR /app
 
 # COPY config files:
