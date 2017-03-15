@@ -2,10 +2,10 @@ FROM ubuntu:trusty
 
 # Install app dependencies:
 RUN apt-get -y update
-RUN apt-get install -y git build-essential python3-pip \
-    python3-dev python-psycopg2 libpng12-dev \
-    libxft-dev libfreetype6-dev \
-    python-virtualenv bash sudo bash
+RUN apt-get install -y git build-essential python3-pip
+RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev
+RUN apt-get install -y libxft-dev libfreetype6-dev
+RUN apt-get install -y python-virtualenv bash sudo bash
 RUN pip3 install --upgrade pip
 
 # Switch from /bin/sh to /bin/bash:
