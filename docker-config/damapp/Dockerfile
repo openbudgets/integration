@@ -12,11 +12,11 @@ RUN pip3 install --upgrade pip
 # Switch from /bin/sh to /bin/bash:
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-# Frontend Port:
-EXPOSE 5000
-
 # Environment variables:
 ENV APP_DIR "/dam"
+
+# Frontend Port:
+EXPOSE 5000
 
 # Clone DAM:
 RUN git clone https://github.com/openbudgets/DAM $APP_DIR && \
