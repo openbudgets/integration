@@ -23,6 +23,14 @@ WHERE {
 }
 
 SELECT ?subject  ?predicate ?object
+FROM <http://data.openbudgets.eu/resource/graph/test_budgetary_central_government_expense>
+WHERE {
+  ?subject ?predicate ?object
+}
+
+
+
+SELECT ?subject  ?predicate ?object
 FROM <http://data.openbudgets.eu/resource/codelist/estructura_financiacion_g_aragon_2006>
 WHERE {
   ?subject ?predicate ?object
