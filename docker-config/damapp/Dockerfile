@@ -22,7 +22,7 @@ ENV APP_DIR "/dam"
 RUN git clone https://github.com/openbudgets/DAM $APP_DIR && \
             cd $APP_DIR && \
             git checkout staging_indigo && \
-            git checkout d166b1ad0976fd973911180c4561ed2781d64b08
+            git checkout 237ef65d1c67cf05e65cf0a5bab56c0e923eeb60
 WORKDIR $APP_DIR
 
 # COPY environment vars:
