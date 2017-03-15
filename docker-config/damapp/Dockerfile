@@ -1,6 +1,7 @@
 FROM ubuntu:trusty
 
 # Install app dependencies:
+RUN sed -i'' 's/archive\.ubuntu\.com/us\.archive\.ubuntu\.com/' /etc/apt/sources.list
 RUN apt-get -y update
 RUN apt-get install -y git build-essential python3-pip
 RUN apt-get install -y python3-dev python-psycopg2 libpng12-dev
