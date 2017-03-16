@@ -22,7 +22,7 @@ EXPOSE 5000
 RUN git clone https://github.com/openbudgets/DAM $APP_DIR && \
             cd $APP_DIR && \
             git checkout staging_indigo && \
-            git checkout 8614866d78b1c450d31f9e8ec91b287f86c4a869
+            git checkout 39c4bfd726ba3744a772a824275e150c7551bb26
 WORKDIR $APP_DIR
 
 # COPY environment vars:
