@@ -3,6 +3,8 @@ FROM node:7.1
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl
 
+#COPY ./angular-cli.json /app/angular-cli.json
+
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
