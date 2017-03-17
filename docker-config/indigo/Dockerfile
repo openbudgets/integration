@@ -3,7 +3,8 @@ FROM node:7.1
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl
 
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@latest
+RUN npm install -g @angular/flex-layout
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
