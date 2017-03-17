@@ -13,7 +13,7 @@ RUN git clone https://github.com/okgreece/indigo.git /app && \
 WORKDIR /app
 
 # COPY config files:
-COPY ./index.html /app/src/index.html
+#COPY ./index.html /app/src/index.html
 COPY ./environment.ts /app/src/environments/environment.ts
 
 RUN npm install
