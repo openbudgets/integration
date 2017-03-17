@@ -7,8 +7,8 @@ RUN apt-get -y update && apt-get install -y git gettext bash curl mysql-client z
 RUN echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 RUN apt-get update -y && \
-    apt-get install -y php7.0-sqlite3 libsqlite3-0 && \
-    docker-php-ext-install pdo_mysql
+    apt-get install -y php7.0-sqlite3 libsqlite3-dev libsqlite3-0 && \
+    docker-php-ext-install pdo_sqlite
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
