@@ -4,7 +4,6 @@ RUN apt-get -y update
 RUN apt-get install -y npm git wget curl
 
 RUN npm install -g @angular/cli@latest
-RUN npm install -g @angular/flex-layout
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
@@ -15,8 +14,6 @@ WORKDIR /app
 
 # COPY config files:
 COPY ./index.html /app/src/index.html
-# COPY ./tsconfig.json /app/tsconfig.json
-COPY ./package.json /app/package.json
 COPY ./environment.ts /app/src/environments/environment.ts
 
 RUN npm install
