@@ -2,7 +2,9 @@
 
 echo "Renews the certificate if expiration is close. The certificate needs to be installed previously."
 
-docker build -t letsencrypt_img .
+BASEDIR=$(dirname "$0")
+echo "$BASEDIR"
+docker build -t letsencrypt_img "$BASEDIR"
 
 docker run --rm --name letsencrypt \
     -p 1086:80 \
