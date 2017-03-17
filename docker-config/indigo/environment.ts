@@ -5,9 +5,10 @@
 
 export const environment = {
   production: false,
-  apiUrl:"http://eis-openbudgets.iais.fraunhofer.de",
+  apiUrl: 'http://eis-openbudgets.iais.fraunhofer.de',
   //DAMUrl: "http://okfnrg.math.auth.gr/ocpu/",
-  DAMUrl: "http://damapp:5000/",
-  versionSuffix: "v3",
-  baseHref: "/"
+  DAMUrl: 'http://damapp:5000/',
+  openCpuEndpoint: 'http://okfnrg.math.auth.gr/ocpu/',
+  versionSuffix: 'v3',
+  baseHref: 'indigo/'
 };
