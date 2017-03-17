@@ -271,6 +271,11 @@ services:
             - dampostgres
         env_file:
             - ../.env
+    outlierdm:
+        image: openbudgets/outlierdm
+        build: ./outlierdm
+        ports:
+            - "5555:5000"
     nginx:
         image: openbudgets/nginx
         build: ./nginx
