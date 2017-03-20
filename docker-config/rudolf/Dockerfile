@@ -39,10 +39,11 @@ RUN cd /var/www/rudolf && composer install --no-scripts && \
 # RUN apk add --update moreutils
 
 # Install cronjob for cache refreshing:
-COPY ./refreshCache /etc/periodic/hourly/.
 COPY ./refreshCache /refreshCache
 RUN chmod a+rwx /refreshCache
-RUN chmod a+rwx /etc/periodic/hourly/refreshCache
+
+# Running refresh of Cache takes 5 mins:
+RUN ( crontab -l ; echo "*/30 * * * * /refreshCache" ) | crontab -
 
 EXPOSE 8990
 COPY ./start.sh /start.sh

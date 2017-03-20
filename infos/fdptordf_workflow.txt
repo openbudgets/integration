@@ -1,0 +1,16 @@
+(1) http://next.openspending.org/admin/
+(2) Run external hooks
+
+https://openspending.readthedocs.io/en/latest/developers/api/
+
+(3) Clear Cache in Rudolf
+
+(4) Get all datasets for the Search:
+http://eis-openbudgets.iais.fraunhofer.de/search/package
+{"name":"testfdp6__3ba36","status":"ok","model":{"aggregates":{"haushaltkonto.sum":{"label":"","measure":"haushaltkonto","ref":"haushaltkonto.sum","function":"sum"},"_count":{"label":"Facts","measure":null,"ref":"_count","function":"count"}}
+
+
+(5) Use the Id of the datasets given by the Search to show the dataset in the viewer
+http://eis-openbudgets.iais.fraunhofer.de/viewer/<name>
+http://eis-openbudgets.iais.fraunhofer.de/viewer/testfdp6__3ba36
+
