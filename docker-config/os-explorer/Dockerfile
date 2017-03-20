@@ -3,6 +3,11 @@ FROM node:7-alpine
 RUN apk add --update git
 RUN update-ca-certificates
 RUN git clone http://github.com/openspending/os-explorer.git app
+RUN cd /app && npm install
+
+# Copy OBEU-settings:
+COPY ./config.js /app/config.js
+
 
 COPY ./startup.sh /startup.sh
 
