@@ -9,6 +9,6 @@ export const environment = {
   //DAMUrl: "http://okfnrg.math.auth.gr/ocpu/",
   DAMUrl: 'http://damapp:5000/',
   openCpuEndpoint: 'http://okfnrg.math.auth.gr/ocpu/',
-  versionSuffix: 'v3',
+  versionSuffix: '3',
   baseHref: 'indigo/'
 };

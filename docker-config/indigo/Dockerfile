@@ -17,7 +17,7 @@ RUN cd /app && npm i webpack --save-dev
 # COPY config files:
 #COPY ./index.html /app/src/index.html
 COPY ./environment.ts /app/src/environments/environment.ts
-#COPY ./angular-cli.json /app/angular-cli.json
+COPY ./angular-cli.json /app/angular-cli.json
 
 RUN npm install
 
