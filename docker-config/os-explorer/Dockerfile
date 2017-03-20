@@ -11,5 +11,6 @@ RUN rm -rf /var/cache/apk/*
 COPY ./startup.sh /startup.sh
 
 EXPOSE 8000
+RUN chmod a+x /startup.sh
 
 CMD /startup.sh
