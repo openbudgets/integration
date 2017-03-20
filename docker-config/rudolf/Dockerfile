@@ -43,7 +43,7 @@ COPY ./refreshCache /refreshCache
 RUN chmod a+rwx /refreshCache
 
 # Running refresh of Cache takes 5 mins:
-RUN (crontab -l ; echo "*/30    *   *   *   *   /refreshCache\n")| crontab -
+RUN (crontab -l ; echo "*/30    *   *   *   *   /refreshCache" ; echo)| crontab -
 
 EXPOSE 8990
 COPY ./start.sh /start.sh
