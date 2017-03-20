@@ -3,7 +3,7 @@
 
 https://openspending.readthedocs.io/en/latest/developers/api/
 
-(3) Clear Cache in Rudolf
+(3) Clear Cache in Rudolf: Wait 30 mins at most
 
 (4) Get all datasets for the Search:
 http://eis-openbudgets.iais.fraunhofer.de/search/package
