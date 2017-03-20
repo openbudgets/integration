@@ -1,6 +1,7 @@
 #!/bin/sh
 set -e
-
+cd /app && npm install && npm run build
+rm -rf /var/cache/apk/*
 ls $WORKDIR/.git > /dev/null && cd $WORKDIR || cd /app
 echo working from `pwd`
 
