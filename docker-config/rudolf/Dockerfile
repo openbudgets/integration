@@ -18,8 +18,8 @@ RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
 # Copy config file:
 COPY ./config/www.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
-COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 COPY ./config/php.ini /usr/local/etc/php/php.ini
+COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # Install Rudolf:
 RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git && \
