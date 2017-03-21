@@ -1,6 +1,12 @@
 <div class="margin-top-12 margin-bottom-12">
-    <a ng-if="datamineUrl" class="btn btn-primary" ng-href="{{ datamineUrl }}" target="_blank">
-        <i class="fa fa-diamond vertical-align-middle margin-right-4"></i>
-        {{  'Analyse this data set in the Data Mine' | i18n }}
-    </a>
+  <a ng-if="datamineUrl" class="btn btn-primary" ng-href="{{ datamineUrl }}" target="_blank">
+    <i class="fa fa-diamond vertical-align-middle margin-right-4"></i>
+    {{  'Analyse this data set in the Data Mine' | i18n }}
+  </a>
+</div>
+<div class="x-package-info">
+  <h4>{{ 'Data Resources' | i18n }}</h4>
+  <div>
+    <i class="os-icon os-icon-download"></i><a href="http://eis-openbudgets.iais.fraunhofer.de/dumps" target="_blank">{{ 'Download Data Package' | i18n }}</a>
+  </div>
 </div>
