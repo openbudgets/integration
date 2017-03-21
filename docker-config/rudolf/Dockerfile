@@ -24,7 +24,7 @@ COPY ./config/php.ini /usr/local/etc/php/php.ini
 # Install Rudolf:
 RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git && \
     cd ./rudolf && \
-    git checkout 6597e193872290796700eaa7a7b0933d654e5da5
+    git checkout 66a6c64c8fc78298cc387498a0aa818d7915e814
 
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
 
