@@ -22,7 +22,7 @@ RUN cd /app && rm -rf node_modules dist && \
 
 # COPY config files:
 COPY ./index.html /app/index.html
-RUN rm /app/src/index.html
+#RUN rm /app/src/index.html
 COPY ./environment.ts /app/src/environments/environment.ts
 COPY ./angular-cli.json /app/angular-cli.json
 
