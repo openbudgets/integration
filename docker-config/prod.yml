@@ -305,6 +305,7 @@ services:
             - rdfbrowser
             - alignmentui
             - microsite
+            - damapp
         ports:
             - "80:80" # http
             - "443:443" # https
