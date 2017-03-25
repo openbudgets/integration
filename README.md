@@ -15,6 +15,14 @@ The OBEU-stack consists of several applications (OBEU-Components) provided by th
 - Silk Linked Data Integration Framework https://github.com/silk-framework/silk
 - Virtuoso https://hub.docker.com/r/tenforce/virtuoso/ https://github.com/openlink/virtuoso-opensource
 
+Some of the publicly exposed endpoints/frontends:
+- Aligment: http://alignment-obeu.iais.fraunhofer.de/
+- Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer/budget-athens-expenditure-2007__5d543?lang=en
+- Explorer: http://eis-openbudgets.iais.fraunhofer.de/explorer/
+- Indigo: http://eis-openbudgets.iais.fraunhofer.de/indigo/
+- Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/ analogue to OS API as documented here: http://openspending.readthedocs.io/en/master/developers/api/
+- Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets: http://eis-openbudgets.iais.fraunhofer.de/dumps
+
 (1) Local Installation:
     
     - git clone https://github.com/openbudgets/integration.git
