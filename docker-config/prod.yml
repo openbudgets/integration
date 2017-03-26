@@ -62,7 +62,6 @@ services:
             - "2223-2230:2223-2230" # Linked Pipes FTP data psort
             - "8101:9101" # supervisord frontend
         links:
-#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     linkedpipes_1:
@@ -292,8 +291,6 @@ services:
             - ./nginx/static_files/svg:/var/www/svg
         links:
             - linkedpipes_fdp
-#            - triple_store_staging
-#            - triple_store_production
             - virtuoso_staging
             - virtuoso_production
             - virtuoso_staging_old
