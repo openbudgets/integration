@@ -57,6 +57,9 @@ Some of the publicly exposed endpoints/frontends:
     - Specify host-specific environment-variables in .env-file (similar to env.example-file)
     - Update from Git-repo & (re-)starting Docker containers via Shell-Script in Project folder:
       sh ./refresh_and_restart_prod.sh
+    - Some apps requires credentials in order to use them such as Virtuoso. Credentials are stored in env.example.
+      For example for a local installation the Virtuoso credentials are:
+      Username: dba, Password: TEST
 
     Exposed Components on the FhG server:
 
