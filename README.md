@@ -24,41 +24,45 @@ Some of the publicly exposed endpoints/frontends:
 - Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets: http://eis-openbudgets.iais.fraunhofer.de/dumps
 
 (1) Local Installation:
-    
-    - git clone https://github.com/openbudgets/integration.git
     - Create & Initialize Volume Folders: sh ./initVolumes.sh
+    - Add the following Aliase for localhost in your /etc/host-file:
+           * local.align
+           * local.dam
+           * local.data
+           * local.micro
+      For example your /etc7host-file may look like this:
+      127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 local.align local.dam local.data local.micro
     - Start applications (incl. update from remote repo): sh ./refresh_and_restart_dev.sh
+    
+    Since the Virtuoso-Staging-DB will be empty, you will have to import datasets for seeing the results in the Viewer, Explorer.
     
     Exposed components in a local OBEU installation:
         - LinkedPipes: http://localhost:8080
-        - Fuseki Staging: http://localhost:33030
-        - Fuseki Production: http://localhost:43030
+        - Virtuoso Staging: http://localhost:8890
+        - Virtuoso Production: http://localhost:8891
         - OS-Viewer: http://localhost/viewer
         - Rudolf: http://localhost/api/3/cubes
         - Dump of the FDP-2-RDF-Pipeline: http://localhost/dumps
-        - DAM: http://localhost:5000
+        - DAM: http:/local.dam
+        - Mirosite: http://local,micro
+        - Alignment: http://local.align
+        
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
     
-    Endpoint for executing the FDP-2-RDF-pipeline here with the pipeline-IRI "http://localhost:8080/resources/pipelines/created-1468495715437":
-        curl -i -X POST -H "Content-Type: multipart/form-data" -F "input=@$PWD/datapackage.jsonld" "http://localhost:8080/resources/executions?pipeline=http://localhost:8080/resources/pipelines/created-1468495715437"
-    Remark: To find out the pipeline-IRI, click on "Copy Pipeline IRI" on the pipeline overview in LinkedPipes Frontend (8080)
-
 (2) Server Installation:
-    
     - Clone the repo
     - Create Volume Folders via executing: sh ./initVolumes.sh
-    - Create a script 'setenv.sh' in the project's root-directory where you define the following environment variables: DNS_HOST_1, DNS_HOST_2
+    - Specify host-specific environment-variables in .env-file (similar to env.example-file)
     - Update from Git-repo & (re-)starting Docker containers via Shell-Script in Project folder:
-        sh ./refreshAndRestartProd.sh
+      sh ./refresh_and_restart_prod.sh
 
     Exposed Components on the FhG server:
 
     (a) Only accessible via SSH:
     - LinkedPipes: http://localhost:8080
-    - Fuseki Staging: http://localhost:33030
-    - Fuseki Production: http://localhost:43030
+    - Virtuoso Staging: http://localhost:8890
+    - Virtuoso Production: http://localhost:8891
     - OS-Viewer: http://localhost/viewer
-    - DAM: http://localhost:5000
 
     (b) Public accessible via http:
     - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
