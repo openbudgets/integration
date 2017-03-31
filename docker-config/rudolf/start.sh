@@ -15,4 +15,5 @@ refreshCache() {
 
 ## Execute:
 crond
-refreshCache && startRudolf
+refreshCache
+startRudolf

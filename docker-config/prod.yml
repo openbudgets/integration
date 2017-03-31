@@ -237,8 +237,6 @@ services:
         image: openbudgets/rudolf
         build: ./rudolf
         restart: always
-        volumes:
-            - ../volumes/rudolf/www:/var/www
         links:
 #            - triple_store_production
             - virtuoso_production
