@@ -24,6 +24,7 @@ Some of the publicly exposed endpoints/frontends:
 - Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets: http://eis-openbudgets.iais.fraunhofer.de/dumps
 
 (1) Local Installation:
+
     - Create & Initialize Volume Folders: sh ./initVolumes.sh
     - Add the following Aliase for localhost in your /etc/host-file:
            * local.align
@@ -50,6 +51,7 @@ Some of the publicly exposed endpoints/frontends:
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
     
 (2) Server Installation:
+
     - Clone the repo
     - Create Volume Folders via executing: sh ./initVolumes.sh
     - Specify host-specific environment-variables in .env-file (similar to env.example-file)
