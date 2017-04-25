@@ -6,7 +6,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openspending/os-viewer.git app && \
-    cd /app && git checkout e67c1eba1df905ff40c8f5a29675816fe599be2e
+    cd /app && git checkout 4efa8df2261e177800fbabc6bee40db05c1e4729
 
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
 ADD settings.json /app/settings.json
