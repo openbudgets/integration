@@ -21,7 +21,7 @@ RUN cd /app && rm -rf node_modules dist && \
     npm install
 
 # COPY config files:
-COPY ./index.html /index.html
+COPY ./index.html /src/index.html
 #RUN rm /app/src/index.html
 COPY ./environment.ts /app/src/environments/environment.ts
 COPY ./angular-cli.json /app/angular-cli.json
