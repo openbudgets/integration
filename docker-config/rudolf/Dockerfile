@@ -22,9 +22,9 @@ COPY ./config/php.ini /usr/local/etc/php/php.ini
 COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # Install Rudolf:
-RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git rudolf && \
+RUN cd /var/www && git clone https://github.com/liyakun/rudolf.git rudolf && \
     cd ./rudolf && \
-    git checkout e2f8c13c58aef46be6a78fcc8ce9bc1916e8de56
+    git checkout 083533383a19d50dc0aa6b1f6d20f6a2afb73485
 
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
 
