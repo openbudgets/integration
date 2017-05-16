@@ -13,7 +13,7 @@ services:
         environment:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
             - OS_VIEWER_HOST=http://eis-openbudgets.iais.fraunhofer.de/viewer
-            - OS_API=http://eis-openbudgets.iais.fraunhofer.de
+            - OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
         env_file:
             - ../.env
     silkworkbench:
