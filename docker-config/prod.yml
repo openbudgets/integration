@@ -301,6 +301,7 @@ services:
             - alignmentui
             - microsite
             - damapp
+            - landingpage
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -346,7 +347,12 @@ services:
           - "8442:80"
         links:
           - damapp
-
+    landingpage:
+        image: openbudgets/landingpage
+        build: ./landingpage
+        restart: always
+        ports:
+          - "19099:80"
 #    vocol:
 #        build: ./vocol
 #        ports:
