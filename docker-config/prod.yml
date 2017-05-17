@@ -351,6 +351,8 @@ services:
         image: openbudgets/landingpage
         build: ./landingpage
         restart: always
+        expose:
+          - "80"
         ports:
           - "19099:80"
 #    vocol:
