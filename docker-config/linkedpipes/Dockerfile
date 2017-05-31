@@ -17,7 +17,7 @@ ENV PATH $PATH:$M2_HOME/bin
 #RUN { echo "changeit"; echo "yes"; } | keytool -import -alias uv.opendata.cz -file /uv.opendata.cz.cert -keystore $JAVA_HOME/jre/lib/security/cacerts
 
 # Install LinkedPipes
-RUN git clone https://github.com/linkedpipes/etl.git 
+RUN git clone https://github.com/linkedpipes/etl.git /etl
 RUN cd /etl && git checkout e5391262fafe84b0d73dac6678ea0afe5a30fb0a
 
 RUN cd /etl && mvn install
