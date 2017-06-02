@@ -340,6 +340,13 @@ services:
         expose:
           - "8000"
         restart: always
+    os-packager:
+        build: ./os-packager
+        restart: always
+        expose:
+          - "8000"
+        ports:
+          - "9552:8000"
     indigo:
         image: openbudgets/indigo
         build: ./indigo
