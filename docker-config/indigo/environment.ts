@@ -10,5 +10,10 @@ export const environment = {
   DAMUrl: 'http://damapp:5000/',
   openCpuEndpoint: 'http://okfnrg.math.auth.gr/ocpu/',
   versionSuffix: '3',
-  baseHref: '/indigo/'
+  baseHref: '/indigo/',
+  DAMUrl: 'http://dam-obeu.iais.fraunhofer.de',
+  DAMretries: 10,
+  DAMpollingInitialStep: 1000,
+ searchSize: 50,
+
 };
