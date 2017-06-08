@@ -13,6 +13,6 @@ export const environment = {
   baseHref: '/',
   DAMretries: 10,
   DAMpollingInitialStep: 1000,
-  searchSize: 50,
+  searchSize: 100,
 
 };
