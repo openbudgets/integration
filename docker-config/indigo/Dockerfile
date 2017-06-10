@@ -1,4 +1,4 @@
-FROM node:8.1
+FROM node:7.1
 
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl
