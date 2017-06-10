@@ -1,4 +1,4 @@
-FROM node:7.1
+FROM node:8.1
 
 RUN apt-get -y update
 RUN apt-get install -y npm git wget curl
@@ -12,7 +12,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone https://github.com/okgreece/indigo.git /app && \
-    cd /app && git checkout b1620ce6a55dd3aa8de95a59d58cde7edcd27e1c
+    cd /app && git checkout c50592ae65d42693c5c77805af21320fbf3c6bd3
 WORKDIR /app
 
 RUN cd /app && rm -rf node_modules dist && \
