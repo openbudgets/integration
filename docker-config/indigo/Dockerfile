@@ -5,7 +5,7 @@ RUN apt-get install -y npm git wget curl
 
 RUN npm uninstall -g angular-cli
 RUN npm uninstall -g @angular/cli
-RUN npm cache clean
+RUN npm cache verify
 RUN npm install -g @angular/cli@latest
 
 RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
