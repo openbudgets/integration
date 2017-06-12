@@ -17,8 +17,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Enable mbstring && install
-RUN docker-php-ext-configure mbstring --enable-mbstring \
- && docker-php-ext-install mbstring
+# RUN docker-php-ext-configure mbstring --enable-mbstring && docker-php-ext-install mbstring
 
 # Install additional packages:
 RUN apt-get update -y && apt-get install -y libgd3 php5-gd libapache2-mod-php7.0 \
