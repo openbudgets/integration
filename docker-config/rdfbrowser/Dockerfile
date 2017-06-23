@@ -42,7 +42,7 @@ ENV APP_DIR /var/www/RDFBrowser
 WORKDIR $APP_DIR
 
 RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR && \
-    git checkout da4020b3ef472be186ea1e120b60007a61042549
+    git checkout ef6f37d07b1bd21d2aec3b0ca971b00383eb0747
 
 COPY ./.env $APP_DIR/.env
 RUN composer install
