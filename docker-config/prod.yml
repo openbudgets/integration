@@ -51,6 +51,7 @@ services:
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
+        restart: always
         volumes:
             - ../volumes/linkedpipes/data:/data
             - ../volumes/linkedpipes/log:/var/log
