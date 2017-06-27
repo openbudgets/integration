@@ -8,7 +8,7 @@
     "links": [
       {
         "title": "Upload Data via OpenSpending",
-        "href": "http://next.openspending.org/packager/provide-data"
+        "href": "http://apps.openbudgets.eu/packager/provide-data"
       },
       {
         "title": "Explore Datasets",
@@ -16,17 +16,17 @@
       }
     ],
     "logo": {
-      "icon": "http://eis-openbudgets.iais.fraunhofer.de/images/38/openbudgets_logo_small.png",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_white.svg"
+      "icon": "http://apps.openbudgets.eu/images/38/openbudgets_logo_small.png",
+      "image": "http://apps.openbudgets.eu/svg/obeuviewer-logo_white.svg"
     }
   },
   "footer": {
     "projectLogo": {
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/svg/obeuviewer-logo_long.svg"
+      "image": "http://apps.openbudgets.eu/svg/obeuviewer-logo_long.svg"
     },
     "orgLogo": {
       "href": "http://openbudgets.eu",
-      "image": "http://eis-openbudgets.iais.fraunhofer.de/images/32/openbudgets_logo-white.png"
+      "image": "http://apps.openbudgets.eu/images/32/openbudgets_logo-white.png"
     },
     "links": [
       {

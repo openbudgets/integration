@@ -22,3 +22,4 @@ echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
 exec "apache2-foreground"
+
