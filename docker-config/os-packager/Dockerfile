@@ -3,7 +3,6 @@ FROM gliderlabs/alpine:3.4
 RUN apk add --update python git nodejs openssh
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
-RUN echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 RUN cd $(npm root -g)/npm \
  && npm install fs-extra \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
