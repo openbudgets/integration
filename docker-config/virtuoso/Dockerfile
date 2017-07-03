@@ -10,7 +10,7 @@ RUN apt-get upgrade -y
 
 # Install Apache-Jena as a tool for Importing datasets
 RUN cd / && \
-    wget -O apache-jena.tar.gz ftp://ftp.fu-berlin.de/unix/www/apache/jena/binaries/apache-jena-3.2.0.tar.gz && \
+    wget -O apache-jena.tar.gz https://archive.apache.org/dist/jena/binaries/apache-jena-3.2.0.tar.gz && \
     gunzip /apache-jena.tar.gz && \
     mkdir -p /apache-jena && tar -xvf /apache-jena.tar -C /apache-jena --strip-components=1
 
