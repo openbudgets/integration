@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.4 
 
-RUN apk add --update python git nodejs openssh
+RUN apk add --update python git nodejs
 RUN apk add --update --virtual=build-dependencies ca-certificates build-base
 RUN update-ca-certificates
 RUN cd $(npm root -g)/npm \
