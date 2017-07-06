@@ -1,0 +1,8 @@
+{
+  "/indigo/**": {
+    "target": "http://localhost/",
+    "pathRewrite": {
+      "^/indigo": ""
+    }
+  }
+}
