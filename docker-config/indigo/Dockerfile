@@ -23,7 +23,7 @@ RUN cd /app && rm -rf node_modules dist && \
 # COPY config files:
 #COPY ./index.html /app/src/index.html
 #RUN rm /app/src/index.html
-#COPY ./environment.ts /app/src/environments/environment.ts
+COPY ./environment.ts /app/src/environments/environment.ts
 COPY ./proxy.conf.json /app/proxy.conf.json
 
 COPY ./start.sh /start.sh
