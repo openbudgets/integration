@@ -12,19 +12,19 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone https://github.com/okgreece/indigo.git /app && \
-    cd /app && git checkout 0cfab1de27ce8d4aee53f284fccc51202cb7d8e5 
+    cd /app && git checkout a6a1a8ac49861c487d2b1c4d280ddb028b898799 
 WORKDIR /app
 
 RUN cd /app && rm -rf node_modules dist && \
-    npm uninstall --save-dev angular-cli && \
-    npm install --save-dev @angular/cli && \
+#    npm uninstall --save-dev angular-cli && \
+#    npm install --save-dev @angular/cli && \
     npm install
 
 # COPY config files:
-COPY ./index.html /app/src/index.html
+#COPY ./index.html /app/src/index.html
 #RUN rm /app/src/index.html
-COPY ./environment.ts /app/src/environments/environment.ts
-COPY ./angular-cli.json /app/angular-cli.json
+#COPY ./environment.ts /app/src/environments/environment.ts
+COPY ./proxy.conf.json /app/proxy.conf.json
 
 COPY ./start.sh /start.sh
 RUN chmod a+x /start.sh
