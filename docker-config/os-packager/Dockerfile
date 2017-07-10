@@ -18,6 +18,8 @@ RUN rm -rf /var/cache/apk/*
 ENV OS_PACKAGER_BASE_PATH=packager 
 
 COPY ./settings.json /app/settings.json
+COPY ./index.js /app/app/config/index.js
+COPY ./header.html /app/app/views/partials/header.html
 COPY ./startup.sh /startup.sh
 
 EXPOSE 8000 
