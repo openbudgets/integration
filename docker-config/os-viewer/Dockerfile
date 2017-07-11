@@ -9,6 +9,8 @@ RUN git clone http://github.com/openspending/os-viewer.git app && \
     cd /app && git checkout 3823010f561ef100a27684be7d6d0ec720371f23
 
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
+COPY ./obeu_specific/module.js /app/app/front/scripts/module.js
+
 ADD settings.json /app/settings.json
 
 RUN cd /app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
