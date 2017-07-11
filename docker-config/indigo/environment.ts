@@ -8,7 +8,7 @@ export const environment = {
   //apiUrl: 'http://eis-openbudgets.iais.fraunhofer.de',
   apiUrl: 'http://apps.openbudgets.eu',
   //DAMUrl: "http://okfnrg.math.auth.gr/ocpu/",
-  DAMUrl: 'http://damapp:5000/',
+  DAMUrl: 'http://dam-obeu.iais.fraunhofer.de/,
   openCpuEndpoint: 'http://okfnrg.math.auth.gr/ocpu/',
   versionSuffix: '3',
   baseHref: '/',
