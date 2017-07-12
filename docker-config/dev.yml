@@ -250,6 +250,13 @@ services:
           - "8000"
         ports:
           - "9552:8000"
+    os-packager-obeu:
+        build: ./os-packager-obeu
+        restart: always
+        expose:
+          - "8000"
+        ports:
+          - "9553:8000"
     indigo:
         image: openbudgets/indigo
         build: ./indigo
