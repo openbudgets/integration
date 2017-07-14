@@ -14,7 +14,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 RUN git clone https://github.com/okgreece/indigo.git /app && \
     cd /app && \
     git checkout cutting-edge && \
-    git checkout e4163cb21635467d840356edb9f3e966eb87e3c7
+    git checkout e0a810125b0fe51f10cebe288fe95651d2b3659f
 WORKDIR /app
 
 RUN cd /app && rm -rf node_modules dist && \
