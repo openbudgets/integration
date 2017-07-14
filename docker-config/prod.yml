@@ -307,6 +307,7 @@ services:
             - microsite
             - damapp
             - landingpage
+            - cors
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -381,6 +382,13 @@ services:
           - "80"
         ports:
           - "19099:80"
+    cors:
+        build: ./cors
+        restart: always
+        expose:
+          - "8080"
+        ports:
+          - "19102:8080"
 #    vocol:
 #        build: ./vocol
 #        ports:
