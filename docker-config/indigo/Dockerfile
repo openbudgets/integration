@@ -26,7 +26,7 @@ RUN cd /app && rm -rf node_modules dist && \
 #COPY ./index.html /app/src/index.html
 #RUN rm /app/src/index.html
 COPY ./environment.ts /app/src/environments/environment.ts
-COPY ./proxy.conf.json /app/proxy.conf.json
+#COPY ./proxy.conf.json /app/proxy.conf.json
 
 COPY ./start.sh /start.sh
 RUN chmod a+x /start.sh
