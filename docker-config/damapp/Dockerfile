@@ -9,6 +9,10 @@ RUN apt-get install -y sudo git build-essential python3-pip \
     python-virtualenv bash postgresql-client bash
 RUN pip3 install --upgrade pip
 
+#fonts related
+RUN mkdir fonts
+#fonts related
+
 # Switch from /bin/sh to /bin/bash:
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
