@@ -49,6 +49,7 @@ angular.module('Application')
                                 dataMinePath = _.replace(dataMinePath, '{token}', token);
                             }
                             $scope.datamineUrl = dataPackageAPI.dataMineConfig.url + dataMinePath;
+                            $scope.datamineUrl = 'http://apps.openbudgets.eu/cube/analytics/' + dataMinePath;
                         }
                     }
 
