@@ -11,7 +11,7 @@ RUN npm --version
 RUN git config --global url.https://github.com/.insteadOf git://github.com/
 RUN git clone https://github.com/openbudgets/os-packager.git app && \
     cd /app && git checkout automate-webhooks && \
-    cd /app && git checkout bdcde8cb3df8caeb5b904417429e9bc37defb6e8
+    cd /app && git checkout 138120fd29dfca2becb18022f520c8051135b121
 
 RUN cd app && npm update && rm -rf node_modules && npm install -g
 RUN cd app && node node_modules/gulp/bin/gulp.js
