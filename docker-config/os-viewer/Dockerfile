@@ -10,6 +10,7 @@ RUN git clone http://github.com/openspending/os-viewer.git app && \
 
 COPY ./obeu_specific/template.html /app/app/front/scripts/directives/package-info/template.html
 COPY ./obeu_specific/module.js /app/app/front/scripts/module.js
+COPY ./prod_config/themes/default.json /app/app/config/themes/default.json
 
 ADD settings.json /app/settings.json
 
