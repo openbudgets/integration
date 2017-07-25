@@ -8,8 +8,10 @@ RUN cd $(npm root -g)/npm \
  && sed -i -e s/graceful-fs/fs-extra/ -e s/fs\.rename/fs.move/ ./lib/utils/rename.js
 RUN npm install npm@latest -g
 RUN npm --version
-RUN git clone http://github.com/openspending/os-packager.git app && \
-    cd /app && git checkout 8cb647bd6c707f76dfdf40411be94ef48a7de644 
+RUN git config --global url.https://github.com/.insteadOf git://github.com/
+RUN git clone https://github.com/openbudgets/os-packager.git app && \
+    cd /app && git checkout automate-webhooks && \
+    cd /app && git checkout 138120fd29dfca2becb18022f520c8051135b121
 
 RUN cd app && npm update && rm -rf node_modules && npm install -g
 RUN cd app && node node_modules/gulp/bin/gulp.js

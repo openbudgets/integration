@@ -265,6 +265,8 @@ services:
     damapp:
         image: openbudgets/damapp
         build: ./damapp
+        #volumes:
+        #    - ../volumes/dam/fonts:/usr/local/share/fonts/
         ports:
             - "5000:5000"
         links:
@@ -300,7 +302,6 @@ services:
             - os-explorer
             - os-admin
             - os-packager
-            - os-packager-obeu
             - indigo
             - rdfbrowser
             - alignmentui
@@ -353,16 +354,9 @@ services:
         image: openbudgets/os-admin
         expose:
           - "8000"
-        restart: always
+        restart: always 
     os-packager:
         build: ./os-packager
-        restart: always
-        expose:
-          - "8000"
-        ports:
-          - "9552:8000"
-    os-packager-obeu:
-        build: ./os-packager-obeu
         restart: always
         expose:
           - "8000"
