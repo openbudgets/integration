@@ -8,11 +8,11 @@
     "links": [
       {
         "title": "Upload Data",
-        "href": "/packager/"
+        "href": "/packager/provide-data"
       },
       {
         "title": "Explore Datasets",
-        "href": "/explorer/"
+        "href": "/"
       }
     ],
     "logo": {
@@ -47,21 +47,7 @@
       }
     ],
     "socialMedia": [
-      {
-        "href": "https://facebook.com/OKFNetwork",
-        "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png",
-        "alt": "Facebook"
-      },
-      {
-        "href": "https://twitter.com/okfn",
-        "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png",
-        "alt": "Twitter"
-      },
-      {
-        "href": "https://www.youtube.com/user/openknowledgefdn",
-        "icon": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png",
-        "alt": "YouTube"
-      }
+      
     ]
   },
   "dataMine": {
