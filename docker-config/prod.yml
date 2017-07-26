@@ -307,7 +307,7 @@ services:
             - alignmentui
             - microsite
             - damapp
-            - landingpage
+            #- landingpage
             - cors
         ports:
             - "80:80" # http
@@ -369,13 +369,13 @@ services:
           - "8442:80"
         links:
           - damapp
-    landingpage:
-        build: ./landingpage
-        restart: always
-        expose:
-          - "80"
-        ports:
-          - "19099:80"
+    #landingpage:
+    #    build: ./landingpage
+    #    restart: always
+    #    expose:
+    #      - "80"
+    #    ports:
+    #      - "19099:80"
     cors:
         build: ./cors
         restart: always
