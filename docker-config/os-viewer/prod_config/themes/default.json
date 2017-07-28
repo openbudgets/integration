@@ -1,8 +1,5 @@
 {
   "colors": {
-    "brand": "#95E19A",
-    "sidebar": "#50B958",
-    "content": "#fff"
   },
   "header": {
     "links": [
@@ -17,7 +14,7 @@
     ],
     "logo": {
       "icon": "http://apps.openbudgets.eu/images/38/openbudgets_logo_small.png",
-      "image": "http://apps.openbudgets.eu/svg/viewer.svg"
+      "image": "http://apps.openbudgets.eu/svg/viewer_black.svg"
     }
   },
   "footer": {

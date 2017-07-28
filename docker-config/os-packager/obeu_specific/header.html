@@ -6,25 +6,25 @@
   <div class="navbar-header navbar-header-full-width">
     <ul class="nav navbar-nav pull-right">
       <li>
-        <a href="https://fiscal.dataprotocols.org/spec" rel="external">
+        <a href="https://fiscal.dataprotocols.org/spec" rel="external" style="color: #000000;">
           Fiscal Data Package Spec
         </a>
       </li>
 
       <li>
-        <a href="/">
+        <a href="/" style="color: #000000;">
           Explore Datasets
         </a>
       </li>
 
       <li ng-if="!login.isLoggedIn && applicationLoaded" ng-cloak class="user">
-        <a href="javascript:void(0)" ng-click="login.login()">
+        <a href="javascript:void(0)" ng-click="login.login()" style="color: #000000;">
           <i class="os-icon os-icon-user"></i>
           Login / Register
         </a>
       </li>
       <li ng-if="login.isLoggedIn && applicationLoaded" ng-cloak>
-        <a href="javascript:void(0);" ng-click="isLoginMenuShown = !isLoginMenuShown">
+        <a href="javascript:void(0);" ng-click="isLoginMenuShown = !isLoginMenuShown" style="color: #000000;">
           <i class="os-icon os-icon-user"></i>
           {{ login.name }}
           <i class="os-icon os-icon-arrow-drop-down"></i>
@@ -42,7 +42,7 @@
       </li>
     </ul>
     {% endraw %}
-    <a class="navbar-brand navbar-brand-success" href="{{ basePath }}/" title="OS Viewer" target="_self">
+    <a class="navbar-brand navbar-brand-success" href="{{ basePath }}/" title="OBEU Packager" target="_self">
       <img src="{{ theme.header.logo.icon }}" class="os-logo-part">
       <img src="{{ theme.header.logo.image }}" class="os-logo-part">
     </a>
