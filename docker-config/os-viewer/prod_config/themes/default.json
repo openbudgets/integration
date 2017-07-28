@@ -17,7 +17,7 @@
     ],
     "logo": {
       "icon": "http://apps.openbudgets.eu/images/38/openbudgets_logo_small.png",
-      "image": "http://apps.openbudgets.eu/svg/obeuviewer-logo_white.svg"
+      "image": "http://apps.openbudgets.eu/svg/viewer.svg"
     }
   },
   "footer": {

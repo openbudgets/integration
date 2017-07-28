@@ -13,6 +13,8 @@ RUN git clone https://github.com/openbudgets/os-packager.git app && \
     cd /app && git checkout master && \
     cd /app && git checkout be06e46e79536cc1e6fdc67d27d5b4f6135fb07d
 
+COPY ./obeu_specific/styles.less /app/app/front/styles/styles.less
+
 RUN cd app && npm install
 RUN cd app && npm run build
 RUN cd app && node node_modules/gulp/bin/gulp.js
@@ -22,7 +24,9 @@ RUN rm -rf /var/cache/apk/*
 ENV OS_PACKAGER_BASE_PATH=packager 
 
 COPY ./settings.json /app/settings.json
-COPY ./header.html /app/app/views/partials/header.html
+COPY ./obeu_specific/header.html /app/app/views/partials/header.html
+COPY ./obeu_specific/theme.css /app/app/views/partials/theme.css
+COPY ./obeu_specific/default.json /app/app/config/themes/default.json
 COPY ./startup.sh /startup.sh
 
 EXPOSE 8000 

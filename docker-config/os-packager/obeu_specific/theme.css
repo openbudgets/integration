@@ -1,0 +1,11 @@
+.navbar-inverse {
+  background-color: #50B958;
+}
+
+.x-page-container {
+  background-color: #FFFFFF;
+}
+
+.navbar-brand.navbar-brand-success {
+  box-shadow: inset 50px 0 0 {{ theme.colors.brand }};
+}
