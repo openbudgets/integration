@@ -1,0 +1,35 @@
+<nav class="navbar navbar-inverse navbar-footer">
+  <hr>
+
+  <div class="clearfix">
+    <a class="pull-left x-footer-okfn-logo" href="http://openbudgets.eu" rel="external">
+      <img src="http://apps.openbudgets.eu/images/32/openbudgets_logo-white.png" alt="OpenBudgets.eu" />
+    </a>
+
+    <ul class="nav navbar-nav pull-right x-footer-icons">
+      {% for link in theme.socialMedia %}
+      <li>
+        <a href="https://www.facebook.com/openbudgets" rel="external" target="_blank">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/facebook-logo-circle.png" alt="Facebook" />
+        </a>
+        <a href="https://twitter.com/openbudgets" rel="external" target="_blank">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/twitter-logo-circle.png" alt="Twitter" />
+        </a>
+        <a href="https://www.youtube.com/channel/UCLw5-jisra6JBClrrK0g49g" rel="external" target="_blank">
+          <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/youtube-logo-circle.png" alt="YouTube" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <ul class="nav navbar-nav pull-right">
+      {% for link in theme.footer.links %}
+      <li>
+        <a href="{{ link.href }}" rel="external">
+          {{ link.title }}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</nav>

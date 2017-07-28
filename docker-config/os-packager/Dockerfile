@@ -25,6 +25,7 @@ ENV OS_PACKAGER_BASE_PATH=packager
 
 COPY ./settings.json /app/settings.json
 COPY ./obeu_specific/header.html /app/app/views/partials/header.html
+COPY ./obeu_specific/footer.html /app/app/views/partials/footer.html
 COPY ./obeu_specific/theme.css /app/app/views/partials/theme.css
 COPY ./obeu_specific/default.json /app/app/config/themes/default.json
 COPY ./obeu_specific/openbudgets-logo.ico /app/app/public/favicon.ico

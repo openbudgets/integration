@@ -1,0 +1,26 @@
+{% raw %}
+<nav class="navbar navbar-inverse navbar-footer" ng-cloak>
+  <hr>
+
+  <div class="clearfix">
+    <a class="pull-left x-footer-okfn-logo" ng-href="{{ theme.footer.orgLogo.href }}">
+        <img ng-src="{{ theme.footer.orgLogo.image }}">
+    </a>
+
+    <ul class="nav navbar-nav pull-right x-footer-icons">
+      <li ng-repeat="link in theme.footer.socialMedia">
+        <a ng-href="{{ link.href }}">
+          <img style="height: 1.5em; vertical-align: middle;"
+               ng-src="{{ link.icon }}" alt="{{ link.alt }}">
+        </a>
+      </li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-right">
+        <li ng-repeat="link in theme.footer.links | filter : { title : '!!' }">
+            <a ng-href="{{ link.href }}">{{ link.title }}</a>
+        </li>
+    </ul>
+  </div>
+</nav>
+{% endraw %}
