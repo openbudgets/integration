@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <base href="{{basePath}}/">
+  <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+  <meta name="description" content="A frontend data/views app powered directly from a Fiscal Data Package."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>OS Viewer</title>
+  <link href="//fonts.googleapis.com/css?family=Hind:400,300,500,600,700" rel="stylesheet" type="text/css">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
+  <link rel="stylesheet" href="styles/vendor.css?{{ sessionSalt }}">
+  <link rel="stylesheet" href="styles/app.css?{{ sessionSalt }}">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    .x-page-container .x-sidebar, .navbar-inverse,
+    .list-group.list-group-inverse .list-group-item { background: {{ theme.colors.sidebar }} !important; }
+    .x-page-container .x-content { background: {{ theme.colors.content }} !important; }
+    .navbar-brand.navbar-brand-primary { box-shadow: inset 50px 0 0 {{ theme.colors.brand }} !important; }
+  </style>
+
+  {% include "partials/share.html" %}
+  {% include "../partials/snippets.html" %}
+</head>
+<body ng-controller="MainController"
+      ng-init='isEmbedded=false; isMainView=true; disablePackageSelector={{ 'true' if isEmbedded else 'false' }}; theme={{ theme | stringify }}'>
+<div id="root"></div>
+
+{% if not isEmbedded %}
+{% include "partials/header.html" %}
+{% endif %}
+
+<div class="x-page-container">
+<div>
+  <aside class="x-sidebar">{% block sidebar %}{% endblock %}</aside>
+  <div class="x-content">
+    <div class="container-fluid">{% block content %}{% endblock %}</div>
+  </div>
+</div>
+</div>
+
+{% if not isEmbedded %}
+{% include "partials/footer.html" %}
+{% endif %}
+
+<script src="scripts/app.js?{{ sessionSalt }}"></script>
+<script src="{{ authLibraryUrl }}"></script>
+
+</body>
+</html>

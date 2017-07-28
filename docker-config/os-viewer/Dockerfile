@@ -8,6 +8,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 RUN git clone http://github.com/openspending/os-viewer.git app && \
     cd /app && git checkout 3823010f561ef100a27684be7d6d0ec720371f23
 
+COPY ./obeu_specific/base.html /app/app/views/layouts/base.html
 COPY ./obeu_specific/header.html /app/app/views/partials/header.html
 COPY ./obeu_specific/footer.html /app/app/views/partials/footer.html
 COPY ./obeu_specific/styles.less /app/app/front/styles/styles.less
