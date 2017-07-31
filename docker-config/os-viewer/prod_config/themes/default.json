@@ -13,7 +13,7 @@
       }
     ],
     "logo": {
-      "icon": "http://apps.openbudgets.eu/images/38/openbudgets_logo_small.png",
+      "icon": "favicon.ico",
       "image": "http://apps.openbudgets.eu/svg/viewer_black.svg"
     }
   },
