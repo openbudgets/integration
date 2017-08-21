@@ -34,11 +34,11 @@ services:
             - ../.env
         ports:
             - "3306:3307"
-    alignmentredis:
-        image: openbudgets/alignmentredis
-        build: ./alignmentredis
-        volumes:
-            - ../volumes/alignment/redis:/data
+    #alignmentredis:
+    #    image: openbudgets/alignmentredis
+    #    build: ./alignmentredis
+    #    volumes:
+    #        - ../volumes/alignment/redis:/data
     alignmentui:
         image: openbudgets/alignmentui
         build: ./alignmentui
@@ -47,9 +47,13 @@ services:
             - ../volumes/alignment/composer:/root/.composer/cache
         env_file:
             - ../.env
+        expose:
+          - "80"
+        ports:
+            - "9558:80"
         links:
             - alignmentmysql
-            - alignmentredis
+            #- alignmentredis
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
