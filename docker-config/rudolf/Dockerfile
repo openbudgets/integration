@@ -24,7 +24,7 @@ COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 # Install Rudolf:
 RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git rudolf && \
     cd ./rudolf && \
-    git checkout 20193dcbf53d25ba0f4f467f3da427194af364c4
+    git checkout ac70b4755b7a2555daee929544d1605fe2a7e6cd
 
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
 
