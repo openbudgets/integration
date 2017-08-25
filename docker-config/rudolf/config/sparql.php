@@ -23,6 +23,8 @@ return [
     "languagesOrder" => [
        "en", "de", "fr", "el", "es", "cs"
     ],
-    "defaultAuthor" => "OpenBudgets.eu <info@openbudgets.eu>"
+    "defaultAuthor" => "OpenBudgets.eu <info@openbudgets.eu>",
+    "defaultCountryCode" => "EU"
+
 
 ];
