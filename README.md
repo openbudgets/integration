@@ -31,7 +31,7 @@ Some of the publicly exposed endpoints/frontends:
            * local.dam
            * local.data
            * local.micro
-      For example your /etc7host-file may look like this:
+      For example your /etc/host-file may look like this:
       127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 local.align local.dam local.data local.micro
     - Start applications (incl. update from remote repo): sh ./refresh_and_restart_dev.sh
     
@@ -44,8 +44,8 @@ Some of the publicly exposed endpoints/frontends:
         - OS-Viewer: http://localhost/viewer
         - Rudolf: http://localhost/api/3/cubes
         - Dump of the FDP-2-RDF-Pipeline: http://localhost/dumps
-        - DAM: http:/local.dam
-        - Mirosite: http://local,micro
+        - DAM: http://local.dam
+        - Mirosite: http://local.micro
         - Alignment: http://local.align
         
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
