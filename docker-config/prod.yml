@@ -266,6 +266,20 @@ services:
             - ../volumes/dam/dampostgres:/var/lib/postgresql/data
         env_file:
             - ../.env
+    kpi:
+        image: openbudgets/kpi
+        build: ./kpi
+        volumes:
+            - ../volumes/kpi/database/database.sqlite:/var/www/KPIs/storage/database.sqlite
+            - ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+        ports:
+            - "8112:80"
+        links:
+            - rudolf
+            - virtuoso_staging
+            - virtuoso_production
+            - indigo
+            - os-viewer
     damapp:
         image: openbudgets/damapp
         build: ./damapp
