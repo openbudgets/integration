@@ -55,6 +55,11 @@ mkdir -p volumes/rdfbrowser/logs
 mkdir -p volumes/rdfbrowser/storage
 [ ! -f volumes/rdfbrowser/storage/database.sqlite ] && cp ./docker-config/rdfbrowser/database.sqlite ./volumes/rdfbrowser/storage/database.sqlite
 
+#KPIs:
+mkdir -p volumes/kpi/logs
+mkdir -p volumes/kpi/database
+[ ! -f volumes/kpi/database/database.sqlite ] && cp ./docker-config/kpi/database.sqlite ./volumes/kpi/database/database.sqlite
+
 # Alignment MySQL DB:
 mkdir -p volumes/alignment/mysql
 mkdir -p volumes/alignment/composer
