@@ -12,9 +12,7 @@ services:
             - os-viewer
         environment:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
-            #- OS_VIEWER_HOST=http://eis-openbudgets.iais.fraunhofer.de/viewer
             - OS_VIEWER_HOST=http://apps.openbudgets.eu/viewer
-            #- OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
             - OS_API=http://apps.openbudgets.eu/api/3
         env_file:
             - ../.env
@@ -325,7 +323,6 @@ services:
             - alignmentui
             - microsite
             - damapp
-            #- landingpage
             - cors
         ports:
             - "80:80" # http
@@ -343,18 +340,12 @@ services:
             - ./os-viewer/prod_config:/config
             - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
-            #- DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - DEFAULT_HOST=http://apps.openbudgets.eu
             - DEFAULT_BASE_PATH=/viewer
-            #- OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
             - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.eu
-            #- OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_API_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_AUTH_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_AUTH_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_SEARCH_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_DATAMINE_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_DATAMINE_HOST=http://apps.openbudgets.eu
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
