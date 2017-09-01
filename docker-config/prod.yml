@@ -340,13 +340,13 @@ services:
             - ./os-viewer/prod_config:/config
             - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
-            - DEFAULT_HOST=http://apps.openbudgets.eu
+            - DEFAULT_HOST=https://apps.openbudgets.eu
             - DEFAULT_BASE_PATH=/viewer
-            - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.eu
-            - OS_VIEWER_API_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_AUTH_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_SEARCH_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_DATAMINE_HOST=http://apps.openbudgets.eu
+            - OS_EXTERNAL_ADDRESS=https://apps.openbudgets.eu
+            - OS_VIEWER_API_HOST=https://apps.openbudgets.eu
+            - OS_VIEWER_AUTH_HOST=https://apps.openbudgets.eu
+            - OS_VIEWER_SEARCH_HOST=https://apps.openbudgets.eu
+            - OS_VIEWER_DATAMINE_HOST=https://apps.openbudgets.eu
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
     os-explorer:
