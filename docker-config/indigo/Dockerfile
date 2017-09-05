@@ -48,7 +48,7 @@ USER root
 RUN git clone https://github.com/okgreece/indigo.git /app && \
     cd /app && \
     git checkout cutting-edge && \
-    git checkout 9bd9b42f31e60b9e930a041ad46ab75a53ca14d9
+    git checkout 3cc1b3a3d8b7080f64a71421d5f13e3da52cc903
 
 RUN cd /app && rm -rf node_modules dist &&  npm install
 
