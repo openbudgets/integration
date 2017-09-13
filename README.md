@@ -17,11 +17,11 @@ The OBEU-stack consists of several applications (OBEU-Components) provided by th
 
 Some of the publicly exposed endpoints/frontends:
 - Aligment: http://alignment-obeu.iais.fraunhofer.de/
-- Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer/budget-athens-expenditure-2007__5d543?lang=en
-- Explorer: http://eis-openbudgets.iais.fraunhofer.de/explorer/
-- Indigo: http://eis-openbudgets.iais.fraunhofer.de/indigo/
-- Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes/ analogue to OS API as documented here: http://openspending.readthedocs.io/en/master/developers/api/
-- Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets: http://eis-openbudgets.iais.fraunhofer.de/dumps
+- Viewer: http://apps.openbudgets.eu/viewer/budget-athens-expenditure-2007__5d543?lang=en
+- Explorer: http://apps.openbudgets.eu/explorer/
+- Indigo: http://apps.openbudgets.eu/
+- Rudolf: http://apps.openbudgets.eu/api/3/cubes/ analogue to OS API as documented here: http://openspending.readthedocs.io/en/master/developers/api/
+- Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets: http://apps.openbudgets.eu/dumps
 
 (1) Local Installation:
 
@@ -70,9 +70,9 @@ Some of the publicly exposed endpoints/frontends:
     - OS-Viewer: http://localhost/viewer
 
     (b) Public accessible via http:
-    - Rudolf: http://eis-openbudgets.iais.fraunhofer.de/api/3/cubes
-    - OS-Viewer: http://eis-openbudgets.iais.fraunhofer.de/viewer
-    - Dump of the FDP-2-RDF-Pipeline: http://eis-openbudgets.iais.fraunhofer.de/dumps
+    - Rudolf: http://apps.openbudgets.eu/api/3/cubes
+    - OS-Viewer: http://apps.openbudgets.eu/viewer
+    - Dump of the FDP-2-RDF-Pipeline: http://apps.openbudgets.eu/dumps
 
 Appendix
 
