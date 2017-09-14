@@ -14,7 +14,7 @@
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{HTTPS} off
-    RewriteRule ^(.*)/$ https://apps.openbudgets.eu/$1 [R,L]
+    RewriteRule ^(.*)/$ https://$1 [R,L]
 
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
