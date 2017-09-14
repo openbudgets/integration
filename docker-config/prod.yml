@@ -377,7 +377,7 @@ services:
         image: openbudgets/os-admin
         expose:
           - "8000"
-        restart: always 
+        restart: always
     os-packager:
         build: ./os-packager
         restart: always
@@ -410,6 +410,13 @@ services:
 #        build: ./vocol
 #        ports:
 #          - "4200:4200"
+    opencpu:
+        image: openbudgets/opencpu
+        build: ./opencpu
+        ports:
+          - "8666:80"
+          - "8663:443"
+          - "8004:8004"
 
 
 
@@ -432,10 +439,3 @@ services:
     #alignmentUI:
 
     #fileServerDataMining:
-
-
-
-
-
-
-
