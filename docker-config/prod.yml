@@ -335,6 +335,7 @@ services:
             - indigo
             - rdfbrowser
             - alignmentui
+            - alignment
             - microsite
             - damapp
             - cors
