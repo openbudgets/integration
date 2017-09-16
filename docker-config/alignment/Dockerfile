@@ -48,18 +48,20 @@ WORKDIR $APP_DIR
 EXPOSE 80
 
 COPY ./php.ini /etc/php/7.0/apache2/php.ini
-#RUN service apache2 reload
-RUN git clone https://github.com/okgreece/Alignment.git $APP_DIR
-RUN cd $APP_DIR
-RUN git checkout master
+
+ADD https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 version.json
+RUN rm -r $APP_DIR
+RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
+
+#COPY ./init.sh $APP_DIR/init.sh
+#RUN chmod a+x $APP_DIR/init.sh && sh $APP_DIR/init.sh 
+
 RUN cp deployment/default_config.xml storage/app/projects/default_config.xml
 COPY ./.env $APP_DIR/.env
 # For https:
 COPY ./routes.php $APP_DIR/app/Http/routes.php
 
 COPY ./.htaccess /var/www/alignment/public/.htaccess
-
-
 
 COPY ./wait-for-it.sh /wait-for-it.sh
 COPY ./start.sh /start.sh

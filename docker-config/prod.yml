@@ -21,6 +21,9 @@ services:
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/alignment/composer:/root/.composer/cache
+            #- ../volumes/alignment/storage:/var/www/alignment/storage
+            #- ../volumes/alignment/stappler:/var/www/alignment/public/system
+            #- ../volumes/alignment/bootstrap:/var/www/alignment/bootstrap
         env_file:
             - ../.env
         expose:

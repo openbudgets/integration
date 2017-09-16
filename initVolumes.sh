@@ -66,7 +66,10 @@ mkdir -p volumes/opencpu/scripts
 # Alignment MySQL DB:
 mkdir -p volumes/alignment/mysql
 mkdir -p volumes/alignment/composer
-# Alignment Redis DB:
-mkdir -p volumes/alignment/redis
+
+# Alignment
+mkdir -p volumes/alignment/storage
+mkdir -p volumes/alignment/stappler
+mkdir -p volumes/alignment/bootstrap
 
 chmod -R oga+rwx ./volumes
