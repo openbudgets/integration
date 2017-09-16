@@ -69,7 +69,8 @@ mkdir -p volumes/alignment/composer
 
 # Alignment
 mkdir -p volumes/alignment/storage
+mkdir -p volumes/alignment/storage/app/projects
+mkdir -p volumes/alignment/storage/app/public/json_serializer
 mkdir -p volumes/alignment/stappler
-mkdir -p volumes/alignment/bootstrap
 
 chmod -R oga+rwx ./volumes

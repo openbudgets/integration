@@ -20,7 +20,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Install additional packages:
 RUN apt-get install -y php7.0-gd libapache2-mod-php7.0 \
     php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
-    php7.0-imagick php7.0-common php7.0-zip libpng-dev
+    php7.0-imagick php7.0-common php7.0-zip libpng-dev libraptor2-dev
 
 # Install mbstring
 RUN docker-php-ext-install mbstring
@@ -56,7 +56,6 @@ RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
 #COPY ./init.sh $APP_DIR/init.sh
 #RUN chmod a+x $APP_DIR/init.sh && sh $APP_DIR/init.sh 
 
-RUN cp deployment/default_config.xml storage/app/projects/default_config.xml
 COPY ./.env $APP_DIR/.env
 # For https:
 COPY ./routes.php $APP_DIR/app/Http/routes.php

@@ -12,6 +12,8 @@ echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 # Inject environemt variables into config file:
 envsubst < "$APP_DIR/.env" > "$APP_DIR/.env_injected"
 mv "$APP_DIR/.env_injected" "$APP_DIR/.env"
+cp deployment/default_config.xml storage/app/projects/default_config.xml
+cp deployment/LinkSpecificationLanguage.xsd storage/app/projects/LinkSpecificationLanguage.xsd
 
 sleep 5
 sh $APP_DIR/initDB.sh
