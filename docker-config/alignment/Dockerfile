@@ -17,13 +17,15 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 # Install Composer:
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install additional packages:
+RUN apt-get install -y php7.0-gd libapache2-mod-php7.0 \
+    php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
+    php7.0-imagick php7.0-common php7.0-zip libpng-dev libraptor2-dev
+
 # Install mbstring
 RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install gd
 
-# Install additional packages:
-RUN apt-get install -y libgd3 php5-gd libapache2-mod-php7.0 \
-    php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
-    php7.0-imagick php7.0-common php7.0-zip
 RUN phpenmod gd
 RUN apt-get upgrade -y
 
@@ -45,11 +47,18 @@ ENV APP_DIR /var/www/alignment
 WORKDIR $APP_DIR
 EXPOSE 80
 
-RUN git clone https://github.com/okgreece/Alignment.git $APP_DIR && \
-    cd $APP_DIR && git checkout 1b8f6e0bfcb079c695a20b30ef736c42b96de896
+COPY ./php.ini /etc/php/7.0/apache2/php.ini
+
+ADD https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 version.json
+RUN rm -r $APP_DIR
+RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
+
+#COPY ./init.sh $APP_DIR/init.sh
+#RUN chmod a+x $APP_DIR/init.sh && sh $APP_DIR/init.sh 
+
 COPY ./.env $APP_DIR/.env
 # For https:
-COPY ./AppServiceProvider.php $APP_DIR/app/Providers/AppServiceProvider.php
+COPY ./routes.php $APP_DIR/app/Http/routes.php
 
 COPY ./.htaccess /var/www/alignment/public/.htaccess
 
