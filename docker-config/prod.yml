@@ -284,6 +284,7 @@ services:
             - "5000:5000"
         links:
             - dampostgres
+            - opencpu
         env_file:
             - ../.env
     outlierdm:
@@ -320,6 +321,7 @@ services:
             - alignment
             - microsite
             - damapp
+            - opencpu
             - cors
         ports:
             - "80:80" # http
@@ -375,6 +377,7 @@ services:
           - "8442:80"
         links:
           - damapp
+          - opencpu
     #landingpage:
     #    build: ./landingpage
     #    restart: always

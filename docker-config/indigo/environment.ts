@@ -7,7 +7,7 @@ export const environment = {
   production: true,
   apiUrl: 'http://apps.openbudgets.eu',
   DAMUrl: 'http://apps.openbudgets.eu/dam',
-  openCpuEndpoint: 'http://localhost:8666/ocpu',
+  openCpuEndpoint: 'http://apps.openbudgets.eu/ocpu',
   versionSuffix: '3',
   baseHref: '/',
   DAMretries: 10,
