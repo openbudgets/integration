@@ -17,6 +17,9 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
 # Install Composer:
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# update
+RUN apt-get update
+
 # Install additional packages:
 RUN apt-get install -y php7.0-gd libapache2-mod-php7.0 \
     php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
