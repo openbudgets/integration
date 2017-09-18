@@ -55,9 +55,7 @@ COPY ./php.ini /etc/php/7.0/apache2/php.ini
 ADD https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 version.json
 RUN rm -r $APP_DIR
 RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
-
-#COPY ./init.sh $APP_DIR/init.sh
-#RUN chmod a+x $APP_DIR/init.sh && sh $APP_DIR/init.sh 
+RUN touch $APP_DIR/storage/logs/laravel.log && chmod a+rwx $APP_DIR/storage/logs/laravel.log 
 
 COPY ./.env $APP_DIR/.env
 # For https:
