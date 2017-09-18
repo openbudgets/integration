@@ -22,6 +22,9 @@ sh $APP_DIR/initDB.sh
 mkdir -p $APACHE_DOC_ROOT
 chown -R www-data:www-data $APACHE_DOC_ROOT
 chown -R www-data:www-data $APP_DIR/storage
+
+mkdir -p /var/www/.silk && chown -R www-data:www-data /var/www/.silk
+
 sed -i "s|DocumentRoot /var/www/html\$|DocumentRoot $APACHE_DOC_ROOT|" /etc/apache2/sites-available/000-default.conf
 echo "<Directory $APACHE_DOC_ROOT>" > /etc/apache2/conf-available/document-root-directory.conf
 echo "	AllowOverride All" >> /etc/apache2/conf-available/document-root-directory.conf

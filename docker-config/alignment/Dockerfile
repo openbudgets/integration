@@ -23,7 +23,7 @@ RUN apt-get update
 # Install additional packages:
 RUN apt-get install -y php7.0-gd libapache2-mod-php7.0 \
     php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
-    php7.0-imagick php7.0-common php7.0-zip libpng-dev libraptor2-dev
+    php7.0-imagick php7.0-common php7.0-zip libpng-dev libraptor2-dev supervisor
 
 # Install mbstring
 RUN docker-php-ext-install mbstring
@@ -51,11 +51,12 @@ WORKDIR $APP_DIR
 EXPOSE 80
 
 COPY ./php.ini /etc/php/7.0/apache2/php.ini
+COPY ./listener.conf /etc/supervisor/conf.d/listener.conf
 
 ADD https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 version.json
 RUN rm -r $APP_DIR
 RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
-RUN touch $APP_DIR/storage/logs/laravel.log && chmod a+rwx $APP_DIR/storage/logs/laravel.log 
+RUN touch $APP_DIR/storage/logs/laravel.log $APP_DIR/storage/logs/worker.log && chmod a+rwx $APP_DIR/storage/logs/laravel.log $APP_DIR/storage/logs/worker.log
 
 COPY ./.env $APP_DIR/.env
 # For https:
