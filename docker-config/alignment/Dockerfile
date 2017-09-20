@@ -52,8 +52,7 @@ EXPOSE 80
 
 COPY ./php.ini /etc/php/7.0/apache2/php.ini
 COPY ./listener.conf /etc/supervisor/conf.d/listener.conf
-
-ADD https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 version.json
+RUN curl https://api.github.com/repos/okgreece/Alignment/git/refs/heads/develop/1 -o version.json
 RUN rm -r $APP_DIR
 RUN git clone -bdevelop/1 https://github.com/okgreece/Alignment.git $APP_DIR/
 RUN touch $APP_DIR/storage/logs/laravel.log $APP_DIR/storage/logs/worker.log && chmod a+rwx $APP_DIR/storage/logs/laravel.log $APP_DIR/storage/logs/worker.log
