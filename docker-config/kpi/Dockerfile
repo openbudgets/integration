@@ -41,23 +41,22 @@ ENV APACHE_DOC_ROOT /var/www/KPIs/public/
 ENV APP_DIR /var/www/KPIs
 WORKDIR $APP_DIR
 
-RUN git clone https://github.com/okgreece/KPIs.git $APP_DIR && \
-    git checkout master
+ADD https://api.github.com/repos/okgreece/KPIs/git/refs/heads/master /version.json
+RUN rm -r $APP_DIR
+RUN git clone https://github.com/okgreece/KPIs.git $APP_DIR/
 
-COPY ./.env $APP_DIR/.env
+RUN mkdir -p /root/.composer
+COPY ./prod/apache2.conf /etc/apache2/apache2.conf
+RUN mkdir -p /var/www/database
 RUN composer install
+RUN touch /var/www/database/database.sqlite
+COPY ./.env $APP_DIR/.env
 RUN php artisan key:generate
-RUN touch database/database.sqlite
-RUN php artisan migrate --seed
+RUN php artisan migrate --seed --force
+RUN php artisan l5-swagger:generate
 RUN chmod -R a+rwx $APP_DIR
-
-#COPY ./database.sqlite /database.sqlite
-#RUN chmod a+rwx /database.sqlite
 
 EXPOSE 80
 COPY ./start.sh /start.sh
 COPY ./.env /.env
 CMD ["/bin/sh", "/start.sh"]
-
-
-
