@@ -9,7 +9,7 @@ set -e
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
 
 # Change file permissions of sqlite:
-chmod a+rwx $APP_DIR/storage/database.sqlite
+chown www-data:www-data /var/www/database/database.sqlite
 
 # Configure Apache Document Root
 mkdir -p $APACHE_DOC_ROOT
@@ -22,4 +22,3 @@ echo "</Directory>" >> /etc/apache2/conf-available/document-root-directory.conf
 a2enconf "document-root-directory.conf"
 
 exec "apache2-foreground"
-

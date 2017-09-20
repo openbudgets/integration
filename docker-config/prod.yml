@@ -16,6 +16,22 @@ services:
             - OS_API=http://apps.openbudgets.eu/api/3
         env_file:
             - ../.env
+    obeu_microsite:
+        image: openbudgets/microsite
+        build: ./obeu-microsite
+        volumes:
+            - ../volumes/osviewer/themes:/microsite/os_viewer_themes
+            - ../volumes/microsite/data/db.sqlite3:/microsite/db.sqlite3
+        ports:
+            - "8009:8000"
+        links:
+            - os-viewer
+        environment:
+            - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
+            - OS_VIEWER_HOST=http://apps.openbudgets.eu/viewer
+            - OS_API=http://apps.openbudgets.eu/api/3
+        env_file:
+            - ../.env
     silkworkbench:
         image: openbudgets/silkworkbench
         build: ./silkworkbench
@@ -266,16 +282,11 @@ services:
         image: openbudgets/kpi
         build: ./kpi
         volumes:
-            - ../volumes/kpi/database/database.sqlite:/var/www/KPIs/storage/database.sqlite
-            - ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+            - ../volumes/kpi/database:/var/www/database
+            #- ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+            - ../volumes/kpi/composer:/root/.composer
         ports:
             - "8112:80"
-        links:
-            - rudolf
-            - virtuoso_staging
-            - virtuoso_production
-            - indigo
-            - os-viewer
     damapp:
         image: openbudgets/damapp
         build: ./damapp
@@ -321,6 +332,7 @@ services:
             - rdfbrowser
             - alignment
             - microsite
+            - obeu_microsite
             - damapp
             - opencpu
             - cors
