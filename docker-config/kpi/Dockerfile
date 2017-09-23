@@ -47,16 +47,19 @@ RUN git clone https://github.com/okgreece/KPIs.git $APP_DIR/
 
 RUN mkdir -p /root/.composer
 COPY ./prod/apache2.conf /etc/apache2/apache2.conf
+
 RUN mkdir -p /var/www/database
 RUN composer install
 RUN touch /var/www/database/database.sqlite
 COPY ./.env $APP_DIR/.env
+COPY ./kpi.conf /etc/apache2/sites-available/kpi.conf
+RUN a2ensite kpi.conf && service apache2 start
 RUN php artisan key:generate
 RUN php artisan migrate --seed --force
 RUN php artisan l5-swagger:generate
 RUN chmod -R a+rwx $APP_DIR
-
+RUN ln -s /var/www/KPIs/public /var/www/html/kpi
 EXPOSE 80
 COPY ./start.sh /start.sh
-COPY ./.env /.env
+#COPY ./.env /.env
 CMD ["/bin/sh", "/start.sh"]
