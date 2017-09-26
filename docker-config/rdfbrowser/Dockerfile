@@ -42,6 +42,7 @@ ENV APACHE_DOC_ROOT /var/www/RDFBrowser/public/
 ENV APP_DIR /var/www/RDFBrowser
 WORKDIR $APP_DIR
 
+# Update app from github repo
 ADD https://api.github.com/repos/okgreece/RDFBrowser/git/refs/heads/master /version.json
 RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR/
 
