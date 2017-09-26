@@ -4,7 +4,7 @@ RUN apt-get update -y && \
     apt-get install -y supervisor git
 
 RUN git clone https://github.com/openbudgets/microsite
-RUN cd /microsite && git pull origin master && git checkout 6d3f2aa4b491a7707aa825643540726fff2ea915
+RUN cd /microsite && git pull origin master
 
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./start.sh /start.sh
