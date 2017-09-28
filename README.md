@@ -1,6 +1,9 @@
-The OBEU-stack
+#OBEU Platform
 
-The OBEU-stack consists of several applications (OBEU-Components) provided by the partners in the OBEU-project as well as from other Open-Source-projects:
+#Softwares Running on OBEU Platform
+
+The software stack consists of several applications (OBEU-Components) provided by the partners in the OBEU-project as well as from other Open-Source-projects:
+
 - LinkedPipes https://github.com/linkedpipes/etl with the FDP-to-RDF-pipeline https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
 - Alignment https://github.com/okgreece/Alignment
 - Rudolf https://github.com/openbudgets/rudolf
@@ -34,9 +37,9 @@ Some of the publicly exposed endpoints/frontends:
       For example your /etc/host-file may look like this:
       127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 local.align local.dam local.data local.micro
     - Start applications (incl. update from remote repo): sh ./refresh_and_restart_dev.sh
-    
+
     Since the Virtuoso-Staging-DB will be empty, you will have to import datasets for seeing the results in the Viewer, Explorer.
-    
+
     Exposed components in a local OBEU installation:
         - LinkedPipes: http://localhost:8080
         - Virtuoso Staging: http://localhost:8890
@@ -47,9 +50,9 @@ Some of the publicly exposed endpoints/frontends:
         - DAM: http://local.dam
         - Mirosite: http://local.micro
         - Alignment: http://local.align
-        
+
     Remark: If you running Docker within a VirtualBox via docker-machine, use the IP-Adress of the docker-machine (mostly this is: 192.168.99.100 but you can find out via docker-machine ip) instead of localhost here.
-    
+
 (2) Server Installation:
 
     - Clone the repo
@@ -79,7 +82,7 @@ Appendix
     How To import the FDP-2-RDF-Pipeline on LinkedPipes-Frontend (8080):
         https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
         Upload Pipeline from URL: https://raw.githubusercontent.com/openbudgets/pipeline-fragments/master/FDPtoRDF/FDPtoRDF.jsonld
-    
+
     How to configure the TripleStore-Component in the FDP-2-RDF-Pipeline on LinkedPipes-Frontend (8080):
         (a) Select Repository: Fuseki
         (b) Graph store protocol endpoint: http://triple_store_staging:3030/fuseki/data
