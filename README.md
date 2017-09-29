@@ -20,6 +20,7 @@ The software stack consists of several softwares (OBEU-Components) provided by t
   - https://github.com/okgreece/RDFBrowser
 - DAM
   - https://github.com/openbudgets/DAM
+  - Running on: http://apps.openbudgets.eu/dam/
 - Indigo
   - https://github.com/okgreece/indigo
   - Running on: http://apps.openbudgets.eu/
@@ -27,8 +28,7 @@ The software stack consists of several softwares (OBEU-Components) provided by t
   - https://hub.docker.com/_/nginx/
 - Microsite
   - https://github.com/openbudgets/microsite
-- OpenSpending-Admin
-  - https://github.com/openspending/os-admin
+  - Running on: https://apps.openbudgets.eu/microsite/
 - OpenSpending-Viewer
   - https://github.com/openspending/os-viewer
   - Running on: http://apps.openbudgets.eu/viewer
