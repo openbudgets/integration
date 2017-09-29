@@ -19,6 +19,7 @@ COPY ./prod_config/themes/default.json /app/app/config/themes/default.json
 ADD settings.json /app/settings.json
 
 RUN cd /app && npm install -g napa && napa eligrey/FileSaver.js:file-saver && napa d3/d3-plugins:d3-plugins
+ADD ./translations/el.json /app/translations/el.json
 RUN cd /app && npm install && npm run build
 COPY ./obeu_specific/openbudgets-logo.ico /app/public/favicon.ico
 ADD /settings.json /app/settings.json
