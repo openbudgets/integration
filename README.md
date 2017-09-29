@@ -58,29 +58,94 @@ You can git clone the repository by the following command:
 
   `git clone https://github.com/openbudgets/integration`
 
+#### Environment Variables
+You can specify the host-specific environment-variables in the `.env` file similar to `env.example` file. Credentials are required for some components, and they are stored in .env file. For example for a local installation the Virtuoso credentials are: `Username: dba, Password: TEST`. Some specific software configurations are list as follows.
+
+##### Docker
+You need to replace the variables with domain `http://apps.openbudgets.eu` in [`integration/docker-config/prod.yml`](https://github.com/openbudgets/integration/blob/master/docker-config/prod.yml) to `your_domain_name`.
+
+##### Rudolf
+The configuration files of Rudolf are in [`docker-config/rudolf/config`](https://github.com/openbudgets/integration/tree/master/docker-config/rudolf/config) folder. You need to adapt the following settings:
+
+- php.ini
+  - `memory_limit = 2048M` in case some request requires large memory.
+
+##### Indigo
+You need to set the following environment variables of Indigo in file [`docker-config/indigo/environment.ts`](https://github.com/openbudgets/integration/blob/master/docker-config/indigo/environment.ts).
+
+- Rudolf api
+  - `apiUrl: 'your_domain_name/'`
+- DAM URL
+  - `DAMUrl: 'your_domain_name/dam'`
+- OpenCPU URL
+  - `openCpuEndpoint: 'your_domain_name/ocpu'`
+
+
+##### OS-Packager
+You need to adapt the OBEU specific files in folder [`os-packager/obeu_specific`](https://github.com/openbudgets/integration/tree/master/docker-config/os-packager/obeu_specific). You need to replace the link to static files, like `https://apps.openbudgets.eu/svg/packager_black.svg` to `your_domain_name/packager_black.svg` in the following files:
+
+- default.json
+- footer.html
+- header.html
+
+##### OS-Viewer
+You need to change the following settings:
+
+- `docker-config/os-viewer/obeu_specific/index.js`
+  - `$scope.datamineUrl = 'your_domain_name/cube/analytics/' + dataMinePath;`
+- change static file links from `https://apps.openbudgets.eu/` to `your_domain_name`
+  - `docker-config/os-viewer/prod_config/themes/default.json`
+  - `docker-config/os-viewer/prod_config/themes/wacky.json`
+
+##### DAM
+You need to change the following variables in [`docker-config/damapp/.env`](https://github.com/openbudgets/integration/blob/master/docker-config/damapp/.env)
+- Replace `http://eis-openbudgets.iais.fraunhofer.de/` and `http://apps.openbudgets.eu/` with `your_domain_name`.
+
+##### Alignment
+You need to change the following settings in `docker-config/alignment`
+
+- .env
+  - replace domain name `https://apps.openbudgets.eu/` with `your_domain_name`.
+
+##### Virtuoso
+The staging version of Virtuoso is used by default. You need to adapt the following setttings in [`docker-config/virtuoso/staging/virtuoso.ini`](https://github.com/openbudgets/integration/blob/master/docker-config/virtuoso/staging/virtuoso.ini)
+
+- `ResultSetMaxRows = 500000`
+
+
+####
+
+
 #### Initialize Shared Volumes
 You can use the provided bash shell script to initialize the share volumes in the integration folder.
 
 `sh ./initVolumes.sh`
 
-#### Environment Variables
-You can specify the host-specific environment-variables in the `.env` file similar to `env.example` file.
-
-Some components require credentials in order to use them such as Virtuoso. Credentials are stored in env.example. For example for a local installation the Virtuoso credentials are:
-
-`Username: dba, Password: TEST`
-
-
-#### Running Docker Containers
-
-Update from Integration git repository and (re-)starting Docker containers by provided bash shell script with the following command:
-
-`sh ./refresh_and_restart_prod.sh`
-
 ### Prepare Domain Name
-We use Nginx as a proxy server which runs in one docker container. You need to change the domain name and HTTPS credentials in order to use HTTPS.
+We use Nginx as a proxy server which runs in one docker container. You need to change the domain name according to your own case and HTTPS credential is needed in order to use HTTPS.
+
+#### Nginx Server Configuration
+The included domain name and subdomains are configured in `docker-config/nginx/conf/nginx.conf`, and all the included configuration files within `docker-config/nginx/conf/nginx.conf` are located in `docker-config/nginx/conf/includes`. You only need the following files:
+
+- http_server_eis_obeu.conf
+  - You define your own domain name in this file with the following line
+    - `server_name your_domain_name;`
+  - It should listen on port `80`
+    - `listen 80;`
+  - You can define all the included components as in `Include Apps` section.
+- https_server_eis_obeu.conf
+  - You define domain name in this file with the following line:
+    - `server_name your_domain_name;`
+  - It should listen on port `443`
+    - `listen 443 ssl;`
+- http_server_data_obeu.conf
+  - You define domain name in this file as
+    - `server_name data.openbudgets.eu;`
+  - It should listen on port `80`
+    - `listen 80;`
 
 #### Subdomains
+Triple store is running under subdomain `data.openbudgets.eu`. It is configured in file `docker-config/nginx/conf/includes/http_server_data_obeu.conf`, and `RDFBrowser` and `VirtuosoStaging` are running under this subdomain.
 
 #### HTTPS
 There are some shell scripts provided to generate https credentials and ssl keys by using `letsencrypt` services running within docker container. You need to adapt the settings in `letsEncryptProductionCert` file with your own domain name, afterwards you can generate credentials by using the following command:
@@ -88,6 +153,13 @@ There are some shell scripts provided to generate https credentials and ssl keys
 `sh letsEncryptProductionCert`
 
 Then the credentials should already be generated to the shared volumes generated during initializing of the folders.
+
+
+### Running Docker Containers
+After the environment variables is set up, then you can update from Integration git repository and (re-)starting Docker containers by provided bash shell script with the following command:
+
+`sh ./refresh_and_restart_prod.sh`
+
 
 ## Local Test
 (1) Local Installation:
