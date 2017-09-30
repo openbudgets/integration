@@ -50,6 +50,16 @@ It is possible to replicate the components running on OBEU platform to your own 
 
 The docker configuration files are included in the Integration repository, each component has its own folder, and every component is running within a separate docker container.
 
+### Hardware Recommendations
+This section gives the hardware specifications of the OBEU platform as a reference for the deployment on your platform.
+
+The current platform is running and tested with the following recommended hardware specifications:
+  -  Intel(R) Xeon(R) CPU E5-2660 v3 @ 2.60GHz
+  -  35GB RAM
+  -  4GB Swap memory
+  -  1TB hard disk for storage
+
+
 ### Prepare The Integration
 You need to make the integration folder prepared with all the shared volumes, static files placed in the correct path.
 
@@ -111,10 +121,6 @@ You need to change the following settings in `docker-config/alignment`
 The staging version of Virtuoso is used by default. You need to adapt the following setttings in [`docker-config/virtuoso/staging/virtuoso.ini`](https://github.com/openbudgets/integration/blob/master/docker-config/virtuoso/staging/virtuoso.ini)
 
 - `ResultSetMaxRows = 500000`
-
-
-####
-
 
 #### Initialize Shared Volumes
 You can use the provided bash shell script to initialize the share volumes in the integration folder.
