@@ -5,45 +5,45 @@
 The software stack consists of several softwares (OBEU-Components) provided by the partners in the OBEU-project as well as from other Open-Source-projects:
 
 - LinkedPipes
-  - https://github.com/linkedpipes/etl
+  - `https://github.com/linkedpipes/etl`
   - With FDP-to-RDF-pipeline  
-    - https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF
+    - `https://github.com/openbudgets/pipeline-fragments/tree/master/FDPtoRDF`
   - Accessible through SSH
-    - http://localhost:8080
+    - `http://localhost:8080`
 - Alignment
-  - https://github.com/okgreece/Alignment
-  - Running on: http://apps.openbudgets.eu/alignment
+  - `https://github.com/okgreece/Alignment`
+  - Running on: `http://apps.openbudgets.eu/alignment`
 - Rudolf
-  - https://github.com/openbudgets/rudolf
-  - API running on: http://apps.openbudgets.eu/api/3/cubes/
+  - `https://github.com/openbudgets/rudolf`
+  - API running on: `http://apps.openbudgets.eu/api/3/cubes/`
 - RDFBrowser
-  - https://github.com/okgreece/RDFBrowser
+  - `https://github.com/okgreece/RDFBrowser`
 - DAM
-  - https://github.com/openbudgets/DAM
-  - Running on: http://apps.openbudgets.eu/dam/
+  - `https://github.com/openbudgets/DAM`
+  - Running on: `http://apps.openbudgets.eu/dam/`
 - Indigo
-  - https://github.com/okgreece/indigo
-  - Running on: http://apps.openbudgets.eu/
+  - `https://github.com/okgreece/indigo`
+  - Running on: `http://apps.openbudgets.eu/`
 - Nginx as Reverse Proxy
-  - https://hub.docker.com/_/nginx/
+  - `https://hub.docker.com/_/nginx/`
 - Microsite
-  - https://github.com/openbudgets/microsite
-  - Running on: https://apps.openbudgets.eu/microsite/
+  - `https://github.com/openbudgets/microsite`
+  - Running on: `https://apps.openbudgets.eu/microsite/`
 - OpenSpending-Viewer
-  - https://github.com/openspending/os-viewer
-  - Running on: http://apps.openbudgets.eu/viewer
-  - Example: http://apps.openbudgets.eu/viewer/budget-athens-expenditure-2007__5d543?lang=en
+  - `https://github.com/openspending/os-viewer`
+  - Running on: `http://apps.openbudgets.eu/viewer`
+  - Example: `http://apps.openbudgets.eu/viewer/budget-athens-expenditure-2007__5d543?lang=en`
 - Silk Linked Data Integration Framework
-  - https://github.com/silk-framework/silk
+  - `https://github.com/silk-framework/silk`
 - Virtuoso
-  - https://github.com/openlink/virtuoso-opensource
-  - From docker hub https://hub.docker.com/r/tenforce/virtuoso/
+  - `https://github.com/openlink/virtuoso-opensource`
+  - From docker hub `https://hub.docker.com/r/tenforce/virtuoso/`
   - Accessible through SSH
-    - Virtuoso Staging: http://localhost:8890
-    - Virtuoso Production: http://localhost:8891
+    - Virtuoso Staging: `http://localhost:8890`
+    - Virtuoso Production: `http://localhost:8891`
 
 - Dumps-folder for the FDP-to-RDF-pipeline-transformations and other datasets:   
-  - http://apps.openbudgets.eu/dumps
+  - `http://apps.openbudgets.eu/dumps`
 
 ## Replica of OBEU Platform
 It is possible to replicate the components running on OBEU platform to your own platform. The components are managed by using Docker and Docker-Compose, so you need have this two software installed on you server. For detail information about how to install docker and docker-compose, please check https://www.docker.com/.
