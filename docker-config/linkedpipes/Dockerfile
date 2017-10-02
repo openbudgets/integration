@@ -20,7 +20,7 @@ ENV PATH $PATH:$M2_HOME/bin
 RUN git clone https://github.com/linkedpipes/etl.git
 RUN cd /etl && git checkout 925747245c7462779a14590bfbb694bfbbed6f94
 
-RUN cd /etl && mvn install
+RUN cd /etl && mvn install -Dmaven.test.skip=true
 RUN chmod uag+rx /etl/deploy/executor.sh && \
     chmod uag+rx /etl/deploy/executor-monitor.sh && \
     chmod uag+rx /etl/deploy/frontend.sh
