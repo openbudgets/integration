@@ -34,14 +34,9 @@ services:
             - ../env.example
         ports:
             - "3306:3307"
-    alignmentredis:
-        image: openbudgets/alignmentredis
-        build: ./alignmentredis
-        volumes:
-            - ../volumes/alignment/redis:/data
-    alignmentui:
-        image: openbudgets/alignmentui
-        build: ./alignmentui
+    alignment:
+        image: openbudgets/alignment
+        build: ./alignment
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/alignment/composer:/root/.composer/cache
@@ -49,7 +44,6 @@ services:
             - ../env.example
         links:
             - alignmentmysql
-            - alignmentredis
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
@@ -103,49 +97,10 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
-    virtuoso_staging_old:
-        image: openbudgets/virtuoso
-        build: ./virtuoso
-        restart: always
-        volumes:
-            - ../volumes/virtuosoStagingOld/data:/data
-            - ../volumes/virtuosoStagingOld/upload:/upload
-            - ../volumes/nginx/dumps:/dumps
-        env_file:
-            - ../env.example
-        environment:
-            - SPARQL_UPDATE=true
-        ports:
-            - "8893:8890"
-            - "1113:1111"
-#    triple_store_staging:
-#        image: openbudgets/triple_store_staging
-#        build: ./fuseki
-#        volumes:
-#            - ./fuseki/staging/start.sh:/start.sh
-#            - ./fuseki/staging:/staging
-#            - ../volumes/tripleStoreStaging/log:/var/log
-#            - ../volumes/tripleStoreStaging/data:/data
-#            - ../volumes/nginx/dumps:/dumps
-#        ports:
-#            - "33030:3030"
-#            - "39001:9001" # supervisord frontend
-#    triple_store_production:
-#        image: openbudgets/triple_store_production
-#        build: ./fuseki
-#        volumes:
-#            - ./fuseki/production/start.sh:/start.sh
-#            - ../volumes/tripleStoreProduction/log:/var/log
-#            - ../volumes/tripleStoreProduction/data:/data
-#            - ../volumes/tripleStoreStaging/data:/newdata
-#        ports:
-#            - "43030:3030"
-#            - "49001:9001" # supervisord frontend
     rudolf:
         image: openbudgets/rudolf
         build: ./rudolf
         links:
-#            - triple_store_production
             - virtuoso_production
             - virtuoso_staging
     rdfbrowser:
@@ -195,14 +150,11 @@ services:
             - linkedpipes_fdp
             - virtuoso_staging
             - virtuoso_production
-            - virtuoso_staging_old
             - rudolf
             - os-viewer
-            - os-explorer
-            - os-admin
             - indigo
             - rdfbrowser
-            - alignmentui
+            - alignment
             - microsite
             - damapp
         ports:
@@ -229,20 +181,6 @@ services:
             - OS_VIEWER_DATAMINE_HOST=http://localhost
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
-    os-explorer:
-        image: openbudgets/os-explorer
-        build: ./os-explorer
-        volumes:
-          - ./os-explorer/dev_themes:/app/app/scripts/services/themes
-        expose:
-          - "8000"
-        environment:
-          - WORKDIR=/apps
-    os-admin:
-        image: openbudgets/os-admin
-        expose:
-          - "8000"
-        restart: always
     os-packager:
         build: ./os-packager
         restart: always
@@ -257,37 +195,13 @@ services:
           - "4200:4200"
         links:
           - damapp
-
-#    vocol:
-#        build: ./vocol
-#        ports:
-#          - "4200:4200"
-
-
-
-
-
-
-# Subnet-Size net-Mask-Size (CIDR)
-# 256 24
-# 128 25
-# 64 26
-# 32 27
-# 16 28 <<<<<
-# 8 29
-# 4 30
-# 2 31
-# 1 32
-
-    #rudolf:
-
-    #alignmentUI:
-
-    #fileServerDataMining:
-
-
-
-
-
-
+    kpi:
+        image: openbudgets/kpi
+        build: ./kpi
+        volumes:
+            - ../volumes/kpi/database:/var/www/database
+            #- ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+            - ../volumes/kpi/composer:/root/.composer
+        ports:
+            - "8112:80"
 
