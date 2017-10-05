@@ -120,7 +120,10 @@ You need to change the following settings in `docker-config/alignment`
 ##### Virtuoso
 The staging version of Virtuoso is used by default. You need to adapt the following setttings in [`docker-config/virtuoso/staging/virtuoso.ini`](https://github.com/openbudgets/integration/blob/master/docker-config/virtuoso/staging/virtuoso.ini)
 
-- `ResultSetMaxRows = 500000`
+- `ResultSetMaxRows = 500000;`
+  - set the maximum number of rows in the return result
+- `MaxQueryMem = 16G;`
+  - set the maximum allowed memory consumption by query 
 
 #### Initialize Shared Volumes
 You can use the provided bash shell script to initialize the share volumes in the integration folder.
