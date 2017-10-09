@@ -96,7 +96,6 @@ You need to adapt the OBEU specific files in folder [`os-packager/obeu_specific`
 
 - default.json
 - footer.html
-- header.html
 
 ##### OS-Viewer
 You need to change the following settings:
