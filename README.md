@@ -152,10 +152,10 @@ The included domain name and subdomains are configured in `docker-config/nginx/c
     - `listen 80;`
 
 #### Subdomains
-Triple store is running under subdomain `data.openbudgets.eu`. It is configured in file `docker-config/nginx/conf/includes/http_server_data_obeu.conf`, and `RDFBrowser` and `VirtuosoStaging` are running under this subdomain. You need to change`poroxy_set_header` to `Host data.your_domain_name;` in [`docker-config/nginx/conf/includes/locations/rdfbrowser.conf`]
+Triple store is running under subdomain `data.openbudgets.eu`. It is configured in file `docker-config/nginx/conf/includes/http_server_data_obeu.conf`, and `RDFBrowser` and `VirtuosoStaging` are running under this subdomain. You need to change`poroxy_set_header` to `Host data.your_domain_name;` in [`docker-config/nginx/conf/includes/locations/rdfbrowser.conf`](https://github.com/openbudgets/integration/blob/master/docker-config/nginx/conf/includes/locations/rdfbrowser.conf)
 
 #### HTTPS
-There are some shell scripts provided to generate https credentials and ssl keys by using `letsencrypt` services running within docker container. You need to adapt the settings in `letsEncryptProductionCert` file with your own domain name, afterwards you can generate credentials by using the following command in folder [`letsencrypt`]:
+There are some shell scripts provided to generate https credentials and ssl keys by using `letsencrypt` services running within docker container. You need to adapt the settings in `letsEncryptProductionCert` file with your own domain name, afterwards you can generate credentials by using the following command in folder [`letsencrypt`](https://github.com/openbudgets/integration/tree/master/letsencrypt):
 
 `sh letsEncryptProductionCert`
 
