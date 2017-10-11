@@ -158,6 +158,8 @@ services:
         links:
             - virtuoso_staging
             - virtuoso_production
+        env_file:
+            - ../.env
     dampostgres:
         image: openbudgets/dampostgres
         build: ./dampostgres
