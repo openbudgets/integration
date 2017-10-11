@@ -151,7 +151,7 @@ services:
         image: openbudgets/rdfbrowser
         build: ./rdfbrowser
         volumes:
-            - ../volumes/rdfbrowser/storage/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
             - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
         ports:
             - "8111:80"
