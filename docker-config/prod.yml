@@ -176,6 +176,8 @@ services:
             - ../volumes/kpi/composer:/root/.composer
         ports:
             - "8112:80"
+        env_file:
+            - ../.env
     damapp:
         image: openbudgets/damapp
         build: ./damapp
