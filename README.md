@@ -109,11 +109,15 @@ You need to change the following settings:
 You need to change the following variables in [`docker-config/damapp/.env`](https://github.com/openbudgets/integration/blob/master/docker-config/damapp/.env)
 - Replace `http://eis-openbudgets.iais.fraunhofer.de/` and `http://apps.openbudgets.eu/` with `your_domain_name`.
 
-##### Alignment
-You need to change the following settings in `docker-config/alignment`
+##### Alignment, KPI and RDFBrowser
+You need to change the following settings in ```.env``` file on the root directory
 
-- .env
-  - replace domain name `https://apps.openbudgets.eu/` with `your_domain_name`.
+- replace domain name `https://apps.openbudgets.eu/` with `your_domain_name`and `http://data.openbudgets.eu` with `your_data_domain_name`
+```
+#GLOBAL: Contains variables used by all containers
+APP_DOMAIN=https://apps.openbudgets.eu
+DATA_DOMAIN=http://data.openbudgets.eu
+```
 
 ##### Virtuoso
 The staging version of Virtuoso is used by default. You need to adapt the following setttings in [`docker-config/virtuoso/staging/virtuoso.ini`](https://github.com/openbudgets/integration/blob/master/docker-config/virtuoso/staging/virtuoso.ini)
@@ -121,7 +125,7 @@ The staging version of Virtuoso is used by default. You need to adapt the follow
 - `ResultSetMaxRows = 500000;`
   - set the maximum number of rows in the return result
 - `MaxQueryMem = 16G;`
-  - set the maximum allowed memory consumption by query 
+  - set the maximum allowed memory consumption by query
 
 #### Initialize Shared Volumes
 You can use the provided bash shell script to initialize the share volumes in the integration folder.
