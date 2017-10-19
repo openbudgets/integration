@@ -151,13 +151,15 @@ services:
         image: openbudgets/rdfbrowser
         build: ./rdfbrowser
         volumes:
-            - ../volumes/rdfbrowser/storage/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
             - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
         ports:
             - "8111:80"
         links:
             - virtuoso_staging
             - virtuoso_production
+        env_file:
+            - ../.env
     dampostgres:
         image: openbudgets/dampostgres
         build: ./dampostgres
@@ -174,6 +176,8 @@ services:
             - ../volumes/kpi/composer:/root/.composer
         ports:
             - "8112:80"
+        env_file:
+            - ../.env
     damapp:
         image: openbudgets/damapp
         build: ./damapp

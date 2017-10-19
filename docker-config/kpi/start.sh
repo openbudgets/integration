@@ -7,7 +7,8 @@ set -e
 
 # Configure PHP date.timezone
 echo "date.timezone = $PHP_TIMEZONE" > /usr/local/etc/php/conf.d/timezone.ini
-
+envsubst < "$APP_DIR/.env" > "$APP_DIR/.env_injected"
+mv "$APP_DIR/.env_injected" "$APP_DIR/.env"
 # Change file permissions of sqlite:
 chown www-data:www-data /var/www/database/database.sqlite
 

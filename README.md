@@ -104,17 +104,20 @@ You need to change the following settings:
   - `$scope.datamineUrl = 'your_domain_name/cube/analytics/' + dataMinePath;`
 - change static file links from `https://apps.openbudgets.eu/` to `your_domain_name`
   - `docker-config/os-viewer/prod_config/themes/default.json`
-  - `docker-config/os-viewer/prod_config/themes/wacky.json`
 
 ##### DAM
 You need to change the following variables in [`docker-config/damapp/.env`](https://github.com/openbudgets/integration/blob/master/docker-config/damapp/.env)
 - Replace `http://eis-openbudgets.iais.fraunhofer.de/` and `http://apps.openbudgets.eu/` with `your_domain_name`.
 
-##### Alignment
-You need to change the following settings in `docker-config/alignment`
+##### Alignment, KPI and RDFBrowser
+You need to change the following settings in ```.env``` file on the root directory
 
-- .env
-  - replace domain name `https://apps.openbudgets.eu/` with `your_domain_name`.
+- replace domain name `https://apps.openbudgets.eu/` with `your_domain_name`and `http://data.openbudgets.eu` with `your_data_domain_name`
+```
+#GLOBAL: Contains variables used by all containers
+APP_DOMAIN=https://apps.openbudgets.eu
+DATA_DOMAIN=http://data.openbudgets.eu
+```
 
 ##### Virtuoso
 The staging version of Virtuoso is used by default. You need to adapt the following setttings in [`docker-config/virtuoso/staging/virtuoso.ini`](https://github.com/openbudgets/integration/blob/master/docker-config/virtuoso/staging/virtuoso.ini)
@@ -122,7 +125,7 @@ The staging version of Virtuoso is used by default. You need to adapt the follow
 - `ResultSetMaxRows = 500000;`
   - set the maximum number of rows in the return result
 - `MaxQueryMem = 16G;`
-  - set the maximum allowed memory consumption by query 
+  - set the maximum allowed memory consumption by query
 
 #### Initialize Shared Volumes
 You can use the provided bash shell script to initialize the share volumes in the integration folder.
@@ -148,15 +151,15 @@ The included domain name and subdomains are configured in `docker-config/nginx/c
     - `listen 443 ssl;`
 - http_server_data_obeu.conf
   - You define domain name in this file as
-    - `server_name data.openbudgets.eu;`
+    - `server_name your_domain_name;`
   - It should listen on port `80`
     - `listen 80;`
 
 #### Subdomains
-Triple store is running under subdomain `data.openbudgets.eu`. It is configured in file `docker-config/nginx/conf/includes/http_server_data_obeu.conf`, and `RDFBrowser` and `VirtuosoStaging` are running under this subdomain.
+Triple store is running under subdomain `data.openbudgets.eu`. It is configured in file `docker-config/nginx/conf/includes/http_server_data_obeu.conf`, and `RDFBrowser` and `VirtuosoStaging` are running under this subdomain. You need to change`poroxy_set_header` to `Host data.your_domain_name;` in [`docker-config/nginx/conf/includes/locations/rdfbrowser.conf`](https://github.com/openbudgets/integration/blob/master/docker-config/nginx/conf/includes/locations/rdfbrowser.conf)
 
 #### HTTPS
-There are some shell scripts provided to generate https credentials and ssl keys by using `letsencrypt` services running within docker container. You need to adapt the settings in `letsEncryptProductionCert` file with your own domain name, afterwards you can generate credentials by using the following command:
+There are some shell scripts provided to generate https credentials and ssl keys by using `letsencrypt` services running within docker container. You need to adapt the settings in `letsEncryptProductionCert` file with your own domain name, afterwards you can generate credentials by using the following command in folder [`letsencrypt`](https://github.com/openbudgets/integration/tree/master/letsencrypt):
 
 `sh letsEncryptProductionCert`
 

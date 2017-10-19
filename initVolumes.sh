@@ -52,8 +52,8 @@ mkdir -p volumes/silkworkbench/silk
 
 #RDFBrowser:
 mkdir -p volumes/rdfbrowser/logs
-mkdir -p volumes/rdfbrowser/storage
-[ ! -f volumes/rdfbrowser/storage/database.sqlite ] && cp ./docker-config/rdfbrowser/database.sqlite ./volumes/rdfbrowser/storage/database.sqlite
+mkdir -p volumes/rdfbrowser/database
+[ ! -f volumes/rdfbrowser/database/database.sqlite ] && cp ./docker-config/rdfbrowser/database.sqlite ./volumes/rdfbrowser/database/database.sqlite
 
 #KPIs:
 mkdir -p volumes/kpi/logs
