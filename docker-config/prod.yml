@@ -123,21 +123,21 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
-    virtuoso_staging_old:
-        image: openbudgets/virtuoso
-        build: ./virtuoso
-        restart: always
-        volumes:
-            - ../volumes/virtuosoStagingOld/data:/data
-            - ../volumes/virtuosoStagingOld/upload:/upload
-            - ../volumes/nginx/dumps:/dumps
-        env_file:
-            - ../.env
-        environment:
-            - SPARQL_UPDATE=true
-        ports:
-            - "8893:8890"
-            - "1113:1111"
+#    virtuoso_staging_old:
+ #       image: openbudgets/virtuoso
+  #      build: ./virtuoso
+   #     restart: always
+    #    volumes:
+     #       - ../volumes/virtuosoStagingOld/data:/data
+      #      - ../volumes/virtuosoStagingOld/upload:/upload
+       #     - ../volumes/nginx/dumps:/dumps
+ #       env_file:
+ #           - ../.env
+  #      environment:
+   #         - SPARQL_UPDATE=true
+    #    ports:
+     #       - "8893:8890"
+      #      - "1113:1111"
     rudolf:
         image: openbudgets/rudolf
         build: ./rudolf
@@ -209,7 +209,7 @@ services:
             - linkedpipes_fdp
             - virtuoso_staging
             - virtuoso_production
-            - virtuoso_staging_old
+            #- virtuoso_staging_old
             - rudolf
             - os-viewer
             - os-packager
