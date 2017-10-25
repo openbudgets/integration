@@ -1,4 +1,4 @@
-FROM php:7.0.7-fpm-alpine
+FROM php:7.1.10-fpm-alpine
 
 # Install PHP 7:
 RUN apk add --update bash libmcrypt-dev git curl
