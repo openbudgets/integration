@@ -90,12 +90,15 @@ You need to set the following environment variables of Indigo in file [`docker-c
 - OpenCPU URL
   - `openCpuEndpoint: 'your_domain_name/ocpu'`
 
+You also have to modify the Dockerfile [`docker-config/indigo/Dockerfile`](https://github.com/openbudgets/integration/blob/master/docker-config/indigo/Dockerfile) by removing the hashtag(#) in line 55 `#COPY ./layout.ts /app/src/app/components/layout.ts` to use the link in your own server.
 
 ##### OS-Packager
 You need to adapt the OBEU specific files in folder [`os-packager/obeu_specific`](https://github.com/openbudgets/integration/tree/master/docker-config/os-packager/obeu_specific). You need to replace the link to static files, like `https://apps.openbudgets.eu/svg/packager_black.svg` to `your_domain_name/packager_black.svg` in the following files:
 
 - default.json
 - footer.html
+
+In order to upload dataset properly, you need to register in os-spending. Please contact us for the registration!
 
 ##### OS-Viewer
 You need to change the following settings:
@@ -104,6 +107,8 @@ You need to change the following settings:
   - `$scope.datamineUrl = 'your_domain_name/cube/analytics/' + dataMinePath;`
 - change static file links from `https://apps.openbudgets.eu/` to `your_domain_name`
   - `docker-config/os-viewer/prod_config/themes/default.json`
+  
+In order to view dataset properly, you need to register in os-spending. Please contact us for the registration!
 
 ##### DAM
 You need to change the following variables in [`docker-config/damapp/.env`](https://github.com/openbudgets/integration/blob/master/docker-config/damapp/.env)
