@@ -52,6 +52,8 @@ RUN git clone https://github.com/okgreece/indigo.git /app && \
 
 RUN cd /app && rm -rf node_modules dist &&  npm install
 
+#COPY ./layout.ts /app/src/app/components/layout.ts
+
 COPY ./environment.ts /app/src/environments/environment.ts
 
 COPY ./environment.ts /app/src/environments/environment.prod.ts
