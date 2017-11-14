@@ -1,6 +1,6 @@
 # OBEU Platform
 
-## Softwares Running on OBEU Platform
+## Software Running on OBEU Platform
 
 The software stack consists of several softwares (OBEU-Components) provided by the partners in the OBEU-project as well as from other Open-Source-projects:
 
@@ -223,4 +223,4 @@ After the environment variables is set up, then you can update from Integration 
         (b) User-name & Password: root
         (c) Target Directory: /dumps
 
-There is a Google Doc with more specifics how to establish a new subdomain via CNAME and how to modify nginx.conf.
+Online you can find more information on how to establish a new subdomain via CNAME and how to modify nginx.conf.
