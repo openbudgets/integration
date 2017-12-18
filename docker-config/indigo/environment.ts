@@ -4,12 +4,10 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false,
-  //apiUrl: 'http://eis-openbudgets.iais.fraunhofer.de',
+  production: true,
   apiUrl: 'http://apps.openbudgets.eu',
-  //DAMUrl: "http://okfnrg.math.auth.gr/ocpu/",
-  DAMUrl: 'http://dam-obeu.iais.fraunhofer.de',
-  openCpuEndpoint: 'http://okfnrg.math.auth.gr/ocpu/',
+  DAMUrl: 'http://apps.openbudgets.eu/dam',
+  openCpuEndpoint: 'http://apps.openbudgets.eu/ocpu',
   versionSuffix: '3',
   baseHref: '/',
   DAMretries: 10,

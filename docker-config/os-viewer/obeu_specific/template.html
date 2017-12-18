@@ -6,8 +6,18 @@
 </div>
 <div class="x-package-info">
   <h4>{{ 'Data Resources' | i18n }}</h4>
-  <div>
-    <!--<i class="os-icon os-icon-download"></i><a href="http://eis-openbudgets.iais.fraunhofer.de/dumps" target="_blank">{{ 'Download Data Package' | i18n }}</a>-->
-    <i class="os-icon os-icon-download"></i><a href="http://apps.openbudgets.eu/dumps" target="_blank">{{ 'Download Data Package' | i18n }}</a>
+   <div ng-if="!!datapackage.url">
+    <i class="os-icon os-icon-download"></i><a ng-href="{{ datapackage.url }}" target="_blank">{{ 'Download Data Package' | i18n }}</a>
+  </div>
+  <div ng-if="datapackage.resources.length == 1">
+    <i class="os-icon os-icon-download"></i><a ng-href="{{ datapackage.resources[0].url }}" target="_blank">{{ 'View Raw Source Data' | i18n }}</a>
+  </div>
+  <div ng-if="datapackage.resources.length > 1">
+    <div><strong>{{ 'View Raw Source Data' | i18n }}:</strong></div>
+    <ul>
+      <li ng-repeat="resource in datapackage.resources">
+        <i class="os-icon os-icon-download"></i><a ng-href="{{ resource.url }}" target="_blank">{{ resource.name }}</a>
+      </li>
+    </ul>
   </div>
 </div>

@@ -1,14 +1,13 @@
 {
   "colors": {
-    "brand": "#95E19A",
-    "sidebar": "#50B958",
-    "content": "#fff"
+    "sidebar": "#50b958"
+
   },
   "header": {
     "links": [
       {
         "title": "Upload Data",
-        "href": "http://apps.openbudgets.eu/packager/provide-data"
+        "href": "https://apps.openbudgets.eu/packager/provide-data"
       },
       {
         "title": "Explore Datasets",
@@ -16,17 +15,17 @@
       }
     ],
     "logo": {
-      "icon": "http://apps.openbudgets.eu/images/38/openbudgets_logo_small.png",
-      "image": "http://apps.openbudgets.eu/svg/obeuviewer-logo_white.svg"
+      "icon": "favicon.ico",
+      "image": "https://apps.openbudgets.eu/svg/viewer_black.svg"
     }
   },
   "footer": {
     "projectLogo": {
-      "image": "http://apps.openbudgets.eu/svg/obeuviewer-logo_long.svg"
+      "image": "https://apps.openbudgets.eu/svg/obeuviewer-logo_long.svg"
     },
     "orgLogo": {
-      "href": "http://openbudgets.eu",
-      "image": "http://apps.openbudgets.eu/images/32/openbudgets_logo-white.png"
+      "href": "http://apps.openbudgets.eu",
+      "image": "https://apps.openbudgets.eu/images/32/openbudgets_logo-white.png"
     },
     "links": [
       {

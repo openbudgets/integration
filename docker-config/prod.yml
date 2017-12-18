@@ -12,9 +12,7 @@ services:
             - os-viewer
         environment:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
-            #- OS_VIEWER_HOST=http://eis-openbudgets.iais.fraunhofer.de/viewer
             - OS_VIEWER_HOST=http://apps.openbudgets.eu/viewer
-            #- OS_API=http://eis-openbudgets.iais.fraunhofer.de/api/3
             - OS_API=http://apps.openbudgets.eu/api/3
         env_file:
             - ../.env
@@ -34,22 +32,24 @@ services:
             - ../.env
         ports:
             - "3306:3307"
-    alignmentredis:
-        image: openbudgets/alignmentredis
-        build: ./alignmentredis
-        volumes:
-            - ../volumes/alignment/redis:/data
-    alignmentui:
-        image: openbudgets/alignmentui
-        build: ./alignmentui
+    alignment:
+        image: openbudgets/alignment
+        build: ./alignment
         volumes:
             - ../volumes/virtuosoStaging/data:/data
             - ../volumes/alignment/composer:/root/.composer/cache
+            - ../volumes/alignment/storage/app/projects:/var/www/alignment/storage/app/projects
+            - ../volumes/alignment/storage/app/public/json_serializer:/var/www/alignment/storage/app/public/json_serializer
+            - ../volumes/alignment/storage/logs:/var/www/alignment/storage/logs
+            - ../volumes/alignment/stappler:/var/www/alignment/public/system
         env_file:
             - ../.env
+        expose:
+          - "80"
+        ports:
+            - "9559:80"
         links:
             - alignmentmysql
-            - alignmentredis
     linkedpipes_fdp:
         image: openbudgets/linkedpipes
         build: ./linkedpipes
@@ -82,79 +82,6 @@ services:
             - "8223-8230:8223-8230" # Linked Pipes FTP data port
             - "8201:9201" # supervisord frontend
         links:
-#            - triple_store_staging
-            - virtuoso_staging
-            - sshserver
-    linkedpipes_2:
-        image: openbudgets/linkedpipes
-        build: ./linkedpipes
-        restart: always
-        volumes:
-            - ../volumes/linkedpipes_2/data:/data
-            - ../volumes/linkedpipes_2/log:/var/log
-            - ./linkedpipes/configuration_update_2.properties:/etl/deploy/configuration.properties
-        ports:
-            - "8383:8383" # Webserver & URI dereferencable URI for pipelines + templates
-            - "8370:8370" # executor-monitor.webserver.port
-            - "8321:8321" # executor-monitor.ftp.port
-            - "8323-8330:8323-8330" # Linked Pipes FTP data port
-            - "8301:9301" # supervisord frontend
-        links:
-#            - triple_store_staging
-            - virtuoso_staging
-            - sshserver
-    linkedpipes_3:
-        image: openbudgets/linkedpipes
-        build: ./linkedpipes
-        restart: always
-        volumes:
-            - ../volumes/linkedpipes_3/data:/data
-            - ../volumes/linkedpipes_3/log:/var/log
-            - ./linkedpipes/configuration_update_3.properties:/etl/deploy/configuration.properties
-        ports:
-            - "8484:8484" # Webserver & URI dereferencable URI for pipelines + templates
-            - "8470:8470" # executor-monitor.webserver.port
-            - "8421:8421" # executor-monitor.ftp.port
-            - "8423-8430:8423-8430" # Linked Pipes FTP data port
-            - "8401:9401" # supervisord frontend
-        links:
-#            - triple_store_staging
-            - virtuoso_staging
-            - sshserver
-    linkedpipes_4:
-        image: openbudgets/linkedpipes
-        build: ./linkedpipes
-        restart: always
-        volumes:
-            - ../volumes/linkedpipes_4/data:/data
-            - ../volumes/linkedpipes_4/log:/var/log
-            - ./linkedpipes/configuration_update_4.properties:/etl/deploy/configuration.properties
-        ports:
-            - "8585:8585" # Webserver & URI dereferencable URI for pipelines + templates
-            - "8570:8570" # executor-monitor.webserver.port
-            - "8521:8521" # executor-monitor.ftp.port
-            - "8523-8530:8523-8530" # Linked Pipes FTP data port
-            - "8501:9501" # supervisord frontend
-        links:
-#            - triple_store_staging
-            - virtuoso_staging
-            - sshserver
-    linkedpipes_5:
-        image: openbudgets/linkedpipes
-        build: ./linkedpipes
-        restart: always
-        volumes:
-            - ../volumes/linkedpipes_5/data:/data
-            - ../volumes/linkedpipes_5/log:/var/log
-            - ./linkedpipes/configuration_update_5.properties:/etl/deploy/configuration.properties
-        ports:
-            - "8686:8686" # Webserver & URI dereferencable URI for pipelines + templates
-            - "8670:8670" # executor-monitor.webserver.port
-            - "8621:8621" # executor-monitor.ftp.port
-            - "8623-8630:8623-8630" # Linked Pipes FTP data port
-            - "8601:9601" # supervisord frontend
-        links:
-#            - triple_store_staging
             - virtuoso_staging
             - sshserver
     sshserver:
@@ -196,70 +123,59 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
-    virtuoso_staging_old:
-        image: openbudgets/virtuoso
-        build: ./virtuoso
-        restart: always
-        volumes:
-            - ../volumes/virtuosoStagingOld/data:/data
-            - ../volumes/virtuosoStagingOld/upload:/upload
-            - ../volumes/nginx/dumps:/dumps
-        env_file:
-            - ../.env
-        environment:
-            - SPARQL_UPDATE=true
-        ports:
-            - "8893:8890"
-            - "1113:1111"
-#    triple_store_staging:
-#        image: openbudgets/triple_store_staging
-#        build: ./fuseki
-#        restart: always
-#        volumes:
-#            - ./fuseki/staging/start.sh:/start.sh
-#            - ./fuseki/staging:/staging
-#            - ../volumes/tripleStoreStaging/log:/var/log
-#            - ../volumes/tripleStoreStaging/data:/data
-#            - ../volumes/nginx/dumps:/dumps
-#        ports:
-#            - "33030:3030"
-#            - "39001:9001" # supervisord frontend
-#    triple_store_production:
-#        image: openbudgets/triple_store_production
-#        build: ./fuseki
-#        restart: always
-#        volumes:
-#            - ./fuseki/production/start.sh:/start.sh
-#            - ../volumes/tripleStoreProduction/log:/var/log
-#            - ../volumes/tripleStoreProduction/data:/data
-#            - ../volumes/tripleStoreStaging/data:/newdata
-#        ports:
-#            - "43030:3030"
-#            - "49001:9001" # supervisord frontend
+#    virtuoso_staging_old:
+ #       image: openbudgets/virtuoso
+  #      build: ./virtuoso
+   #     restart: always
+    #    volumes:
+     #       - ../volumes/virtuosoStagingOld/data:/data
+      #      - ../volumes/virtuosoStagingOld/upload:/upload
+       #     - ../volumes/nginx/dumps:/dumps
+ #       env_file:
+ #           - ../.env
+  #      environment:
+   #         - SPARQL_UPDATE=true
+    #    ports:
+     #       - "8893:8890"
+      #      - "1113:1111"
     rudolf:
         image: openbudgets/rudolf
         build: ./rudolf
         restart: always
+        volumes:
+            - ../volumes/rudolf/www/log/refreshCache.log:/var/www/log/refreshCache.log
         links:
-#            - triple_store_production
             - virtuoso_production
             - virtuoso_staging
     rdfbrowser:
         image: openbudgets/rdfbrowser
         build: ./rdfbrowser
         volumes:
-            - ../volumes/rdfbrowser/storage/database.sqlite:/var/www/RDFBrowser/storage/database.sqlite
+            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
             - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
         ports:
             - "8111:80"
         links:
             - virtuoso_staging
             - virtuoso_production
+        env_file:
+            - ../.env
     dampostgres:
         image: openbudgets/dampostgres
         build: ./dampostgres
         volumes:
             - ../volumes/dam/dampostgres:/var/lib/postgresql/data
+        env_file:
+            - ../.env
+    kpi:
+        image: openbudgets/kpi
+        build: ./kpi
+        volumes:
+            - ../volumes/kpi/database:/var/www/database
+            #- ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+            - ../volumes/kpi/composer:/root/.composer
+        ports:
+            - "8112:80"
         env_file:
             - ../.env
     damapp:
@@ -271,6 +187,7 @@ services:
             - "5000:5000"
         links:
             - dampostgres
+            - opencpu
         env_file:
             - ../.env
     outlierdm:
@@ -296,18 +213,16 @@ services:
             - linkedpipes_fdp
             - virtuoso_staging
             - virtuoso_production
-            - virtuoso_staging_old
+            #- virtuoso_staging_old
             - rudolf
             - os-viewer
-            - os-explorer
-            - os-admin
             - os-packager
             - indigo
             - rdfbrowser
-            - alignmentui
+            - alignment
             - microsite
             - damapp
-            - landingpage
+            - opencpu
             - cors
         ports:
             - "80:80" # http
@@ -325,36 +240,15 @@ services:
             - ./os-viewer/prod_config:/config
             - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
-            #- DEFAULT_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - DEFAULT_HOST=http://apps.openbudgets.eu
             - DEFAULT_BASE_PATH=/viewer
-            #- OS_EXTERNAL_ADDRESS=http://eis-openbudgets.iais.fraunhofer.de
             - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.eu
-            #- OS_VIEWER_API_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_API_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_AUTH_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_AUTH_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_SEARCH_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_SEARCH_HOST=http://apps.openbudgets.eu
-            #- OS_VIEWER_DATAMINE_HOST=http://eis-openbudgets.iais.fraunhofer.de
             - OS_VIEWER_DATAMINE_HOST=http://apps.openbudgets.eu
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
-    os-explorer:
-        image: openbudgets/os-explorer
-        build: ./os-explorer
-        restart: always
-        volumes:
-          - ./os-explorer/prod_themes:/app/app/themes
-        expose:
-          - "8000"
-        environment:
-          - WORKDIR=/apps
-    os-admin:
-        image: openbudgets/os-admin
-        expose:
-          - "8000"
-        restart: always 
     os-packager:
         build: ./os-packager
         restart: always
@@ -369,13 +263,7 @@ services:
           - "8442:80"
         links:
           - damapp
-    landingpage:
-        build: ./landingpage
-        restart: always
-        expose:
-          - "80"
-        ports:
-          - "19099:80"
+          - opencpu
     cors:
         build: ./cors
         restart: always
@@ -383,36 +271,11 @@ services:
           - "8080"
         ports:
           - "19102:8080"
-#    vocol:
-#        build: ./vocol
-#        ports:
-#          - "4200:4200"
-
-
-
-
-
-
-# Subnet-Size net-Mask-Size (CIDR)
-# 256 24
-# 128 25
-# 64 26
-# 32 27
-# 16 28 <<<<<
-# 8 29
-# 4 30
-# 2 31
-# 1 32
-
-    #rudolf:
-
-    #alignmentUI:
-
-    #fileServerDataMining:
-
-
-
-
-
-
+    opencpu:
+        image: openbudgets/opencpu
+        build: ./opencpu
+        ports:
+          - "8666:80"
+          - "8663:443"
+          - "8004:8004"
 

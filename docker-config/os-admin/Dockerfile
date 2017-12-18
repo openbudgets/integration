@@ -1,1 +1,0 @@
-FROM openspending/os-admin

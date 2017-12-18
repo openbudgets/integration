@@ -20,9 +20,10 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # RUN docker-php-ext-configure mbstring --enable-mbstring && docker-php-ext-install mbstring
 
 # Install additional packages:
-RUN apt-get update -y && apt-get install -y libgd3 php5-gd libapache2-mod-php7.0 \
-    php7.0-xml php7.0-json php7.0-xsl php7.0-redis php7.0-mcrypt \
-    php7.0-imagick php7.0-common php7.0-zip php7.0-mbstring
+RUN apt-get update -y && apt-get install -y libgd3 libapache2-mod-php7.0 \
+    php7.0-xml php7.0-json php7.0-xsl php7.0-mcrypt \
+    php7.0-common php7.0-zip php7.0-mbstring php7.0-gd libpng-dev libraptor2-dev
+RUN docker-php-ext-install gd
 RUN phpenmod gd
 RUN apt-get upgrade -y
 
@@ -41,21 +42,15 @@ ENV APACHE_DOC_ROOT /var/www/RDFBrowser/public/
 ENV APP_DIR /var/www/RDFBrowser
 WORKDIR $APP_DIR
 
-RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR && \
-    git checkout ef6f37d07b1bd21d2aec3b0ca971b00383eb0747
+# Update app from github repo
+ADD https://api.github.com/repos/okgreece/RDFBrowser/git/refs/heads/master /version.json
+RUN git clone https://github.com/okgreece/RDFBrowser.git $APP_DIR/
 
 COPY ./.env $APP_DIR/.env
 RUN composer install
 RUN php artisan key:generate
 RUN chmod -R a+rwx $APP_DIR
 
-#COPY ./database.sqlite /database.sqlite
-#RUN chmod a+rwx /database.sqlite
-
 EXPOSE 80
 COPY ./start.sh /start.sh
-COPY ./.env /.env
 CMD ["/bin/sh", "/start.sh"]
-
-
-

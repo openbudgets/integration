@@ -1,4 +1,4 @@
-FROM php:7.0.7-fpm-alpine
+FROM php:7.1.10-fpm-alpine
 
 # Install PHP 7:
 RUN apk add --update bash libmcrypt-dev git curl
@@ -24,7 +24,7 @@ COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 # Install Rudolf:
 RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git rudolf && \
     cd ./rudolf && \
-    git checkout ae0d17231de77fe5f4f00ff907ceb31e8324c790
+    git checkout 125184175ed0f48d5ffa193f3a88c4c77c5269de
 
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
 
