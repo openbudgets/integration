@@ -1,0 +1,250 @@
+version: "3"
+
+volumes:
+  ckan_config:
+  ckan_home:
+  ckan_storage:
+  pg_data:
+
+services:
+    ckan:
+      container_name: ckan
+      build:
+        context: ./ckan
+        args:
+            - CKAN_SITE_URL=${CKAN_SITE_URL}
+      links:
+        - db
+        - solr
+        - redis
+      ports:
+        - "0.0.0.0:${CKAN_PORT}:5000"
+      environment:
+        # Defaults work with linked containers, change to use own Postgres, SolR, Redis or Datapusher
+        - CKAN_SQLALCHEMY_URL=postgresql://ckan:${POSTGRES_PASSWORD}@db/ckan
+        - CKAN_DATASTORE_WRITE_URL=postgresql://ckan:${POSTGRES_PASSWORD}@db/datastore
+        - CKAN_DATASTORE_READ_URL=postgresql://datastore_ro:${DATASTORE_READONLY_PASSWORD}@db/datastore
+        - CKAN_SOLR_URL=http://solr:8983/solr/ckan
+        - CKAN_REDIS_URL=redis://redis:6379/1
+        - CKAN_DATAPUSHER_URL=http://datapusher:8800
+        - CKAN_SITE_URL=${CKAN_SITE_URL}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        - DS_RO_PASS=${DATASTORE_READONLY_PASSWORD}
+      volumes:
+        - ckan_config:/etc/ckan
+        - ckan_home:/usr/lib/ckan
+        - ckan_storage:/var/lib/ckan
+      env_file:
+        - ../.env
+
+
+    datapusher:
+      container_name: datapusher
+      image: clementmouchet/datapusher
+      ports:
+        - "8800:8800"
+      env_file:
+        - ../.env
+
+    db:
+      container_name: db
+      build:
+        context: ./ckan
+        dockerfile: contrib/docker/postgresql/Dockerfile
+        args:
+          - DS_RO_PASS=${DATASTORE_READONLY_PASSWORD}
+          - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      environment:
+        - DS_RO_PASS=${DATASTORE_READONLY_PASSWORD}
+        - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      volumes:
+        - pg_data:/var/lib/postgresql/data
+      env_file:
+        - ../.env
+
+    solr:
+      container_name: solr
+      build:
+        context: ./ckan
+        dockerfile: contrib/docker/solr/Dockerfile
+      env_file:
+        - ../.env
+
+    redis:
+      container_name: redis
+      image: redis:latest
+
+    microsite:
+        image: openbudgets/microsite
+        build: ./microsite
+        volumes:
+            - ../volumes/osviewer/themes:/microsite/os_viewer_themes
+            - ../volumes/microsite/data/db.sqlite3:/microsite/db.sqlite3
+        ports:
+            - "8003:8000"
+        links:
+            - os-viewer
+        environment:
+            - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
+            - OS_VIEWER_HOST=http://apps.openbudgets.gr/viewer
+            - OS_API=http://apps.openbudgets.gr/api/3
+        env_file:
+            - ../.env
+    alignmentmysql:
+        image: openbudgets/alignmentmysql
+        build: ./alignmentmysql
+        volumes:
+            - ../volumes/alignment/mysql:/var/lib/mysql
+        env_file:
+            - ../.env
+        ports:
+            - "3306:3307"
+    alignment:
+        image: openbudgets/alignment
+        build: ./alignment
+        volumes:
+            - ../volumes/virtuosoStaging/data:/data
+            - ../volumes/alignment/composer:/root/.composer/cache
+            - ../volumes/alignment/storage/app/projects:/var/www/alignment/storage/app/projects
+            - ../volumes/alignment/storage/app/public/json_serializer:/var/www/alignment/storage/app/public/json_serializer
+            - ../volumes/alignment/storage/logs:/var/www/alignment/storage/logs
+            - ../volumes/alignment/stappler:/var/www/alignment/public/system
+        env_file:
+            - ../.env
+        expose:
+          - "80"
+        ports:
+            - "9559:80"
+        links:
+            - alignmentmysql
+    linkedpipes_fdp:
+        image: openbudgets/linkedpipes
+        build: ./linkedpipes
+        restart: always
+        volumes:
+            - ../volumes/linkedpipes/data:/data
+            - ../volumes/linkedpipes/log:/var/log
+            - ./linkedpipes/configuration_update.properties:/etl/deploy/configuration.properties
+        ports:
+            - "8181:8181" # Webserver & URI dereferencable URI for pipelines + templates
+            - "8170:8170" # executor-monitor.webserver.port
+            - "2221:2221" # executor-monitor.ftp.port
+            - "2223-2230:2223-2230" # Linked Pipes FTP data psort
+            - "8101:9101" # supervisord frontend
+        links:
+            - virtuoso_staging
+            - sshserver
+            - ckan
+    sshserver:
+        image: openbudgets/sshserver
+        build: ./sshserver
+        restart: always
+        volumes:
+            - ../volumes/nginx/dumps:/dumps
+            - ../volumes/sshserver/log:/var/log
+    virtuoso_staging:
+        image: openbudgets/virtuoso
+        build: ./virtuoso
+        restart: always
+        volumes:
+            - ../volumes/virtuosoStaging/data:/data
+            - ../volumes/virtuosoStaging/upload:/upload
+            - ../volumes/nginx/dumps:/dumps
+            - ./virtuoso/staging/virtuoso.ini:/virtuoso.ini
+        env_file:
+            - ../.env
+        environment:
+            - SPARQL_UPDATE=true
+        ports:
+            - "8890:8890"
+            - "1111:1111"
+    rudolf:
+        image: openbudgets/rudolf
+        build: ./rudolf
+        restart: always
+        volumes:
+            - ../volumes/rudolf/www/log/refreshCache.log:/var/www/log/refreshCache.log
+        links:
+            - virtuoso_staging
+    rdfbrowser:
+        image: openbudgets/rdfbrowser
+        build: ./rdfbrowser
+        volumes:
+            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
+            - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
+        ports:
+            - "8111:80"
+        links:
+            - virtuoso_staging
+        env_file:
+            - ../.env
+    kpi:
+        image: openbudgets/kpi
+        build: ./kpi
+        volumes:
+            - ../volumes/kpi/database:/var/www/database
+            #- ./kpi/dev/apache2.conf:/etc/apache2/apache2.conf
+            - ../volumes/kpi/composer:/root/.composer
+        ports:
+            - "8112:80"
+        env_file:
+            - ../.env
+    nginx:
+        image: openbudgets/nginx
+        build: ./nginx
+        restart: always
+        volumes:
+            - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+            - ../volumes/nginx/log:/var/log/nginx
+            - ../volumes/nginx/dumps:/var/www/dumps # serve rdf-file-dumps via http
+            - ../volumes/nginx/letsencrypt/www:/tmp/letsencrypt/www # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/etc:/etc/letsencrypt # Lets encrypt files
+            - ../volumes/nginx/letsencrypt/lib:/var/lib/letsencrypt # Lets encrypt files
+            - ../volumes/linkedpipes:/var/www/linkedpipes # serve ftp-files of Linkedpipes via http
+            - ./nginx/static_files/images:/var/www/images
+            - ./nginx/static_files/svg:/var/www/svg
+        links:
+            - linkedpipes_fdp
+            - virtuoso_staging
+            - rudolf
+            - os-viewer
+            - rdfbrowser
+            - alignment
+            - microsite
+            - cors
+            - indigo
+        ports:
+            - "80:80" # http
+            - "443:443" # https
+            - "2222:2222" # Serve static files of Linked Pipes output via http as alternative to ftp
+    os-viewer:   #image: openspending/os-viewer
+        image: openbudgets/os-viewer
+        build: ./os-viewer
+        restart: always
+        expose:
+          - "8000"
+        ports:
+          - "9003:8000"
+        volumes:
+            - ./os-viewer/prod_config:/config
+            - ../volumes/osviewer/themes:/app/app/config/themes
+        environment:
+            - DEFAULT_HOST=http://apps.openbudgets.gr
+            - DEFAULT_BASE_PATH=/viewer
+            - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.gr
+            - OS_VIEWER_API_HOST=http://apps.openbudgets.gr
+            - OS_VIEWER_AUTH_HOST=http://apps.openbudgets.gr
+            - OS_VIEWER_SEARCH_HOST=http://apps.openbudgets.gr
+            - OS_VIEWER_DATAMINE_HOST=http://apps.openbudgets.gr
+    cors:
+        build: ./cors
+        restart: always
+        expose:
+          - "8080"
+        ports:
+          - "19102:8080"
+    indigo:
+        image: openbudgets/indigo
+        build: ./indigo
+        ports:
+          - "8442:80"

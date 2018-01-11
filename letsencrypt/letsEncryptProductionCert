@@ -26,8 +26,8 @@ docker run --rm --name letsencrypt \
     --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
-    -d eis-openbudgets.iais.fraunhofer.de \
-    -m maiklukasch@gmail.com
+    -d apps.openbudgets.gr \
+    -m s.karampatakis@gmail.com
 
 docker run --rm --name letsencrypt \
     -p 1086:80 \
@@ -44,8 +44,8 @@ docker run --rm --name letsencrypt \
     --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
-    -d microsite-obeu.iais.fraunhofer.de \
-    -m maiklukasch@gmail.com
+    -d apps.openbudgets.gr \
+    -m s.karampatakis@gmail.com
 
 docker run --rm --name letsencrypt \
     -p 1086:80 \
@@ -62,8 +62,8 @@ docker run --rm --name letsencrypt \
     --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
-    -d alignment-obeu.iais.fraunhofer.de \
-    -m maiklukasch@gmail.com
+    -d apps.openbudgets.gr \
+    -m s.karampatakis@gmail.com
 
 docker run --rm --name letsencrypt \
     -p 1086:80 \
@@ -80,8 +80,8 @@ docker run --rm --name letsencrypt \
     --non-interactive \
     --renew-by-default \
     --rsa-key-size 4096 \
-    -d apps.openbudgets.eu \
-    -m liyakun127@gmail.com
+    -d apps.openbudgets.gr \
+    -m s.karampatakis@gmail.com
 
 
 

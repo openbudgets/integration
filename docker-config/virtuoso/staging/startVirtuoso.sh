@@ -5,12 +5,12 @@ chmod a+x -R /etc/cron.*/
 chmod a+rwx -R /virtuoso.ini
 
 # Install Cronjobs:
-sh /cronjobs/installCronjobs.sh
+#sh /cronjobs/installCronjobs.sh
 
 #cp /virtuoso.ini /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.ini
 syslog-ng
-anacron
-cron
+#anacron
+#cron
 
 echo "export DBA_PASSWORD=$DBA_PASSWORD" > /setEnv
 

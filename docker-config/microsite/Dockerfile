@@ -5,7 +5,7 @@ RUN apt-get update -y && \
 
 RUN git clone https://github.com/openbudgets/microsite /microsite && \
     cd /microsite && \
-    git checkout 3c1eaa42bcd1870d3249f794511680caa89915a2
+    git checkout 60427382bfda22722911dd40d98a3baaea1254ec
 
 COPY ./supervisord.conf /etc/supervisord.conf
 COPY ./start.sh /start.sh

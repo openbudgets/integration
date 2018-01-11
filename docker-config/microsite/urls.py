@@ -23,7 +23,7 @@ import vizmanager
 admin.site.site_header = 'OpenBudgets Microsite Manager'
 admin.site.site_title = 'Microsite Manager'
 admin.site.index_title = 'Microsite Manager'
-
+app_name = 'microsite'
 urlpatterns = [
     url(r'^/admin/', admin.site.urls),
     url(r'^/manage/', ma_site.urls),

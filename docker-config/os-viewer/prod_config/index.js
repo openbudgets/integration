@@ -3,7 +3,7 @@
 var path = require('path');
 var nconf = require('nconf');
 
-const DEFAULT_HOST = 'http://apps.openbudgets.eu';
+const DEFAULT_HOST = 'http://apps.openbudgets.gr';
 const DEFAULT_BASE_PATH = '';
 
 nconf.file({
