@@ -213,7 +213,7 @@ services:
             - alignment
             - microsite
             - cors
-            - indigo
+#            - indigo
         ports:
             - "80:80" # http
             - "443:443" # https
@@ -244,8 +244,8 @@ services:
           - "8080"
         ports:
           - "19102:8080"
-    indigo:
-        image: openbudgets/indigo
-        build: ./indigo
-        ports:
-          - "8442:80"
+#    indigo:
+#        image: openbudgets/indigo
+#        build: ./indigo
+#        ports:
+#          - "8442:80"
