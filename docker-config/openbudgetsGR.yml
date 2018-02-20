@@ -88,6 +88,7 @@ services:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
             - OS_VIEWER_HOST=http://apps.openbudgets.gr/viewer
             - OS_API=http://apps.openbudgets.gr/api/3
+            - KPI_API=http://apps.openbudgets.gr/kpi/api/v1
         env_file:
             - ../.env
     alignmentmysql:
