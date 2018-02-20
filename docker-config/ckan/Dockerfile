@@ -21,6 +21,7 @@ RUN apt-get -q -y update \
         git-core \
         vim \
         wget \
+        supervisor \
     && apt-get -q clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -53,9 +54,13 @@ RUN ckan-pip install -U pip && \
     chmod +x /ckan-entrypoint.sh && \
     chown -R ckan:ckan $CKAN_HOME $CKAN_VENV $CKAN_CONFIG $CKAN_STORAGE_PATH
 
-ENTRYPOINT ["/ckan-entrypoint.sh"]
+COPY ./supervisord.conf /etc/supervisor/supervisord.conf
+COPY ./ckan-worker.conf /etc/supervisor/conf.d/ckan-worker.conf
+RUN echo "root:test" | chpasswd
 
 USER ckan
+CMD ["/ckan-entrypoint.sh"]
+
 EXPOSE 5000
 
 CMD ["ckan-paster","serve","/etc/ckan/production.ini"]
