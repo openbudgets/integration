@@ -228,7 +228,7 @@ services:
           - "9003:8000"
         volumes:
             - ./os-viewer/prod_config:/config
-            - ../volumes/osviewer/themes:/app/app/config/themes
+          #  - ../volumes/osviewer/themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://apps.openbudgets.gr
             - DEFAULT_BASE_PATH=/viewer

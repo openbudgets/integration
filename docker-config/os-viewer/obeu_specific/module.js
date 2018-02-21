@@ -6,6 +6,14 @@ require('angular-marked');
 require('angular-filter');
 require('angular-animate');
 
+if (globalConfig.snippets.raven) {
+  var Raven = require('raven-js');
+  Raven
+    .config(globalConfig.snippets.raven, {logger: 'os-viewer-angular'})
+    .addPlugin(require('raven-js/plugins/angular'), angular)
+    .install();
+}
+
 var isAuthModuleAvailable = false;
 try {
   isAuthModuleAvailable = !!angular.module('authClient.services');
@@ -68,17 +76,20 @@ var config = {
   },
   colorScales: {
     categorical: d3.scale.category10,
-    constant: d3.scale.category20
-    
+    constant: d3.scale.category10
   }
 };
 
-var ngModule = angular.module('Application', [
+var moduleDeps = [
   'ngAnimate',
   'hc.marked',
   'angular.filter',
   'authClient.services'
-])
+];
+if (globalConfig.snippets.raven) {
+  moduleDeps.unshift('ngRaven');
+}
+var ngModule = angular.module('Application', moduleDeps)
   .constant('Configuration', config)
   .config([
     '$httpProvider', '$compileProvider', '$logProvider', '$locationProvider',

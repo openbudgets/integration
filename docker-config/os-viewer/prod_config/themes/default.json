@@ -1,6 +1,7 @@
 {
   "colors": {
-    "sidebar": "#50b958"
+    "sidebar": "#50b958",
+    "brand": "white"
 
   },
   "header": {
