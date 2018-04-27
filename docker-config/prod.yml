@@ -145,7 +145,7 @@ services:
         volumes:
             - ../volumes/rudolf/www/log/refreshCache.log:/var/www/log/refreshCache.log
         links:
-            - virtuoso_production
+            #- virtuoso_production
             - virtuoso_staging
     rdfbrowser:
         image: openbudgets/rdfbrowser
@@ -157,7 +157,7 @@ services:
             - "8111:80"
         links:
             - virtuoso_staging
-            - virtuoso_production
+            #- virtuoso_production
         env_file:
             - ../.env
     dampostgres:
@@ -195,6 +195,17 @@ services:
         build: ./outlierdm
         ports:
             - "5555:5000"
+    outlier-front:
+        image: openbudgets/outlier-front
+        build: ./outlier-front
+        ports:
+            - "8100:8100"
+            - "35729:35729"
+    outlier-back:
+        image: openbudgets/outlier-back
+        build: ./outlier-back
+        ports:
+            - "5100:5000"
     nginx:
         image: openbudgets/nginx
         build: ./nginx
@@ -212,16 +223,18 @@ services:
         links:
             - linkedpipes_fdp
             - virtuoso_staging
-            - virtuoso_production
+            #- virtuoso_production
             #- virtuoso_staging_old
             - rudolf
             - os-viewer
             - os-packager
             - indigo
-            - rdfbrowser
+            #- rdfbrowser
             - alignment
             - microsite
             - damapp
+            - outlier-back
+            - outlier-front
             - opencpu
             - cors
         ports:
@@ -238,9 +251,10 @@ services:
           - "9003:8000"
         volumes:
             - ./os-viewer/prod_config:/config
-            - ../volumes/osviewer/themes:/app/app/config/themes
+            #- ../volumes/osviewer/themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://apps.openbudgets.eu
+            - OS_BASE_URL=http://apps.openbudgets.eu
             - DEFAULT_BASE_PATH=/viewer
             - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.eu
             - OS_VIEWER_API_HOST=http://apps.openbudgets.eu
