@@ -10,8 +10,8 @@ RUN npm install npm@latest -g
 RUN npm --version
 RUN git config --global url.https://github.com/.insteadOf git://github.com/
 RUN git clone https://github.com/openbudgets/os-packager.git app && \
-    cd /app && git checkout master && \
-    cd /app && git checkout 3ba767362ff4681ca264406f64180e46239cb452
+    cd /app && git checkout describe_from_file && \
+    cd /app && git checkout 2dfe88ab683cbf718d68986cf9fbe9098766303d
 
 COPY ./obeu_specific/styles.less /app/app/front/styles/styles.less
 
@@ -25,9 +25,9 @@ ENV OS_PACKAGER_BASE_PATH=packager
 
 COPY ./settings.json /app/settings.json
 COPY ./obeu_specific/header.html /app/app/views/partials/header.html
+COPY ./obeu_specific/default.json /app/app/config/themes/default.json
 COPY ./obeu_specific/footer.html /app/app/views/partials/footer.html
 COPY ./obeu_specific/theme.css /app/app/views/partials/theme.css
-COPY ./obeu_specific/default.json /app/app/config/themes/default.json
 COPY ./obeu_specific/openbudgets-logo.ico /app/app/public/favicon.ico
 COPY ./startup.sh /startup.sh
 

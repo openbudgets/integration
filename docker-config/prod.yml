@@ -12,8 +12,8 @@ services:
             - os-viewer
         environment:
             - OS_VIEWER_THEMES_FOLDER=os_viewer_themes
-            - OS_VIEWER_HOST=http://apps.openbudgets.eu/viewer
-            - OS_API=http://apps.openbudgets.eu/api/3
+            - OS_VIEWER_HOST=http://openbudget.kdvz-frechen.de/viewer
+            - OS_API=http://openbudget.kdvz-frechen.de/api/3
         env_file:
             - ../.env
     silkworkbench:
@@ -145,7 +145,7 @@ services:
         volumes:
             - ../volumes/rudolf/www/log/refreshCache.log:/var/www/log/refreshCache.log
         links:
-            - virtuoso_production
+            #- virtuoso_production
             - virtuoso_staging
     rdfbrowser:
         image: openbudgets/rdfbrowser
@@ -216,7 +216,7 @@ services:
             - os-viewer
             - os-packager
             - indigo
-            - rdfbrowser
+            #- rdfbrowser
             - alignment
             - microsite
             - damapp
@@ -236,15 +236,16 @@ services:
           - "9003:8000"
         volumes:
             - ./os-viewer/prod_config:/config
-            - ../volumes/osviewer/themes:/app/app/config/themes
+            #- ../volumes/osviewer/themes:/app/app/config/themes
         environment:
-            - DEFAULT_HOST=http://apps.openbudgets.eu
+            - DEFAULT_HOST=http://openbudget.kdvz-frechen.de
             - DEFAULT_BASE_PATH=/viewer
-            - OS_EXTERNAL_ADDRESS=http://apps.openbudgets.eu
-            - OS_VIEWER_API_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_AUTH_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_SEARCH_HOST=http://apps.openbudgets.eu
-            - OS_VIEWER_DATAMINE_HOST=http://apps.openbudgets.eu
+            - OS_BASE_URL=http://openbudget.kdvz-frechen.de
+            - OS_EXTERNAL_ADDRESS=http://openbudget.kdvz-frechen.de
+            - OS_VIEWER_API_HOST=http://openbudget.kdvz-frechen.de
+            - OS_VIEWER_AUTH_HOST=http://openbudget.kdvz-frechen.de
+            - OS_VIEWER_SEARCH_HOST=http://openbudget.kdvz-frechen.de
+            - OS_VIEWER_DATAMINE_HOST=http://openbudget.kdvz-frechen.de
             #- OS_VIEWER_API_COSMO_HOST
             #- OS_VIEWER_BASE_PATH
     os-packager:

@@ -17,15 +17,17 @@ RUN apk add tzdata && cp /usr/share/zoneinfo/Europe/Berlin /etc/localtime && \
 
 # Copy config file:
 COPY ./config/www.conf /usr/local/etc/php-fpm.d/www.conf
-COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./config/php.ini /usr/local/etc/php/php.ini
+COPY ./config/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY ./config/php-fpm.conf /usr/local/etc/php-fpm.conf
 
 # Install Rudolf:
 RUN cd /var/www && git clone https://github.com/openbudgets/rudolf.git rudolf && \
     cd ./rudolf && \
-    git checkout ac70b4755b7a2555daee929544d1605fe2a7e6cd
+    git checkout simplified && \
+    git checkout b802d5ce5bf5b3179b2f5214b7bc9f686474bd02
 
+COPY ./SearchResult.php /var/www/rudolf/app/Model/SearchResult.php
 COPY ./config/sparql.php /var/www/rudolf/config/sparql.php
 
 RUN chown -R www-data:www-data /var/www && \
