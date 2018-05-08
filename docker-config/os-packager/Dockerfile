@@ -11,7 +11,7 @@ RUN npm --version
 RUN git config --global url.https://github.com/.insteadOf git://github.com/
 RUN git clone https://github.com/openbudgets/os-packager.git app && \
     cd /app && git checkout describe_from_file && \
-    cd /app && git checkout 2dfe88ab683cbf718d68986cf9fbe9098766303d
+    cd /app && git checkout 6e4414a80b3f7e50b3552e3a7206915f7977436a
 
 COPY ./obeu_specific/styles.less /app/app/front/styles/styles.less
 
