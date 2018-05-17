@@ -45,19 +45,10 @@ true}" >Explore Data</a>
         <nav class="footer-nav">
           <ul>
             <li>
-              <a href="http://openbudgets.github.io/about">About</a>
+              <a href="http://openbudget.kdvz-frechen.de/impressum.html">Impressum</a>
             </li>
             <li>
-              <a href="http://openbudgets.github.io/about/work-packages">Work Packages</a>
-            </li>
-            <li>
-              <a href="http://openbudgets.github.io/about/deliverables">Deliverables</a>
-            </li>
-            <li>
-              <a href="http://openbudgets.github.io/about/technical-structure">Technical Structure</a>
-            </li>
-            <li>
-              <a href="http://openbudgets.github.io/resources">Resources</a>
+              <a href="http://openbudget.kdvz-frechen.de/datenschutz.html">Datenschutz</a>
             </li>
           </ul>
         </nav>
