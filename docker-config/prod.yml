@@ -270,6 +270,13 @@ services:
           - "8000"
         ports:
           - "9553:8000"
+        environment:
+            - OS_BASE_URL=http://apps.openbudgets.eu
+            - OS_CONDUCTOR_URL=https://openspending.org
+            - OS_VIEWER_URL=http://apps.openbudgets.eu/viewer
+            - OS_ADMIN_URL=https://openspending.org
+            - FDP_ADAPTER_URL=https://openspending.org/fdp-adapter/convert
+
     indigo:
         image: openbudgets/indigo
         build: ./indigo
