@@ -17,13 +17,22 @@ import {Observable} from "rxjs";
           </a>
           <nav>
             <ul>
-              <li>
-                <a href="http://openbudget.kdvz-frechen.de/packager/">Upload</a>
+              <li [routerLink]="['/upload']" routerLinkActive="active" >
+                <a [routerLink]="['/upload']" routerLinkActive="active">Upload</a>
               </li>
               <li [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
 true}">
                 <a  [routerLink]="['/']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:
 true}" >Explore Data</a>
+              </li>
+              <li >
+                <a href="http://openbudgets.eu/tools/">Data Toolbox</a>
+              </li>
+              <li>
+                <a href="http:///openbudgets.github.io/documentation">Documentation</a>
+              </li>
+              <li>
+                <a href="http:///openbudgets.github.io/blog">Blog</a>
               </li>
             </ul>
           </nav>
@@ -44,11 +53,23 @@ true}" >Explore Data</a>
         </div>
         <nav class="footer-nav">
           <ul>
-            <li>
-              <a href="http://openbudget.kdvz-frechen.de/impressum.html">Impressum</a>
+             <li>
+              <a href="http://openbudgets.github.io/about">About</a>
             </li>
             <li>
-              <a href="http://openbudget.kdvz-frechen.de/datenschutz.html">Datenschutz</a>
+              <a href="http://openbudgets.github.io/about/work-packages">Work Packages</a>
+            </li>
+            <li>
+              <a href="http://openbudgets.github.io/about/deliverables">Deliverables</a>
+            </li>
+            <li>
+              <a href="http://openbudgets.github.io/about/technical-structure">Technical Structure</a>
+            </li>
+            <li>
+              <a href="http://openbudgets.github.io/resources">Resources</a>
+            </li>
+            <li>
+              <a href="http://apps.openbudgets.eu/datenschutz.html">Datenschutz</a>
             </li>
           </ul>
         </nav>
