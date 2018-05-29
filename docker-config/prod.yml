@@ -239,7 +239,7 @@ services:
             #- ../volumes/osviewer/themes:/app/app/config/themes
         environment:
             - DEFAULT_HOST=http://openbudget.kdvz-frechen.de
-            - DEFAULT_BASE_PATH=/viewer
+            - DEFAULT_BASE_PATH=/viewer/
             - OS_BASE_URL=http://openbudget.kdvz-frechen.de
             - OS_EXTERNAL_ADDRESS=http://openbudget.kdvz-frechen.de
             - OS_VIEWER_API_HOST=http://openbudget.kdvz-frechen.de
