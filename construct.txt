@@ -1,0 +1,11 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX fdp: <http://schemas.frictionlessdata.io/fiscal-data-package#>
+PREFIX fcsv: <file://budget.csv#>
+PREFIX obeu-attribute:   <http://data.openbudgets.eu/ontology/dsd/attribute/> 
+PREFIX obeu-dimension:   <http://data.openbudgets.eu/ontology/dsd/dimension/> 
+PREFIX obeu-measure:     <http://data.openbudgets.eu/ontology/dsd/measure/> 
+PREFIX qb: <http://purl.org/linked-data/cube#>
+PREFIX datasets: <http://data.openbudgets.eu/datasets/>
+PREFIX fdprdf: <http://data.openbudgets.eu/fdptordf#>
+PREFIX graphstore: <http://plugins.linkedpipes.com/ontology/l-graphStoreProtocol#>
