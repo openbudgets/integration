@@ -17,13 +17,11 @@ import {Observable} from "rxjs";
           </a>
           <nav>
             <ul>
-              <li>
-                <a href="http://openbudget.kdvz-frechen.de/packager/">Upload</a>
+              <li [routerLink]="['/upload']" routerLinkActive="active" >
+                <a href="http://openbudget.kdvz-frechen.de/packager/">Daten hinzufügen</a>
               </li>
-              <li [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-true}">
-                <a  [routerLink]="['/']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-true}" >Explore Data</a>
+              <li [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+		<a  [routerLink]="['/']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Daten finden</a>
               </li>
             </ul>
           </nav>
@@ -35,15 +33,14 @@ true}" >Explore Data</a>
           <div class="banner">
             <div class="wrapper">
       <span>
-        <h1>Upload, Visualize, Analyse public budget and spending data. Start exploring and learn stories behind budgets.
-</h1>
+        <h2>Openbudget.kdvz-frechen.de ermöglicht die Analyse öffentlicher Einnahmen und Ausgaben. Zahlreiche Visualisierungsmöglichkeiten unterstützen Sie dabei, Muster und Trends in den Daten öffentlicher Haushalte auszumachen und ansprechend darzustellen.</h2>
       </span>
             </div>
           </div>
                <router-outlet></router-outlet>
         </div>
         <nav class="footer-nav">
-          <ul>
+          <ul> 
             <li>
               <a href="http://openbudget.kdvz-frechen.de/impressum.html">Impressum</a>
             </li>
@@ -134,3 +131,4 @@ export class LayoutComponent {
     this.store.dispatch(new layout.OpenSidenavAction());
   }
 }
+

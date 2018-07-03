@@ -123,21 +123,6 @@ services:
         ports:
             - "8891:8890"
             - "1112:1111"
-    virtuoso_staging_old:
-        image: openbudgets/virtuoso
-        build: ./virtuoso
-        restart: always
-        volumes:
-            - ../volumes/virtuosoStagingOld/data:/data
-            - ../volumes/virtuosoStagingOld/upload:/upload
-            - ../volumes/nginx/dumps:/dumps
-        env_file:
-            - ../.env
-        environment:
-            - SPARQL_UPDATE=true
-        ports:
-            - "8893:8890"
-            - "1113:1111"
     rudolf:
         image: openbudgets/rudolf
         build: ./rudolf
@@ -147,19 +132,19 @@ services:
         links:
             #- virtuoso_production
             - virtuoso_staging
-    rdfbrowser:
-        image: openbudgets/rdfbrowser
-        build: ./rdfbrowser
-        volumes:
-            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
-            - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
-        ports:
-            - "8111:80"
-        links:
-            - virtuoso_staging
-            - virtuoso_production
-        env_file:
-            - ../.env
+#    rdfbrowser:
+#        image: openbudgets/rdfbrowser
+#        build: ./rdfbrowser
+#        volumes:
+#            - ../volumes/rdfbrowser/database/database.sqlite:/var/www/RDFBrowser/database/database.sqlite
+#            - ./rdfbrowser/dev/apache2.conf:/etc/apache2/apache2.conf
+#        ports:
+#            - "8111:80"
+#        links:
+#            - virtuoso_staging
+#            - virtuoso_production
+#        env_file:
+#            - ../.env
     dampostgres:
         image: openbudgets/dampostgres
         build: ./dampostgres
@@ -185,7 +170,7 @@ services:
             - "5000:5000"
         links:
             - dampostgres
-            - opencpu
+            #- opencpu
         env_file:
             - ../.env
     outlierdm:
@@ -211,7 +196,7 @@ services:
             - linkedpipes_fdp
             - virtuoso_staging
             - virtuoso_production
-            - virtuoso_staging_old
+            #- virtuoso_staging_old
             - rudolf
             - os-viewer
             - os-packager
@@ -220,7 +205,7 @@ services:
             - alignment
             - microsite
             - damapp
-            - opencpu
+            #- opencpu
             - cors
         ports:
             - "80:80" # http
@@ -242,7 +227,8 @@ services:
             - DEFAULT_BASE_PATH=/viewer
             - OS_BASE_URL=http://openbudget.kdvz-frechen.de
             - OS_EXTERNAL_ADDRESS=http://openbudget.kdvz-frechen.de
-            - OS_VIEWER_API_HOST=http://openbudget.kdvz-frechen.de
+            #- OS_VIEWER_API_HOST=http://openbudget.kdvz-frechen.de
+            - OS_VIEWER_API_HOST=https://openspending.org
             - OS_VIEWER_AUTH_HOST=http://openbudget.kdvz-frechen.de
             - OS_VIEWER_SEARCH_HOST=http://openbudget.kdvz-frechen.de
             - OS_VIEWER_DATAMINE_HOST=http://openbudget.kdvz-frechen.de
@@ -255,6 +241,12 @@ services:
           - "8000"
         ports:
           - "9553:8000"
+        environment:
+            - OS_BASE_URL=http://openbudget.kdvz-frechen.de
+            - OS_CONDUCTOR_URL=https://openspending.org
+            - OS_VIEWER_URL=http://openbudget.kdvz-frechen.de/viewer
+            - OS_ADMIN_URL=https://openspending.org
+            - FDP_ADAPTER_URL=https://openspending.org/fdp-adapter/convert
     indigo:
         image: openbudgets/indigo
         build: ./indigo
@@ -262,10 +254,11 @@ services:
           - "8442:80"
         links:
           - damapp
-          - opencpu
+          #- opencpu
         volumes:
-          - ./nginx/static_files/impressum_test.html:/var/www/impressum.html
           - ./nginx/static_files/datenschutz_test.html:/var/www/datenschutz.html
+          - ./nginx/static_files/impressum_test.html:/var/www/impressum.html
+
     cors:
         build: ./cors
         restart: always
@@ -273,11 +266,11 @@ services:
           - "8080"
         ports:
           - "19102:8080"
-    opencpu:
-        image: openbudgets/opencpu
-        build: ./opencpu
-        ports:
-          - "8666:80"
-          - "8663:443"
-          - "8004:8004"
+   # opencpu:
+   #     image: openbudgets/opencpu
+   #     build: ./opencpu
+   #     ports:
+   #       - "8666:80"
+   #       - "8663:443"
+   #       - "8004:8004"
 
