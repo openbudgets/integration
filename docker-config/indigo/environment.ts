@@ -5,9 +5,9 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://apps.openbudgets.eu',
-  DAMUrl: 'http://apps.openbudgets.eu/dam',
-  openCpuEndpoint: 'http://apps.openbudgets.eu/ocpu',
+  apiUrl: 'http://openbudget.kdvz-frechen.de',
+  DAMUrl: 'http://openbudget.kdvz-frechen.de/dam',
+  openCpuEndpoint: 'http://openbudget.kdvz-frechen.de/ocpu',
   versionSuffix: '3',
   baseHref: '/',
   DAMretries: 10,

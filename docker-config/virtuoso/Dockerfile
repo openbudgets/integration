@@ -16,11 +16,11 @@ RUN cd / && \
 
 ENV PATH="/apache-jena/bin:${PATH}"
 
-
 COPY ./cronjobs /cronjobs
 RUN chmod a+x -R /cronjobs
 COPY ./syslog-ng.conf /etc/syslog-ng/syslog-ng.conf
 COPY ./syslog-ng /etc/default/syslog-ng
+
 
 COPY ./staging/startVirtuoso.sh /startVirtuoso.sh
 CMD ["/bin/sh", "/startVirtuoso.sh"]
