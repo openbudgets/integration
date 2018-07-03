@@ -256,8 +256,8 @@ services:
           - damapp
           #- opencpu
         volumes:
-          - ./nginx/static_files/datenschutz_test.html:/var/www/datenschutz.html
-          - ./nginx/static_files/impressum_test.html:/var/www/impressum.html
+          - ./nginx/static_files/datenschutz.html:/var/www/datenschutz.html
+          - ./nginx/static_files/impressum.html:/var/www/impressum.html
 
     cors:
         build: ./cors
