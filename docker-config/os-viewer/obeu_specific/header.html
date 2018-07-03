@@ -2,13 +2,15 @@
 <nav class="navbar navbar-inverse x-page-header" ng-controller="HeaderController">
   <div class="navbar-header navbar-header-full-width">
     <ul class="nav navbar-nav pull-right" ng-cloak>
-        <li ng-repeat="link in theme.header.links | filter : { title : '!!' }">
+        <!--<li ng-repeat="link in theme.header.links | filter : { title : '!!' }">
             <a ng-href="{{ link.href }}" style="color:#000000;" >{{ link.title }}</a>
+        </li>-->
+	<li>
+	    <a ng-href="http://openbudget.kdvz-frechen.de/packager" style="color:#000000;">Daten hinzufügen</a>
+	</li>
+        <li>
+	    <a ng-href="http://openbudget.kdvz-frechen.de/" style="color:#000000;">Daten finden</a>
         </li>
-		<!--<li>
-		 <a ng-href="http://openbudget.kdvz-frechen.de/packager" style="color:#000000;">Daten hinzufügen</a>
-		 <a ng-href="http://openbudget.kdvz-frechen.de/" style="color:#000000;">Daten finden</a>
-		</li>-->
 
       <li ng-if="!login.isLoggedIn" class="user" ng-cloak>
         <a href="javascript:void(0)" ng-click="login.login()" style="color:#000000;">
