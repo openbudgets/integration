@@ -1,0 +1,134 @@
+{% raw %}
+<section id="step4-wrapper">
+  <div class="step4-package-info">
+    <div class="well">
+      <div class="row" ng-if="!!fiscalDataPackage.title">
+        <div class="x-icon"><i class="os-icon os-icon-box"></i></div>
+        <h3>
+          {{ fiscalDataPackage.title }}
+          <small class="text-muted" ng-if="!!fiscalDataPackage.name">({{ fiscalDataPackage.name }})</small>
+        </h3>
+        <p ng-if="!!fiscalDataPackage.description">{{ fiscalDataPackage.description }}</p>
+      </div>
+
+      <div class="row">
+        <div class="x-icon"><i class="os-icon os-icon-file"></i></div>
+        <p ng-repeat="resource in fiscalDataPackage.resources track by $index">
+          <span>{{ resource.title || resource.name }}</span>
+          <span ng-if="!!resource.path || !!resource.url" class="text-muted">({{ resource.path || resource.url }})</span>
+        </p>
+      </div>
+
+      <div class="row" ng-if="!!fiscalDataPackage.author">
+        <div class="x-icon"><i class="os-icon os-icon-user"></i></div>
+        <p>{{ fiscalDataPackage.author }}</p>
+      </div>
+
+      <div class="row" ng-if="!!fiscalDataPackage.fiscalPeriod">
+        <div class="x-icon"><i class="os-icon os-icon-table"></i></div>
+        <p>{{ fiscalDataPackage.fiscalPeriod }}</p>
+      </div>
+
+      <div class="row" ng-if="!!fiscalDataPackage.regionCode || !!fiscalDataPackage.countryCode || !!fiscalDataPackage.cityCode">
+        <div class="x-icon"><i class="os-icon os-icon-location"></i></div>
+        <p>{{ [fiscalDataPackage.regionCode, fiscalDataPackage.countryCode, fiscalDataPackage.cityCode] | join }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="step4-package-mappings">
+    <div class="row">
+      <h4 class="col-xs-12 text-muted">Column Mapping</h4>
+
+      <div ng-repeat="mapping in mappings track by $index" class="col-sm-3">
+        <p><b>{{ mapping.name }}:</b></p>
+        <p ng-repeat="source in mapping.sources track by $index">
+          <span>{{ source.fileName }}</span>&nbsp;/&nbsp;<span>{{ source.fieldName }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <form action="{{ 'download/' + fileName }}" method="post">
+    <input type="hidden" name="name" value="{{ fileName }}">
+    <input type="hidden" name="mime" value="application/octet-stream">
+    <input type="hidden" name="data" value="{{ fiscalDataPackage | json }}">
+    <div ng-if="!state.packagePublicUrl">
+      <button ng-if="login.isLoggedIn"
+          ng-click="publishAndRunWebHooks()"
+          ng-disabled="state.isUploading || !login.permissions['datapackage-upload']"
+          type="button"
+          class="btn btn-primary btn-lg" id="step4-button-publish">
+        <i class="fa fa-cloud-upload"></i>
+        <!--&nbsp;&nbsp;Save this Data Package-->
+		&nbsp;&nbsp;Datenmodell herunterladen
+      </button>
+      <button ng-if="!login.isLoggedIn"
+          ng-click="login.login()"
+          type="button"
+          class="btn btn-primary btn-lg" id="step4-button-cant-publish">
+        <i class="fa fa-cloud-upload"></i>
+        <!--&nbsp;&nbsp;Log in to Publish-->
+        &nbsp;&nbsp;Einloggen und Datensatz veröffentlichen
+      </button>
+    </div>
+  </form>
+
+  <div ng-if="state.uploads.length">
+    <!--<h4>Publishing status:</h4>-->
+    <h4>Status</h4>
+    <div class="alert"
+      ng-class="{'alert-success': upload.status != ProcessingStatus.FAILED, 'alert-danger': upload.status == ProcessingStatus.FAILED}"
+      ng-repeat="upload in state.uploads">
+      <!--<div class="margin-bottom-4"><b>{{ upload.name }}</b> - {{ upload.status || 'preparing' }}</div>-->
+      <div class="margin-bottom-4"><b>{{ upload.name }}</b> - {{ upload.status || 'Bereite Prozess vor' }}</div>
+      <progress-bar ng-if="upload.status != ProcessingStatus.FAILED"
+        value="{{ upload.progress * 100 }}"
+        label="{{ (upload.progress * 100 | numberFormat:2) + '%' }}"></progress-bar>
+      <pre class="without-margins" ng-if="upload.status == ProcessingStatus.FAILED">{{ upload.error }}</pre>
+    </div>
+  </div>
+
+  <div ng-if="!!state.packagePublicUrl">
+    <!--<h4>Publishing status:</h4>-->
+    <h4>Status</h4>
+    <div class="alert alert-success">
+      <i class="fa fa-2x fa-check-circle-o vertical-align-middle margin-right-4"></i>
+      <!--<strong>File successfully published!</strong> You can now visualize it and explore it with <strong>OpenSpending Viewer</strong>!-->
+	  <strong>Ihr Datensatz wurde erfolgreich hochgeladen!</strong> Dieser kann nun auf der <strong>OpenSpending Plattform</strong> visualisiert werden!
+    </div>
+
+    <div ng-if="packageOBEUStatus == 'processing'" class="alert alert-warning">
+      <i class="fa fa-2x fa-check-circle-o vertical-align-middle margin-right-4"></i>
+      <!--<strong>Your dataset is being submitted to OpenBudgets.</strong> Please wait, we will notify you right here when it is ready.-->
+	  <strong>Ihr Datensatz wird hochgeladen.</strong> Bitte warten.
+    </div>
+
+    <div ng-if="packageOBEUStatus == 'ready'" class="alert alert-success">
+      <i class="fa fa-2x fa-check-circle-o vertical-align-middle margin-right-4"></i>
+      <!--<strong>Your dataset is ready in the OpenBudgets Platform! You can go there now!</strong>-->
+	  <strong>Ihr Datensatz steht nun auf der OpenBudgets Plattform bereit.</strong>
+    </div>
+
+    <a class="btn btn-primary" ng-href="{{ state.packagePublicUrl }}" target="_blank">
+      <i class="fa fa-2x fa-bar-chart vertical-align-middle margin-right-4"></i>
+      <!--Visualize your data in OpenSpending-->
+	  Visualisierung auf OpenSpending
+    </a>
+
+    <a class="btn btn-primary" target="_blank" href="http://apps.openbudgets.eu/">
+      <i class="fa fa-2x fa-bar-chart vertical-align-middle margin-right-4"></i>
+      <!--Search your datapackage in OpenBudgets-->
+	  Ihr Datensatz auf OpenBudgets
+    </a>
+
+    <a ng-if="!!state.packageManageUrl" class="btn btn-success"
+      ng-href="{{ state.packageManageUrl }}" target="_blank">
+      <i class="fa fa-2x fa-gears vertical-align-middle margin-right-4"></i>
+      <!--Manage your datasets-->
+	  Datensätze verwalten
+    </a>
+  </div>
+</section>
+{% endraw %}
+

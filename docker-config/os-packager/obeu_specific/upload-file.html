@@ -1,0 +1,90 @@
+
+n id="step1-wrapper">
+<div ng-if="!isExternalDataPackage">
+  <div class="row form-group">
+    <div ng-hide="isUrlSelected" ng-class="{'col-sm-5': !isUrlSelected && !isFileSelected, 'col-xs-12': isFileSelected}">
+      <div class="input-group">
+        <span class="input-group-btn">
+          <!--<label class="btn btn-inverse" for="step1-upload-file">Upload a file</label>-->
+		  <label class="btn btn-inverse" for="step1-upload-file">Hochladen</label>
+        </span>
+        <input id="step1-input-file" ng-value="model.file" type="text" class="form-control" placeholder="No file selected" readonly="on">
+        <span class="input-group-btn" ng-if="isFileSelected">
+          <button ng-click="onClearSelectedResource()" type="button" class="btn btn-default"><i class="fa fa-times"></i></button>
+        </span>
+      </div>
+      <input ng-file-selected="onFileSelected()" type="file" id="step1-upload-file" style="position: absolute; left: -100000px; top: -100000px;">
+    </div>
+    <div ng-hide="isFileSelected || isUrlSelected" class="col-sm-1 text-center">
+      <p class="form-control-static">or</p>
+    </div>
+    <div ng-hide="isFileSelected" ng-class="{'col-sm-6': !isUrlSelected && !isFileSelected, 'col-xs-12': isUrlSelected}">
+      <div ng-class="{'input-group': isUrlSelected}">
+        <input id="step1-input-url" name="step1-resource-url" ng-model="model.url"
+          type="text" class="form-control" placeholder="http://">
+        <span class="input-group-btn" ng-if="isUrlSelected">
+          <button ng-click="onClearSelectedResource()" type="button" class="btn btn-default"><i class="fa fa-times"></i></button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="!state.isFile && !state.isUrl" class="alert alert-default">
+    <i class="fa fa-2x fa-info-circle vertical-align-middle margin-right-4"></i>
+    <!--Waiting for file or URL...-->
+	Warte auf Datei oder Webadresse...
+  </div>
+
+  <div ng-if="(state.status.state == 'reading') || (state.status.state == 'checking')" class="alert alert-default">
+    <i class="fa fa-2x fa-spinner fa-pulse vertical-align-middle margin-right-4"></i>
+    <span ng-if="state.status.state == 'reading'">
+      <!--<span ng-if="state.isFile">Reading {{ state.file.name }} / type: {{ state.file.type }},
+        size (in bytes): {{ state.file.size }}</span>-->
+      <span ng-if="state.isFile">Lese {{ state.file.name }} / type: {{ state.file.type }},
+        size (in bytes): {{ state.file.size }}</span>
+      <!--<span ng-if="state.isUrl">Loading data from {{ state.url }}</span>-->
+      <span ng-if="state.isUrl">Lade Datei {{ state.url }}</span>
+    </span>
+
+    <span ng-if="state.status.state == 'checking'">
+      <!--Validating data...-->
+	  Daten werden geprüft...
+      <span ng-if="state.status.sampleSize">/ sample size: {{ state.status.sampleSize }} rows(s)</span>
+    </span>
+  </div>
+
+  <div ng-if="(state.status.state == 'completed') && !state.status.errors" class="alert alert-success">
+    <i class="fa fa-2x fa-check-circle-o vertical-align-middle margin-right-4"></i>
+    <!--Resource is valid. Now you can continue.-->
+	Die Daten wurden geprüft. Sie können nun fortfahren.
+  </div>
+
+  <div ng-if="(state.status.state == 'completed') && state.status.errors" class="alert alert-danger">
+    <i class="fa fa-2x fa-times-circle-o vertical-align-middle margin-right-4"></i>
+    <!--There are some errors.-->
+	Es gibt leider ein Problem mit Ihrem Datensatz. Klicken Sie hier für weitere Informationen.
+    <!--<a href="javascript:void(0)" ng-click="onShowValidationResults()" class="alert-link">Click here</a>
+    to view details.-->
+	Klicken Sie <a href="javascript:void(0)" ng-click="onShowValidationResults()" class="alert-link">hier</a>
+    für weitere Informationen.
+  </div>
+
+  <div class="row form-group"
+    ng-if="(state.status.state == 'completed') && !state.status.errors">
+    <div class="col-xs-12">
+      <button id="step1-button-next" ng-click="goToNextStep()" type="button" class="btn btn-inverse btn-lg">
+        <!--Continue&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>-->
+		Weiter&nbsp;&nbsp;<i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div ng-if="(state.status.state == 'completed') && state.status.errors"
+    ng-init="errors = state.status.errors">
+  {% endraw %}
+    {% include "partials/modals/validation-results.html" %}
+  {% raw %}
+  </div>
+</div>
+</section>
+{% endraw %}
