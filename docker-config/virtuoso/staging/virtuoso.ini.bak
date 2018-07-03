@@ -29,7 +29,7 @@ TransactionFile			= /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.
 xa_persistent_file		= /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso.pxa
 ErrorLogLevel			= 7
 FileExtend			= 200
-MaxCheckpointRemap		= 2000
+MaxCheckpointRemap		= 1000000
 Striping			= 0
 TempStorage			= TempDatabase
 
@@ -37,7 +37,7 @@ TempStorage			= TempDatabase
 [TempDatabase]
 DatabaseFile			= /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso-temp.db
 TransactionFile			= /usr/local/virtuoso-opensource/var/lib/virtuoso/db/virtuoso-temp.trx
-MaxCheckpointRemap		= 2000
+MaxCheckpointRemap		= 1000000
 Striping			= 0
 
 
@@ -77,7 +77,7 @@ MaxMemPoolSize                  = 200000000
 PrefixResultNames               = 0
 MacSpotlight                    = 0
 IndexTreeMaps                   = 64
-MaxQueryMem 		 	= 16G		; memory allocated to query processor
+MaxQueryMem 		 	= 20G		; memory allocated to query processor
 VectorSize 		 	= 1000		; initial parallel query vector (array of query operations) size
 MaxVectorSize 		 	= 1000000	; query vector size threshold.
 AdjustVectorSize 	 	= 0
@@ -238,7 +238,7 @@ DefaultHost			= localhost:8890
 ;ImmutableGraphs    		= http://localhost:8890/dataspace
 ResultSetMaxRows           	= 500000
 MaxQueryCostEstimationTime 	= 60000	; in seconds
-MaxQueryExecutionTime      	= 600	; in seconds
+MaxQueryExecutionTime      	= 3000	; in seconds
 DefaultQuery               	= select distinct ?Concept where {[] a ?Concept} LIMIT 100
 DeferInferenceRulesInit    	= 0  ; controls inference rules loading
 ;PingService       		= http://rpc.pingthesemanticweb.com/
