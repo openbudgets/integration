@@ -23,15 +23,6 @@ import {Observable} from "rxjs";
               <li [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
 		<a  [routerLink]="['/']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >Daten finden</a>
               </li>
-              <li >
-                <a href="http://openbudgets.eu/tools/">Data Toolbox</a>
-              </li>
-              <li>
-                <a href="http:///openbudgets.github.io/documentation">Documentation</a>
-              </li>
-              <li>
-                <a href="http:///openbudgets.github.io/blog">Blog</a>
-              </li>
             </ul>
           </nav>
         </div>
@@ -51,10 +42,10 @@ import {Observable} from "rxjs";
         <nav class="footer-nav">
           <ul> 
             <li>
-              <a href="http://apps.openbudgets.eu/impressum.html">Impressum</a>
+              <a href="http://openbudget.kdvz-frechen.de/impressum.html">Impressum</a>
             </li>
             <li>
-              <a href="http://apps.openbudgets.eu/datenschutz.html">Datenschutz</a>
+              <a href="http://openbudget.kdvz-frechen.de/datenschutz.html">Datenschutz</a>
             </li>
           </ul>
         </nav>

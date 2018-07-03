@@ -10,8 +10,8 @@ RUN npm install npm@latest -g
 RUN npm --version
 RUN git config --global url.https://github.com/.insteadOf git://github.com/
 RUN git clone https://github.com/openbudgets/os-packager.git app && \
-    cd /app && git checkout describe_from_file && \
-    cd /app && git checkout 6e4414a80b3f7e50b3552e3a7206915f7977436a
+    cd /app && git checkout bonnbudget && \
+    cd /app && git checkout 0603c68a8a8e29978afb8f164877fb4c611b54ea
 
 COPY ./obeu_specific/styles.less /app/app/front/styles/styles.less
 
@@ -25,9 +25,13 @@ ENV OS_PACKAGER_BASE_PATH=packager
 
 COPY ./settings.json /app/settings.json
 COPY ./obeu_specific/header.html /app/app/views/partials/header.html
+COPY ./obeu_specific/landing.html /app/app/views/pages/landing.html
 COPY ./obeu_specific/default.json /app/app/config/themes/default.json
 COPY ./obeu_specific/footer.html /app/app/views/partials/footer.html
 COPY ./obeu_specific/theme.css /app/app/views/partials/theme.css
+COPY ./obeu_specific/upload-file.html /app/app/views/partials/steps/upload-file.html
+COPY ./obeu_specific/provide-metadata.html /app/app/views/partials/steps/provide-metadata.html
+COPY ./obeu_specific/download-package.html /app/app/views/partials/steps/download-package.html
 COPY ./obeu_specific/openbudgets-logo.ico /app/app/public/favicon.ico
 COPY ./startup.sh /startup.sh
 
