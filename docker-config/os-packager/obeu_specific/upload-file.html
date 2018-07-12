@@ -8,7 +8,7 @@
           <!--<label class="btn btn-inverse" for="step1-upload-file">Upload a file</label>-->
 		  <label class="btn btn-inverse" for="step1-upload-file">Hochladen</label>
         </span>
-        <input id="step1-input-file" ng-value="model.file" type="text" class="form-control" placeholder="No file selected" readonly="on">
+        <input id="step1-input-file" ng-value="model.file" type="text" class="form-control" placeholder="Datei auswählen" readonly="on">
         <span class="input-group-btn" ng-if="isFileSelected">
           <button ng-click="onClearSelectedResource()" type="button" class="btn btn-default"><i class="fa fa-times"></i></button>
         </span>
@@ -16,7 +16,7 @@
       <input ng-file-selected="onFileSelected()" type="file" id="step1-upload-file" style="position: absolute; left: -100000px; top: -100000px;">
     </div>
     <div ng-hide="isFileSelected || isUrlSelected" class="col-sm-1 text-center">
-      <p class="form-control-static">or</p>
+      <p class="form-control-static">oder</p>
     </div>
     <div ng-hide="isFileSelected" ng-class="{'col-sm-6': !isUrlSelected && !isFileSelected, 'col-xs-12': isUrlSelected}">
       <div ng-class="{'input-group': isUrlSelected}">
