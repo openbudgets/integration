@@ -178,6 +178,11 @@ services:
         build: ./outlierdm
         ports:
             - "5555:5000"
+    obeuvis:
+        image: openbudgets/obeuvis
+        build: ./obeuvis
+        ports:
+            - "5554:4000"
     nginx:
         image: openbudgets/nginx
         build: ./nginx
@@ -207,6 +212,7 @@ services:
             - damapp
             #- opencpu
             - cors
+            - obeuvis
         ports:
             - "80:80" # http
             - "443:443" # https
