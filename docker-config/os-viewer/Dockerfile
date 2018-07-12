@@ -6,7 +6,7 @@ RUN git config --global url."https://github.com/".insteadOf git@github.com: && \
     git config --global url."https://".insteadOf git://
 
 RUN git clone http://github.com/openbudgets/os-viewer.git app && \
-    cd /app && git checkout 36b723676146f31da892f723cf9a66eb0a702e6b
+    cd /app && git checkout 60b2f10b329beac4f83c8e4645550666d6137d7d
 
 
 COPY ./obeu_specific/base.html /app/app/views/layouts/base.html
