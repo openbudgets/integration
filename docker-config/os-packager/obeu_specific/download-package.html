@@ -61,7 +61,7 @@
           class="btn btn-primary btn-lg" id="step4-button-publish">
         <i class="fa fa-cloud-upload"></i>
         <!--&nbsp;&nbsp;Save this Data Package-->
-		&nbsp;&nbsp;Datenmodell herunterladen
+		&nbsp;&nbsp;Datensatz hochladen
       </button>
       <button ng-if="!login.isLoggedIn"
           ng-click="login.login()"
@@ -110,13 +110,13 @@
 	  <strong>Ihr Datensatz steht nun auf der OpenBudgets Plattform bereit.</strong>
     </div>
 
-    <a class="btn btn-primary" ng-href="{{ state.packagePublicUrl }}" target="_blank">
+    <!--<a class="btn btn-primary" ng-href="{{ state.packagePublicUrl }}" target="_blank">
       <i class="fa fa-2x fa-bar-chart vertical-align-middle margin-right-4"></i>
       <!--Visualize your data in OpenSpending-->
 	  Visualisierung auf OpenSpending
-    </a>
+    </a>-->
 
-    <a class="btn btn-primary" target="_blank" href="http://apps.openbudgets.eu/">
+    <a class="btn btn-primary" target="_blank" href="http://openbudget.kdvz-frechen.de/">
       <i class="fa fa-2x fa-bar-chart vertical-align-middle margin-right-4"></i>
       <!--Search your datapackage in OpenBudgets-->
 	  Ihr Datensatz auf OpenBudgets

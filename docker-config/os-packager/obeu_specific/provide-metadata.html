@@ -13,13 +13,13 @@
     <div class="form-group" ng-class="{'has-error': metadata.name.$dirty && !metadata.name.$valid}">
       <!--<label class="control-label required" for="step3-package-name">Choose a unique identifier for this data-set</label>
       <br/><small>(This will overwrite any previous data-set you published with the same unique ID)</small>-->
-      <label class="control-label required" for="step3-package-name">> Datensatz ID</label>
+      <label class="control-label required" for="step3-package-name"> Datensatz ID</label>
       <br/><small>(Ein Datensatz mit gleicher ID wird in diesem Prozess überschrieben)</small>
       <input ng-model="attributes.name" required="required" name="name"
         ng-disabled="isExternalDataPackage"
         type="text" class="form-control" id="step3-package-name">
       <!--<small>lowercase letters, numbers and &quot;-&quot;, &quot;_&quot;, &quot;.&quot; only. no spaces allowed!</small>-->
-	  <small>Zulässig: Kleinbuchstaben, Zahlen und die Zeichen &quot; &quot;, &quot;. Keine Leerzeichen!</small>
+	  <small>Zulässig: Kleinbuchstaben, Zahlen und die Zeichen &quot;-&quot;, &quot;_&quot;, &quot;.&quot;.  Keine Leerzeichen!</small>
     </div>
 
     <div class="form-group">

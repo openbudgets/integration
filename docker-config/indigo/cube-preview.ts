@@ -8,7 +8,7 @@ import {Cube} from '../../models/cube';
     <md-card>
       <md-card-title-group align="center center">
         <md-card-title>{{ cube.pckg.title }}</md-card-title>
-        <md-card-subtitle>{{ cube.pckg.author }}</md-card-subtitle>
+        <!--<md-card-subtitle>{{ cube.pckg.author }}</md-card-subtitle>-->
         <span md-card-md-image class="flag-icon flag-icon-{{ cube.pckg.countryCode?.toLowerCase() }}"></span>
       </md-card-title-group>
       <div class="row text-center">
@@ -20,6 +20,7 @@ import {Cube} from '../../models/cube';
   `,
   styles: [`
     md-card-title {
+      text-align: center;
       font-size: 18px;
     }
     a {
