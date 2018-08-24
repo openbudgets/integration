@@ -1,4 +1,4 @@
-FROM node:8.2
+FROM node:8.9
 
 
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
@@ -53,9 +53,11 @@ RUN git clone https://github.com/okgreece/indigo.git /app && \
 RUN cd /app && rm -rf node_modules dist &&  npm install
 
 COPY ./layout.ts /app/src/app/components/layout.ts
+COPY ./cube-preview.ts /app/src/app/components/cube/cube-preview.ts
+COPY ./cube-search.ts /app/src/app/components/cube/cube-search.ts
 COPY ./environment.ts /app/src/environments/environment.ts
-
 COPY ./environment.ts /app/src/environments/environment.prod.ts
+
 
 
 RUN cd /app &&  ng build --prod --aot

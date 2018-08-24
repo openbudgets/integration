@@ -26,13 +26,14 @@ EXPOSE 5000
 RUN git clone https://github.com/openbudgets/DAM $APP_DIR && \
             cd $APP_DIR && \
             git checkout staging_indigo && \
-            git checkout 90af6972b786b1dbe4290ffca92bba6d931e22a3
+            git checkout 8a28a569e4fe034e4c9e6e343aae201c5e936b74
 WORKDIR $APP_DIR
 
 # COPY environment vars:
 COPY ./.env $APP_DIR/.env
 
 # Install DAM:
+RUN apt-get -y update
 RUN yes | make pre && \
     source ./env/bin/activate && \
     make dam
